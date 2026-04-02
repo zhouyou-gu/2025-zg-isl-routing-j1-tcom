@@ -1,0 +1,15 @@
+backpropagation
+subgradient
+backpropagate
+Backpropagate
+Subgradient-based
+subgradients
+supergradients
+supergradient
+Jacobian
+responsivity
+Subgradient
+boundedness
+subproblems
+subproblem
+grey

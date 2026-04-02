@@ -1,0 +1,35 @@
+# LaTeX auxiliary files
+main_conference.pdf
+main_conference_backup.pdf
+main.pdf
+*.aux
+*.bcf
+*.blg
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.lol
+
+# Intermediate output formats
+*.dvi
+*.xdv
+
+# Backup and temporary files
+*.tex~
+*.bak
+
+# Optional: Ignore generated PDF files (uncomment if you don’t want them tracked)
+# *.pdf
+
+# Build directories (if your workflow uses them)
+latex.out/
+build/
+
+# Editor-specific files (optional, adjust as needed)
+*.swp
+*.tmp
