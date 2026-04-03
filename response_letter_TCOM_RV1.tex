@@ -115,15 +115,20 @@ Dear Editor(s), we thank you for handling our manuscript and providing us with t
 \textbf{Summary by Reviewer 1: This paper proposes a Lagrangian duality-based method, called DuJo, for the joint optimization of Laser Inter-Satellite Link (LISL) matching and traffic flow routing in Low Earth Orbit (LEO) mega constellations. The objective is to maximize network throughput while considering the mechanical constraints of Laser Communication Terminals (LCTs), such as steering ranges and pointing jitters, alongside non-uniform global traffic demands. However, the paper may not be suitable for publication in its current form. To improve the quality of the paper, the authors should consider the following comments:}
 
 
-\textbf{A:
-1. Is the assumption of independent and identically distributed pointing errors across LCTs realistic in practical satellite platforms?
-2. Why is the acquisition and tracking time loss strictly assumed to be zero? To the best of my knowledge, LCT alignment in practical satellite systems incurs non-negligible time overhead.
-3. You’d better provide a step-by-step mathematical reduction for the NP hardness proof.
-4. Will the subgradient descent handle potential oscillations when multiple flows compete for the same bottleneck LISLs?
-5. Why does the evaluation only randomly sample a given number of satellites from the Starlink data instead of simulating a complete structured orbital shell (or multiple shells)?
-6. Why are the baseline methods limited to basic heuristics? You may want to include a comparison with recent state-of-the-art schemes to better demonstrate your performance gains.
-7. Paper writing would benefit from improvement. Please also double-check for typos throughout the paper.
-} 
+\textbf{Comment 1: Is the assumption of independent and identically distributed pointing errors across LCTs realistic in practical satellite platforms?}
+
+\textbf{Comment 2: Why is the acquisition and tracking time loss strictly assumed to be zero? To the best of my knowledge, LCT alignment in practical satellite systems incurs non-negligible time overhead.}
+
+\textbf{Comment 3: You’d better provide a step-by-step mathematical reduction for the NP hardness proof.}
+
+\textbf{Comment 4: Will the subgradient descent handle potential oscillations when multiple flows compete for the same bottleneck LISLs?}
+
+\textbf{Comment 5: Why does the evaluation only randomly sample a given number of satellites from the Starlink data instead of simulating a complete structured orbital shell (or multiple shells)?}
+
+\textbf{Comment 6: Why are the baseline methods limited to basic heuristics? You may want to include a comparison with recent state-of-the-art schemes to better demonstrate your performance gains.}
+
+\textbf{Comment 7: Paper writing would benefit from improvement. Please also double-check for typos throughout the paper.}
+
 
 
 \section*{\centering\Large\textbf{Response to Reviewer 3 of Manuscript TCOM-TPS-26-0080}}
@@ -131,16 +136,30 @@ Dear Editor(s), we thank you for handling our manuscript and providing us with t
 \textbf{Summary by Reviewer 3: Authors present a method to jointly optimize LCT connections in a satellite constellation to maximize throughput and considering LCT mechanics and global traffic demand. The proposed method is based on a Lagrangian duality based concept to relax the untractability of the joint optimization problem. The method is fully addressed, and authors offer results of complexity. Results are promising compared to the baseline cases, but there are some major concerns that should be addressed to validate performance results.}
 
 
-\textbf{1) Authors claim they include mechanical limitations of LCT terminals. However, the only limitation is the FOR range (limited to 60 degrees) and the pointing jitter. In order to validate results, expressions for visibility conditions based on the limited FOR is required and shall be included in the manuscript.
-2) Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capability of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, https://doi.org/10.1016/j.actaastro.2025.06.068.
-3) Baseline models: authors consider Rand (i.e. random selection of LCT pairs), which is not a proper baseline or benchmark. A rand model would make satellites decide a random ISL link, which is not practical in any sense. Moreover, it should be clarified if in this random selection the limited FOR is considered.
-4) Traffic served by a each satellite is quantified as 20 Gbps. It must be declared if this traffic comes from the users or includes ISLs.
-5) From the defintion of LCT, it seems that only intraplane ISL are feasible.
-6) Results show an increase of throughput with the proposed method. However, no information about the unserved capacity at constellation level is presented.
-7) From a system level perspective, author should provide an idea of the operation of the system. Is the optimization carried out by the satellites or centrally orchestrated by a ground station?
-8) Figure 2 is not very representative. It is not clear the comparison of b) and c).
-9) When modelling Starlink, authors select a random number of satellites out of the whole constellation. This might lead to unreal scenarios, without a reliable representation of potential ISLs between the selected satellites.
-10) A detailed analysis of the method performance in scenarios with a large traffic demand should be provided to have an idea of the resilience of the method.}
+\textbf{Comment 1: Authors claim they include mechanical limitations of LCT terminals. However, the only limitation is the FOR range (limited to 60 degrees) and the pointing jitter. In order to validate results, expressions for visibility conditions based on the limited FOR is required and shall be included in the manuscript.}
+
+
+\textbf{Comment 2: Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capability of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, https://doi.org/10.1016/j.actaastro.2025.06.068.}
+
+
+\textbf{Comment 3: Baseline models: authors consider Rand (i.e. random selection of LCT pairs), which is not a proper baseline or benchmark. A rand model would make satellites decide a random ISL link, which is not practical in any sense. Moreover, it should be clarified if in this random selection the limited FOR is considered.}
+
+
+\textbf{Comment 4: Traffic served by a each satellite is quantified as 20 Gbps. It must be declared if this traffic comes from the users or includes ISLs.}
+
+
+\textbf{Comment 5: From the defintion of LCT, it seems that only intraplane ISL are feasible.}
+
+\textbf{Comment 6: Results show an increase of throughput with the proposed method. However, no information about the unserved capacity at constellation level is presented.}
+
+
+\textbf{Comment 7: From a system level perspective, author should provide an idea of the operation of the system. Is the optimization carried out by the satellites or centrally orchestrated by a ground station?}
+
+\textbf{Comment 8: Figure 2 is not very representative. It is not clear the comparison of b) and c).}
+
+\textbf{Comment 9: When modelling Starlink, authors select a random number of satellites out of the whole constellation. This might lead to unreal scenarios, without a reliable representation of potential ISLs between the selected satellites.}
+
+\textbf{Comment 10: A detailed analysis of the method performance in scenarios with a large traffic demand should be provided to have an idea of the resilience of the method.}
 
 
 \bibliography{main}
