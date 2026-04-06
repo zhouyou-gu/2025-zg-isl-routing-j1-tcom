@@ -80,6 +80,7 @@ Use this as a mental or written template when handling a comment:
 - Handle one reviewer comment at a time.
 - Do not move to the next comment until the user confirms satisfaction with the current one.
 - If the user rejects an addressment or asks to restart from a comment, resume from that comment.
+- If a reviewer comment requires additional simulation results and the user chooses to defer it, mark that comment as deferred, keep it out of the approved set, and move to the next comment that can be addressed without those simulations.
 - Prefer technically honest scope limitations over weak defenses.
 - If a claim feels shaky, refine the key points interactively before rewriting.
 - Keep the control files low entropy: durable outcomes in `PROGRESS.md`, reusable guidance in `HARNESS.md`.

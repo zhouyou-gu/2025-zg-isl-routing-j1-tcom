@@ -5,17 +5,21 @@ This file tracks the current state of the paper revision.
 ## Current Objective
 
 - R1 C4 is complete and synchronized.
-- Resume at R1 C5 when the next revision step begins.
+- R1 C5 is deferred for now because it needs additional simulation results.
+- R1 C6 is also deferred for now because it needs additional simulation results.
+- R1 C7 is complete and synchronized.
+- Resume from the next addressable reviewer comment after R1 C7, unless the user returns to the simulation work for R1 C5 or R1 C6.
 
 ## Repository State
 
 - The current branch is `main`.
-- The latest synchronized R1 C4 revision updates:
+- The latest committed synchronized revision is still the R1 C4 update set.
+- The current working tree contains uncommitted updates in:
   - `HARNESS.md`
   - `PROGRESS.md`
+  - `main.bbl`
   - `main.tex`
   - `response_letter_TCOM_RV1.tex`
-  - `response_letter_TCOM_RV1.bbl`
 
 ## Concrete Edits Already Present
 
@@ -45,6 +49,9 @@ This file tracks the current state of the paper revision.
 - The main R1 C4 response paragraph in `response_letter_TCOM_RV1.tex` has been tightened again at the user's request by removing the sentence that foregrounded the best-so-far iterate as a practical DuJo-procedure change; the response now keeps the emphasis on the oscillation/convergence distinction and the simulation-discussion clarification.
 - The R1 C4 response paragraph has been revised again to avoid the colon-style continuation in the convergence sentence; it now uses full-sentence prose instead, matching the user's style preference.
 - `main.pdf` and `response_letter_TCOM_RV1.pdf` were rebuilt successfully after the R1 C4 edits; the new response-letter overfull boxes introduced during drafting were removed, and only the pre-existing unrelated warning from a long bibliography entry remains there. During a later verification pass, a corrupted generated `main.aux` in the current-dir build path had to be cleared and regenerated before the manuscript build stabilized again.
+- R1 C7 is now drafted and synchronized: `main.tex` includes a focused proofreading pass that improves the introduction, notation paragraph, LCT-mechanics exposition, figure captions, numerical-results wording, complexity discussion, and conclusion, those minor wording edits are now left unhighlighted in the manuscript, and `response_letter_TCOM_RV1.tex` presents R1 C7 as a completed response without foregrounding those minor edits through quoted manuscript excerpts.
+- After a review pass on the R1 C7 addressment, several remaining draft-like sentences were tightened in `main.tex`, and the response-letter wording was narrowed from a manuscript-wide proofreading claim to a focused cleanup claim.
+- `main.pdf` and `response_letter_TCOM_RV1.pdf` were rebuilt successfully after the R1 C7 edits. During verification, a generated zero-length `main.bbl` had to be refreshed with `bibtex main` before the manuscript build returned to the expected warning state. The manuscript still shows the same pre-existing duplicate-destination and layout warnings, and the response letter still shows the same pre-existing overfull-box warning from the long bibliography entry.
 
 ## Status by Comment
 
@@ -54,12 +61,15 @@ This file tracks the current state of the paper revision.
 - R1 C2
 - R1 C3
 - R1 C4
+- R1 C7
 
-### Still only proposed in the response letter
+### Deferred pending additional simulation results
 
 - R1 C5
 - R1 C6
-- R1 C7
+
+### Still only proposed in the response letter
+
 - R3 C1
 - R3 C2
 - R3 C3
@@ -109,18 +119,28 @@ This file tracks the current state of the paper revision.
 - A reusable writing preference was clarified and recorded in `HARNESS.md`: in both `main.tex` prose and response-letter prose, avoid `:` by default and use it only when structurally necessary.
 - The user then asked to revert the manuscript-side practical-procedure change for R1 C4, so `main.tex` was restored to convert the last iterate rather than a retained best-so-far iterate, the corresponding quoted blocks were removed from `response_letter_TCOM_RV1.tex`, a corrupted generated `main.aux` was cleared, and both PDFs rebuilt successfully afterward.
 - The user marked R1 C4 done, so the status was advanced to completed and synchronized, and the next safe resume point was updated to R1 C5.
+- The user then chose to skip R1 C5 for now because it needs additional simulation results, so R1 C5 was marked deferred and the next safe resume point moved to R1 C6.
+- The user then chose to skip R1 C6 for now because it also needs additional simulation results, so R1 C6 was marked deferred, the next safe resume point moved to R1 C7, and `HARNESS.md` was updated with the reusable rule for deferring simulation-dependent comments.
+- R1 C7 was addressed with a manuscript-wide proofreading pass over several awkward or ambiguous passages, the response letter was converted from a proposal to a completed synchronized response, and both PDFs rebuilt successfully afterward with only the same pre-existing unrelated warnings remaining.
+- At the user's request, the R1 C7 response-letter block was simplified further so it no longer highlights those minor edits with quoted manuscript changes.
+- During the final R1 C7 verification pass, an unexpectedly empty generated `main.bbl` was recovered by rerunning `bibtex main`, after which `main.pdf` and `response_letter_TCOM_RV1.pdf` both rebuilt successfully again.
+- At the user's request, the minor R1 C7 proofreading edits in `main.tex` were also left unblue while keeping the revised wording itself, and `main.pdf` rebuilt successfully afterward.
+- A later review of R1 C7 found a few remaining awkward sentences, so the manuscript wording around the LCT-jitter description, simulation discussion, and conclusion was tightened again, the response-letter claim was narrowed to a focused cleanup, and both PDFs rebuilt successfully afterward.
+- The user marked R1 C7 done, so the status was advanced to completed and synchronized, and the next safe resume point moved past R1 C7 to the next addressable reviewer comment outside the deferred simulation-dependent items.
 
 ## Current Blockers or Risks
 
+- R1 C5 now requires additional simulation results before it can be addressed fully.
+- R1 C6 now also requires additional simulation results before it can be addressed fully.
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
 - The response-letter TeX build still reports a pre-existing overfull-box warning from a long bibliography entry outside the scope of the R1 C4 fix.
 
 ## Immediate Next-Agent Actions
 
-1. Resume from R1 C5 when the user asks for the next reviewer-comment revision.
-2. Keep `main.tex` and `response_letter_TCOM_RV1.tex` synchronized for the next comment as well.
+1. Resume from the next addressable reviewer comment after R1 C7 when the user asks to continue.
+2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
 3. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R1 C5.
+- Resume from the next user instruction at the next addressable reviewer comment after R1 C7, unless the user explicitly reopens R1 C5 or R1 C6 for simulation work.
