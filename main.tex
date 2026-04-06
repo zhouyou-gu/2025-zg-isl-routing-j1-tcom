@@ -663,7 +663,7 @@ Finally, using the computed supergradient in \eqref{eq:dual_function_subgradient
   \end{aligned}
 \end{equation}
 where $\alpha^{[k]}$ is the step size in the $k$-th iteration. The initial Lagrange multipliers are $\lambda^{[1]} = \mathbf{0}$.
-The step size $\alpha^{[k]}$ is designed to follow a diminishing rule, i.e., $\alpha^{[k]} = \frac{\alpha_0}{k^\beta}$, where $\alpha_0$ is a positive constant and $0.5\leq\beta<1$ controls the step sizes' decay rate. The algorithm is listed in Algorithm \ref{alg:dual_optimization} and is referred to as the ``DuJo'' scheme.
+The step size $\alpha^{[k]}$ is designed to follow a diminishing rule, i.e., $\alpha^{[k]} = \frac{\alpha_0}{k^\beta}$, where $\alpha_0$ is a positive constant and $0.5\leq\beta<1$ controls the step sizes' decay rate. \blue{Because several flows may compete for the same bottleneck LISLs, the subgradient iterates need not be monotone: the dual variables and the converted primal solutions can oscillate before settling. The diminishing step size attenuates these oscillations asymptotically, so the convergence guarantee below is stated for the best-so-far dual iterate rather than for every individual iterate.} The algorithm is listed in Algorithm \ref{alg:dual_optimization} and is referred to as the ``DuJo'' scheme.
 
 \begin{algorithm}[!t]
 \caption{Lagrangian Dual Optimization for Joint Link Matching and Traffic Routing (\textbf{DuJo}) in Mega-Constellation}\label{alg:dual_optimization}
@@ -697,8 +697,7 @@ The convergence of the subgradient descent in Algorithm \ref{alg:dual_optimizati
 
 Applying Lemma \ref{lemma:optimal_dual_variable_bounded}, we can show that the convergence of the subgradient descent algorithm is guaranteed as \cite{boyd2003subgradient}
 \begin{theorem}\label{theorem:convergence:classic}
-The best iterated dual function value $\hat{\lambda}^{[k]} = \argmax_{\lambda^{[i]}:i=1,\dots,k} g(\lambda^{[i]})$ in the first $k$ iterations converges to the optimal dual function value $g(\lambda^*)$ as $k\to\infty$, i.e., $\lim_{k\to\infty} g(\hat{\lambda}^{[k]}) = g(\lambda^*)$.
-Specifically, we have the convergence rate of $\hat{\lambda}^{[k]}$ with the convergence error decreasing on the order of $\mathcal{O}(k^{-(1-\beta)})$ when $0.5\leq\beta<1$.
+\blue{Define the best-so-far dual iterate as $\hat{\lambda}^{[k]} \in \argmax_{\lambda^{[i]}:i=1,\dots,k} g(\lambda^{[i]})$ after $k$ iterations. The corresponding dual value converges to the optimal dual value $g(\lambda^*)$ as $k\to\infty$, i.e., $\lim_{k\to\infty} g(\hat{\lambda}^{[k]}) = g(\lambda^*)$. Specifically, the dual-value gap satisfies $g(\lambda^*) - g(\hat{\lambda}^{[k]}) = \mathcal{O}(k^{-(1-\beta)})$ when $0.5\leq\beta<1$.}
 \end{theorem}
 \begin{proof}
     The proof relies on the convergence of p-series in the step sizes \cite{boyd2003subgradient} and Lemma \ref{lemma:optimal_dual_variable_bounded}, as listed in the appendix.
@@ -805,9 +804,9 @@ We compare our duality-based joint method, with legend ``\textbf{DuJo}'', to the
 \subsection{Numerical Results}
 \subsubsection{Convergence of Dual Function}
 The convergence of the dual function value $g(\lambda)$ is illustrated in Fig. \ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}a for different $\beta$ values. 
-The results show that the dual function value increases and stabilizes over iterations, indicating convergence to the optimal value, as expected from Theorem \ref{theorem:convergence:classic}.
+\blue{As expected for subgradient methods, the per-iteration dual values are not necessarily monotone and may fluctuate when multiple flows compete for the same bottleneck LISLs. Nevertheless, the diminishing step size progressively damps these fluctuations, while Theorem \ref{theorem:convergence:classic} concerns the best-so-far dual value rather than every individual iterate.}
 The performance of the converted LISL matching and flow routing decisions from the iterated Lagrange multipliers is shown in Fig. \ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}b.
-The results show that the network throughput increases and stabilizes over iterations, indicating the optimized Lagrange multipliers lead to improved LISL matching and flow routing decisions. Also, the network throughput is higher in $\beta=0.5$ than the ones in $\beta=0.7$ and $0.9$, indicating that a slower step size decay rate leads to better performance due to more exploration of the Lagrange multipliers' space.
+\blue{The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle.} Also, the network throughput is higher in $\beta=0.5$ than the ones in $\beta=0.7$ and $0.9$, indicating that a slower step size decay rate leads to better performance due to more exploration of the Lagrange multipliers' space.
 Also, we observe that the network throughput is achieving a near maximum value around $K=500$ iterations. For the remaining simulations, we fix $\beta=0.5$ and $K=500$.
 
 \begin{figure}[!t]

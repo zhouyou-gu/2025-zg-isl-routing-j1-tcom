@@ -4,22 +4,18 @@ This file tracks the current state of the paper revision.
 
 ## Current Objective
 
-- R1 C3 is complete and synchronized.
-- Resume at R1 C4 when the next revision step begins.
+- R1 C4 is complete and synchronized.
+- Resume at R1 C5 when the next revision step begins.
 
 ## Repository State
 
-- The paper workspace is already dirty.
-- Tracked paper files currently modified are:
-  - `main.bbl`
-  - `main.bib`
-  - `main.tex`
-  - `response_letter_TCOM_RV1.bbl`
-  - `response_letter_TCOM_RV1.tex`
-- Untracked control files currently present are:
-  - `AGENT.md`
+- The current branch is `main`.
+- The latest synchronized R1 C4 revision updates:
   - `HARNESS.md`
   - `PROGRESS.md`
+  - `main.tex`
+  - `response_letter_TCOM_RV1.tex`
+  - `response_letter_TCOM_RV1.bbl`
 
 ## Concrete Edits Already Present
 
@@ -44,6 +40,11 @@ This file tracks the current state of the paper revision.
 - The R1 C3 response paragraph has now been replaced with the planned one-paragraph version that explicitly follows the user-requested order: acknowledge the issue, explain complexity via AS-JMR, explain the non-implication for `(P1)`, and briefly summarize the appendix reduction.
 - The first mention of AS-JMR in the R1 C3 response paragraph now includes the full name "abstract snapshot joint matching and routing (AS-JMR)".
 - The remaining R1 C3 wording defects found in review were corrected: Contribution 1 in `main.tex` no longer overstates "NP-hardness of the problem", the AS-JMR definition grammar was fixed in both `main.tex` and the quoted response-letter block, and the R1 C3 response paragraph was tightened to remove the duplicated AS-JMR appositive and to mirror the remark's conditional sentence more closely.
+- R1 C4 is now drafted and synchronized: `main.tex` explicitly states that competing flows on bottleneck LISLs can cause transient subgradient oscillations, Theorem `\ref{theorem:convergence:classic}` is now phrased in terms of the best-so-far dual iterate and its dual-value gap, the manuscript again returns to the last iterate for the practical conversion step, and the numerical-results discussion no longer implies monotone per-iteration improvement.
+- The R1 C4 block in `response_letter_TCOM_RV1.tex` has been rewritten from a proposed response to a completed response with verbatim quoted manuscript changes, and the response-letter preamble now defines `\argmax` so that the quoted theorem text compiles verbatim.
+- The main R1 C4 response paragraph in `response_letter_TCOM_RV1.tex` has been tightened again at the user's request by removing the sentence that foregrounded the best-so-far iterate as a practical DuJo-procedure change; the response now keeps the emphasis on the oscillation/convergence distinction and the simulation-discussion clarification.
+- The R1 C4 response paragraph has been revised again to avoid the colon-style continuation in the convergence sentence; it now uses full-sentence prose instead, matching the user's style preference.
+- `main.pdf` and `response_letter_TCOM_RV1.pdf` were rebuilt successfully after the R1 C4 edits; the new response-letter overfull boxes introduced during drafting were removed, and only the pre-existing unrelated warning from a long bibliography entry remains there. During a later verification pass, a corrupted generated `main.aux` in the current-dir build path had to be cleared and regenerated before the manuscript build stabilized again.
 
 ## Status by Comment
 
@@ -52,10 +53,10 @@ This file tracks the current state of the paper revision.
 - R1 C1
 - R1 C2
 - R1 C3
+- R1 C4
 
 ### Still only proposed in the response letter
 
-- R1 C4
 - R1 C5
 - R1 C6
 - R1 C7
@@ -102,19 +103,24 @@ This file tracks the current state of the paper revision.
 - The first AS-JMR mention in the R1 C3 response paragraph was expanded to the full problem name, and `response_letter_TCOM_RV1.pdf` was rebuilt successfully afterward.
 - The R1 C3 materials were reviewed again and the remaining concrete defects were fixed in both the manuscript and response letter; `main.pdf` and `response_letter_TCOM_RV1.pdf` both rebuilt successfully afterward, with only the pre-existing unrelated LaTeX warnings remaining.
 - The user marked R1 C3 done, so the status was advanced to completed and synchronized, and the next safe resume point was updated to R1 C4.
+- The R1 C3 revision set was committed as `4ab0e78` (`Revise R1 C3 hardness statement and response`) and pushed to `origin/main`, so the repository state in this file now reflects a clean worktree.
+- R1 C4 was revised to distinguish transient oscillations from the best-so-far dual-value guarantee, synchronize the response letter with verbatim quoted manuscript text, add the missing `\argmax` operator to the response-letter preamble for compilation, and rebuild both PDFs successfully afterward.
+- The user requested a tighter R1 C4 response paragraph without the sentence about aligning the practical DuJo procedure to the best-so-far iterate, so that sentence was removed and `response_letter_TCOM_RV1.pdf` was rebuilt successfully with only the same pre-existing bibliography overfull warning remaining.
+- A reusable writing preference was clarified and recorded in `HARNESS.md`: in both `main.tex` prose and response-letter prose, avoid `:` by default and use it only when structurally necessary.
+- The user then asked to revert the manuscript-side practical-procedure change for R1 C4, so `main.tex` was restored to convert the last iterate rather than a retained best-so-far iterate, the corresponding quoted blocks were removed from `response_letter_TCOM_RV1.tex`, a corrupted generated `main.aux` was cleared, and both PDFs rebuilt successfully afterward.
+- The user marked R1 C4 done, so the status was advanced to completed and synchronized, and the next safe resume point was updated to R1 C5.
 
 ## Current Blockers or Risks
 
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
-- The response-letter TeX build still reports pre-existing overfull-box warnings in other comments outside the scope of the R1 C3 fix.
-- The manuscript worktree is already dirty, so unrelated tracked edits must be preserved.
+- The response-letter TeX build still reports a pre-existing overfull-box warning from a long bibliography entry outside the scope of the R1 C4 fix.
 
 ## Immediate Next-Agent Actions
 
-1. Resume from R1 C4 when the user asks for the next reviewer-comment revision.
+1. Resume from R1 C5 when the user asks for the next reviewer-comment revision.
 2. Keep `main.tex` and `response_letter_TCOM_RV1.tex` synchronized for the next comment as well.
 3. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R1 C4.
+- Resume from the next user instruction at R1 C5.

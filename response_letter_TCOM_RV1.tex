@@ -67,6 +67,7 @@
 \DeclareMathOperator{\diag}{\bf diag}
 \DeclareMathOperator{\Tr}{\bf Tr}
 \DeclareMathOperator{\nsl}{\bf nsl}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
 
 % \DeclareMathOperator{\inf}{\bf inf}
 
@@ -212,11 +213,25 @@ In the conclusion, we stated:
 
 \textbf{Comment 4: Will the subgradient descent handle potential oscillations when multiple flows compete for the same bottleneck LISLs?}
 
-\textbf{Proposed response:} We agree that subgradient methods can exhibit oscillatory and non-monotone behavior, especially near bottleneck links where several flows compete for limited capacity. In the revision, we will clarify that the convergence statement concerns the best-so-far dual iterate under diminishing step sizes, rather than every individual iterate being monotone or oscillation-free. We will also explain more carefully that the role of the diminishing step size is to control these oscillations asymptotically, even though transient fluctuations can still occur in practice. To align the algorithmic discussion with the theory more closely, we will propose using the best-so-far dual iterate in the conversion step rather than relying only on the final iterate.
+\textbf{Response:} We agree that subgradient ascent does not guarantee monotone per-iteration behavior when several flows compete for the same bottleneck LISLs. The mathematically correct guarantee is instead on the best-so-far dual value under diminishing step sizes \cite{boyd2003subgradient,boyd2004convex}. Transient oscillations can still occur, but their amplitude is damped asymptotically. We therefore revised the manuscript to state this distinction explicitly, rather than leaving the impression that every iterate is oscillation-free. We further revised the simulation discussion so that it no longer suggests monotone iteration-by-iteration improvement, and both the dual values and the converted throughput may fluctuate when bottleneck links are contested, but these fluctuations become milder as the step size decays.
 
-\textbf{Planned manuscript changes:} We will revise the convergence discussion to distinguish between per-iteration behavior and best-iterate guarantees; we will make the practical meaning of oscillation control explicit; and we will revise the conversion discussion so that it is consistent with the best-so-far dual-iterate interpretation.
+\textbf{Manuscript changes:} We revised the relevant discussion as follows:
 
-\textbf{Supporting references:} \cite{boyd2003subgradient,boyd2004convex}
+In the subgradient-descent description, we stated:
+
+``\dots\blue{Because several flows may compete for the same bottleneck LISLs, the subgradient iterates need not be monotone: the dual variables and the converted primal solutions can oscillate before settling. The diminishing step size attenuates these oscillations asymptotically, so the convergence guarantee below is stated for the best-so-far dual iterate rather than for every individual iterate.}''
+
+In Theorem \ref{theorem:convergence:classic}, we stated:
+
+{\sloppy
+``\dots\blue{Define the best-so-far dual iterate as $\hat{\lambda}^{[k]} \in \argmax_{\lambda^{[i]}:i=1,\dots,k} g(\lambda^{[i]})$ after $k$ iterations. The corresponding dual value converges to the optimal dual value $g(\lambda^*)$ as $k\to\infty$, i.e., $\lim_{k\to\infty} g(\hat{\lambda}^{[k]}) = g(\lambda^*)$. Specifically, the dual-value gap satisfies $g(\lambda^*) - g(\hat{\lambda}^{[k]}) = \mathcal{O}(k^{-(1-\beta)})$ when $0.5\leq\beta<1$.}''\par
+}
+
+In the numerical-results discussion, we stated:
+
+``\dots\blue{As expected for subgradient methods, the per-iteration dual values are not necessarily monotone and may fluctuate when multiple flows compete for the same bottleneck LISLs. Nevertheless, the diminishing step size progressively damps these fluctuations, while Theorem \ref{theorem:convergence:classic} concerns the best-so-far dual value rather than every individual iterate.}''
+
+``\dots\blue{The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle.}''
 
 \textbf{Comment 5: Why does the evaluation only randomly sample a given number of satellites from the Starlink data instead of simulating a complete structured orbital shell (or multiple shells)?}
 

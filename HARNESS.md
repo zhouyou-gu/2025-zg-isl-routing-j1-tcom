@@ -96,3 +96,4 @@ Use this as a mental or written template when handling a comment:
 - In response-letter prose, lead with the mathematical reasoning or writing principle behind a revision before enumerating the concrete manuscript edits.
 - In completed response-letter sections, describe manuscript changes in past tense rather than present tense.
 - When a reviewer questions a proof or claim, explain the mathematical standard being enforced and why the revised statement is the correct one, rather than mainly narrating what text was moved or added.
+- In both manuscript prose and response-letter prose, avoid `:` by default. Prefer full sentences, commas, or a separate lead-in sentence unless a colon is genuinely necessary for a formal label, a definition, a list, or displayed material.
