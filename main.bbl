@@ -65,6 +65,9 @@ D.~Ron, F.~A. Yusufzai, S.~Kwakye, S.~Roy, N.~Sastry, and V.~K. Shah, ``Time- {{
 \bibitem{ahuja1993network}
 R.~K. Ahuja, T.~L. Magnanti, and J.~B. Orlin, \emph{Network Flows: Theory, Algorithms and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Englewood Cliffs (N. J.): Prentice Hall, 1993.
 
+\bibitem{jarry2012multiflows}
+A.~Jarry, ``Multiflows in symmetric digraphs,'' \emph{Discrete Applied Mathematics}, vol. 160, no.~15, pp. 2208--2220, 2012.
+
 \bibitem{fisher2004lagrangian}
 M.~L. Fisher, ``The lagrangian relaxation method for solving integer programming problems,'' \emph{Management Science}, vol.~50, no. 12,, pp. 1861--1871, 2004.
 
@@ -83,6 +86,9 @@ D.~A. Vallado, \emph{Fundamentals of Astrodynamics and Applications}, ser. Space
 \bibitem{arnon2003effects}
 S.~Arnon, ``Effects of atmospheric turbulence and building sway on optical wireless-communication systems,'' \emph{Optics Letters}, vol.~28, no.~2, pp. 129--131, 2003.
 
+\bibitem{yang2024analysis}
+J.~Yang, B.~Li, K.~Fan, L.~An, and Q.~Zhang, ``Analysis of laser intersatellite links and topology design for mega-constellation networks,'' \emph{IEEE Internet of Things Journal}, vol.~11, no.~21, pp. 34\,554--34\,566, Nov. 2024.
+
 \bibitem{saleh2019fundamentalsa}
 B.~E.~A. Saleh and M.~C. Teich, \emph{Fundamentals of Photonics}, 3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Hoboken, NJ: Wiley, 2019.
 
@@ -97,6 +103,12 @@ A.~Chaaban, Z.~Rezki, and M.-S. Alouini, ``On the capacity of intensity-modulati
 
 \bibitem{maxim_spf_transimpedance}
 MAXIM, ``2.{{7Gbps SFP Transimpedance Amplifiers}} with {{RSSI}},'' 2005.
+
+\bibitem{li2011analytical}
+X.~Li, S.~Yu, J.~Ma, and L.~Tan, ``Analytical expression and optimization of spatial acquisition for intersatellite optical communications,'' \emph{Optics Express}, vol.~19, no.~3, pp. 2381--2390, 2011.
+
+\bibitem{scheinfeild2000acquisition}
+M.~Scheinfeild, N.~S. Kopeika, and R.~Melamed, ``Acquisition system for microsatellites laser communication in space,'' in \emph{Free-Space {{Laser Communication Technologies Xii}}}, vol. 3932.\hskip 1em plus 0.5em minus 0.4em\relax SPIE, May 2000, pp. 166--175.
 
 \bibitem{boyd2004convex}
 S.~Boyd, S.~P. Boyd, and L.~Vandenberghe, \emph{Convex Optimization}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge university press, 2004.
@@ -128,5 +140,14 @@ Sat{NOGS} ground stations. [Online]. Available: \url{https://network.satnogs.org
 
 \bibitem{moy1998ospf}
 J.~T. Moy, \emph{{{OSPF}}: Anatomy of an Internet Routing Protocol}.\hskip 1em plus 0.5em minus 0.4em\relax Reading, Mass: Addison-Wesley, 1998.
+
+\bibitem{bashir2021adaptive}
+M.~S. Bashir and M.-S. Alouini, ``Adaptive acquisition schemes for photon-limited free-space optical communications,'' \emph{IEEE Transactions on Communications}, vol.~69, no.~1, pp. 416--428, Jan. 2021.
+
+\bibitem{gu2021knowledge}
+Z.~Gu, C.~She, W.~Hardjawana, S.~Lumb, D.~McKechnie, T.~Essery, and B.~Vucetic, ``Knowledge-assisted deep reinforcement learning in 5g scheduler design: From theoretical framework to implementation,'' \emph{IEEE Journal on Selected Areas in Communications}, vol.~39, no.~7, pp. 2014--2028, 2021.
+
+\bibitem{gu2024graph}
+Z.~Gu, B.~Vucetic, K.~Chitti, C.~She, and W.~Hardjawana, ``Graph representation learning for contention and interference management in wireless networks,'' \emph{IEEE/ACM Transactions on Networking}, vol.~32, no.~3, pp. 2263--2278, 2024.
 
 \end{thebibliography}

@@ -106,9 +106,7 @@
 
 \section*{\centering\Large\textbf{Response to Editor(s) of Manuscript TCOM-TPS-26-0080}}
 
-Dear Editor(s), we thank you for handling our manuscript and providing us with the reviewers' comments. The manuscript was previously rejected based on three reviewer reports; however, after careful examination, it became evident that \textit{the comments from Reviewer 2 were irrelevant to the submitted work and appeared to review a different paper}. In contrast, the reports from Reviewers 1 and 3 were relevant and constructive, and we have carefully addressed their comments through a thorough revision. Following guidance from the IEEE Transactions on Communications editorial team, we are therefore resubmitting the revised manuscript as a new submission.
-
-\cite{3gpp38821}
+Dear Editor(s), we thank you for handling our manuscript and providing us with the reviewers' comments. The manuscript was previously rejected based on three reviewer reports; however, after careful examination, it became evident that the comments from Reviewer 2 were irrelevant to the submitted work and appeared to review a different paper. In contrast, the reports from Reviewers 1 and 3 were relevant and constructive, and we have carefully addressed their comments through a thorough revision. Following guidance from the IEEE Transactions on Communications editorial team, we are therefore resubmitting the revised manuscript as a new submission.
 
 \section*{\centering\Large\textbf{Response to Reviewer 1 of Manuscript TCOM-TPS-26-0080}}
 
@@ -117,17 +115,130 @@ Dear Editor(s), we thank you for handling our manuscript and providing us with t
 
 \textbf{Comment 1: Is the assumption of independent and identically distributed pointing errors across LCTs realistic in practical satellite platforms?}
 
+\textbf{Response:} We thank the reviewer for this important comment. We would like to clarify that the i.i.d. Rayleigh assumption \cite{arnon2003effects} plays a limited technical role in our formulation, so the realism concern is narrower than it may appear. Specifically, the independence part is never actually invoked by the optimization: the per-link outage threshold $\hat{\nu}$ and the effective rate $r_{n,m}$ are derived purely from the marginal jitter distribution of a single link, and we never evaluate any joint outage event across multiple links. Hence correlated jitter across terminals would not alter any individual link's rate model nor any step of the matching/routing algorithm; it would matter only in a joint-outage analysis, which is outside our scope. The identically-distributed part is used only to adopt a common Rayleigh scale $\sigma_{\mathrm{J}}$, which is consistent with LCTs sharing the same mechanical design, control loop, and attitude reference on a common spacecraft bus after calibration \cite{kaymak2018survey,yang2024analysis}. Allowing per-terminal jitter scales would simply change the per-link marginal distribution and hence the values of $r_{n,m}$, leaving the matching/routing framework unchanged.
+
+\textbf{Manuscript changes:} We have added a short remark to the jitter model in the system model section as follows:
+
+``\dots\blue{Note that the i.i.d. assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}''
+
 \textbf{Comment 2: Why is the acquisition and tracking time loss strictly assumed to be zero? To the best of my knowledge, LCT alignment in practical satellite systems incurs non-negligible time overhead.}
+
+\textbf{Response:} We agree with the reviewer that zero acquisition and tracking loss is not physically realistic for operational optical inter-satellite links \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. Our intended scope is per-snapshot joint design, where the LCT matching, traffic routing, and rate allocation are optimized at a single time instant $t$; we do not model the ATP overhead incurred when the matching changes between consecutive snapshots. We acknowledge this as a genuine scope limitation: at short snapshot intervals on the order of seconds (as in our simulations), ATP overhead is not negligible compared to the snapshot duration, and the present formulation is appropriate only when ATP is assumed to be handled externally or when the snapshot can be treated as long enough to amortize setup time.
+
+We further note that the current Lagrangian-dual decomposition naturally accommodates an ATP-aware extension. Specifically, on a discrete-time grid with snapshot index $\ell$, the ATP-aware problem can be cast as an MDP on the matching state, with the previous matching $\mathbf{c}_{\ell-1}$ and per-link ATP countdowns $\mathbf{h}_\ell$ included in the state, newly-established links incurring zero rate during their ATP period, and the reward being the per-snapshot throughput. Because the link-rate coupling constraint \eqref{eq:const:path:flow_rate} is still per-snapshot in this MDP, lifting it with per-snapshot multipliers $\lambda_\ell$ decomposes the Bellman operator into the same three subproblems as in our current formulation. The temporal coupling is absorbed only into the matching subproblem (a), which becomes an MDP-matching policy with Lagrangian-weighted per-step rewards and a continuation value, while the routing subproblem (b) and the rate-allocation subproblem (c) remain memoryless per-snapshot LPs. The spatial Lagrangian decomposition (current paper) and the temporal MDP structure (ATP) are therefore orthogonal, and our current formulation is recovered as the degenerate case with zero ATP time. We have revised the system model section to state this per-snapshot scope explicitly, acknowledge the ATP limitation, and outline the MDP extension, with full details provided in a new appendix.
+
+\textbf{Manuscript changes:} We have replaced the ``ideal acquisition and tracking'' wording with an explicit per-snapshot scope, an ATP limitation statement, and the MDP extension as follows:
+
+``\dots\blue{Our formulation performs per-snapshot joint design of the matching, routing, and rate allocation at a fixed time $t$, and does not model acquisition, pointing, and tracking (ATP) overheads that arise when the matching changes across snapshots \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. At short snapshot intervals on the order of seconds, ATP overheads are not negligible, which we acknowledge as a scope limitation of this work. An ATP-aware extension can be cast as a Markov decision process (MDP) on the matching state in which our current three-way Lagrangian decomposition is preserved at each snapshot; details are provided in the appendix. The present formulation corresponds to the degenerate case with zero ATP time, and the full MDP extension is left as future work.}''
+
+We have also added a new appendix ``An MDP Extension for Future Work'' that defines the MDP state/action/transition/reward, derives the per-snapshot Bellman operator under Lagrangian relaxation, and shows that routing (b) and rate allocation (c) remain per-snapshot LPs while only the matching subproblem (a) becomes an MDP-matching policy with Lagrangian-weighted rewards and a continuation value. The appendix also notes that approximate dynamic programming, deep reinforcement learning, and graph representation learning are natural candidates for approximating the value function, and recovers the present paper as the degenerate ATP-free case.
 
 \textbf{Comment 3: You’d better provide a step-by-step mathematical reduction for the NP hardness proof.}
 
+\textbf{Response:} We thank the reviewer for this comment, and the reviewer was right that the original NP-hardness discussion was too terse to support the claim rigorously. In the revised manuscript, we now discuss the complexity through the fixed-snapshot abstract decision problem, abstract snapshot joint matching and routing (AS-JMR), which is obtained by fixing one snapshot and abstracting away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. For that reason, we stated Proposition \ref{prop:np_hardness} for AS-JMR rather than directly for the full physical formulation \eqref{eq:prob:constrainted_routing_and_matching:primal}. 
+The reason, stated explicitly in the remark after Proposition \ref{prop:np_hardness}, is that the current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, FOR constraints, distance thresholds, and traffic-pair construction rules. Therefore, NP-hardness of AS-JMR does not by itself yield a direct NP-hardness proof for the original geometric/orbital formulation. A direct NP-hardness claim for \eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of \eqref{eq:prob:constrainted_routing_and_matching:primal}. Depending on the geometric/orbital parameters, it is possible that some instances of \eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.
+The appendix now gives a direct reduction from integral 2-commodity flow in symmetric digraphs \cite[Theorem 1]{jarry2012multiflows} to AS-JMR, with the construction and equivalence argument written step by step. This keeps the proposition, the scope clarification in the main text, and the appendix proof aligned.
+
+
+\textbf{Manuscript changes:} Outside the appendix, we revised the abstract, introduction, contribution summary, problem-formulation section, and conclusion. The revised text read as follows:
+
+In the abstract, we stated:
+
+``\dots\blue{The resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is proved to be NP-hard.}''
+
+In the introduction, we stated:
+
+``\dots\blue{The joint link-matching and flow-routing formulation leads to a mixed-integer optimization problem \cite{ahuja1993network}, and the associated fixed-snapshot abstract decision problem is NP-hard \cite{jarry2012multiflows} (as proved later in Proposition~\ref{prop:np_hardness} and the appendix).}''
+
+In the transition to the method section, we stated:
+
+``\dots\blue{To tackle this mixed-integer problem, we apply the Lagrangian dual relaxation method by lifting the maximum rate limitation constraints between neighboring satellites via Lagrange multipliers.}''
+
+In Contribution 1, we stated the additional complexity result as follows:
+
+``\dots\blue{We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows}.}''
+
+In the paragraph introducing the complexity formulation, we stated:
+
+``\dots\blue{Problem \eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition \ref{prop:np_hardness} and the appendix proof apply.}''
+
+Immediately after the problem formulation, we inserted the following non-appendix block:
+
+{\color{blue}
+\begin{defi}[AS-JMR]
+The abstract snapshot joint matching and routing (AS-JMR) decision problem has input
+\begin{equation}
+  \begin{aligned}
+    (\mathcal{I},\mathcal{N},\{i_n\}_{n\in\mathcal{N}},\mathcal{E},\mathcal{F},\{r_{n,m}\}_{\{n,m\}\in\mathcal{E}},\{Q_i\}_{i\in\mathcal{I}},\{D_i\}_{i\in\mathcal{I}},\zeta),
+  \end{aligned}
+\end{equation}
+where $\mathcal{I}$ is the satellite set, $\mathcal{N}$ is the LCT set, $i_n\in\mathcal{I}$ is the satellite carrying LCT $n$, $\mathcal{E}$ is the set of connectable LCT pairs, $\mathcal{F}$ is the set of source-target satellite pairs, $r_{n,m}\geq 0$ is the rate of pair $\{n,m\}$, $Q_i\geq 0$ and $D_i\geq 0$ are the serving and demand bounds, and $\zeta\geq 0$ is a threshold. Define
+\begin{equation}
+  \begin{aligned}
+    \mathcal{E}_{i,j} = \big\{\{n,m\}\in\mathcal{E}\big| i_n = i, i_m = j\big\},
+    \mathcal{L} = \big\{(i,j)\big| \mathcal{E}_{i,j}\neq \emptyset \big\}.
+  \end{aligned}
+\end{equation}
+The task is to verify the existence of $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\in\mathcal{Q}$, and $\mathbf{x}\in\mathcal{X}$ satisfying \eqref{eq:const:path:flow_rate} and
+\begin{equation}
+  \begin{aligned}
+    \sum_{(s,s')\in\mathcal{F}} q^{s,s'} \geq \zeta.
+  \end{aligned}
+\end{equation}
+\end{defi}
+
+\begin{prop}\label{prop:np_hardness}
+The decision problem AS-JMR is NP-hard.
+\end{prop}
+
+\begin{proof}
+  The proof is listed in the appendix.
+\end{proof}
+}
+
+Immediately after Proposition \ref{prop:np_hardness}, we stated:
+
+``\dots\blue{Proposition \ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation \eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, FOR constraints, distance thresholds, and traffic-pair construction rules. 
+A direct NP-hardness claim for \eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of \eqref{eq:prob:constrainted_routing_and_matching:primal}.
+Depending on the geometric/orbital parameters, it is possible that some instances of \eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}''
+
+In the sentence immediately following that remark, we stated:
+
+``\dots\blue{Nevertheless, the NP-hardness of AS-JMR implies that the difficulty of the joint link matching and flow routing problem is inherent in the combinatorial nature of the problem, which motivates us to design efficient algorithms based on Lagrangian dual relaxation to solve the problem as follows.}''
+
+In the conclusion, we stated:
+
+``\dots\blue{It has also shown that the method can be practically computable for this mixed-integer formulation, while the associated fixed-snapshot abstract decision problem is NP-hard and the computing time increases for larger constellations.}''
+
 \textbf{Comment 4: Will the subgradient descent handle potential oscillations when multiple flows compete for the same bottleneck LISLs?}
+
+\textbf{Proposed response:} We agree that subgradient methods can exhibit oscillatory and non-monotone behavior, especially near bottleneck links where several flows compete for limited capacity. In the revision, we will clarify that the convergence statement concerns the best-so-far dual iterate under diminishing step sizes, rather than every individual iterate being monotone or oscillation-free. We will also explain more carefully that the role of the diminishing step size is to control these oscillations asymptotically, even though transient fluctuations can still occur in practice. To align the algorithmic discussion with the theory more closely, we will propose using the best-so-far dual iterate in the conversion step rather than relying only on the final iterate.
+
+\textbf{Planned manuscript changes:} We will revise the convergence discussion to distinguish between per-iteration behavior and best-iterate guarantees; we will make the practical meaning of oscillation control explicit; and we will revise the conversion discussion so that it is consistent with the best-so-far dual-iterate interpretation.
+
+\textbf{Supporting references:} \cite{boyd2003subgradient,boyd2004convex}
 
 \textbf{Comment 5: Why does the evaluation only randomly sample a given number of satellites from the Starlink data instead of simulating a complete structured orbital shell (or multiple shells)?}
 
+\textbf{Proposed response:} We agree that random subsampling alone is not the strongest realism-facing validation for topology behavior. Our original intent was to use random subsets as a convenient way to study problem-scale sensitivity while keeping the evaluation computationally manageable, not to claim that such induced subgraphs are the most faithful representation of a deployed Starlink shell. In the revision, we will distinguish these two purposes more clearly. Specifically, we will keep random subsampling only for scale-sensitivity analysis and propose adding structured shell-based Starlink snapshot experiments for the realism-facing topology results.
+
+\textbf{Planned manuscript changes:} We will revise the simulation-setup text so that random subsampling is framed only as a problem-scale study; we will propose adding structured shell-based Starlink snapshots for topology-performance validation; and we will update the discussion so that realism claims are tied to structured orbital neighborhoods rather than random induced subgraphs.
+
+\textbf{Supporting references:} \cite{chaudhry2021laser,leyva-mayorga2021interplane}
+
 \textbf{Comment 6: Why are the baseline methods limited to basic heuristics? You may want to include a comparison with recent state-of-the-art schemes to better demonstrate your performance gains.}
 
+\textbf{Proposed response:} We agree that the baseline set should be strengthened. In particular, we agree that a random matching baseline is not a strong practical benchmark and should not be treated as a headline comparison when the goal is to position the proposed method against recent topology-aware designs. In the revision, we will demote the random baseline to a sanity lower bound and propose adding recent LEO topology-design schemes as stronger baselines. To keep the comparison fair, these baselines will be adapted to the same feasible connectability set, FOR/range constraints, and routing/rate-allocation backend used in our framework.
+
+\textbf{Planned manuscript changes:} We will revise the baseline section to reduce the emphasis on the random baseline; we will add recent topology-aware baselines; and we will clarify the fairness conditions used when comparing joint and non-joint schemes.
+
+\textbf{Supporting references:} \cite{ron2025time,rao2025minimumhop,guo2024constellation}
+
 \textbf{Comment 7: Paper writing would benefit from improvement. Please also double-check for typos throughout the paper.}
+
+\textbf{Proposed response:} We thank the reviewer for this comment and agree that the paper would benefit from a clearer presentation. In the revision, we will perform a full proofreading pass to correct typos, tighten ambiguous wording, and improve the readability of several captions and explanatory paragraphs. We will also make the distinction between modeling assumptions, theoretical guarantees, and engineering limitations more explicit so that the scope of each claim is easier to follow.
+
+\textbf{Planned manuscript changes:} We will conduct a full language and notation cleanup; we will rewrite unclear captions and transitional sentences; and we will revise the prose wherever the current draft risks overstating the physical realism or generality of the model.
 
 
 
@@ -138,28 +249,80 @@ Dear Editor(s), we thank you for handling our manuscript and providing us with t
 
 \textbf{Comment 1: Authors claim they include mechanical limitations of LCT terminals. However, the only limitation is the FOR range (limited to 60 degrees) and the pointing jitter. In order to validate results, expressions for visibility conditions based on the limited FOR is required and shall be included in the manuscript.}
 
+\textbf{Proposed response:} We thank the reviewer for this suggestion. The current manuscript already enforces FOR-based connectability when constructing the feasible LCT-pair graph, but we agree that the full visibility condition should be stated more explicitly in geometric form. In the revision, we will augment the model description by writing the line-of-sight and Earth-occlusion conditions together with the existing FOR and range constraints, and we will explain that connectable LCT pairs must satisfy all of these conditions jointly. This will make the mechanical visibility model more transparent and easier to validate.
+
+\textbf{Planned manuscript changes:} We will expand the connectability definition to include an explicit LOS/Earth-occlusion condition; we will clarify how this condition interacts with the FOR and maximum-range constraints; and we will revise the surrounding explanation to make the geometry easier to follow.
+
+\textbf{Supporting references:} \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}
+
 
 \textbf{Comment 2: Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capability of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, https://doi.org/10.1016/j.actaastro.2025.06.068.}
+
+\textbf{Proposed response:} We agree that the current traffic model captures spatial non-uniformity only at a simplified level and does not incorporate the full socioeconomic and temporal richness of real broadband demand. Our intention was to model heterogeneous spatial demand in a tractable way for joint LISL matching and routing, rather than to solve the broader problem of demand forecasting. In the revision, we will clarify this scope more explicitly, acknowledge the omitted dimensions such as purchasing capability and temporal variation, and discuss richer demand-modeling directions including the reviewer-suggested recent work. We will also propose a targeted sensitivity study with temporal or demand-scaling factors so that the robustness of the routing conclusions can be assessed without reframing the paper as a full techno-economic demand study.
+
+\textbf{Planned manuscript changes:} We will revise the traffic-model subsection to state its simplified scope more explicitly; we will cite richer demand-modeling literature and the reviewer-suggested direction in the discussion; and we will propose an additional sensitivity analysis using temporally or economically scaled demand factors.
+
+\textbf{Supporting references:} \cite{guo2021gateway,qin2024satformer}
 
 
 \textbf{Comment 3: Baseline models: authors consider Rand (i.e. random selection of LCT pairs), which is not a proper baseline or benchmark. A rand model would make satellites decide a random ISL link, which is not practical in any sense. Moreover, it should be clarified if in this random selection the limited FOR is considered.}
 
+\textbf{Proposed response:} We agree that a random matching baseline is not a strong practical benchmark and should not be emphasized as a state-of-the-art comparison. In the revision, we will therefore demote it to a sanity lower bound, or remove it from the main benchmark discussion, and focus the primary comparison on more meaningful non-joint and topology-aware schemes. We will also clarify explicitly that any random matching, when retained for reference, is still drawn from the feasible connectability set and therefore respects the same FOR and range constraints as the other methods.
+
+\textbf{Planned manuscript changes:} We will reduce the prominence of the random baseline in the main results; we will clarify that its candidate links are sampled only from the feasible connectability set; and we will strengthen the practical baselines used in the main comparison.
+
 
 \textbf{Comment 4: Traffic served by a each satellite is quantified as 20 Gbps. It must be declared if this traffic comes from the users or includes ISLs.}
+
+\textbf{Proposed response:} We thank the reviewer for pointing out this ambiguity. In the revision, we will clarify that the quantity $Q=20$ Gbps denotes the per-satellite gateway service capacity available at a satellite before subtracting the traffic used to serve the users under its own coverage. In other words, $Q$ is not the total amount of traffic that includes all LISL transit traffic; rather, LISL transit traffic is constrained separately by the aggregate capacities of the established optical links. We agree that this distinction should be stated more explicitly in the traffic-model description.
+
+\textbf{Planned manuscript changes:} We will rewrite the definition of $Q$, $Q_i(t)$, and $D_i(t)$ to remove ambiguity; we will add one explanatory sentence stating that gateway service capacity and LISL transit capacity are distinct quantities; and we will make the traffic accounting clearer in the simulation setup.
 
 
 \textbf{Comment 5: From the defintion of LCT, it seems that only intraplane ISL are feasible.}
 
+\textbf{Proposed response:} We respectfully clarify that the current LCT definition does not imply that only intraplane ISLs are feasible. With fore/aft mounting directions and a nontrivial field of regard, inter-plane neighbors can also be feasible whenever their relative direction falls inside the steering cone and the other connectability conditions are satisfied. In the revision, we will make this point explicit in the system model and discuss it more clearly in the simulation description. We will also propose adding a brief statistic or illustration showing that inter-plane candidate links are indeed present under the evaluated geometry.
+
+\textbf{Planned manuscript changes:} We will clarify in the LCT-model text that the mounting design does not restrict feasible links to the same orbital plane; we will add an explanatory sentence or illustration regarding inter-plane candidate links; and we will make the geometric interpretation of the FOR condition more explicit.
+
+\textbf{Supporting references:} \cite{chaudhry2021laser,leyva-mayorga2021interplane}
+
 \textbf{Comment 6: Results show an increase of throughput with the proposed method. However, no information about the unserved capacity at constellation level is presented.}
+
+\textbf{Proposed response:} We agree that throughput alone does not fully characterize network performance under heterogeneous demand. In the revision, we will complement the throughput results with constellation-level served-demand ratio and unmet-demand volume or fraction, so that the evaluation reports not only how much traffic is carried but also how much demand remains unserved. We expect these additional metrics to make the practical value of the proposed matching and routing decisions easier to interpret, especially in demand-limited regimes.
+
+\textbf{Planned manuscript changes:} We will define one or more unmet-demand metrics in the simulation section; we will report these metrics alongside throughput; and we will update the discussion so that performance is interpreted using both served and unserved demand.
 
 
 \textbf{Comment 7: From a system level perspective, author should provide an idea of the operation of the system. Is the optimization carried out by the satellites or centrally orchestrated by a ground station?}
 
+\textbf{Proposed response:} We thank the reviewer for raising this system-level point. In the revision, we will state explicitly that the intended operating model is centralized orchestration from the ground or network-control segment, using predictable ephemerides and traffic estimates, after which the resulting matching and routing schedule is disseminated to satellites for execution. We will avoid suggesting that the current framework is a fully distributed onboard optimization method. We agree that this architectural clarification is important for interpreting the computational complexity and operational scope of the paper.
+
+\textbf{Planned manuscript changes:} We will add a short paragraph describing the intended control architecture and execution cycle; we will clarify that the current method is designed for centralized planning rather than distributed onboard optimization; and we will mention fully distributed realization as future work.
+
+\textbf{Supporting references:} \cite{3gpp38821,guidotti2024role}
+
 \textbf{Comment 8: Figure 2 is not very representative. It is not clear the comparison of b) and c).}
+
+\textbf{Proposed response:} We agree that the current figure is not sufficiently self-explanatory. In the revision, we will either replace the figure or split it into clearer subfigures so that panels (b) and (c) compare the same flow set under DuJo and the non-joint baseline with consistent legends and more explicit visual emphasis. We will also rewrite the caption to explain exactly what is being compared in each panel and why that comparison is informative.
+
+\textbf{Planned manuscript changes:} We will redesign the current figure layout or split the figure into simpler subfigures; we will rewrite the caption to specify the meaning of each panel; and we will make the graphical comparison between DuJo and the baseline more direct.
 
 \textbf{Comment 9: When modelling Starlink, authors select a random number of satellites out of the whole constellation. This might lead to unreal scenarios, without a reliable representation of potential ISLs between the selected satellites.}
 
+\textbf{Proposed response:} We agree with the reviewer that this concern is closely related to the realism limitation of random subsampling. In the revision, we will separate scale-sensitivity experiments from realism-facing validation more clearly: random subsets will be retained only for studying how the computational burden changes with problem size, while topology-performance claims will be supported by structured shell-based Starlink snapshots. This change will prevent the main physical conclusions from depending on random induced subgraphs that may not reflect coherent orbital neighborhoods.
+
+\textbf{Planned manuscript changes:} We will revise the simulation-setup explanation to separate problem-scale and realism-oriented experiments; we will propose adding structured shell-based Starlink snapshots for the latter; and we will update the result discussion so that physical claims are tied to the structured-shell evaluation.
+
+\textbf{Supporting references:} \cite{chaudhry2021laser,leyva-mayorga2021interplane}
+
 \textbf{Comment 10: A detailed analysis of the method performance in scenarios with a large traffic demand should be provided to have an idea of the resilience of the method.}
+
+\textbf{Proposed response:} We agree that the resilience of the method under heavier offered load should be demonstrated more explicitly. In the revision, we will propose a demand-scaling experiment, for example by increasing the active-user fraction or the per-user demand, and we will report both throughput saturation and unmet-demand fraction as the load increases. This will make it possible to evaluate not only the absolute throughput gain, but also how gracefully the proposed method degrades in demand-stressed regimes.
+
+\textbf{Planned manuscript changes:} We will add a demand-scaling study with multiple load levels; we will report both throughput and unmet-demand metrics across these levels; and we will discuss the resulting robustness trends in the revised simulation section.
+
+\textbf{Supporting references:} \cite{guo2021gateway,qin2024satformer}
 
 
 \bibliography{main}
