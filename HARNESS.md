@@ -85,6 +85,9 @@ Use this as a mental or written template when handling a comment:
 - If a claim feels shaky, refine the key points interactively before rewriting.
 - Keep the control files low entropy: durable outcomes in `PROGRESS.md`, reusable guidance in `HARNESS.md`.
 - Keep quoted `\blue{...}` text verbatim between manuscript and response letter.
+- When quoting manuscript text in the response letter, omit non-blue surrounding text unless it is needed for meaning, location, or a displayed block that would otherwise become unclear.
+- When a quoted manuscript excerpt omits preceding text, begin the retained quote with `\dots` to mark the omission explicitly.
+- In `main.tex`, highlight substantive manuscript revisions in `\blue{...}` by default; leave grammar-only or typo-only fixes unhighlighted unless the user asks otherwise.
 - Re-check directly from file after user edits or repeated requests to double-check.
 - Keep notation aligned with the existing paper and avoid index conflicts.
 - Avoid reusing the same symbol for semantically different roles in proofs, such as using a commodity count and a decision threshold with the same letter.

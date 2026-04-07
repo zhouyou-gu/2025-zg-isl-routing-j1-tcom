@@ -108,7 +108,7 @@ Mega-constellations; Laser links; Graph theory.
 Low Earth orbit (LEO) satellites are emerging as a cornerstone of future generations of wireless communication systems, particularly in providing ubiquitous connectivity worldwide \cite{maiolinicapez2024use}.
 Owing to their reduced propagation delays and improved link budgets to terrestrial terminals, the deployment of LEO satellite constellations complements terrestrial networks and extends the network coverage by enabling direct connections to users \cite{he2024directtosmartphone}.
 Commercial proprietary programs such as SpaceX’s Starlink and OneWeb have been deploying thousands of LEO satellites, forming mega-constellations \cite{wu2025enhancing}.
-The integration of laser inter-satellite links (LISL) using free-space optical (FSO) systems in the LEO mega-constellations promises to deliver high data rates and long ranges in inter-satellite communications \cite{elamassie2023freea}, connecting the traffic flows across the whole constellation.
+The integration of laser inter-satellite links (LISLs) using free-space optical (FSO) systems in the LEO mega-constellations promises to deliver high data rates and long ranges in inter-satellite communications \cite{elamassie2023freea}, connecting the traffic flows across the whole constellation.
 
 Compared to radio frequency (RF) links, LISLs modulate data using directional beams that emit nearly all the transmitted energy into a narrow path, thereby minimizing energy spreading \cite{ntontin2025vision}. 
 However, due to the narrow beam width, one laser communication terminal (LCT) can only connect to one other LCT at a time, limiting the number of LISLs that can be established \cite{wang2024free}. 
@@ -145,7 +145,7 @@ Nevertheless, how to design the Lagrangian dual method for considering practical
     \hline
     $t$ & System time (s) & $\mathcal{T}_0$ & Real-world reference time at $t=0$ \\
 
-    $I$, $\mathcal{I}$ & Number of satellites; set of satellites & $\mathbf{l}_i(t)$, $\mathbf{v}_i(t)$ & Position and velocity of satellite $i$ in ECI (m, m/s) \\
+    $I$, $\mathcal{I}$ & Number of satellites; set of satellites & $\mathbf{l}_i(t)$, $\mathbf{v}_i(t)$ & Position and velocity of satellite $i$ in the Earth-centered inertial frame (m, m/s) \\
 
     $z_{i,j}(t)$ & Distance between satellites $i$ and $j$ (m) & $\mathbf{d}_{i,j}(t)$ & Unit direction vector from $i$ to $j$ \\
 
@@ -153,7 +153,7 @@ Nevertheless, how to design the Lagrangian dual method for considering practical
 
     $i_n$ & Satellite index that LCT $n$ belongs to & $\mathbf{u}_n$ & Mounting direction of LCT $n$ (unit vector) \\
 
-    $\theta$ & LCT field-of-regard (FOR) half-angle (rad) & $\nu$ & Pointing jitter angle (rad) \\
+    $\theta$ & LCT field of regard (FOR) half-angle (rad) & $\nu$ & Pointing jitter angle (rad) \\
 
     $\sigma_{\mathrm{J}}$ & Rayleigh scale parameter of pointing jitter & $P_0$ & Optical transmit power (W) \\
 
@@ -334,16 +334,17 @@ We consider the constellation at a given time $t$, where we omit $t$ for simplic
 The task is to maximize the network throughput in the constellation by optimizing 1) the connecting pairs of LCTs, 2) the traffic flow allocation between serving and demanding satellites, and 3) the routing of the traffic flows through the established LISLs.
 To construct the problem, we first define three independent feasible domains constraining the above groups of decision variables, and then formulate the maximum link rate limitation constraints that couple these decision variables.
 
-\subsection{LCT Connection Constraints}
+\subsection{\texorpdfstring{\blue{LCT Visibility and Connection Constraints}}{LCT Visibility and Connection Constraints}}\label{subsec:lct_visibility_connection}
 The LCTs $\mathcal{N}$ and all connectable LCT pairs $\mathcal{E}$ are modeled as a graph $\mathcal{G}^\text{LCT} = (\mathcal{N},\mathcal{E})$, where the vertices are the LCTs and the edges are connectable LCT pairs.
-A potential LISL can be established between a pair of LCTs only if the distance between the satellites on which the LCTs are mounted is less than a maximum beam transmission distance $\hat{z}$ and their satellites are in the FOR of each other.
-Mathematically, the set $\mathcal{E}$ of all connectable LCT pairs is expressed as
-\begin{equation}
+\blue{The visibility condition for a potential LISL is determined by the maximum beam transmission distance $\hat{z}$ and the mutual field of regard test at the two LCTs.}
+\blue{Accordingly, the set $\mathcal{E}$ of all connectable LCT pairs is defined by the following visibility condition.}
+\begin{equation}\label{eq:lct_visibility_condition}
   \begin{aligned}
     &\mathcal{E} = \big\{\{n,m\}\ \big| \ i_n \neq i_m, z_{i_n,i_m} \leq \hat{z}, \\
     &\qquad\qquad \mathbf{d}_{i_n,i_m} \cdot \mathbf{u}_n > \cos \theta,\mathbf{d}_{i_m,i_n} \cdot \mathbf{u}_m > \cos \theta \big\}.
   \end{aligned}
 \end{equation}
+\blue{Note that this visibility model is simplified. We do not model atmospheric effects here because the present LISL formulation focuses on space-to-space propagation. We also do not impose an explicit line-of-sight or Earth-occlusion constraint, so the current connectability approximation is driven only by the range bound and the mutual field of regard test \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}.}
 Denote by $c_{n,m}$ the binary indicator on whether the LISL from LCT $n$ to $m$ is established or not. If the LISL is established from LCT $n$ to $m$, it is also established from LCT $m$ to $n$, which can be mathematically expressed as
 \begin{equation}\label{eq:const:link:binary_bidirectional_connection}
   \begin{aligned}
@@ -502,7 +503,7 @@ The decision problem AS-JMR is NP-hard.
 
 
 \begin{rem}
-\blue{Proposition \ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation \eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, FOR constraints, distance thresholds, and traffic-pair construction rules. 
+\blue{Proposition \ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation \eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. 
 A direct NP-hardness claim for \eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of \eqref{eq:prob:constrainted_routing_and_matching:primal}.
 Depending on the geometric/orbital parameters, it is possible that some instances of \eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}
 \end{rem}
@@ -773,14 +774,14 @@ Similar to Corollary \ref{cor:complexity:dual_optimization}, the above conversio
 To efficiently process the graphs and simulate the constellation, we implement our algorithms and simulations in a data-oriented programming paradigm. The constellation data is organized into contiguous data arrays and is processed in just-in-time (JIT) compiled procedures using Python Numba \cite{lam2015numba} for high computing efficiency. Linear programming is solved using the HiGHS solver \cite{huangfu2018parallelizing}. 
 The simulations run on a workstation with an Intel Core Ultra 9 285K (24 cores) and 32 GB of memory.
 \subsubsection{System Parameters}
-We construct the constellation in simulations based on the real-world Starlink constellation TLE data from CelesTrak \cite{CelesTrak} at $\mathcal{T}_0$ as UTC $2025-07-16$ $16:00$. To simulate different constellation sizes, we randomly select $I$ satellites out of the Starlink constellation.
+We construct the constellation in simulations based on the real-world Starlink constellation two-line element (TLE) data from CelesTrak \cite{CelesTrak} at $\mathcal{T}_0$ as UTC $2025-07-16$ $16:00$. To simulate different constellation sizes, we randomly select $I$ satellites out of the Starlink constellation.
 Each satellite has $N'=2$ LCTs: one LCT points in the direction of the satellite's velocity direction, and the other points in the opposite direction. The attitude control system maintains these orientations.
 We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has aperture area $A=0.01$ $\text{m}^2$ and responsivity $\Psi=0.5$ $\text{A/W}$. The noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A in root-mean-square (RMS) value \cite{maxim_spf_transimpedance}.
 The power of the beam is $P_0=20$ W and its bandwidth is $B=1$ GHz. The beam's wavelength is $1.55$ $\mu$m and the beam width is $100$ micro-radians, leading to the beam waist radius $W_0=9.87\times10^{-3}$ m and the Rayleigh range $z_\mathrm{R}=1.97\times10^{3}$ m \cite{saleh2019fundamentalsa}. 
 The pointing jitter $\sigma_{\mathrm{J}}$ is set to $10$ micro-radians and the relaxed link outage probability $\epsilon$ is set to $0.001$.
-The FOR of each LCT is within $\theta = 60$ degrees from its mounting direction and the maximum distance for two LCTs to establish a link is $\hat{z}=3000$ km.
+The field of regard half-angle of each LCT is set to $\theta = 60$ degrees from its mounting direction, and the maximum distance for two LCTs to establish a link is $\hat{z}=3000$ km.
 The number $U_i$ of active users served by satellite $i$ is determined from the real-world population data \cite{schiavina2023ghspop} within an approximately $200$ km coverage radius. We assume that $0.01\%$ of that population uses the network at the given time, so $U_i$ is Poisson distributed with a mean equal to the covered population. Each user demands $D=0.1$ Gbps. We randomly select $100$ ground-gateway locations around the globe from SatNOGS \cite{satnogs}. We assume that each satellite can serve up to $Q=20$ Gbps when a ground station lies within its coverage area. If a satellite has positive traffic demand, it routes that demand to the nearest $M=5$ satellites that have connected ground stations, thereby defining the source-target pairs in $\mathcal{F}$.
-Fig. \ref{fig:constellation_simulation_1000_compare} shows the constellations with $I=1000$, the uneven distribution of population density and ground gateway (GW) locations, which emphasizes the need to account for these factors in our study.
+Fig. \ref{fig:constellation_simulation_1000_compare} shows the constellations with $I=1000$, the uneven distribution of population density and ground-gateway locations, which emphasizes the need to account for these factors in our study.
 It also compares the flow paths routed and the network throughput over the constellation between our DuJo scheme and a non-joint scheme (MRate as introduced below).
 In the remaining simulation, we consider the constellation with $I=1000$ without explicit notation.
 

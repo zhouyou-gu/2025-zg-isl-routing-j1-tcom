@@ -8,18 +8,14 @@ This file tracks the current state of the paper revision.
 - R1 C5 is deferred for now because it needs additional simulation results.
 - R1 C6 is also deferred for now because it needs additional simulation results.
 - R1 C7 is complete and synchronized.
-- Resume from the next addressable reviewer comment after R1 C7, unless the user returns to the simulation work for R1 C5 or R1 C6.
+- R3 C1 is complete and synchronized.
+- R3 C2 is now the next addressable reviewer comment when the user asks to continue.
 
 ## Repository State
 
 - The current branch is `main`.
-- The latest committed synchronized revision is still the R1 C4 update set.
-- The current working tree contains uncommitted updates in:
-  - `HARNESS.md`
-  - `PROGRESS.md`
-  - `main.bbl`
-  - `main.tex`
-  - `response_letter_TCOM_RV1.tex`
+- The latest committed synchronized reviewer-response revision includes the R3 C1 visibility-framing and response-letter synchronization update set.
+- The intended saved state of this file is a clean working tree after the current revision is committed.
 
 ## Concrete Edits Already Present
 
@@ -52,6 +48,11 @@ This file tracks the current state of the paper revision.
 - R1 C7 is now drafted and synchronized: `main.tex` includes a focused proofreading pass that improves the introduction, notation paragraph, LCT-mechanics exposition, figure captions, numerical-results wording, complexity discussion, and conclusion, those minor wording edits are now left unhighlighted in the manuscript, and `response_letter_TCOM_RV1.tex` presents R1 C7 as a completed response without foregrounding those minor edits through quoted manuscript excerpts.
 - After a review pass on the R1 C7 addressment, several remaining draft-like sentences were tightened in `main.tex`, and the response-letter wording was narrowed from a manuscript-wide proofreading claim to a focused cleanup claim.
 - `main.pdf` and `response_letter_TCOM_RV1.pdf` were rebuilt successfully after the R1 C7 edits. During verification, a generated zero-length `main.bbl` had to be refreshed with `bibtex main` before the manuscript build returned to the expected warning state. The manuscript still shows the same pre-existing duplicate-destination and layout warnings, and the response letter still shows the same pre-existing overfull-box warning from the long bibliography entry.
+- R3 C1 is now drafted and synchronized in `response_letter_TCOM_RV1.tex`: the old proposed LOS/Earth-occlusion response has been replaced with a completed response that matches the actual manuscript revision, namely the explicit connectable-pair visibility condition in terms of the distance cap and the mutual FOR test used in the definition of `\mathcal{E}`.
+- R3 C1 has now been tightened further and synchronized across `main.tex` and `response_letter_TCOM_RV1.tex`: the manuscript subsection is renamed to `LCT Visibility and Connection Constraints`, the subsection and defining visibility equation are now labeled as `subsec:lct_visibility_connection` and `eq:lct_visibility_condition`, and the response letter now cites those exact references while quoting the final manuscript wording verbatim.
+- R3 C1 has now been revised again so the visible manuscript changes are highlighted in blue: the revised subsection title is now blue in `main.tex`, the two new visibility-framing sentences are blue, and the response-letter quotation has been resynchronized to match that visible blue manuscript text while avoiding the duplicate-label issue that would arise from quoting the manuscript's internal equation label literally.
+- R3 C1 has now been extended further in `main.tex` with a short post-equation limitation note stating that the current visibility/connectability approximation does not model atmospheric effects or an explicit LOS/Earth-occlusion constraint, and `response_letter_TCOM_RV1.tex` has been synchronized to quote and explain that added scope limitation.
+- `HARNESS.md` now records the reusable manuscript-markup preference that substantive `main.tex` revisions should be highlighted in blue, while grammar-only or typo-only fixes should remain unhighlighted unless the user asks otherwise.
 
 ## Status by Comment
 
@@ -62,6 +63,7 @@ This file tracks the current state of the paper revision.
 - R1 C3
 - R1 C4
 - R1 C7
+- R3 C1
 
 ### Deferred pending additional simulation results
 
@@ -70,7 +72,6 @@ This file tracks the current state of the paper revision.
 
 ### Still only proposed in the response letter
 
-- R3 C1
 - R3 C2
 - R3 C3
 - R3 C4
@@ -127,6 +128,23 @@ This file tracks the current state of the paper revision.
 - At the user's request, the minor R1 C7 proofreading edits in `main.tex` were also left unblue while keeping the revised wording itself, and `main.pdf` rebuilt successfully afterward.
 - A later review of R1 C7 found a few remaining awkward sentences, so the manuscript wording around the LCT-jitter description, simulation discussion, and conclusion was tightened again, the response-letter claim was narrowed to a focused cleanup, and both PDFs rebuilt successfully afterward.
 - The user marked R1 C7 done, so the status was advanced to completed and synchronized, and the next safe resume point moved past R1 C7 to the next addressable reviewer comment outside the deferred simulation-dependent items.
+- A later review pass identified Reviewer 3 Comment 1 as the next addressable comment after deferred R1 C5 and R1 C6, and `PROGRESS.md` was refreshed accordingly.
+- The R3 C1 response-letter block was rewritten from a proposed LOS/Earth-occlusion response to a completed response aligned with the actual manuscript change, which states the explicit connectable-pair visibility condition through the maximum-distance bound and the mutual FOR inequalities in the definition of `\mathcal{E}`.
+- R3 C1 was then revised again so the manuscript frames the block explicitly around visibility, adds labels for the subsection and defining equation, and the response letter now refers to Subsection `\ref{subsec:lct_visibility_connection}` and Equation `\eqref{eq:lct_visibility_condition}` directly; `main.pdf` and `response_letter_TCOM_RV1.pdf` both rebuilt successfully afterward with no undefined-reference warnings, while the same pre-existing unrelated LaTeX warnings remained.
+- R3 C1 was revised once more to highlight the visible manuscript changes in blue, including the revised subsection title and the two new visibility-framing sentences. `main.pdf` rebuilt successfully with `latexmk`, and `response_letter_TCOM_RV1.pdf` rebuilt successfully with direct `pdflatex`; when run through `latexmk`, the response-letter build still surfaced a stale custom-dependency error from the external `main` subdocument helper even though the PDF itself was produced.
+- The user then clarified a reusable writing standard: in `main.tex`, substantive manuscript changes should be highlighted in blue, while grammar-only or typo-only fixes should stay unhighlighted. `HARNESS.md` was updated accordingly; the active R3 C1 manuscript block already conforms to that rule.
+- The user then asked for a short limitation note after the visibility equation, so `main.tex` was updated to add a blue scope-limitation sentence on atmosphere and LOS/Earth-occlusion immediately after `\eqref{eq:lct_visibility_condition}`, `response_letter_TCOM_RV1.tex` was synchronized to that exact new wording, `main.pdf` rebuilt successfully with `latexmk`, and `response_letter_TCOM_RV1.pdf` rebuilt successfully after `bibtex response_letter_TCOM_RV1` plus two `pdflatex` passes.
+- During the final verification of that limitation-note addition, the quoted blue sentence in `response_letter_TCOM_RV1.tex` was resynchronized once more so it matches the manuscript verbatim, including the opening wording ``Note that this visibility model is simplified,'' and `response_letter_TCOM_RV1.pdf` rebuilt successfully afterward.
+- A subsequent synchronization pass tightened the R3 C1 main response paragraph into completed-work past tense and aligned its wording more closely with the current `main.tex` visibility block and limitation note, while leaving the quoted manuscript excerpt unchanged because it already matched the manuscript text.
+- A later cleanup pass expanded the abbreviations introduced by the R3 C1 revision itself, replacing `FOR` with `field-of-regard` and `LOS` with `line-of-sight` in the active `main.tex` visibility text and the synchronized R3 C1 response-letter wording.
+- A manuscript-wide abbreviation cleanup then fixed several remaining issues in `main.tex`: the introduction now uses the plural acronym `LISLs` correctly, the notation table spells out the Earth-centered inertial frame instead of using `ECI` before expansion, the simulation setup spells out `TLE` on first use in that section and removes the one-off `GW` abbreviation, and the blue NP-hardness clarification now uses `field-of-regard constraints` rather than `FOR constraints`; the synchronized R1 C3 response-letter text was updated to match that blue wording.
+- A follow-up terminology pass standardized the expansion of `FOR` to `field of regard` without hyphenation in the active manuscript text and in the synchronized response-letter quotations, so the wording now matches the original definition of the term in the LCT mechanics subsection.
+- A subsequent review pass on R3 C1 found that the technical content is synchronized, but the response-letter presentation still has formatting/style inconsistencies relative to surrounding addressed comments, especially the mixed quote-plus-displayed-equation excerpt formatting in the `Manuscript changes` block and the opening tense/style mismatch against nearby finalized responses. R3 C1 therefore remains pending user-directed cleanup rather than ready to mark complete.
+- A deeper comparison against the nearby completed addressments narrowed that presentation issue: the confirmed structural inconsistency is the R3 C1 `Manuscript changes` excerpt, which opens as a quoted prose snippet and then continues with an unframed displayed equation plus an unquoted continuation sentence. The opening sentence ``We agreed with this point'' remains a minor local style outlier, but it is not a strong formatting inconsistency on the same level.
+- The user then clarified a reusable quoting preference: when manuscript text is quoted in the response letter, non-blue surrounding text may be omitted if it is not important. `HARNESS.md` was updated accordingly, and the active R3 C1 `Manuscript changes` excerpt in `response_letter_TCOM_RV1.tex` was trimmed to keep only the substantive added text and the defining equation.
+- After that trimming pass, the active R3 C1 excerpt had dropped the leading `\dots` marker used elsewhere to signal omitted preceding text. That marker was restored at the start of the retained quoted sentence for local formatting consistency.
+- The user then asked to make that omission marker explicit in the reusable workflow. `HARNESS.md` now states that when a quoted manuscript excerpt omits preceding text, the retained quote should begin with `\dots`.
+- The user then approved the current R3 C1 update set for commit and push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next safe resume point moved to R3 C2.
 
 ## Current Blockers or Risks
 
@@ -134,13 +152,14 @@ This file tracks the current state of the paper revision.
 - R1 C6 now also requires additional simulation results before it can be addressed fully.
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
 - The response-letter TeX build still reports a pre-existing overfull-box warning from a long bibliography entry outside the scope of the R1 C4 fix.
+- When building `response_letter_TCOM_RV1.tex` via `latexmk`, the wrapper can still report a stale custom-dependency failure from the external `main` subdocument helper even after the PDF is produced; a direct `pdflatex response_letter_TCOM_RV1.tex` run succeeds on the current file state.
 
 ## Immediate Next-Agent Actions
 
-1. Resume from the next addressable reviewer comment after R1 C7 when the user asks to continue.
+1. Resume at R3 C2 if the user asks to continue with the next reviewer comment.
 2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
 3. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at the next addressable reviewer comment after R1 C7, unless the user explicitly reopens R1 C5 or R1 C6 for simulation work.
+- Resume from the next user instruction at R3 C2, unless the user explicitly reopens R1 C5 or R1 C6 for simulation work.
