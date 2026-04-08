@@ -9,7 +9,8 @@ This file tracks the current state of the paper revision.
 - R1 C6 is also deferred for now because it needs additional simulation results.
 - R1 C7 is complete and synchronized.
 - R3 C1 is complete and synchronized.
-- R3 C2 is now the next addressable reviewer comment when the user asks to continue.
+- R3 C2 is complete and synchronized.
+- R3 C3 is now the next addressable reviewer comment when the user asks to continue.
 
 ## Repository State
 
@@ -64,6 +65,7 @@ This file tracks the current state of the paper revision.
 - R1 C4
 - R1 C7
 - R3 C1
+- R3 C2
 
 ### Deferred pending additional simulation results
 
@@ -72,7 +74,6 @@ This file tracks the current state of the paper revision.
 
 ### Still only proposed in the response letter
 
-- R3 C2
 - R3 C3
 - R3 C4
 - R3 C5
@@ -145,21 +146,26 @@ This file tracks the current state of the paper revision.
 - After that trimming pass, the active R3 C1 excerpt had dropped the leading `\dots` marker used elsewhere to signal omitted preceding text. That marker was restored at the start of the retained quoted sentence for local formatting consistency.
 - The user then asked to make that omission marker explicit in the reusable workflow. `HARNESS.md` now states that when a quoted manuscript excerpt omits preceding text, the retained quote should begin with `\dots`.
 - The user then approved the current R3 C1 update set for commit and push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next safe resume point moved to R3 C2.
+- The user then asked to start R3 C2. The manuscript now narrows the high-level claim from a full global traffic profile to a snapshot-level spatial traffic profile, labels the traffic-profile subsection, and states explicitly that the current model omits temporal variation and purchasing-capability effects while citing richer demand-modeling directions including the reviewer-suggested paper. `response_letter_TCOM_RV1.tex` was synchronized to that completed revision, and R3 C2 is now drafted pending user review.
+- The long DOI in the reviewer-provided R3 C2 reference comment was then wrapped with `\url{...}` in `response_letter_TCOM_RV1.tex` so the comment can break across lines cleanly without changing its content.
+- After a small manuscript wording update in the R3 C2 introduction sentence, the corresponding quoted sentence in `response_letter_TCOM_RV1.tex` was resynchronized so the retained blue excerpt again matches `main.tex` verbatim.
+- A later review pass on R3 C2 found two remaining presentation issues only: the main response paragraph still used present-tense revision phrasing, and the new traffic-scope wording was slightly inconsistent between the abstract and introduction. Those were then cleaned up by converting the response paragraph to completed-work past tense and aligning the introduction wording to the singular phrase `a snapshot-level spatial traffic profile over the globe`, with the quoted response-letter excerpt synchronized accordingly.
+- Before closing R3 C2, the citation-support wording in the final traffic-model limitation sentence was tightened so that temporal and purchasing-capability modeling is supported by `zamacola2025profiling` and `qin2024satformer`, while `guo2021gateway` is cited more narrowly for gateway-aware traffic estimation. The response-letter summary and quoted blue excerpt were resynchronized to match this final manuscript wording.
+- The user then approved R3 C2 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next safe resume point moved to R3 C3.
 
 ## Current Blockers or Risks
 
 - R1 C5 now requires additional simulation results before it can be addressed fully.
 - R1 C6 now also requires additional simulation results before it can be addressed fully.
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
-- The response-letter TeX build still reports a pre-existing overfull-box warning from a long bibliography entry outside the scope of the R1 C4 fix.
 - When building `response_letter_TCOM_RV1.tex` via `latexmk`, the wrapper can still report a stale custom-dependency failure from the external `main` subdocument helper even after the PDF is produced; a direct `pdflatex response_letter_TCOM_RV1.tex` run succeeds on the current file state.
 
 ## Immediate Next-Agent Actions
 
-1. Resume at R3 C2 if the user asks to continue with the next reviewer comment.
+1. Resume at R3 C3 if the user asks to continue with the next reviewer comment.
 2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
 3. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R3 C2, unless the user explicitly reopens R1 C5 or R1 C6 for simulation work.
+- Resume from the next user instruction at R3 C3, unless the user explicitly reopens R1 C5 or R1 C6 for simulation work.

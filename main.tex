@@ -96,7 +96,7 @@ the University of Adelaide, Adelaide, SA 5005, Australia
 \maketitle
 
 \begin{abstract}
-Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and the global traffic profile. \blue{The resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is proved to be NP-hard.} Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with provable convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
+Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. \blue{This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile.} \blue{The resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is proved to be NP-hard.} Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with provable convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
 \end{abstract}
 
 \begin{IEEEkeywords} 
@@ -127,7 +127,7 @@ Incorporating traffic flow routing into the LCT connection design is essential t
 One powerful technique to solve the problem efficiently is to use Lagrangian duality \cite{fisher2004lagrangian}.
 It views the integer program as a core problem plus a set of complicating constraints, and by lifting these constraints to the objective function with Lagrange multipliers (or Lagrangian dual variables), the original problem is relaxed and can be solved efficiently due to fewer constraints \cite{ahuja1993network}. 
 This method has been successfully applied to optimize the network coding multicast rates \cite{wang2023joint} and per traffic flow's energy efficiency  \cite{huang2025lagrangianbased} in satellite networks by lifting bottleneck link constraints and end-to-end path length constraints, respectively.
-Nevertheless, how to design the Lagrangian dual method for considering practical LCT mechanical limitations and global traffic profiles in LEO mega-constellations is still an open question.
+\blue{Nevertheless, how to design the Lagrangian dual method for considering practical LCT mechanical limitations and a snapshot-level spatial traffic profile over the globe in LEO mega-constellations is still an open question.}
 
 
 
@@ -298,9 +298,10 @@ The capacity of the LISL, as a function of the pointing jitter $\nu$ and the sat
 
 
 
-\subsection{Traffic Profile Model}
+\subsection{Traffic Profile Model}\label{subsec:traffic_profile_model}
 
 As the focus of this paper is on the LCT management in space, we consider a simplified scenario where the constellation is serving the traffic from gateways to users under its coverage over the globe.
+\blue{Accordingly, the present traffic model is intended to capture snapshot-level spatial heterogeneity through the uneven distributions of population and gateways, rather than the full demand-forecasting problem.}
 
 It is assumed that each user is downloading data from the Internet, e.g., for video streaming via the service links. We assume that each satellite $i$ has a random number of users, denoted by $U_i(t)$, within its coverage area at time $t$, and each user has a traffic demand of $D$ Gbps.
 We consider there are multiple ground gateways scattered on the Earth, and each satellite can serve up to $Q$ Gbps of traffic if a ground gateway lies within its coverage area. 
@@ -327,6 +328,7 @@ Similarly, the traffic demand of satellite $i$ is the remaining part of the traf
 \end{equation}
 which is referred to as the traffic demand rate of satellite $i$ to the constellation.
 Here, positive traffic demand of a satellite needs to be served by other satellites with a ground gateway connection via the LISLs.
+\blue{This simplified model does not incorporate temporal demand variation or socioeconomic modifiers such as purchasing capability. Richer broadband-demand models along these dimensions are important future work \cite{zamacola2025profiling,qin2024satformer}. Gateway-aware traffic estimation is also relevant to this broader modeling direction \cite{guo2021gateway}.}
 Satellites with positive serving or positive demanding rates are referred to as serving and demanding satellites, respectively.
 
 \section{Problem Formulation}\label{sec:problem_formulation}

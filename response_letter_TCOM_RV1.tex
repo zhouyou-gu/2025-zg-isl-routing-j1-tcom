@@ -279,13 +279,25 @@ In the numerical-results discussion, we stated:
 \blue{Note that this visibility model is simplified. We do not model atmospheric effects here because the present LISL formulation focuses on space-to-space propagation. We also do not impose an explicit line-of-sight or Earth-occlusion constraint, so the current connectability approximation is driven only by the range bound and the mutual field of regard test \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}.}
 
 
-\textbf{Comment 2: Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capability of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, https://doi.org/10.1016/j.actaastro.2025.06.068.}
+\textbf{Comment 2: Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capability of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, \url{https://doi.org/10.1016/j.actaastro.2025.06.068}.}
 
-\textbf{Proposed response:} We agree that the current traffic model captures spatial non-uniformity only at a simplified level and does not incorporate the full socioeconomic and temporal richness of real broadband demand. Our intention was to model heterogeneous spatial demand in a tractable way for joint LISL matching and routing, rather than to solve the broader problem of demand forecasting. In the revision, we will clarify this scope more explicitly, acknowledge the omitted dimensions such as purchasing capability and temporal variation, and discuss richer demand-modeling directions including the reviewer-suggested recent work. We will also propose a targeted sensitivity study with temporal or demand-scaling factors so that the robustness of the routing conclusions can be assessed without reframing the paper as a full techno-economic demand study.
+\textbf{Response:} We agree that the current traffic model captures only a simplified form of global demand. In the revised manuscript, we stated this scope explicitly. In particular, we clarified that the present demand model is a snapshot-level spatial model driven by the uneven distributions of population and gateways, rather than a full socioeconomic or temporal demand forecast. We also stated directly that the present formulation does not incorporate temporal demand variation or purchasing-capability effects, and we cited richer broadband-demand models for those omitted dimensions together with gateway-aware traffic-estimation work, including the reviewer-suggested recent paper.
 
-\textbf{Planned manuscript changes:} We will revise the traffic-model subsection to state its simplified scope more explicitly; we will cite richer demand-modeling literature and the reviewer-suggested direction in the discussion; and we will propose an additional sensitivity analysis using temporally or economically scaled demand factors.
+\textbf{Manuscript changes:} We narrowed the high-level claim in the abstract and introduction, and in Subsection~\ref{subsec:traffic_profile_model} we stated the simplified scope of the present traffic model explicitly. The key revised text read as follows.
 
-\textbf{Supporting references:} \cite{guo2021gateway,qin2024satformer}
+In the abstract, we stated:
+
+``\dots\blue{This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile.}''
+
+In the introduction, we stated:
+
+``\dots\blue{Nevertheless, how to design the Lagrangian dual method for considering practical LCT mechanical limitations and a snapshot-level spatial traffic profile over the globe in LEO mega-constellations is still an open question.}''
+
+In Subsection~\ref{subsec:traffic_profile_model}, we stated:
+
+``\dots\blue{Accordingly, the present traffic model is intended to capture snapshot-level spatial heterogeneity through the uneven distributions of population and gateways, rather than the full demand-forecasting problem.}''
+
+``\dots\blue{This simplified model does not incorporate temporal demand variation or socioeconomic modifiers such as purchasing capability. Richer broadband-demand models along these dimensions are important future work \cite{zamacola2025profiling,qin2024satformer}. Gateway-aware traffic estimation is also relevant to this broader modeling direction \cite{guo2021gateway}.}''
 
 
 \textbf{Comment 3: Baseline models: authors consider Rand (i.e. random selection of LCT pairs), which is not a proper baseline or benchmark. A rand model would make satellites decide a random ISL link, which is not practical in any sense. Moreover, it should be clarified if in this random selection the limited FOR is considered.}
