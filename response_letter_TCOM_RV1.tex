@@ -309,9 +309,19 @@ In Subsection~\ref{subsec:traffic_profile_model}, we stated:
 
 \textbf{Comment 4: Traffic served by a each satellite is quantified as 20 Gbps. It must be declared if this traffic comes from the users or includes ISLs.}
 
-\textbf{Proposed response:} We thank the reviewer for pointing out this ambiguity. In the revision, we will clarify that the quantity $Q=20$ Gbps denotes the per-satellite gateway service capacity available at a satellite before subtracting the traffic used to serve the users under its own coverage. In other words, $Q$ is not the total amount of traffic that includes all LISL transit traffic; rather, LISL transit traffic is constrained separately by the aggregate capacities of the established optical links. We agree that this distinction should be stated more explicitly in the traffic-model description.
+\textbf{Response:} We agree that the traffic accounting should distinguish gateway service capacity from LISL transit capacity. In the revised manuscript, we clarified that $Q$ denotes the per-satellite gateway service capacity between a gateway-connected satellite and the terrestrial Internet. This capacity is used first for the users under that satellite's own coverage, and only the remaining part becomes $Q_i(t)$ for serving other satellites. LISL transit traffic is constrained separately by the capacities of the established optical links and is therefore not already included in $Q=20$ Gbps. We also restated this interpretation in the simulation-setup paragraph.
 
-\textbf{Planned manuscript changes:} We will rewrite the definition of $Q$, $Q_i(t)$, and $D_i(t)$ to remove ambiguity; we will add one explanatory sentence stating that gateway service capacity and LISL transit capacity are distinct quantities; and we will make the traffic accounting clearer in the simulation setup.
+\textbf{Manuscript changes:} In the traffic profile model and the simulation-setup paragraph, we revised the wording so that gateway service capacity and LISL transit capacity were distinguished explicitly. The key revised text read as follows.
+
+In the traffic profile model, we stated:
+
+``\dots\blue{Here, $Q$ denotes the gateway service capacity available between that satellite and the terrestrial Internet. It does not include LISL transit capacity, which is constrained separately by the aggregate capacities of the established optical links.}''
+
+``\dots\blue{Each satellite first uses this gateway service capacity to serve the traffic demand of its own users under its coverage, i.e., $U_i(t) D$ Gbps for satellite $i$, and then uses the remaining gateway capacity to serve the traffic demand of other satellites.}''
+
+In the simulation setup, we stated:
+
+``\dots\blue{Thus, $Q=20$ Gbps is the per-satellite gateway service capacity before subtracting the traffic of the users under that satellite's own coverage, rather than a limit that already includes LISL transit traffic.}''
 
 
 \textbf{Comment 5: From the defintion of LCT, it seems that only intraplane ISL are feasible.}

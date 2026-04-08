@@ -169,7 +169,7 @@ This method has been successfully applied to optimize the network coding multica
 
     $U_i(t)$ & Number of Users covered by satellite $i$ & $D$ & Per-user traffic demand (Gbps) \\
 
-    $Q$ & Gateway capacity per satellite (Gbps) & $Q_i(t)$ & Serving rate of satellite $i$ (Gbps) \\
+    $Q$ & Gateway service capacity per satellite (Gbps) & $Q_i(t)$ & Serving rate of satellite $i$ (Gbps) \\
 
     $D_i(t)$ & Demand rate of satellite $i$ (Gbps) & $\mathcal{G}^{\text{LCT}}=(\mathcal{N},\mathcal{E})$ & LCT connectability graph \\
 
@@ -305,8 +305,9 @@ As the focus of this paper is on the LCT management in space, we consider a simp
 
 It is assumed that each user is downloading data from the Internet, e.g., for video streaming via the service links. We assume that each satellite $i$ has a random number of users, denoted by $U_i(t)$, within its coverage area at time $t$, and each user has a traffic demand of $D$ Gbps.
 We consider there are multiple ground gateways scattered on the Earth, and each satellite can serve up to $Q$ Gbps of traffic if a ground gateway lies within its coverage area. 
+\blue{Here, $Q$ denotes the gateway service capacity available between that satellite and the terrestrial Internet. It does not include LISL transit capacity, which is constrained separately by the aggregate capacities of the established optical links.}
 Note that with a ground gateway connection, a satellite can not only serve traffic demands of the users under its coverage but also from other satellites in the constellation when they are connected by LISLs.
-Each satellite first serves the traffic demand of its own users under its coverage, i.e., $U_i(t) D$ Gbps for satellite $i$, and then serves the traffic demand of other satellites by using its remaining gateway capacity.
+\blue{Each satellite first uses this gateway service capacity to serve the traffic demand of its own users under its coverage, i.e., $U_i(t) D$ Gbps for satellite $i$, and then uses the remaining gateway capacity to serve the traffic demand of other satellites.}
 Specifically, by subtracting the traffic demand of the users under its own coverage, each satellite $i$ can serve the traffic demand of other satellites up to
 \begin{equation}
   \begin{aligned}
@@ -782,7 +783,7 @@ We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT ha
 The power of the beam is $P_0=20$ W and its bandwidth is $B=1$ GHz. The beam's wavelength is $1.55$ $\mu$m and the beam width is $100$ micro-radians, leading to the beam waist radius $W_0=9.87\times10^{-3}$ m and the Rayleigh range $z_\mathrm{R}=1.97\times10^{3}$ m \cite{saleh2019fundamentalsa}. 
 The pointing jitter $\sigma_{\mathrm{J}}$ is set to $10$ micro-radians and the relaxed link outage probability $\epsilon$ is set to $0.001$.
 The field of regard half-angle of each LCT is set to $\theta = 60$ degrees from its mounting direction, and the maximum distance for two LCTs to establish a link is $\hat{z}=3000$ km.
-The number $U_i$ of active users served by satellite $i$ is determined from the real-world population data \cite{schiavina2023ghspop} within an approximately $200$ km coverage radius. We assume that $0.01\%$ of that population uses the network at the given time, so $U_i$ is Poisson distributed with a mean equal to the covered population. Each user demands $D=0.1$ Gbps. We randomly select $100$ ground-gateway locations around the globe from SatNOGS \cite{satnogs}. We assume that each satellite can serve up to $Q=20$ Gbps when a ground station lies within its coverage area. If a satellite has positive traffic demand, it routes that demand to the nearest $M=5$ satellites that have connected ground stations, thereby defining the source-target pairs in $\mathcal{F}$.
+The number $U_i$ of active users served by satellite $i$ is determined from the real-world population data \cite{schiavina2023ghspop} within an approximately $200$ km coverage radius. We assume that $0.01\%$ of that population uses the network at the given time, so $U_i$ is Poisson distributed with a mean equal to the covered population. Each user demands $D=0.1$ Gbps. We randomly select $100$ ground-gateway locations around the globe from SatNOGS \cite{satnogs}. We assume that each satellite can serve up to $Q=20$ Gbps when a ground gateway lies within its coverage area. \blue{Thus, $Q=20$ Gbps is the per-satellite gateway service capacity before subtracting the traffic of the users under that satellite's own coverage, rather than a limit that already includes LISL transit traffic.} If a satellite has positive traffic demand, it routes that demand to the nearest $M=5$ satellites that have gateway connections, thereby defining the source-target pairs in $\mathcal{F}$.
 Fig. \ref{fig:constellation_simulation_1000_compare} shows the constellations with $I=1000$, the uneven distribution of population density and ground-gateway locations, which emphasizes the need to account for these factors in our study.
 It also compares the flow paths routed and the network throughput over the constellation between our DuJo scheme and a non-joint scheme (MRate as introduced below).
 In the remaining simulation, we consider the constellation with $I=1000$ without explicit notation.

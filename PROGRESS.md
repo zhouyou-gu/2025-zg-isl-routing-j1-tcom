@@ -10,12 +10,14 @@ This file tracks the current state of the paper revision.
 - R1 C7 is complete and synchronized.
 - R3 C1 is complete and synchronized.
 - R3 C2 is complete and synchronized.
-- R3 C3 is now the next addressable reviewer comment when the user asks to continue.
+- R3 C3 is deferred for now because the user plans to address it together with later simulation results on stronger baselines.
+- R3 C4 is complete and synchronized.
+- R3 C5 is now the next addressable reviewer comment when the user asks to continue.
 
 ## Repository State
 
 - The current branch is `main`.
-- The latest committed synchronized reviewer-response revision includes the R3 C1 visibility-framing and response-letter synchronization update set.
+- The latest committed synchronized reviewer-response revision includes the R3 C4 traffic-accounting clarification update set.
 - The intended saved state of this file is a clean working tree after the current revision is committed.
 
 ## Concrete Edits Already Present
@@ -66,16 +68,16 @@ This file tracks the current state of the paper revision.
 - R1 C7
 - R3 C1
 - R3 C2
+- R3 C4
 
 ### Deferred pending additional simulation results
 
 - R1 C5
 - R1 C6
+- R3 C3
 
 ### Still only proposed in the response letter
 
-- R3 C3
-- R3 C4
 - R3 C5
 - R3 C6
 - R3 C7
@@ -152,20 +154,27 @@ This file tracks the current state of the paper revision.
 - A later review pass on R3 C2 found two remaining presentation issues only: the main response paragraph still used present-tense revision phrasing, and the new traffic-scope wording was slightly inconsistent between the abstract and introduction. Those were then cleaned up by converting the response paragraph to completed-work past tense and aligning the introduction wording to the singular phrase `a snapshot-level spatial traffic profile over the globe`, with the quoted response-letter excerpt synchronized accordingly.
 - Before closing R3 C2, the citation-support wording in the final traffic-model limitation sentence was tightened so that temporal and purchasing-capability modeling is supported by `zamacola2025profiling` and `qin2024satformer`, while `guo2021gateway` is cited more narrowly for gateway-aware traffic estimation. The response-letter summary and quoted blue excerpt were resynchronized to match this final manuscript wording.
 - The user then approved R3 C2 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next safe resume point moved to R3 C3.
+- The user then chose to skip R3 C3 for now because it will be handled together with later simulation results on stronger baselines. R3 C3 is therefore deferred rather than abandoned, and the next addressable reviewer comment is now R3 C4.
+- The user then asked to address R3 C4. `main.tex` now states explicitly that $Q$ is gateway service capacity between a gateway-connected satellite and the terrestrial Internet, that LISL transit capacity is constrained separately by the established optical-link capacities, that local user traffic consumes this gateway service capacity first, and that the simulation setup uses the same interpretation for $Q=20$ Gbps. `response_letter_TCOM_RV1.tex` was synchronized to that completed revision, and R3 C4 is now drafted pending user review.
+- A review pass on R3 C4 then found no technical mismatch between the manuscript and response letter, but it did find two wording-consistency issues still worth cleaning up in `main.tex`: the notation table still uses the older generic label ``Gateway capacity per satellite'' for $Q$, and the simulation setup still mixes ``ground station'' with the now-preferred ``gateway'' terminology.
+- Those two R3 C4 wording-consistency issues were then cleaned up in `main.tex`: the notation table now labels $Q$ as ``Gateway service capacity per satellite,'' and the simulation setup now uses ``ground gateway'' and ``gateway connections'' consistently. The reviewer-facing response text for R3 C4 did not need substantive changes because the technical claim and quoted blue manuscript text remained the same.
+- The user then approved R3 C4 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next safe resume point moved to R3 C5.
 
 ## Current Blockers or Risks
 
 - R1 C5 now requires additional simulation results before it can be addressed fully.
 - R1 C6 now also requires additional simulation results before it can be addressed fully.
+- R3 C3 now also requires additional simulation results on stronger baselines before it should be finalized.
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
 - When building `response_letter_TCOM_RV1.tex` via `latexmk`, the wrapper can still report a stale custom-dependency failure from the external `main` subdocument helper even after the PDF is produced; a direct `pdflatex response_letter_TCOM_RV1.tex` run succeeds on the current file state.
 
 ## Immediate Next-Agent Actions
 
-1. Resume at R3 C3 if the user asks to continue with the next reviewer comment.
+1. Resume at R3 C5 if the user asks to continue with the next reviewer comment that does not depend on new simulations.
 2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
-3. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
+3. Return to R3 C3 when the user is ready to add the stronger-baseline simulation results it needs.
+4. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R3 C3, unless the user explicitly reopens R1 C5 or R1 C6 for simulation work.
+- Resume from the next user instruction at R3 C5, unless the user explicitly reopens R1 C5, R1 C6, or R3 C3 for simulation work.
