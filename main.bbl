@@ -178,22 +178,32 @@ M.~Scheinfeild, N.~S. Kopeika, and R.~Melamed, ``Acquisition system for
   Communication Technologies Xii}}}, vol. 3932.\hskip 1em plus 0.5em minus
   0.4em\relax SPIE, May 2000, pp. 166--175.
 
+\bibitem{3gpp38821}
+3GPP, ``Solutions for {{NR}} to support non-terrestrial networks,'' 3GPP,
+  Technical {{Report}} 38.821, 2023.
+
+\bibitem{guidotti2024role}
+A.~Guidotti, A.~{Vanelli-Coralli}, M.~E. Jaafari, N.~Chuberre, J.~Puttonen,
+  V.~Schena, G.~Rinelli, and S.~Cioni, ``Role and evolution of non-terrestrial
+  networks toward {{6G}} systems,'' \emph{IEEE Access}, vol.~12, pp.
+  55\,945--55\,963, 2024.
+
 \bibitem{zamacola2025profiling}
 S.~M. Zamacola, S.~M. Marco, and R.~M. Rodr\'{i}guez-Osorio, ``Profiling the
   transmit power of {LEO} satellite constellations for broadband communication
   services considering terrestrial and aerial demand,'' \emph{Acta
   Astronautica}, vol. 236, pp. 547--559, 2025.
 
+\bibitem{qin2024satformer}
+L.~Qin, X.~Liu, W.~Wei, L.~Chengbin, and H.~Gu, ``Satformer: Accurate and
+  robust traffic data estimation for satellite networks,'' \emph{Advances in
+  Neural Information Processing Systems}, vol.~37, pp. 47\,530--47\,558, 2024.
+
 \bibitem{guo2021gateway}
 J.~Guo, D.~Rinc{\'o}n, S.~Sallent, L.~Yang, X.~Chen, and X.~Chen, ``Gateway
   placement optimization in {{LEO}} satellite networks based on traffic
   estimation,'' \emph{IEEE Transactions on Vehicular Technology}, vol.~70,
   no.~4, pp. 3860--3876, Apr. 2021.
-
-\bibitem{qin2024satformer}
-L.~Qin, X.~Liu, W.~Wei, L.~Chengbin, and H.~Gu, ``Satformer: Accurate and
-  robust traffic data estimation for satellite networks,'' \emph{Advances in
-  Neural Information Processing Systems}, vol.~37, pp. 47\,530--47\,558, 2024.
 
 \bibitem{boyd2004convex}
 S.~Boyd, S.~P. Boyd, and L.~Vandenberghe, \emph{Convex Optimization}.\hskip 1em

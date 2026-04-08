@@ -12,13 +12,15 @@ This file tracks the current state of the paper revision.
 - R3 C2 is complete and synchronized.
 - R3 C3 is deferred for now because the user plans to address it together with later simulation results on stronger baselines.
 - R3 C4 is complete and synchronized.
-- R3 C5 is now drafted and synchronized pending user review.
-- Do not advance to R3 C6 until the user is satisfied with R3 C5.
+- R3 C5 is drafted and synchronized pending user review.
+- R3 C6 is deferred for now because it needs additional simulation results on unmet/unserved demand metrics.
+- R3 C7 is complete and synchronized.
+- R3 C8 is now the next addressable reviewer comment when the user asks to continue.
 
 ## Repository State
 
 - The current branch is `main`.
-- The latest committed synchronized reviewer-response revision includes the R3 C4 traffic-accounting clarification update set.
+- The latest committed synchronized reviewer-response revision includes the R3 C7 system-operation clarification update set.
 - The intended saved state of this file is a clean working tree after the current revision is committed.
 
 ## Concrete Edits Already Present
@@ -70,6 +72,7 @@ This file tracks the current state of the paper revision.
 - R3 C1
 - R3 C2
 - R3 C4
+- R3 C7
 
 ### Drafted and synchronized pending user review
 
@@ -80,11 +83,10 @@ This file tracks the current state of the paper revision.
 - R1 C5
 - R1 C6
 - R3 C3
+- R3 C6
 
 ### Still only proposed in the response letter
 
-- R3 C6
-- R3 C7
 - R3 C8
 - R3 C9
 - R3 C10
@@ -169,22 +171,28 @@ This file tracks the current state of the paper revision.
 - A short consistency pass then adjusted that opening to ``This is not the case in our model'' so the reply remains direct while reading more smoothly alongside the surrounding completed responses.
 - A subsequent cross-comment sync pass then updated the earlier R3 C1 response block as well, because the later R3 C5 visibility-subsection edits had changed the latest quoted text in that same manuscript block. The R3 C1 summary and quoted excerpt now include the explicit no-same-plane sentence and no longer say that the limitation note appears immediately after the defining equation.
 - That cross-comment synchronization requirement was then distilled into a reusable harness rule: when a later comment revises a manuscript passage already quoted or summarized in an earlier response-letter block, the earlier block must be revisited and resynchronized before either comment is treated as stable.
+- The user then chose to skip R3 C6 for now because it needs additional simulation results on unmet or unserved demand metrics. R3 C6 is therefore deferred rather than abandoned, and the next addressable reviewer comment is now R3 C7.
+- The user then asked to address R3 C7. `main.tex` now states explicitly that the optimization is intended as a centrally orchestrated per-snapshot planner carried out by the ground or network-control segment rather than independently onboard the satellites. The manuscript also now discusses practical deployment challenges including control-plane latency, imperfect traffic or state estimates, and robustness to disturbances or link interruptions, and it points to hierarchical or distributed control together with robust or online re-optimization as future directions. `response_letter_TCOM_RV1.tex` was synchronized to that completed revision, and R3 C7 is now drafted pending user review.
+- The user then approved R3 C7 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next addressable reviewer comment is now R3 C8.
 
 ## Current Blockers or Risks
 
 - R1 C5 now requires additional simulation results before it can be addressed fully.
 - R1 C6 now also requires additional simulation results before it can be addressed fully.
 - R3 C3 now also requires additional simulation results on stronger baselines before it should be finalized.
+- R3 C6 now also requires additional simulation results on unmet or unserved demand metrics before it should be finalized.
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
 - When building `response_letter_TCOM_RV1.tex` via `latexmk`, the wrapper can still report a stale custom-dependency failure from the external `main` subdocument helper even after the PDF is produced; a direct `pdflatex response_letter_TCOM_RV1.tex` run succeeds on the current file state.
 
 ## Immediate Next-Agent Actions
 
-1. Wait for the user's review of the current R3 C5 geometry-clarification addressment before advancing to R3 C6.
+1. Wait for the user's review of the current R3 C5 geometry-clarification addressment before advancing to any later reviewer comment.
 2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
 3. Return to R3 C3 when the user is ready to add the stronger-baseline simulation results it needs.
-4. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
+4. Return to R3 C6 when the user is ready to add the unmet or unserved-demand simulation results it needs.
+5. Resume at R3 C8 if the user asks to continue with the next reviewer comment that does not depend on new simulations.
+6. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R3 C5 review/verification, unless the user explicitly reopens R1 C5, R1 C6, or R3 C3 for simulation work.
+- Resume from the next user instruction at R3 C8, unless the user explicitly reopens R3 C5, R1 C5, R1 C6, R3 C3, or R3 C6 for simulation work.
