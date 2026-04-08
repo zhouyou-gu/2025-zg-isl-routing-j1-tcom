@@ -362,9 +362,11 @@ In Section~\ref{sec:system_model}, we stated:
 
 \textbf{Comment 8: Figure 2 is not very representative. It is not clear the comparison of b) and c).}
 
-\textbf{Proposed response:} We agree that the current figure is not sufficiently self-explanatory. In the revision, we will either replace the figure or split it into clearer subfigures so that panels (b) and (c) compare the same flow set under DuJo and the non-joint baseline with consistent legends and more explicit visual emphasis. We will also rewrite the caption to explain exactly what is being compared in each panel and why that comparison is informative.
+\textbf{Response:} We agree that the comparison between panels (b) and (c) should be stated more explicitly. To address it, we revised only the caption of Fig.~\ref{fig:constellation_simulation_1000_compare} so that the roles of the three panels are stated directly. In particular, the revised caption now states that panel (a) shows the constellation snapshot together with the LISLs selected by DuJo, the user distribution, and the ground-gateway locations, while panels (b) and (c) show the same geographic zoom and the same traffic-demand snapshot under DuJo and MRate, respectively. We also stated explicitly that the inset boxes in panels (b) and (c) report the compared metrics, namely the number of connected flows, flow-path length, and net throughput.
 
-\textbf{Planned manuscript changes:} We will redesign the current figure layout or split the figure into simpler subfigures; we will rewrite the caption to specify the meaning of each panel; and we will make the graphical comparison between DuJo and the baseline more direct.
+\textbf{Manuscript changes:} We revised only the caption of Fig.~\ref{fig:constellation_simulation_1000_compare} so that the meaning of each panel and the comparison between panels (b) and (c) are stated directly. The revised caption read as follows.
+
+``\blue{Comparison for the simulated Starlink-based constellation instance with $I=1000$ satellites. Panel (a) shows the constellation snapshot together with the LISLs selected by DuJo, the user distribution, and the ground-gateway locations. Panels (b) and (c) show the same geographic zoom and the same traffic-demand snapshot under DuJo and MRate, respectively, so their routed flow paths can be compared directly. The inset boxes in panels (b) and (c) report the resulting number of connected flows, flow-path length, and net throughput for the two schemes.}''
 
 \textbf{Comment 9: When modelling Starlink, authors select a random number of satellites out of the whole constellation. This might lead to unreal scenarios, without a reliable representation of potential ISLs between the selected satellites.}
 

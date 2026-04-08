@@ -15,12 +15,13 @@ This file tracks the current state of the paper revision.
 - R3 C5 is drafted and synchronized pending user review.
 - R3 C6 is deferred for now because it needs additional simulation results on unmet/unserved demand metrics.
 - R3 C7 is complete and synchronized.
-- R3 C8 is now the next addressable reviewer comment when the user asks to continue.
+- R3 C8 is complete and synchronized.
+- R3 C9 is now the next addressable reviewer comment when the user asks to continue.
 
 ## Repository State
 
 - The current branch is `main`.
-- The latest committed synchronized reviewer-response revision includes the R3 C7 system-operation clarification update set.
+- The latest committed synchronized reviewer-response revision includes the R3 C8 figure-caption clarification update set.
 - The intended saved state of this file is a clean working tree after the current revision is committed.
 
 ## Concrete Edits Already Present
@@ -73,6 +74,7 @@ This file tracks the current state of the paper revision.
 - R3 C2
 - R3 C4
 - R3 C7
+- R3 C8
 
 ### Drafted and synchronized pending user review
 
@@ -87,7 +89,6 @@ This file tracks the current state of the paper revision.
 
 ### Still only proposed in the response letter
 
-- R3 C8
 - R3 C9
 - R3 C10
 
@@ -174,6 +175,9 @@ This file tracks the current state of the paper revision.
 - The user then chose to skip R3 C6 for now because it needs additional simulation results on unmet or unserved demand metrics. R3 C6 is therefore deferred rather than abandoned, and the next addressable reviewer comment is now R3 C7.
 - The user then asked to address R3 C7. `main.tex` now states explicitly that the optimization is intended as a centrally orchestrated per-snapshot planner carried out by the ground or network-control segment rather than independently onboard the satellites. The manuscript also now discusses practical deployment challenges including control-plane latency, imperfect traffic or state estimates, and robustness to disturbances or link interruptions, and it points to hierarchical or distributed control together with robust or online re-optimization as future directions. `response_letter_TCOM_RV1.tex` was synchronized to that completed revision, and R3 C7 is now drafted pending user review.
 - The user then approved R3 C7 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next addressable reviewer comment is now R3 C8.
+- The user then asked to address R3 C8 by revising only the figure caption. `main.tex` now revises only the caption of Fig. `\ref{fig:constellation_simulation_1000_compare}` so that panel (a), the direct comparison between panels (b) and (c), and the metrics shown in the inset boxes are described explicitly. `response_letter_TCOM_RV1.tex` was synchronized to that caption-only revision, and R3 C8 is now drafted pending user review.
+- A later review of R3 C8 found two remaining wording issues only: the caption phrase ``sampled satellites'' foregrounded the later realism concern of R3 C9, and the response opening was slightly too argumentative for a caption-only fix. Those were then cleaned up by changing the caption to the more neutral ``simulated Starlink-based constellation instance with $I=1000$ satellites'' and by rewriting the response opening so it simply states that the comparison between panels (b) and (c) was clarified more explicitly.
+- The user then approved R3 C8 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next addressable reviewer comment is now R3 C9.
 
 ## Current Blockers or Risks
 
@@ -190,9 +194,9 @@ This file tracks the current state of the paper revision.
 2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
 3. Return to R3 C3 when the user is ready to add the stronger-baseline simulation results it needs.
 4. Return to R3 C6 when the user is ready to add the unmet or unserved-demand simulation results it needs.
-5. Resume at R3 C8 if the user asks to continue with the next reviewer comment that does not depend on new simulations.
+5. Resume at R3 C9 if the user asks to continue with the next reviewer comment that does not depend on new simulations.
 6. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R3 C8, unless the user explicitly reopens R3 C5, R1 C5, R1 C6, R3 C3, or R3 C6 for simulation work.
+- Resume from the next user instruction at R3 C9, unless the user explicitly reopens R3 C5, R1 C5, R1 C6, R3 C3, or R3 C6 for simulation work.

@@ -7,8 +7,7 @@
 \providecommand{\BIBentrySTDinterwordspacing}{\spaceskip=0pt\relax}
 \providecommand{\BIBentryALTinterwordstretchfactor}{4}
 \providecommand{\BIBentryALTinterwordspacing}{\spaceskip=\fontdimen2\font plus
-\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
-  \fontdimen4\font\relax}
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus \fontdimen4\font\relax}
 \providecommand{\BIBforeignlanguage}[2]{{%
 \expandafter\ifx\csname l@#1\endcsname\relax
 \typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
@@ -22,111 +21,66 @@
 \BIBdecl
 
 \bibitem{arnon2003effects}
-S.~Arnon, ``Effects of atmospheric turbulence and building sway on optical
-  wireless-communication systems,'' \emph{Optics Letters}, vol.~28, no.~2, pp.
-  129--131, 2003.
+S.~Arnon, ``Effects of atmospheric turbulence and building sway on optical wireless-communication systems,'' \emph{Optics Letters}, vol.~28, no.~2, pp. 129--131, 2003.
 
 \bibitem{kaymak2018survey}
-Y.~Kaymak, R.~{Rojas-Cessa}, J.~Feng, N.~Ansari, M.~Zhou, and T.~Zhang, ``A
-  {{Survey}} on {{Acquisition}}, {{Tracking}}, and {{Pointing Mechanisms}} for
-  {{Mobile Free-Space Optical Communications}},'' \emph{IEEE Communications
-  Surveys \& Tutorials}, vol.~20, no.~2, pp. 1104--1123, 2018.
+Y.~Kaymak, R.~{Rojas-Cessa}, J.~Feng, N.~Ansari, M.~Zhou, and T.~Zhang, ``A {{Survey}} on {{Acquisition}}, {{Tracking}}, and {{Pointing Mechanisms}} for {{Mobile Free-Space Optical Communications}},'' \emph{IEEE Communications Surveys \& Tutorials}, vol.~20, no.~2, pp. 1104--1123, 2018.
 
 \bibitem{yang2024analysis}
-J.~Yang, B.~Li, K.~Fan, L.~An, and Q.~Zhang, ``Analysis of laser intersatellite
-  links and topology design for mega-constellation networks,'' \emph{IEEE
-  Internet of Things Journal}, vol.~11, no.~21, pp. 34\,554--34\,566, Nov.
-  2024.
+J.~Yang, B.~Li, K.~Fan, L.~An, and Q.~Zhang, ``Analysis of laser intersatellite links and topology design for mega-constellation networks,'' \emph{IEEE Internet of Things Journal}, vol.~11, no.~21, pp. 34\,554--34\,566, Nov. 2024.
 
 \bibitem{li2011analytical}
-X.~Li, S.~Yu, J.~Ma, and L.~Tan, ``Analytical expression and optimization of
-  spatial acquisition for intersatellite optical communications,'' \emph{Optics
-  Express}, vol.~19, no.~3, pp. 2381--2390, 2011.
+X.~Li, S.~Yu, J.~Ma, and L.~Tan, ``Analytical expression and optimization of spatial acquisition for intersatellite optical communications,'' \emph{Optics Express}, vol.~19, no.~3, pp. 2381--2390, 2011.
 
 \bibitem{scheinfeild2000acquisition}
-M.~Scheinfeild, N.~S. Kopeika, and R.~Melamed, ``Acquisition system for
-  microsatellites laser communication in space,'' in \emph{Free-Space {{Laser
-  Communication Technologies Xii}}}, vol. 3932.\hskip 1em plus 0.5em minus
-  0.4em\relax SPIE, May 2000, pp. 166--175.
+M.~Scheinfeild, N.~S. Kopeika, and R.~Melamed, ``Acquisition system for microsatellites laser communication in space,'' in \emph{Free-Space {{Laser Communication Technologies Xii}}}, vol. 3932.\hskip 1em plus 0.5em minus 0.4em\relax SPIE, May 2000, pp. 166--175.
 
 \bibitem{jarry2012multiflows}
-A.~Jarry, ``Multiflows in symmetric digraphs,'' \emph{Discrete Applied
-  Mathematics}, vol. 160, no.~15, pp. 2208--2220, 2012.
+A.~Jarry, ``Multiflows in symmetric digraphs,'' \emph{Discrete Applied Mathematics}, vol. 160, no.~15, pp. 2208--2220, 2012.
 
 \bibitem{ahuja1993network}
-R.~K. Ahuja, T.~L. Magnanti, and J.~B. Orlin, \emph{Network Flows: Theory,
-  Algorithms and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax
-  Englewood Cliffs (N. J.): Prentice Hall, 1993.
+R.~K. Ahuja, T.~L. Magnanti, and J.~B. Orlin, \emph{Network Flows: Theory, Algorithms and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Englewood Cliffs (N. J.): Prentice Hall, 1993.
 
 \bibitem{boyd2003subgradient}
-S.~Boyd, L.~Xiao, and A.~Mutapcic, ``Subgradient methods,'' \emph{Lecture Notes
-  of Ee392o, Stanford University, Autumn Quarter}, vol. 2004, no.~1, 2003.
+S.~Boyd, L.~Xiao, and A.~Mutapcic, ``Subgradient methods,'' \emph{Lecture Notes of Ee392o, Stanford University, Autumn Quarter}, vol. 2004, no.~1, 2003.
 
 \bibitem{boyd2004convex}
-S.~Boyd, S.~P. Boyd, and L.~Vandenberghe, \emph{Convex Optimization}.\hskip 1em
-  plus 0.5em minus 0.4em\relax Cambridge university press, 2004.
+S.~Boyd, S.~P. Boyd, and L.~Vandenberghe, \emph{Convex Optimization}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge university press, 2004.
 
 \bibitem{chaudhry2021laser}
-A.~U. Chaudhry and H.~Yanikomeroglu, ``Laser intersatellite links in a starlink
-  constellation: A classification and analysis,'' \emph{IEEE Vehicular
-  Technology Magazine}, vol.~16, no.~2, pp. 48--56, Jun. 2021.
+A.~U. Chaudhry and H.~Yanikomeroglu, ``Laser intersatellite links in a starlink constellation: A classification and analysis,'' \emph{IEEE Vehicular Technology Magazine}, vol.~16, no.~2, pp. 48--56, Jun. 2021.
 
 \bibitem{leyva-mayorga2021interplane}
-I.~{Leyva-Mayorga}, B.~Soret, and P.~Popovski, ``Inter-plane inter-satellite
-  connectivity in dense {{LEO}} constellations,'' \emph{IEEE Transactions on
-  Wireless Communications}, vol.~20, no.~6, pp. 3430--3443, Jun. 2021.
+I.~{Leyva-Mayorga}, B.~Soret, and P.~Popovski, ``Inter-plane inter-satellite connectivity in dense {{LEO}} constellations,'' \emph{IEEE Transactions on Wireless Communications}, vol.~20, no.~6, pp. 3430--3443, Jun. 2021.
 
 \bibitem{ron2025time}
-D.~Ron, F.~A. Yusufzai, S.~Kwakye, S.~Roy, N.~Sastry, and V.~K. Shah, ``Time-
-  {{Dependent Network Topology Optimization}} for {{LEO Satellite
-  Constellations}},'' in \emph{{{IEEE INFOCOM}} 2025 - {{IEEE Conference}} on
-  {{Computer Communications}}}, May 2025, pp. 1--10.
+D.~Ron, F.~A. Yusufzai, S.~Kwakye, S.~Roy, N.~Sastry, and V.~K. Shah, ``Time- {{Dependent Network Topology Optimization}} for {{LEO Satellite Constellations}},'' in \emph{{{IEEE INFOCOM}} 2025 - {{IEEE Conference}} on {{Computer Communications}}}, May 2025, pp. 1--10.
 
 \bibitem{rao2025minimumhop}
-C.~Rao and E.~Modiano, ``Minimum-hop {{Constellation Design}} for {{Low Earth
-  Orbit Satellite Networks}},'' in \emph{{{IEEE INFOCOM}} 2025 - {{IEEE
-  Conference}} on {{Computer Communications}}}, May 2025, pp. 1--10.
+C.~Rao and E.~Modiano, ``Minimum-hop {{Constellation Design}} for {{Low Earth Orbit Satellite Networks}},'' in \emph{{{IEEE INFOCOM}} 2025 - {{IEEE Conference}} on {{Computer Communications}}}, May 2025, pp. 1--10.
 
 \bibitem{guo2024constellation}
-L.~Guo, J.~Liu, M.~Sheng, and J.~Li, ``Constellation {{Topology Design}} for
-  {{Maximum Capacity}} of {{LEO Satellite Networks}},'' \emph{IEEE Transactions
-  on Communications}, pp. 1--1, 2024.
+L.~Guo, J.~Liu, M.~Sheng, and J.~Li, ``Constellation {{Topology Design}} for {{Maximum Capacity}} of {{LEO Satellite Networks}},'' \emph{IEEE Transactions on Communications}, pp. 1--1, 2024.
 
 \bibitem{vallado2022fundamentals}
-D.~A. Vallado, \emph{Fundamentals of Astrodynamics and Applications}, ser.
-  Space Technology Library.\hskip 1em plus 0.5em minus 0.4em\relax Torrance,
-  CA: Microcosm Press, 2022, no.~21.
+D.~A. Vallado, \emph{Fundamentals of Astrodynamics and Applications}, ser. Space Technology Library.\hskip 1em plus 0.5em minus 0.4em\relax Torrance, CA: Microcosm Press, 2022, no.~21.
 
 \bibitem{zamacola2025profiling}
-S.~M. Zamacola, S.~M. Marco, and R.~M. Rodr\'{i}guez-Osorio, ``Profiling the
-  transmit power of {LEO} satellite constellations for broadband communication
-  services considering terrestrial and aerial demand,'' \emph{Acta
-  Astronautica}, vol. 236, pp. 547--559, 2025.
+S.~M. Zamacola, S.~M. Marco, and R.~M. Rodr\'{i}guez-Osorio, ``Profiling the transmit power of {LEO} satellite constellations for broadband communication services considering terrestrial and aerial demand,'' \emph{Acta Astronautica}, vol. 236, pp. 547--559, 2025.
 
 \bibitem{qin2024satformer}
-L.~Qin, X.~Liu, W.~Wei, L.~Chengbin, and H.~Gu, ``Satformer: Accurate and
-  robust traffic data estimation for satellite networks,'' \emph{Advances in
-  Neural Information Processing Systems}, vol.~37, pp. 47\,530--47\,558, 2024.
+L.~Qin, X.~Liu, W.~Wei, L.~Chengbin, and H.~Gu, ``Satformer: Accurate and robust traffic data estimation for satellite networks,'' \emph{Advances in Neural Information Processing Systems}, vol.~37, pp. 47\,530--47\,558, 2024.
 
 \bibitem{guo2021gateway}
-J.~Guo, D.~Rinc{\'o}n, S.~Sallent, L.~Yang, X.~Chen, and X.~Chen, ``Gateway
-  placement optimization in {{LEO}} satellite networks based on traffic
-  estimation,'' \emph{IEEE Transactions on Vehicular Technology}, vol.~70,
-  no.~4, pp. 3860--3876, Apr. 2021.
+J.~Guo, D.~Rinc{\'o}n, S.~Sallent, L.~Yang, X.~Chen, and X.~Chen, ``Gateway placement optimization in {{LEO}} satellite networks based on traffic estimation,'' \emph{IEEE Transactions on Vehicular Technology}, vol.~70, no.~4, pp. 3860--3876, Apr. 2021.
 
 \bibitem{3gpp38821}
-3GPP, ``Solutions for {{NR}} to support non-terrestrial networks,'' 3GPP,
-  Technical {{Report}} 38.821, 2023.
+3GPP, ``Solutions for {{NR}} to support non-terrestrial networks,'' 3GPP, Technical {{Report}} 38.821, 2023.
 
 \bibitem{guidotti2024role}
-A.~Guidotti, A.~{Vanelli-Coralli}, M.~E. Jaafari, N.~Chuberre, J.~Puttonen,
-  V.~Schena, G.~Rinelli, and S.~Cioni, ``Role and evolution of non-terrestrial
-  networks toward {{6G}} systems,'' \emph{IEEE Access}, vol.~12, pp.
-  55\,945--55\,963, 2024.
+A.~Guidotti, A.~{Vanelli-Coralli}, M.~E. Jaafari, N.~Chuberre, J.~Puttonen, V.~Schena, G.~Rinelli, and S.~Cioni, ``Role and evolution of non-terrestrial networks toward {{6G}} systems,'' \emph{IEEE Access}, vol.~12, pp. 55\,945--55\,963, 2024.
 
 \bibitem{wu2025enhancing}
-C.~Wu, S.~Han, Q.~Chen, Y.~Wang, W.~Meng, and A.~Benslimane, ``Enhancing
-  {{LEO}} mega-constellations with inter-satellite links: Vision and
-  challenges,'' \emph{IEEE Wireless Communications}, pp. 1--7, 2025.
+C.~Wu, S.~Han, Q.~Chen, Y.~Wang, W.~Meng, and A.~Benslimane, ``Enhancing {{LEO}} mega-constellations with inter-satellite links: Vision and challenges,'' \emph{IEEE Wireless Communications}, pp. 1--7, 2025.
 
 \end{thebibliography}
