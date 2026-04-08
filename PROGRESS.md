@@ -12,7 +12,8 @@ This file tracks the current state of the paper revision.
 - R3 C2 is complete and synchronized.
 - R3 C3 is deferred for now because the user plans to address it together with later simulation results on stronger baselines.
 - R3 C4 is complete and synchronized.
-- R3 C5 is now the next addressable reviewer comment when the user asks to continue.
+- R3 C5 is now drafted and synchronized pending user review.
+- Do not advance to R3 C6 until the user is satisfied with R3 C5.
 
 ## Repository State
 
@@ -70,6 +71,10 @@ This file tracks the current state of the paper revision.
 - R3 C2
 - R3 C4
 
+### Drafted and synchronized pending user review
+
+- R3 C5
+
 ### Deferred pending additional simulation results
 
 - R1 C5
@@ -78,7 +83,6 @@ This file tracks the current state of the paper revision.
 
 ### Still only proposed in the response letter
 
-- R3 C5
 - R3 C6
 - R3 C7
 - R3 C8
@@ -159,6 +163,12 @@ This file tracks the current state of the paper revision.
 - A review pass on R3 C4 then found no technical mismatch between the manuscript and response letter, but it did find two wording-consistency issues still worth cleaning up in `main.tex`: the notation table still uses the older generic label ``Gateway capacity per satellite'' for $Q$, and the simulation setup still mixes ``ground station'' with the now-preferred ``gateway'' terminology.
 - Those two R3 C4 wording-consistency issues were then cleaned up in `main.tex`: the notation table now labels $Q$ as ``Gateway service capacity per satellite,'' and the simulation setup now uses ``ground gateway'' and ``gateway connections'' consistently. The reviewer-facing response text for R3 C4 did not need substantive changes because the technical claim and quoted blue manuscript text remained the same.
 - The user then approved R3 C4 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next safe resume point moved to R3 C5.
+- The user then asked to address R3 C5. `main.tex` now states explicitly that the fore/aft LCT mounting directions specify only preferred pointing directions rather than a same-plane restriction, that the visibility-condition model admits both intra-plane and inter-plane LISLs whenever the existing geometric condition is satisfied, and that the simulation setup includes candidate LISLs on that basis. `response_letter_TCOM_RV1.tex` was synchronized to that completed revision, and R3 C5 is now drafted pending user review.
+- The user then flagged the first sentence of the R3 C5 response as confusing, so the opening sentence in `response_letter_TCOM_RV1.tex` was tightened to state the possible misreading more directly while leaving the technical substance unchanged.
+- The user then asked to make that opening even more direct, so the R3 C5 response now begins with the plain statement ``This is not the case,'' before explaining the actual geometric feasibility condition.
+- A short consistency pass then adjusted that opening to ``This is not the case in our model'' so the reply remains direct while reading more smoothly alongside the surrounding completed responses.
+- A subsequent cross-comment sync pass then updated the earlier R3 C1 response block as well, because the later R3 C5 visibility-subsection edits had changed the latest quoted text in that same manuscript block. The R3 C1 summary and quoted excerpt now include the explicit no-same-plane sentence and no longer say that the limitation note appears immediately after the defining equation.
+- That cross-comment synchronization requirement was then distilled into a reusable harness rule: when a later comment revises a manuscript passage already quoted or summarized in an earlier response-letter block, the earlier block must be revisited and resynchronized before either comment is treated as stable.
 
 ## Current Blockers or Risks
 
@@ -170,11 +180,11 @@ This file tracks the current state of the paper revision.
 
 ## Immediate Next-Agent Actions
 
-1. Resume at R3 C5 if the user asks to continue with the next reviewer comment that does not depend on new simulations.
+1. Wait for the user's review of the current R3 C5 geometry-clarification addressment before advancing to R3 C6.
 2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
 3. Return to R3 C3 when the user is ready to add the stronger-baseline simulation results it needs.
 4. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R3 C5, unless the user explicitly reopens R1 C5, R1 C6, or R3 C3 for simulation work.
+- Resume from the next user instruction at R3 C5 review/verification, unless the user explicitly reopens R1 C5, R1 C6, or R3 C3 for simulation work.

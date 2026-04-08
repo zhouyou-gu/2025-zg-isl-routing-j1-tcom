@@ -245,6 +245,7 @@ The satellites maintain their orientations and their body frames always pointing
 Each satellite $i$ is equipped with $N'$ LISL communication transceivers (LCTs), so the constellation has a total of $N=N'I$ LCTs. We denote the set of all LCTs by $\mathcal{N} = \{1,\dots,N\}$.
 We write the index of the satellite that LCT $n$ belongs to as $i_n$, where $i_n \in \{1,\dots,I\}$. 
 LCT $n$ has a mounting direction $\mathbf{u}_n(t)$ in the ECI frame, which is a unit vector fixed on the satellite body.
+\blue{These mounting directions specify only the preferred pointing directions of the LCTs. They do not restrict feasible LISLs to satellites in the same orbital plane \cite{chaudhry2021laser,leyva-mayorga2021interplane}.}
 Each LCT can steer its beam to point at any direction with an angle less than $\theta$ in radians from its center mounting direction, e.g., using steering mirrors. Here, this region is referred to as its field of regard (FOR).
 Due to spacecraft dynamics and satellite motion, the beam pointing direction of the LCT can deviate from the desired direction through small unpredictable errors, referred to as pointing jitters.
 The pointing jitter in radians is assumed to follow a Rayleigh distribution \cite{arnon2003effects} as
@@ -347,6 +348,7 @@ The LCTs $\mathcal{N}$ and all connectable LCT pairs $\mathcal{E}$ are modeled a
     &\qquad\qquad \mathbf{d}_{i_n,i_m} \cdot \mathbf{u}_n > \cos \theta,\mathbf{d}_{i_m,i_n} \cdot \mathbf{u}_m > \cos \theta \big\}.
   \end{aligned}
 \end{equation}
+\blue{Therefore, the model does not impose a same-plane restriction. Both intra-plane and inter-plane LISLs can be feasible whenever they satisfy this visibility condition.}
 \blue{Note that this visibility model is simplified. We do not model atmospheric effects here because the present LISL formulation focuses on space-to-space propagation. We also do not impose an explicit line-of-sight or Earth-occlusion constraint, so the current connectability approximation is driven only by the range bound and the mutual field of regard test \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}.}
 Denote by $c_{n,m}$ the binary indicator on whether the LISL from LCT $n$ to $m$ is established or not. If the LISL is established from LCT $n$ to $m$, it is also established from LCT $m$ to $n$, which can be mathematically expressed as
 \begin{equation}\label{eq:const:link:binary_bidirectional_connection}
@@ -783,6 +785,7 @@ We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT ha
 The power of the beam is $P_0=20$ W and its bandwidth is $B=1$ GHz. The beam's wavelength is $1.55$ $\mu$m and the beam width is $100$ micro-radians, leading to the beam waist radius $W_0=9.87\times10^{-3}$ m and the Rayleigh range $z_\mathrm{R}=1.97\times10^{3}$ m \cite{saleh2019fundamentalsa}. 
 The pointing jitter $\sigma_{\mathrm{J}}$ is set to $10$ micro-radians and the relaxed link outage probability $\epsilon$ is set to $0.001$.
 The field of regard half-angle of each LCT is set to $\theta = 60$ degrees from its mounting direction, and the maximum distance for two LCTs to establish a link is $\hat{z}=3000$ km.
+\blue{Under this setting, candidate LISLs are not restricted to intra-plane neighbors. Any satellite pair, whether intra-plane or inter-plane, is included if it satisfies \eqref{eq:lct_visibility_condition}.}
 The number $U_i$ of active users served by satellite $i$ is determined from the real-world population data \cite{schiavina2023ghspop} within an approximately $200$ km coverage radius. We assume that $0.01\%$ of that population uses the network at the given time, so $U_i$ is Poisson distributed with a mean equal to the covered population. Each user demands $D=0.1$ Gbps. We randomly select $100$ ground-gateway locations around the globe from SatNOGS \cite{satnogs}. We assume that each satellite can serve up to $Q=20$ Gbps when a ground gateway lies within its coverage area. \blue{Thus, $Q=20$ Gbps is the per-satellite gateway service capacity before subtracting the traffic of the users under that satellite's own coverage, rather than a limit that already includes LISL transit traffic.} If a satellite has positive traffic demand, it routes that demand to the nearest $M=5$ satellites that have gateway connections, thereby defining the source-target pairs in $\mathcal{F}$.
 Fig. \ref{fig:constellation_simulation_1000_compare} shows the constellations with $I=1000$, the uneven distribution of population density and ground-gateway locations, which emphasizes the need to account for these factors in our study.
 It also compares the flow paths routed and the network throughput over the constellation between our DuJo scheme and a non-joint scheme (MRate as introduced below).

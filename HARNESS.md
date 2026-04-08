@@ -45,6 +45,7 @@ This file is the reusable playbook for operating in this workspace. It captures 
 - Scope limitations in the response letter match the manuscript wording and tone.
 - Once a revision is actually present in the files, phrase the response letter as completed work rather than future planned work.
 - Any quoted manuscript change in the response letter must be copied verbatim from the latest manuscript text, including the final `\blue{...}` wording and citations.
+- If a later comment revises a manuscript passage that was already quoted or summarized in an earlier response-letter block, revisit the earlier block and resynchronize it to the latest manuscript text before treating either comment as stable.
 - Citations used to support new claims are present where needed.
 - Added terminology and notation are consistent across manuscript and response letter.
 

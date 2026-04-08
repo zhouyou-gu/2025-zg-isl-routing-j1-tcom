@@ -264,9 +264,9 @@ In the numerical-results discussion, we stated:
 
 \textbf{Comment 1: Authors claim they include mechanical limitations of LCT terminals. However, the only limitation is the FOR range (limited to 60 degrees) and the pointing jitter. In order to validate results, expressions for visibility conditions based on the limited FOR is required and shall be included in the manuscript.}
 
-\textbf{Response:} We agreed with this point and revised the manuscript so that the current visibility condition and its modeling scope were stated explicitly. In the revised manuscript, this condition was stated directly in Subsection~\ref{subsec:lct_visibility_connection} and formalized in \eqref{eq:lct_visibility_condition}. A potential LISL was treated as admissible only when the inter-satellite distance was within the maximum transmission range and the direction from each LCT to the other satellite lay within that LCT's field of regard. We also added a short limitation note immediately after \eqref{eq:lct_visibility_condition} to state that the current connectability approximation did not model atmospheric effects or an explicit line-of-sight or Earth-occlusion constraint.
+\textbf{Response:} We agree that the visibility condition should be stated explicitly. In the revised manuscript, this condition was stated directly in Subsection~\ref{subsec:lct_visibility_connection} and formalized in \eqref{eq:lct_visibility_condition}. A potential LISL was treated as admissible only when the inter-satellite distance was within the maximum transmission range and the direction from each LCT to the other satellite lay within that LCT's field of regard. We also stated explicitly that the model does not impose a same-plane restriction, so both intra-plane and inter-plane LISLs can be feasible when they satisfy the same visibility condition. A short limitation note then states that the current connectability approximation does not model atmospheric effects or an explicit line-of-sight or Earth-occlusion constraint.
 
-\textbf{Manuscript changes:} In Subsection~\ref{subsec:lct_visibility_connection}, entitled ``\blue{LCT Visibility and Connection Constraints},'' we revised the wording so that the visibility condition was stated explicitly, the defining condition was given in \eqref{eq:lct_visibility_condition}, and the current scope limitation was stated immediately afterward. The key revised text read as follows.
+\textbf{Manuscript changes:} In Subsection~\ref{subsec:lct_visibility_connection}, entitled ``\blue{LCT Visibility and Connection Constraints},'' we revised the wording so that the visibility condition was stated explicitly, the defining condition was given in \eqref{eq:lct_visibility_condition}, the lack of a same-plane restriction was stated explicitly, and the current scope limitation was stated afterward. The key revised text read as follows.
 
 ``\dots\blue{The visibility condition for a potential LISL is determined by the maximum beam transmission distance $\hat{z}$ and the mutual field of regard test at the two LCTs.}
 \blue{Accordingly, the set $\mathcal{E}$ of all connectable LCT pairs is defined by the following visibility condition.}''
@@ -276,6 +276,7 @@ In the numerical-results discussion, we stated:
     &\qquad\qquad \mathbf{d}_{i_n,i_m} \cdot \mathbf{u}_n > \cos \theta,\mathbf{d}_{i_m,i_n} \cdot \mathbf{u}_m > \cos \theta \big\}.
   \end{aligned}
 \end{equation}
+\blue{Therefore, the model does not impose a same-plane restriction. Both intra-plane and inter-plane LISLs can be feasible whenever they satisfy this visibility condition.}
 \blue{Note that this visibility model is simplified. We do not model atmospheric effects here because the present LISL formulation focuses on space-to-space propagation. We also do not impose an explicit line-of-sight or Earth-occlusion constraint, so the current connectability approximation is driven only by the range bound and the mutual field of regard test \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}.}
 
 
@@ -326,11 +327,21 @@ In the simulation setup, we stated:
 
 \textbf{Comment 5: From the defintion of LCT, it seems that only intraplane ISL are feasible.}
 
-\textbf{Proposed response:} We respectfully clarify that the current LCT definition does not imply that only intraplane ISLs are feasible. With fore/aft mounting directions and a nontrivial field of regard, inter-plane neighbors can also be feasible whenever their relative direction falls inside the steering cone and the other connectability conditions are satisfied. In the revision, we will make this point explicit in the system model and discuss it more clearly in the simulation description. We will also propose adding a brief statistic or illustration showing that inter-plane candidate links are indeed present under the evaluated geometry.
+\textbf{Response:} This is not the case in our model. Orbital-plane membership is not itself a feasibility constraint. A pair is admissible whenever its inter-satellite distance is within the range bound and the line-of-sight directions fall within the two LCTs' fields of regard. For that reason, the model does not impose a same-plane restriction, and inter-plane LISLs can also be feasible. In the revised manuscript, we stated this point explicitly in the LCT mechanics, visibility-condition, and simulation-setup text \cite{chaudhry2021laser,leyva-mayorga2021interplane}.
 
-\textbf{Planned manuscript changes:} We will clarify in the LCT-model text that the mounting design does not restrict feasible links to the same orbital plane; we will add an explanatory sentence or illustration regarding inter-plane candidate links; and we will make the geometric interpretation of the FOR condition more explicit.
+\textbf{Manuscript changes:} We revised the wording so that the fore/aft mounting design is not misread as a same-plane constraint, and we stated explicitly that both intra-plane and inter-plane LISLs may be feasible whenever they satisfy the visibility condition. The key revised text read as follows.
 
-\textbf{Supporting references:} \cite{chaudhry2021laser,leyva-mayorga2021interplane}
+In the LCT mechanics model, we stated:
+
+``\dots\blue{These mounting directions specify only the preferred pointing directions of the LCTs. They do not restrict feasible LISLs to satellites in the same orbital plane \cite{chaudhry2021laser,leyva-mayorga2021interplane}.}''
+
+In Subsection~\ref{subsec:lct_visibility_connection}, we stated:
+
+``\dots\blue{Therefore, the model does not impose a same-plane restriction. Both intra-plane and inter-plane LISLs can be feasible whenever they satisfy this visibility condition.}''
+
+In the simulation setup, we stated:
+
+``\dots\blue{Under this setting, candidate LISLs are not restricted to intra-plane neighbors. Any satellite pair, whether intra-plane or inter-plane, is included if it satisfies \eqref{eq:lct_visibility_condition}.}''
 
 \textbf{Comment 6: Results show an increase of throughput with the proposed method. However, no information about the unserved capacity at constellation level is presented.}
 
