@@ -43,9 +43,12 @@ This file is the reusable playbook for operating in this workspace. It captures 
 
 - `main.tex` and `response_letter_TCOM_RV1.tex` make the same technical claim.
 - Scope limitations in the response letter match the manuscript wording and tone.
+- Keep file-local narrative voice. `main.tex` should read as a standalone paper rather than a revision record, while `response_letter_TCOM_RV1.tex` may describe what was added, revised, or clarified. Synchronize the technical claim across files, but do not copy revision-history tone into the manuscript.
 - Once a revision is actually present in the files, phrase the response letter as completed work rather than future planned work.
 - Any quoted manuscript change in the response letter must be copied verbatim from the latest manuscript text, including the final `\blue{...}` wording and citations.
 - If a later comment revises a manuscript passage that was already quoted or summarized in an earlier response-letter block, revisit the earlier block and resynchronize it to the latest manuscript text before treating either comment as stable.
+- When a reviewer comment is addressed partly by a revised figure, prefer embedding the revised figure directly in the response letter after the quoted manuscript text rather than relying only on prose description.
+- For an embedded response-letter figure, start the caption with `(Fig. \ref{fig:xxx} in the revised manuscript)` and use a response-letter-specific `\label{fig:resp_...}` instead of reusing the manuscript figure label.
 - Citations used to support new claims are present where needed.
 - Added terminology and notation are consistent across manuscript and response letter.
 
@@ -88,7 +91,10 @@ Use this as a mental or written template when handling a comment:
 - Keep quoted `\blue{...}` text verbatim between manuscript and response letter.
 - When quoting manuscript text in the response letter, omit non-blue surrounding text unless it is needed for meaning, location, or a displayed block that would otherwise become unclear.
 - When a quoted manuscript excerpt omits preceding text, begin the retained quote with `\dots` to mark the omission explicitly.
+- For figure-driven comments in the response letter, use the pattern: short response paragraph, short `Manuscript changes` paragraph with the quoted blue text, one bridge sentence introducing the figure, then the reproduced revised figure.
 - In `main.tex`, highlight substantive manuscript revisions in `\blue{...}` by default; leave grammar-only or typo-only fixes unhighlighted unless the user asks otherwise.
+- When addressing one reviewer comment interactively, temporarily mark the active substantive `main.tex` edits in red rather than blue so the in-progress scope is visually isolated. Once that comment is accepted or treated as stable, convert the same substantive text back to blue.
+- If a whole `(sub)section` is changed or newly added for the revision, highlight its title in the same color as the body text for that revision state.
 - Re-check directly from file after user edits or repeated requests to double-check.
 - Keep notation aligned with the existing paper and avoid index conflicts.
 - Avoid reusing the same symbol for semantically different roles in proofs, such as using a commodity count and a decision threshold with the same letter.

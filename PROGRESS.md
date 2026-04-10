@@ -4,25 +4,15 @@ This file tracks the current state of the paper revision.
 
 ## Current Objective
 
-- R1 C4 is complete and synchronized.
-- R1 C5 is deferred for now because it needs additional simulation results.
-- R1 C6 is also deferred for now because it needs additional simulation results.
-- R1 C7 is complete and synchronized.
-- R3 C1 is complete and synchronized.
-- R3 C2 is complete and synchronized.
-- R3 C3 is deferred for now because the user plans to address it together with later simulation results on stronger baselines.
-- R3 C4 is complete and synchronized.
-- R3 C5 is drafted and synchronized pending user review.
-- R3 C6 is deferred for now because it needs additional simulation results on unmet/unserved demand metrics.
-- R3 C7 is complete and synchronized.
-- R3 C8 is complete and synchronized.
-- R3 C9 is now the next addressable reviewer comment when the user asks to continue.
+- All reviewer comments are complete and synchronized.
+- The current progress state is under review.
 
 ## Repository State
 
 - The current branch is `main`.
-- The latest committed synchronized reviewer-response revision includes the R3 C8 figure-caption clarification update set.
-- The intended saved state of this file is a clean working tree after the current revision is committed.
+- The latest committed synchronized reviewer-response revision before the current work is the R3 C8 figure-caption clarification update set.
+- The manuscript repo is intentionally dirty for the current simulation-revision batch in `main.tex`, `response_letter_TCOM_RV1.tex`, regenerated `.bbl` files, and the two new figure PDFs copied from `../leo-sat-flow`.
+- The shared experiment repo `../leo-sat-flow` is also intentionally dirty for the current simulation-revision batch because it now contains the new shell-based selection helper, current-paper revision drivers and plotting scripts, and updated demo scripts.
 
 ## Concrete Edits Already Present
 
@@ -69,28 +59,23 @@ This file tracks the current state of the paper revision.
 - R1 C2
 - R1 C3
 - R1 C4
+- R1 C5
+- R1 C6
 - R1 C7
 - R3 C1
 - R3 C2
+- R3 C3
 - R3 C4
+- R3 C5
+- R3 C6
 - R3 C7
 - R3 C8
-
-### Drafted and synchronized pending user review
-
-- R3 C5
-
-### Deferred pending additional simulation results
-
-- R1 C5
-- R1 C6
-- R3 C3
-- R3 C6
-
-### Still only proposed in the response letter
-
 - R3 C9
 - R3 C10
+
+### Current progress state
+
+- Under review
 
 ## Rolling Progress Log
 
@@ -178,25 +163,35 @@ This file tracks the current state of the paper revision.
 - The user then asked to address R3 C8 by revising only the figure caption. `main.tex` now revises only the caption of Fig. `\ref{fig:constellation_simulation_1000_compare}` so that panel (a), the direct comparison between panels (b) and (c), and the metrics shown in the inset boxes are described explicitly. `response_letter_TCOM_RV1.tex` was synchronized to that caption-only revision, and R3 C8 is now drafted pending user review.
 - A later review of R3 C8 found two remaining wording issues only: the caption phrase ``sampled satellites'' foregrounded the later realism concern of R3 C9, and the response opening was slightly too argumentative for a caption-only fix. Those were then cleaned up by changing the caption to the more neutral ``simulated Starlink-based constellation instance with $I=1000$ satellites'' and by rewriting the response opening so it simply states that the comparison between panels (b) and (c) was clarified more explicitly.
 - The user then approved R3 C8 as done and requested commit/push, so the comment status was advanced from drafted/pending review to complete and synchronized, and the next addressable reviewer comment is now R3 C9.
+- A shared-code simulation revision batch was then implemented in `../leo-sat-flow` for the deferred simulation comments. The shared helper `sim_mld/tle.py` now has a new opt-in shell-based Starlink selector that leaves the legacy random helper unchanged; the current-paper repo now has new revision drivers and plotting scripts under `sim_alg_v1_res`; and the demo Starlink visualization scripts were updated to use the shell-based selector without touching the other paper's `sim_alg_j1_res` experiment scripts.
+- A fairness correction was then applied in `sim_alg_v1_res/tcom_revision_common.py`. DuJo still optimizes with the original legacy varying-traffic-seed behavior during its subgradient iterations, but the reported DuJo result is now re-evaluated on the same common traffic seed as the other baselines before being written to the revision CSVs.
+- The new shell-based over-time benchmark and the new load-stress benchmark were then run on a deterministic coherent `I=1000` Starlink block from the dominant `53.2^\circ` shell over the six snapshot offsets `0, 30, 60, 90, 120, 180` min. The stronger baseline set now consists of `DuJo`, `DRL`, `SaTE`, `MRate`, and `+Grid`, while `Rand` is retained only as supporting context.
+- During execution, a run-directory collision risk was discovered when the same load-scaling script was launched twice within the same second. The current batch was therefore run with staggered starts, and the final load-stress dataset was merged explicitly from the five run directories rather than relying on implicit latest-run discovery.
+- The merged load-stress dataset now contains all `240` rows corresponding to `8` load levels, `6` snapshot offsets, and `5` headline methods. The two new figure PDFs `plot_test_tcom_shell_time_baselines.pdf` and `plot_test_tcom_shell_time_load_scaling.pdf` were regenerated from that merged dataset and copied into the manuscript repo.
+- `main.tex` was then revised to separate random-subset scale studies from the new realism-facing structured-shell benchmark, to add the strengthened baseline set, and to add a new load-stress discussion that honestly reports the regime-dependent outcome: DuJo is strongest at all tested loads except `0.002%`, where SaTE and MRate are slightly better, while DRL remains below the heuristic baselines.
+- `response_letter_TCOM_RV1.tex` was then synchronized for R1 C5, R1 C6, R3 C3, R3 C6, R3 C9, and R3 C10. These blocks are no longer only proposed; they now describe completed manuscript revisions, cite the new simulation setup and new figure-backed subsections, and quote the current blue manuscript text.
+- Shared-code isolation was then smoke-checked in `../leo-sat-flow`: the legacy helper `generate_tle_partly_regular_constellation1000(...)` still generated the old random-subset constellation successfully, and the other paper's `sim_alg_j1_res.train_rl_starlink_1000_ld.GNNSimulation` still imported successfully. A direct unchanged runtime smoke of the other paper's plotting scripts was not practical in this workspace because those scripts hardcode missing historical `/home/zhouyou/...` result paths.
+- `main.tex` and `response_letter_TCOM_RV1.tex` were rebuilt successfully after the simulation-revision integration. The manuscript still shows the same pre-existing duplicate-destination warnings and two small underfull-box warnings, while the response letter now builds without the earlier overfull-DOI problem.
+- R1 C5 was then tightened again in `response_letter_TCOM_RV1.tex` so the response now explicitly names the main Starlink benchmark as a coherent shell-tracking evaluation and directly cites the existing regular Walker-delta and OneWeb constellation cases as additional structured-constellation evidence, without changing `main.tex`.
+- A further review of R1 C5 then found that the response still did not answer the full-shell or multi-shell question directly enough. The response was therefore tightened again to state the explicit computational-tractability rationale for using a coherent structured shell block, to anchor the Walker-delta and OneWeb justification to Fig. `\ref{fig:plot_test_dual_optimization_different_constellation}`, and to replace the awkward phrase ``main new addressment'' with cleaner reviewer-facing wording.
 
 ## Current Blockers or Risks
 
-- R1 C5 now requires additional simulation results before it can be addressed fully.
-- R1 C6 now also requires additional simulation results before it can be addressed fully.
-- R3 C3 now also requires additional simulation results on stronger baselines before it should be finalized.
-- R3 C6 now also requires additional simulation results on unmet or unserved demand metrics before it should be finalized.
 - The broader manuscript TeX build still reports pre-existing duplicate-destination and layout warnings outside the scope of the R1 C3 fix.
-- When building `response_letter_TCOM_RV1.tex` via `latexmk`, the wrapper can still report a stale custom-dependency failure from the external `main` subdocument helper even after the PDF is produced; a direct `pdflatex response_letter_TCOM_RV1.tex` run succeeds on the current file state.
+- The visual Starlink comparison asset `constellation_simulation_1000_compare_rev.pdf` in the manuscript repo was not regenerated during this batch. The two demo scripts that produce that view now use the shell-based selector, but they still require an interactive screenshot workflow if the user wants to refresh that figure itself.
+- The user then requested a calmer and more concise tone for the shared R1 C5 simulation-framing change. The structured-shell subsection opening in `main.tex` was shortened to state only the evaluated case and the six-snapshot setup, the R1 C5 response was rewritten in a more neutral past-tense style, and the matching quoted manuscript text was resynchronized in both the R1 C5 and R3 C9 response blocks.
+- The user then asked to remove the fairness sentence about using the same feasible connectability set from the manuscript because it felt redundant. That sentence was deleted from `main.tex`, and the matching R1 C6 quoted manuscript block in `response_letter_TCOM_RV1.tex` was removed so the response letter remained synchronized.
+- The user then clarified a new reusable markup workflow rule for comment-by-comment drafting: while one reviewer comment is actively being refined, the substantive `main.tex` edits for that in-progress comment should be marked in red rather than blue, and once that comment is accepted or treated as stable the same text should be converted back to blue. `HARNESS.md` was updated accordingly.
+- That new rule was then applied to the currently active load-stress comment: the in-progress load-stress additions in `main.tex` are now temporarily marked in red, including the load-range sentence in the simulation setup, the Fig. `\ref{fig:plot_test_tcom_shell_time_load_scaling}` caption, and the `Load-Stress Evaluation` subsection text. The rest of the earlier stabilized simulation revisions remain blue.
+- The user then clarified another reusable markup preference: if a whole `(sub)section` is changed or newly added for the revision, its title should be highlighted in the same revision color as the body text. `HARNESS.md` was updated accordingly, and the already-added `Structured Shell-Based Evaluation Over Time` subsection title in `main.tex` was brought into line with its blue body text.
+- A reusable response-letter figure rule was then added to `HARNESS.md`: for figure-driven comments, prefer reproducing the revised figure directly in the response letter after the quoted blue manuscript text, use a bridge sentence for direct inspection, start the response-letter figure caption with `(Fig. \ref{fig:xxx} in the revised manuscript)`, and use a response-letter-specific `\label{fig:resp_...}` rather than reusing the manuscript label.
+- That response-letter figure rule was then applied in the current paper: the R1 C5 block now reproduces the revised structured-shell figure, the R3 C6 block now reproduces the revised load-stress figure, and the R3 C8 block now reproduces the revised Fig. 2 asset, each with the manuscript-figure parenthetical caption pattern. `response_letter_TCOM_RV1.pdf` was rebuilt successfully afterward.
 
 ## Immediate Next-Agent Actions
 
-1. Wait for the user's review of the current R3 C5 geometry-clarification addressment before advancing to any later reviewer comment.
-2. Return to R1 C5 or R1 C6 only when the user wants to generate and integrate the additional simulation results they require.
-3. Return to R3 C3 when the user is ready to add the stronger-baseline simulation results it needs.
-4. Return to R3 C6 when the user is ready to add the unmet or unserved-demand simulation results it needs.
-5. Resume at R3 C9 if the user asks to continue with the next reviewer comment that does not depend on new simulations.
-6. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
+1. Wait for review feedback on the current revision set.
+2. Preserve the existing unrelated LaTeX warnings unless the user explicitly asks to clean them.
 
 ## Next Safe Resume Point
 
-- Resume from the next user instruction at R3 C9, unless the user explicitly reopens R3 C5, R1 C5, R1 C6, R3 C3, or R3 C6 for simulation work.
+- Resume from the next review-driven user instruction.
