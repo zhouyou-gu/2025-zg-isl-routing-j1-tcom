@@ -20,6 +20,18 @@ Design expectations:
 - Stable reusable guidance belongs in `AGENT_HARNESS.md`, while transient task state belongs in `AGENT_PROGRESS.md`.
 - If information drifts into the wrong file, restore the boundary instead of duplicating the same content across files.
 
+## Functional Boundary by File
+
+- `AGENT.md` is the control file. It defines file roles, read order, precedence, update routing, and boundary enforcement. It should not become a task log, a reusable playbook, or a store of detailed project progress.
+- `AGENT_HARNESS.md` is the reusable playbook. It stores durable workflows, generalized user preferences, stable review habits, and reusable execution rules. It should not become a chronological history, a current blocker list, or a step-by-step log of the active task.
+- `AGENT_PROGRESS.md` is the live state file. It stores the current objective, current factual status, concrete edits already present, current blockers or risks, immediate next actions, and the next safe resume point. It should not become the authority on workflow policy or a duplicate copy of the reusable harness.
+
+When deciding where information belongs, classify it by function first:
+
+- if it tells a later agent how to operate across tasks, it belongs in `AGENT_HARNESS.md`
+- if it tells a later agent what is true right now in this workspace, it belongs in `AGENT_PROGRESS.md`
+- if it tells a later agent how the control files themselves are supposed to work, it belongs in `AGENT.md`
+
 ## Mandatory Read Order
 
 Before substantive work, read these files in order:
@@ -41,14 +53,6 @@ While processing the workspace:
 - Use `AGENT_PROGRESS.md` for current task state, current blockers, and the safe resume point.
 - If current-state information elsewhere conflicts with `AGENT_PROGRESS.md`, treat `AGENT_PROGRESS.md` as authoritative and clean up the drift.
 - If a durable reusable rule appears only in `AGENT_PROGRESS.md`, move it to `AGENT_HARNESS.md` and keep only the current-state residue in the progress file.
-
-## Core Working Rules
-
-- Work one reviewer comment or one concrete revision step at a time.
-- Do not advance to the next reviewer comment until the user is satisfied with the current one.
-- Keep `main.tex` and `response_letter_TCOM_RV1.tex` synchronized.
-- When the response letter quotes a manuscript change, the quoted `\blue{...}` text must match the manuscript verbatim.
-- Preserve existing uncommitted changes and do not overwrite unrelated work in the dirty tree.
 
 ## Update Dispatcher
 
