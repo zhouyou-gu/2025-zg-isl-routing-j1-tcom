@@ -3,21 +3,21 @@
 This workspace uses a three-file control system:
 
 - `AGENT.md`: stable repo policy and the authority on which control file to update
-- `HARNESS.md`: reusable execution playbook and generalized inferred user intent
-- `PROGRESS.md`: live task state, concrete progress, and the next safe resume point
+- `AGENT_HARNESS.md`: reusable execution playbook and generalized inferred user intent
+- `AGENT_PROGRESS.md`: live task state, concrete progress, and the next safe resume point
 
 ## Mandatory Read Order
 
 Before substantive work, read these files in order:
 
 1. `AGENT.md`
-2. `HARNESS.md`
-3. `PROGRESS.md`
+2. `AGENT_HARNESS.md`
+3. `AGENT_PROGRESS.md`
 
 While processing the workspace:
 
-- use `HARNESS.md` for how to operate
-- use `PROGRESS.md` for what the current state of work is
+- use `AGENT_HARNESS.md` for how to operate
+- use `AGENT_PROGRESS.md` for what the current state of work is
 - update the appropriate file as soon as the triggering condition below is met
 
 ## Core Working Rules
@@ -30,11 +30,11 @@ While processing the workspace:
 
 ## Update Dispatcher
 
-`AGENT.md` is the authority on whether an agent should update `HARNESS.md`, `PROGRESS.md`, or both.
+`AGENT.md` is the authority on whether an agent should update `AGENT_HARNESS.md`, `AGENT_PROGRESS.md`, or both.
 
-### Update `PROGRESS.md` when concrete workspace state changes
+### Update `AGENT_PROGRESS.md` when concrete workspace state changes
 
-Update `PROGRESS.md` in the same turn when any concrete task or workspace state changes, including when:
+Update `AGENT_PROGRESS.md` in the same turn when any concrete task or workspace state changes, including when:
 
 - any repo file is edited, added, renamed, or removed
 - a reviewer comment changes status
@@ -43,7 +43,7 @@ Update `PROGRESS.md` in the same turn when any concrete task or workspace state 
 - the current blocker, next action, or next safe resume point changes
 - a review or check changes confidence in the current state of the work
 
-How to update `PROGRESS.md`:
+How to update `AGENT_PROGRESS.md`:
 
 - record the new current objective if it changed
 - refresh repository state and concrete edits already present
@@ -52,9 +52,9 @@ How to update `PROGRESS.md`:
 - revise blockers, immediate next actions, and next safe resume point as needed
 - keep it factual and current; do not move stable workflow policy into this file
 
-### Update `HARNESS.md` when reusable intent or workflow emerges
+### Update `AGENT_HARNESS.md` only for durable reusable rules
 
-Update `HARNESS.md` when an explicit or inferred generic user intention, workflow preference, or reusable execution pattern can be extracted from the user's prompts or interactions, including when:
+Update `AGENT_HARNESS.md` when a reusable user preference, workflow rule, or execution pattern becomes clear from the interaction, for example when:
 
 - a user preference becomes clearly reusable beyond the current step
 - a generic workflow pattern is inferred from the user's requests or corrections
@@ -62,7 +62,7 @@ Update `HARNESS.md` when an explicit or inferred generic user intention, workflo
 - a recurring acceptance criterion or writing standard emerges
 - an interaction reveals a general operating principle that future agents should follow on later tasks too
 
-How to update `HARNESS.md`:
+How to update `AGENT_HARNESS.md`:
 
 - capture the explicit or inferred generic user intention in reusable form
 - generalize the lesson into a reusable rule, checklist item, or playbook entry
@@ -72,7 +72,7 @@ How to update `HARNESS.md`:
 
 ### Update both when both conditions are true
 
-Update both `PROGRESS.md` and `HARNESS.md` when:
+Update both `AGENT_PROGRESS.md` and `AGENT_HARNESS.md` when:
 
 - a concrete task advance also reveals a reusable operating preference
 - a user correction changes both the current task state and future workflow expectations
@@ -80,10 +80,10 @@ Update both `PROGRESS.md` and `HARNESS.md` when:
 ## Role Boundary
 
 - `AGENT.md` defines rules and update routing, but does not store live task status.
-- `HARNESS.md` stores reusable workflow and generalized user intent, but not the current task log.
-- `PROGRESS.md` stores live state and rolling progress, but not stable repo policy.
+- `AGENT_HARNESS.md` stores reusable workflow and generalized user intent, but not the current task log.
+- `AGENT_PROGRESS.md` stores live state and rolling progress, but not stable repo policy.
 
 If unsure where a new piece of information belongs:
 
-- put it in `HARNESS.md` if it should still guide future agents after the current task is complete
-- put it in `PROGRESS.md` if it only describes the current state of work
+- put it in `AGENT_HARNESS.md` if it should still guide future agents after the current task is complete
+- put it in `AGENT_PROGRESS.md` if it only describes the current state of work
