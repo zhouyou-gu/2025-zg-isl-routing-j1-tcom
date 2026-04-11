@@ -16,6 +16,7 @@ This file tracks the current state of the paper revision.
 
 ## Concrete Edits Already Present
 
+- `AGENT.md` now makes the agent-file contract explicit: if a later agent is told to read the agent files, it should treat `AGENT.md`, `AGENT_HARNESS.md`, and `AGENT_PROGRESS.md` together as the reusable workspace operating bundle, with `AGENT.md` as the authority on file roles, read order, update routing, and control-file precedence.
 - R1 C1 is finalized and synchronized: the manuscript and response letter now clarify that the i.i.d. jitter assumption plays only a limited technical role in the current formulation.
 - R1 C2 is finalized and synchronized: the manuscript now states an honest per-snapshot scope limitation for ATP, and `main.tex` includes the appendix `An Example MDP Extension for Future Work`.
 - R1 C3 has been tightened and synchronized: the main body now defines the fixed-snapshot abstract decision problem `AS-JMR`, states Proposition `\ref{prop:np_hardness}` for `AS-JMR`, and adds an immediate clarification that the manuscript does not directly claim NP-hardness of the full geometric/orbital formulation.
@@ -79,6 +80,7 @@ This file tracks the current state of the paper revision.
 
 ## Rolling Progress Log
 
+- `AGENT.md` was tightened so the reusable intention behind the agent files is now explicit rather than implicit. It now tells later agents that reading the agent files means reading the three-file bundle in order, and it defines the boundary and precedence between `AGENT.md`, `AGENT_HARNESS.md`, and `AGENT_PROGRESS.md`.
 - R1 C1 was rewritten around the limited role of the i.i.d. jitter assumption and synchronized between manuscript and response letter.
 - R1 C2 was reframed to an explicit per-snapshot ATP limitation, extended with an illustrative MDP appendix, and synchronized with the response letter after notation and citation tightening.
 - R1 C3 was upgraded from a terse NP-hardness claim to a formal proposition with a step-by-step EDP reduction, then left pending a final writing review.

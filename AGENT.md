@@ -6,6 +6,20 @@ This workspace uses a three-file control system:
 - `AGENT_HARNESS.md`: reusable execution playbook and generalized inferred user intent
 - `AGENT_PROGRESS.md`: live task state, concrete progress, and the next safe resume point
 
+## Agent-File Contract
+
+These files are intended to be reusable onboarding and control files for later agents working in this workspace. If a user says to read the agent files, interpret that as an instruction to read all three files in the mandatory order below and treat them together as the workspace operating contract.
+
+- `AGENT.md` defines the control contract: file roles, read order, update routing, and conflict handling.
+- `AGENT_HARNESS.md` stores durable reusable workflow rules and generalized user preferences. Keep it low entropy and reusable across tasks.
+- `AGENT_PROGRESS.md` stores the current factual state, concrete recent changes, blockers, and the next safe resume point.
+
+Design expectations:
+
+- Another agent should be able to recover both how to operate and where the work stands by reading these files alone.
+- Stable reusable guidance belongs in `AGENT_HARNESS.md`, while transient task state belongs in `AGENT_PROGRESS.md`.
+- If information drifts into the wrong file, restore the boundary instead of duplicating the same content across files.
+
 ## Mandatory Read Order
 
 Before substantive work, read these files in order:
@@ -19,6 +33,14 @@ While processing the workspace:
 - use `AGENT_HARNESS.md` for how to operate
 - use `AGENT_PROGRESS.md` for what the current state of work is
 - update the appropriate file as soon as the triggering condition below is met
+
+## Control-File Precedence
+
+- Use `AGENT.md` to decide which control file governs a question.
+- Use `AGENT_HARNESS.md` for durable workflow and generalized preference guidance unless `AGENT.md` says otherwise.
+- Use `AGENT_PROGRESS.md` for current task state, current blockers, and the safe resume point.
+- If current-state information elsewhere conflicts with `AGENT_PROGRESS.md`, treat `AGENT_PROGRESS.md` as authoritative and clean up the drift.
+- If a durable reusable rule appears only in `AGENT_PROGRESS.md`, move it to `AGENT_HARNESS.md` and keep only the current-state residue in the progress file.
 
 ## Core Working Rules
 
