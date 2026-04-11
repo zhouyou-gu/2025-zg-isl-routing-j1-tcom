@@ -31,6 +31,7 @@
 \usepackage[caption=false,font=footnotesize]{subfig}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{float}
 \usepackage[hidelinks]{hyperref}
 \newcommand\algorithmicprocedure{\textbf{procedure}}
 \newcommand{\algorithmicendprocedure}{\algorithmicend\ \algorithmicprocedure}
@@ -114,6 +115,8 @@ We have revised the manuscript to address the specific comments from Reviewers 1
 \section*{\centering\Large\textbf{Response to Reviewer 1 of Manuscript TCOM-TPS-26-0080}}
 
 \textbf{Summary by Reviewer 1: This paper proposes a Lagrangian duality-based method, called DuJo, for the joint optimization of Laser Inter-Satellite Link (LISL) matching and traffic flow routing in Low Earth Orbit (LEO) mega constellations. The objective is to maximize network throughput while considering the mechanical constraints of Laser Communication Terminals (LCTs), such as steering ranges and pointing jitters, alongside non-uniform global traffic demands. However, the paper may not be suitable for publication in its current form. To improve the quality of the paper, the authors should consider the following comments:}
+
+\textbf{Response:} We agree that the original manuscript needed to make several modeling assumptions, the complexity discussion, and the simulation design more explicit. In the revised manuscript, we therefore clarified the scope of the pointing-jitter model and the ATP-free per-snapshot formulation, added a step-by-step NP-hardness treatment for the induced fixed-snapshot abstract decision problem, stated the non-monotone nature of the subgradient iterations more carefully, distinguished the random-subset and structured-shell Starlink evaluations, strengthened the baseline comparison, and performed a focused writing cleanup. Below, we respond point by point to each comment and identify the corresponding manuscript changes.
 
 
 \textbf{Comment 1: Is the assumption of independent and identically distributed pointing errors across LCTs realistic in practical satellite platforms?}
@@ -249,9 +252,9 @@ In Subsubsection~\ref{subsubsec:structured_shell_time_evaluation}, we stated:
 
 ``\dots\blue{We next evaluate the structured shell-based Starlink instance. Fig. \ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}''
 
-For direct inspection, we also reproduce the revised figure below.
+For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_baselines} is also reproduced in this response letter.
 
-\begin{figure}[!t]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.85]{plot_test_tcom_shell_time_baselines.pdf}
 \caption{\blue{(Fig. \ref{fig:plot_test_tcom_shell_time_baselines} in the revised manuscript) Structured shell-based Starlink evaluation over time. A coherent $I=1000$ satellite block from the dominant $53.2^\circ$ shell is kept fixed while the constellation is propagated over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min. The top plot shows the served throughput and the bottom plot shows the served-demand ratio for DuJo, DRL, SaTE, MRate, and +Grid.}}
@@ -260,43 +263,43 @@ For direct inspection, we also reproduce the revised figure below.
 
 \textbf{Comment 6: Why are the baseline methods limited to basic heuristics? You may want to include a comparison with recent state-of-the-art schemes to better demonstrate your performance gains.}
 
-\textbf{Response:} We agree that the original baseline set was too weak for the main topology comparison. In the revised manuscript, we therefore strengthened the benchmark by adding the non-joint traffic-engineering baseline SaTE and a trained policy-gradient DRL baseline, while retaining MRate and +Grid. At the same time, we demoted the random baseline to supporting context only rather than treating it as a headline practical benchmark. To keep the comparison fair, the added structured-shell study evaluates DuJo, DRL, SaTE, MRate, and +Grid under the same feasible connectability set, the same gateway placement, and the same rate-allocation backend once the matching and routing decisions are fixed.
+\textbf{Response:} We agree that the original baseline set was too weak for the main topology comparison. In the revised manuscript, we therefore strengthened the benchmark by adding the non-joint traffic-engineering baseline SaTE \cite{wu2025sate} and a trained policy-gradient DRL baseline \cite{sutton2000policy}, while retaining MRate and +Grid. At the same time, we demoted the random baseline to supporting context only rather than treating it as a headline practical benchmark. To keep the comparison fair, the added structured-shell study evaluates DuJo, DRL, SaTE, MRate, and +Grid under the same feasible connectability set, the same gateway placement, and the same rate-allocation backend once the matching and routing decisions are fixed.
 
 \textbf{Manuscript changes:} In the baseline-methods subsection, we added the stronger baselines and reduced the prominence of the random baseline. The key revised text read as follows.
 
 In the baseline-methods subsection, we added the following baseline descriptions:
 
 \begin{itemize}
-\item \blue{\textbf{SaTE:} Following the non-joint traffic-engineering setting of SaTE \cite{wu2025sate}, this baseline first fixes the LISL matching by maximum link rate matching and then routes the flows by shortest paths under unit hop cost. Given that topology and routing, the traffic flow rates are computed optimally by a linear programming solver to maximize the network throughput. Thus, only the traffic rate allocation is optimized, while the link matching and traffic routing are not jointly optimized.}
+\item \blue{\textbf{SaTE:} Following the non-joint traffic-engineering setting of SaTE \cite{wu2025sate}, this baseline first fixes the LISL matching by maximum link rate matching and then routes the flows by shortest paths under unit hop cost. Given that topology and routing, the traffic flow rates are computed optimally by LP to maximize the network throughput. Thus, only the traffic rate allocation is optimized, while the link matching and traffic routing are not jointly optimized.}
 \item \blue{\textbf{DRL:} A trained policy-gradient baseline \cite{sutton2000policy} uses the constellation graph as its state, where each satellite node carries its gateway service capacity and traffic demand and each connectable satellite pair carries its candidate LISL capacity. Its action is to infer the price graph over the connectable satellite pairs, and its reward is derived from the resulting traffic-rate allocation after converting those inferred prices to matching, routing, and rate allocation.}
 \end{itemize}
 
 ``\dots\blue{In the structured-shell comparison, we focus the main benchmark on DuJo, DRL, SaTE, MRate, and +Grid.}''
 
-For direct inspection, we also reproduce the updated comparison figures below.
+For direct inspection, the revised Figs. \ref{fig:plot_test_dual_optimization_vs_grid_rand}, \ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}, and \ref{fig:plot_test_dual_optimization_different_constellation} are also reproduced in this response letter.
 
-\begin{figure}[!t]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.85]{plot_test_dual_optimization_vs_grid_rand.pdf}
 \caption{(Fig. \ref{fig:plot_test_dual_optimization_vs_grid_rand} in the revised manuscript) DuJo vs. baselines for different numbers of satellites $I$.}
 \label{fig:resp_plot_test_dual_optimization_vs_grid_rand}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.85]{plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for.pdf}
 \caption{(Fig. \ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for} in the revised manuscript) Comparison when varying LCT configurations on satellites.}
 \label{fig:resp_plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.85]{plot_test_dual_optimization_different_constellation.pdf}
 \caption{(Fig. \ref{fig:plot_test_dual_optimization_different_constellation} in the revised manuscript) Comparison in a Starlink-based ($I=1000$), a regular walker-delta ($50^{\circ}$ inclination, $I=1000$), and a OneWeb constellation ($I=650$).}
 \label{fig:resp_plot_test_dual_optimization_different_constellation}
 \end{figure}
 
-These updated figures show that, in the varying-$I$ study, SaTE is generally the strongest separated baseline as the constellation size grows, while DRL remains below the heuristic baselines. In the LCT-configuration and FOR sweeps, DuJo stays strongest across the range, SaTE is generally the strongest separated baseline, and DRL remains lower. In the constellation comparison, DuJo is strongest in all three cases; SaTE is the strongest separated baseline in the Starlink case, while +Grid and SaTE come much closer to DuJo in the walker-delta and OneWeb cases, and DRL remains distinctly lower.
+These updated figures show that, in the varying-$I$ study, SaTE is generally the strongest separated baseline as the constellation size grows, while DRL remains below the heuristic baselines. In the LCT-configuration and FOR sweeps, DuJo stays strongest across the range, SaTE is generally the strongest separated baseline, and DRL remains lower. In the constellation comparison, DuJo is strongest in all three cases; SaTE is the strongest separated baseline in the Starlink case, while +Grid and SaTE come much closer to DuJo in the walker-delta and OneWeb cases, and DRL remains distinctly lower. This is because the DRL policy is trained using a network-wise reward that is derived from the resulting traffic flow rates, which do not directly supervise how the Lagrange multipliers should be optimized to improve the matching and routing decisions. Thus, the DRL policy may not learn to optimize the Lagrange multipliers effectively, especially when the constellation size grows with many satellite pairs.
 
 \textbf{Comment 7: Paper writing would benefit from improvement. Please also double-check for typos throughout the paper.}
 
@@ -309,6 +312,8 @@ These updated figures show that, in the varying-$I$ study, SaTE is generally the
 \section*{\centering\Large\textbf{Response to Reviewer 3 of Manuscript TCOM-TPS-26-0080}}
 
 \textbf{Summary by Reviewer 3: Authors present a method to jointly optimize LCT connections in a satellite constellation to maximize throughput and considering LCT mechanics and global traffic demand. The proposed method is based on a Lagrangian duality based concept to relax the untractability of the joint optimization problem. The method is fully addressed, and authors offer results of complexity. Results are promising compared to the baseline cases, but there are some major concerns that should be addressed to validate performance results.}
+
+\textbf{Response:} We agree that the main validation issues were the explicit visibility model, the scope of the traffic model, the interpretation of the baseline comparisons, and the lack of higher-load evidence. In the revised manuscript, we therefore stated the field-of-regard visibility condition explicitly, clarified the simplified snapshot-level scope of the demand model, corrected the interpretation of gateway service capacity and feasible LISLs, strengthened the baseline comparison with SaTE and DRL, added the structured-shell load-stress evaluation, and clarified the distinction between random Starlink subsets and the structured-shell study. Below, we respond point by point to each comment and identify the corresponding manuscript changes.
 
 
 \textbf{Comment 1: Authors claim they include mechanical limitations of LCT terminals. However, the only limitation is the FOR range (limited to 60 degrees) and the pointing jitter. In order to validate results, expressions for visibility conditions based on the limited FOR is required and shall be included in the manuscript.}
@@ -329,9 +334,9 @@ These updated figures show that, in the varying-$I$ study, SaTE is generally the
 \blue{Note that this visibility model is simplified. We do not model atmospheric effects here because the present LISL formulation focuses on space-to-space propagation. We also do not impose an explicit line-of-sight or Earth-occlusion constraint, so the current connectability approximation is driven only by the range bound and the mutual field of regard test \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}.}
 
 
-\textbf{Comment 2: Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capability of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, \url{https://doi.org/10.1016/j.actaastro.2025.06.068}.}
+\textbf{Comment 2: Authors claim the consider global traffic demand. However, the traffic demand model is very basic and does not consider aspects like the purchasing capacibility of the population or temporal variation of the traffic demand. I suggest this reference to refine the traffic model demand: Samuel Martínez Zamacola, Santiago Martín Marco, Ramón Martínez Rodríguez-Osorio, Profiling the transmit power of LEO satellite constellations for broadband communication services considering terrestrial and aerial demand, Acta Astronautica, Volume 236, 2025, Pages 547-559, ISSN 0094-5765, https://doi.org/10.1016/j.actaastro.2025.06.068.}
 
-\textbf{Response:} We agree that the current traffic model captures only a simplified form of global demand. In the revised manuscript, we stated this scope explicitly. In particular, we clarified that the present demand model is a snapshot-level spatial model driven by the uneven distributions of population and gateways, rather than a full socioeconomic or temporal demand forecast. We also stated directly that the present formulation does not incorporate temporal demand variation or purchasing-capability effects, and we cited richer broadband-demand models for those omitted dimensions together with gateway-aware traffic-estimation work, including the reviewer-suggested recent paper.
+\textbf{Response:} We agree that the current traffic model captures only a simplified form of global demand. In the revised manuscript, we stated this scope explicitly. In particular, we clarified that the present demand model is a snapshot-level spatial model driven by the uneven distributions of population and gateways, rather than a full socioeconomic or temporal demand forecast. We also stated directly that the present formulation does not incorporate temporal demand variation or purchasing-capability effects, and we cited richer broadband-demand models for those omitted dimensions, including the terrestrial-and-aerial demand profiling work in \cite{zamacola2025profiling} and the broader broadband-demand model in \cite{qin2024satformer}, together with gateway-aware traffic-estimation work \cite{guo2021gateway}.
 
 \textbf{Manuscript changes:} We narrowed the high-level claim in the abstract and introduction, and in Subsection~\ref{subsec:traffic_profile_model} we stated the simplified scope of the present traffic model explicitly. The key revised text read as follows.
 
@@ -420,9 +425,9 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
-For direct inspection, we also reproduce the revised figure below.
+For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
 
-\begin{figure}[!t]
+\begin{figure}[H]
 \centering
 \includegraphics[scale=0.85]{plot_test_tcom_shell_time_load_scaling.pdf}
 \caption{\blue{(Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} in the revised manuscript) Load-stress evaluation on the structured shell-based Starlink instance. The active-user percentage varies from $0.0005\%$ to $0.1\%$. The top and the bottom plots show the throughput and the served-demand ratio, respectively.}}
@@ -448,9 +453,9 @@ In Section~\ref{sec:system_model}, we stated:
 
 ``\blue{Comparison for the simulated Starlink-based constellation instance with $I=1000$ satellites. Panel (a) shows the constellation snapshot together with the LISLs selected by DuJo, the user distribution, and the ground-gateway locations. Panels (b) and (c) show the same geographic zoom and the same traffic-demand snapshot under DuJo and MRate, respectively, so their routed flow paths can be compared directly. The inset boxes in panels (b) and (c) report the resulting number of connected flows, flow-path length, and net throughput for the two schemes.}''
 
-For direct inspection, we also reproduce the revised figure below.
+For direct inspection, the revised Fig. \ref{fig:constellation_simulation_1000_compare} is also reproduced in this response letter.
 
-\begin{figure}[!t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.95\columnwidth]{constellation_simulation_1000_compare_rev.pdf}
 \caption{\blue{(Fig. \ref{fig:constellation_simulation_1000_compare} in the revised manuscript) Comparison for the simulated Starlink-based constellation instance with $I=1000$ satellites. Panel (a) shows the constellation snapshot together with the LISLs selected by DuJo, the user distribution, and the ground-gateway locations. Panels (b) and (c) show the same geographic zoom and the same traffic-demand snapshot under DuJo and MRate, respectively, so their routed flow paths can be compared directly. The inset boxes in panels (b) and (c) report the resulting number of connected flows, flow-path length, and net throughput for the two schemes.}}
@@ -471,9 +476,25 @@ In Subsubsection~\ref{subsubsec:structured_shell_time_evaluation}, we stated:
 
 ``\dots\blue{We next evaluate the structured shell-based Starlink instance. Fig. \ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}''
 
+For direct inspection, the revised Figs. \ref{fig:plot_test_tcom_shell_time_baselines} and \ref{fig:plot_test_dual_optimization_different_constellation} are also reproduced in this response letter.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85]{plot_test_tcom_shell_time_baselines.pdf}
+\caption{\blue{(Fig. \ref{fig:plot_test_tcom_shell_time_baselines} in the revised manuscript) Structured shell-based Starlink evaluation over time. A coherent $I=1000$ satellite block from the dominant $53.2^\circ$ shell is kept fixed while the constellation is propagated over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min. The top plot shows the served throughput and the bottom plot shows the served-demand ratio for DuJo, DRL, SaTE, MRate, and +Grid.}}
+\label{fig:resp_plot_test_tcom_shell_time_baselines_r3c9}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85]{plot_test_dual_optimization_different_constellation.pdf}
+\caption{(Fig. \ref{fig:plot_test_dual_optimization_different_constellation} in the revised manuscript) Comparison in a Starlink-based ($I=1000$), a regular walker-delta ($50^{\circ}$ inclination, $I=1000$), and a OneWeb constellation ($I=650$).}
+\label{fig:resp_plot_test_dual_optimization_different_constellation_r3c9}
+\end{figure}
+
 \textbf{Comment 10: A detailed analysis of the method performance in scenarios with a large traffic demand should be provided to have an idea of the resilience of the method.}
 
-\textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we therefore added a load-stress evaluation on the structured shell-based Starlink instance by varying the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The added figure reports both the served throughput and the served-demand ratio, so the revised evaluation captures both throughput saturation and the shrinking served share in higher-load regimes. The resulting curves show that DuJo is strongest at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised figure is also reproduced in this response letter.
+\textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we therefore added a load-stress evaluation on the structured shell-based Starlink instance by varying the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The added figure reports both the served throughput and the served-demand ratio, so the revised evaluation captures both throughput saturation and the shrinking served share in higher-load regimes. The resulting curves show that DuJo is strongest at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
 
 \textbf{Manuscript changes:} In the simulation setup and the added load-stress subsection, we introduced the higher-load evaluation and the associated metrics. The key revised text read as follows.
 
