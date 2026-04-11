@@ -418,7 +418,7 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
-``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads except $0.002\%$, where SaTE and MRate are slightly better. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
+``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
 For direct inspection, we also reproduce the revised figure below.
 
@@ -473,7 +473,7 @@ In Subsubsection~\ref{subsubsec:structured_shell_time_evaluation}, we stated:
 
 \textbf{Comment 10: A detailed analysis of the method performance in scenarios with a large traffic demand should be provided to have an idea of the resilience of the method.}
 
-\textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we therefore added a load-stress evaluation on the structured shell-based Starlink instance by varying the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The added figure reports both the served throughput and the served-demand ratio, so the revised evaluation captures both throughput saturation and the shrinking served share in higher-load regimes. The resulting curves show that DuJo is strongest at all tested loads except $0.002\%$, where SaTE and MRate are slightly better, while DRL remains below the heuristic baselines. For direct inspection, the revised figure is also reproduced in this response letter.
+\textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we therefore added a load-stress evaluation on the structured shell-based Starlink instance by varying the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The added figure reports both the served throughput and the served-demand ratio, so the revised evaluation captures both throughput saturation and the shrinking served share in higher-load regimes. The resulting curves show that DuJo is strongest at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised figure is also reproduced in this response letter.
 
 \textbf{Manuscript changes:} In the simulation setup and the added load-stress subsection, we introduced the higher-load evaluation and the associated metrics. The key revised text read as follows.
 
@@ -485,7 +485,7 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
-``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads except $0.002\%$, where SaTE and MRate are slightly better. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
+``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
 
 \bibliography{main}
