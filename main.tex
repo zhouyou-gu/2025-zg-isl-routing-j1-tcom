@@ -96,7 +96,7 @@ the University of Adelaide, Adelaide, SA 5005, Australia
 \maketitle
 
 \begin{abstract}
-Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. \blue{This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile.} \blue{We have shown that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard.} Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with proved convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
+Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. \blue{This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile.} \blue{We have shown that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard.} Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with proven convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
 \end{abstract}
 
 \begin{IEEEkeywords} 
@@ -127,9 +127,9 @@ Recent traffic-engineering approaches such as SaTE optimize the traffic-rate all
 \blue{The joint link-matching and flow-routing formulation leads to a mixed-integer optimization problem \cite{ahuja1993network}, and the associated fixed-snapshot abstract decision problem is NP-hard \cite{jarry2012multiflows} (as proved later in Proposition~\ref{prop:np_hardness} and the appendix).}
 One powerful technique to solve the problem efficiently is to use Lagrangian duality \cite{fisher2004lagrangian}.
 It views the integer program as a core problem plus a set of complicating constraints, and by lifting these constraints to the objective function with Lagrange multipliers (or Lagrangian dual variables), the original problem is relaxed and can be solved efficiently due to fewer constraints \cite{ahuja1993network}. 
-This method has been successfully applied to optimize the network coding multicast rates \cite{wang2023joint} and per traffic flow's energy efficiency  \cite{huang2025lagrangianbased} in satellite networks by lifting bottleneck link constraints and end-to-end path length constraints, respectively.
+This method has been successfully applied to optimize the network coding multicast rates \cite{wang2023joint} and per-traffic-flow energy efficiency \cite{huang2025lagrangianbased} in satellite networks by lifting bottleneck link constraints and end-to-end path length constraints, respectively.
 Learning-based surrogates can also be used to infer such dual variables in real time.
-\blue{Nevertheless, how to design the Lagrangian dual method for considering practical LCT mechanical limitations and a snapshot-level spatial traffic profile over the globe in LEO mega-constellations is still an open problem.}
+\blue{Nevertheless, how to design a Lagrangian dual method that considers practical LCT mechanical limitations and a snapshot-level spatial traffic profile over the globe in LEO mega-constellations is still an open problem.}
 
 
 
@@ -196,11 +196,11 @@ Learning-based surrogates can also be used to infer such dual variables in real 
 \end{table*}
 
 
-This paper investigates the joint optimization of LISL matching and traffic flow routing in LEO mega-constellations, where the objective is to maximize the network throughput routed through the established LISLs. We first formulate the joint problem based on the models of constellation orbits, LCT mechanics and traffic profiles.
+This paper investigates the joint optimization of LISL matching and traffic flow routing in LEO mega-constellations, where the objective is to maximize the network throughput routed through the established LISLs. We first formulate the joint problem based on the models of constellation orbits, LCT mechanics, and traffic profiles.
 To tackle this mixed-integer problem, we apply the Lagrangian dual relaxation method by lifting the maximum rate limitation constraints between neighboring satellites via Lagrange multipliers.
 Each Lagrange multiplier represents the congestion level of a satellite pair. A larger multiplier indicates that matching the pair's LCTs serves higher traffic demand. It also indicates that the corresponding LISLs are more congested and should be avoided in routing.
 This decouples the joint problem into three Lagrange multiplier-weighted subproblems, namely (a) a weighted graph-matching problem for LCT pairs, (b) a weighted shortest-path routing problem for each traffic flow, and (c) a linear program (LP) for rate allocation.
-Based on the relaxation, we jointly optimize the LISL matching and flow routing decisions by adjusting the multipliers, e.g., via the subgradient descent \cite{boyd2003subgradient}.
+Based on the relaxation, we jointly optimize the LISL matching and flow routing decisions by adjusting the multipliers, e.g., via subgradient descent \cite{boyd2003subgradient}.
 Our contributions are as follows.
 \begin{itemize}
   \item \blue{We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows}.}
@@ -211,27 +211,27 @@ Our contributions are as follows.
 
 \subsection{Notations and Paper Organization} 
 We denote the $i$-th element of a vector $\mathbf{x}$ by $x_i$ and the $(i,j)$-th element of a matrix $\mathbf{x}$ by $x_{i,j}$.
-Table \ref{tab:notation} summarizes the notations used in this paper.
+Table~\ref{tab:notation} summarizes the notations used in this paper.
 We collect all the elements in $\mathbf{x}$ as $\{x_{i,j}\}_{\forall(i,j)}$.
-The rest of this paper is organized as follows. Section \ref{sec:system_model} presents the system model of the LEO mega-constellation, the models of LCT mechanics and traffic profiles.
-Section \ref{sec:problem_formulation} formulates the constellation graphs and the joint optimization problem over the graphs, and Section \ref{sec:lagrangian_dual_relaxation} presents the Lagrangian dual relaxation of the joint problem.
-Section \ref{sec:simulation} shows the simulations evaluating the proposed methods, and Section \ref{sec:conclusion} concludes this work.
+The rest of this paper is organized as follows. Section~\ref{sec:system_model} presents the system model of the LEO mega-constellation, the models of LCT mechanics, and traffic profiles.
+Section~\ref{sec:problem_formulation} formulates the constellation graphs and the joint optimization problem over the graphs, and Section~\ref{sec:lagrangian_dual_relaxation} presents the Lagrangian dual relaxation of the joint problem.
+Section~\ref{sec:simulation} shows the simulations evaluating the proposed methods, and Section~\ref{sec:conclusion} concludes this work.
 
 
 
 
 \section{System Model of Mega-Constellation}\label{sec:system_model}
-This section explains the system model of the mega-constellation connected by LISLs, as illustrated in Fig. \ref{fig:leo_system_diagram}.
+This section explains the system model of the mega-constellation connected by LISLs, as illustrated in Fig.~\ref{fig:leo_system_diagram}.
 
 \subsection{Constellation Model}
 
-The time of the system is denoted by $t$ in seconds, where $t=0$ is the initial time corresponding to a real-world time $\mathcal{T}_0$. 
+The system time is denoted by $t$ in seconds, where $t=0$ is the initial time corresponding to a real-world time $\mathcal{T}_0$. 
 The spatial domain is described in Cartesian coordinates, with the origin fixed at the center of the Earth \cite{vallado2022fundamentals}.
 The satellites and the Earth are assumed to move with respect to the Earth-centered inertial (ECI) frame.
 In the ECI frame, the direction of the vernal equinox is taken as the reference direction along the x-axis, and the z-axis is aligned with the Earth's rotation axis. The Earth rotates about the z-axis at an angular velocity of $7.2921 \times 10^{-5}$ rad/s. The Earth's radius is set to $6.3781 \times 10^6$ m.
 We consider a mega-constellation with $I$ satellites that are collectively denoted as $\mathcal{I} = \{1,\dots,I\}$.
 Each satellite has a near-circular orbit described by two-line element sets (TLEs).
-The position and the velocity of satellite $i \in \mathcal{I}$ at time $t$ is denoted by $\mathbf{l}_i(t)$ (m) and $\mathbf{v}_i(t)$ (m/s) in the ECI frame, respectively, which is determined by the TLEs.
+The position and velocity of satellite $i \in \mathcal{I}$ at time $t$ are denoted by $\mathbf{l}_i(t)$ (m) and $\mathbf{v}_i(t)$ (m/s) in the ECI frame, respectively, and are determined by the TLEs.
 The distance and direction vector from satellite $i$ to $j$ are denoted by $z_{i,j}(t)$ and $\mathbf{d}_{i,j}(t)$, respectively, which are given by
 \begin{equation}
   \begin{aligned}
@@ -243,20 +243,20 @@ The distance and direction vector from satellite $i$ to $j$ are denoted by $z_{i
 
 \subsection{Satellite Form Factor and LCT Mechanics Models}
 We model each satellite as a rigid body that can rotate in space by using its attitude control system \cite{vallado2022fundamentals}.
-The satellites maintain their orientations and their body frames always pointing to the center of the Earth, i.e., in the direction of $-\mathbf{l}_i(t)$ at time $t$.
+The satellites maintain their orientations, with their body frames always pointing toward the center of the Earth, i.e., in the direction of $-\mathbf{l}_i(t)$ at time $t$.
 Each satellite $i$ is equipped with $N'$ LISL communication transceivers (LCTs), so the constellation has a total of $N=N'I$ LCTs. We denote the set of all LCTs by $\mathcal{N} = \{1,\dots,N\}$.
 We write the index of the satellite that LCT $n$ belongs to as $i_n$, where $i_n \in \{1,\dots,I\}$. 
 LCT $n$ has a mounting direction $\mathbf{u}_n(t)$ in the ECI frame, which is a unit vector fixed on the satellite body.
 \blue{These mounting directions specify only the preferred pointing directions of the LCTs. They do not restrict feasible LISLs to satellites in the same orbital plane \cite{chaudhry2021laser,leyva-mayorga2021interplane}.}
-Each LCT can steer its beam to point at any direction with an angle less than $\theta$ in radians from its center mounting direction, e.g., using steering mirrors. Here, this region is referred to as its field of regard (FOR).
-Due to spacecraft dynamics and satellite motion, the beam pointing direction of the LCT can deviate from the desired direction through small unpredictable errors, referred to as pointing jitters.
+Each LCT can steer its beam to point in any direction with an angle less than $\theta$ radians from its center mounting direction, e.g., by using steering mirrors. Here, this region is referred to as its field of regard (FOR).
+Due to spacecraft dynamics and satellite motion, the beam pointing direction of the LCT can deviate from the desired direction because of small unpredictable errors, referred to as pointing jitters.
 The pointing jitter in radians is assumed to follow a Rayleigh distribution \cite{arnon2003effects} as
 \begin{equation}\label{eq:pointing_jitter}
   \begin{aligned}
     f_{\text{jitter}}(\nu) = \frac{\nu}{\sigma^2_{\mathrm{J}}} \exp\left(-\frac{\nu^2}{2\sigma^2_{\mathrm{J}}}\right), \nu \geq 0.
   \end{aligned}
 \end{equation}
-Furthermore, the pointing error is assumed to be independent and identically distributed (i.i.d.) for each LCT. \blue{Note that the i.i.d. assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}
+Furthermore, the pointing error is assumed to be independent and identically distributed (i.i.d.) for each LCT. \blue{Note that the i.i.d.\ assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}
 
 \subsection{LCT Beam Model}
 Laser beams are modeled as Gaussian beams \cite{saleh2019fundamentalsa}. 
@@ -267,7 +267,7 @@ The intensity of a propagating Gaussian beam is given by
 \Phi(y,z)=\Phi_0\left(\frac{W_0}{W(z)}\right)^2 \exp\!\left(-\frac{2y^2}{W(z)^2}\right),
   \end{aligned}
 \end{equation}
-where $\Phi_0$ is the intensity at the center of the beam at the beam waist, $y$ is the radial distance from the beam's center and $W(z)$ is the beam radius at distance $z$ from the beam waist and $W_0$ is the beam waist radius.
+where $\Phi_0$ is the intensity at the center of the beam at the beam waist, $y$ is the radial distance from the beam's center, $W(z)$ is the beam radius at distance $z$ from the beam waist, and $W_0$ is the beam waist radius.
 Here, the peak intensity $\Phi_0$ and the beam radius $W(z)$ are modeled as
 \begin{equation}
   \begin{aligned}
@@ -276,7 +276,7 @@ Here, the peak intensity $\Phi_0$ and the beam radius $W(z)$ are modeled as
   \end{aligned}
 \end{equation}
 where $z_\mathrm{R}$ is the Rayleigh range of the beam.
-The data in LISLs is transmitted using an intensity-modulation and direct-detection scheme, e.g., ON-OFF keying (OOK). While the closed-form expression for the channel capacity cannot be derived, the lower bounds on the capacity have been studied.
+Data over LISLs are transmitted using an intensity-modulation and direct-detection scheme, e.g., ON-OFF keying (OOK). While the closed-form expression for the channel capacity cannot be derived, lower bounds on the capacity have been studied.
 Specifically, given $y$ and $z$, the channel capacity of the LISL is lower bounded as \cite{farid2007outage,lapidoth2009capacity,chaaban2022capacity}
 \begin{equation}
   \begin{aligned}
@@ -284,7 +284,7 @@ Specifically, given $y$ and $z$, the channel capacity of the LISL is lower bound
     \left(1+\frac{\left( A \cdot \Phi(y,z)\cdot \Psi  \right)^2}{2\pi e \sigma^2_{\mathrm{N}}} \right),
   \end{aligned}
 \end{equation}
-where the unit is in bits per second (bps), $\Psi$ is the LCT receiving optical sensor's responsivity in ampere/watt (A/W), $B$ is the bandwidth of the receiver in Hertz (Hz), $A$ is the aperture area of the LCTs in m$^2$, and $\sigma_{\mathrm{N}}$ is the noise amplitude in ampere (A) \cite{maxim_spf_transimpedance}.
+where the unit is bits per second (bps), $\Psi$ is the responsivity of the LCT receiving optical sensor in ampere/watt (A/W), $B$ is the bandwidth of the receiver in Hertz (Hz), $A$ is the aperture area of the LCTs in m$^2$, and $\sigma_{\mathrm{N}}$ is the noise amplitude in ampere (A) \cite{maxim_spf_transimpedance}.
 For sufficiently small pointing jitter angles, the radial distance $y$ can be approximated as $y \approx z \nu$. 
 The capacity of the LISL, as a function of the pointing jitter $\nu$ and the satellite distance $z$, can be written as $C(z \nu,z)$. \blue{Our formulation performs per-snapshot joint design of the matching, routing, and rate allocation at a fixed time $t$, and does not model acquisition, pointing, and tracking (ATP) overheads that arise when the matching changes across snapshots \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. At short snapshot intervals on the order of seconds, ATP overheads are not negligible, which we acknowledge as a scope limitation of this work. An ATP-aware extension can be cast as a Markov decision process (MDP) on the matching state in which our current three-way Lagrangian decomposition is preserved at each snapshot; details are provided in the appendix. The present formulation corresponds to the degenerate case with zero ATP time, and the full MDP extension is left as future work.}
 \blue{From a system-operation perspective, the optimization is intended to be carried out centrally by the ground segment or network-control segment rather than independently onboard the satellites \cite{3gpp38821,guidotti2024role}. For each snapshot, the controller uses predicted ephemerides, gateway availability, and traffic estimates to compute the matching, routing, and rate-allocation decisions, and then disseminates the resulting schedule to the satellites for execution. In real deployments, this workflow would also face control-plane latency, imperfect traffic or state estimates, and robustness challenges under snapshot-to-snapshot disturbances or link interruptions \cite{guidotti2024role,wu2025enhancing}. Hierarchical or distributed implementations, together with robust or online re-optimization under delayed or imperfect state information, are therefore important future directions.}
@@ -304,13 +304,13 @@ The capacity of the LISL, as a function of the pointing jitter $\nu$ and the sat
 
 \subsection{Traffic Profile Model}\label{subsec:traffic_profile_model}
 
-As the focus of this paper is on the LCT management in space, we consider a simplified scenario where the constellation is serving the traffic from gateways to users under its coverage over the globe.
+As the focus of this paper is on LCT management in space, we consider a simplified scenario where the constellation serves traffic from gateways to users under its coverage over the globe.
 \blue{Accordingly, the present traffic model is intended to capture snapshot-level spatial heterogeneity through the uneven distributions of population and gateways, rather than the full demand-forecasting problem.}
 
 It is assumed that each user is downloading data from the Internet, e.g., for video streaming via the service links. We assume that each satellite $i$ has a random number of users, denoted by $U_i(t)$, within its coverage area at time $t$, and each user has a traffic demand of $D$ Gbps.
-We consider there are multiple ground gateways scattered on the Earth, and each satellite can serve up to $Q$ Gbps of traffic if a ground gateway lies within its coverage area. 
+We assume that there are multiple ground gateways scattered across the Earth, and each satellite can serve up to $Q$ Gbps of traffic if a ground gateway lies within its coverage area. 
 \blue{Here, $Q$ denotes the gateway service capacity available between that satellite and the terrestrial Internet. It does not include LISL transit capacity, which is constrained separately by the aggregate capacities of the established optical links.}
-Note that with a ground gateway connection, a satellite can not only serve traffic demands of the users under its coverage but also from other satellites in the constellation when they are connected by LISLs.
+Note that with a ground gateway connection, a satellite can not only serve the traffic demands of the users under its coverage but also serve traffic from other satellites in the constellation when they are connected by LISLs.
 \blue{Each satellite first uses this gateway service capacity to serve the traffic demand of its own users under its coverage, i.e., $U_i(t) D$ Gbps for satellite $i$, and then uses the remaining gateway capacity to serve the traffic demand of other satellites.}
 Specifically, by subtracting the traffic demand of the users under its own coverage, each satellite $i$ can serve the traffic demand of other satellites up to
 \begin{equation}
@@ -321,8 +321,8 @@ Specifically, by subtracting the traffic demand of the users under its own cover
     \end{cases}    
   \end{aligned}
 \end{equation}
-which is referred to as the traffic serving rate of satellite $i$ to the constellation. Here, $(x)_{+} = \max\{x,0\}$. 
-Similarly, the traffic demand of satellite $i$ is the remaining part of the traffic demand of the users under its coverage that is not served by its own gateway connection (if it has one) and is denoted as 
+which is referred to as the traffic serving rate of satellite $i$ for the constellation. Here, $(x)_{+} = \max\{x,0\}$. 
+Similarly, the traffic demand of satellite $i$ is the remaining part of the traffic demand of the users under its coverage that is not served by its own gateway connection (if it has one) and is denoted by
 \begin{equation}
   \begin{aligned}
     D_i(t) = \begin{cases}
@@ -334,10 +334,10 @@ Similarly, the traffic demand of satellite $i$ is the remaining part of the traf
 which is referred to as the traffic demand rate of satellite $i$ to the constellation.
 Here, positive traffic demand of a satellite needs to be served by other satellites with a ground gateway connection via the LISLs.
 \blue{This simplified model does not incorporate temporal demand variation or socioeconomic modifiers such as purchasing capability. Richer broadband-demand models along these dimensions are important future work \cite{zamacola2025profiling,qin2024satformer}. Gateway-aware traffic estimation is also relevant to this broader modeling direction \cite{guo2021gateway}.}
-Satellites with positive serving or positive demanding rates are referred to as serving and demanding satellites, respectively.
+Satellites with positive serving rates or positive demand rates are referred to as serving and demanding satellites, respectively.
 
 \section{Problem Formulation}\label{sec:problem_formulation}
-We consider the constellation at a given time $t$, where we omit $t$ for simplicity for the rest of the paper. 
+We consider the constellation at a given time $t$, and we omit $t$ for simplicity in the rest of the paper. 
 The task is to maximize the network throughput in the constellation by optimizing 1) the connecting pairs of LCTs, 2) the traffic flow allocation between serving and demanding satellites, and 3) the routing of the traffic flows through the established LISLs.
 To construct the problem, we first define three independent feasible domains constraining the above groups of decision variables, and then formulate the maximum link rate limitation constraints that couple these decision variables.
 
@@ -353,13 +353,13 @@ The LCTs $\mathcal{N}$ and all connectable LCT pairs $\mathcal{E}$ are modeled a
 \end{equation}
 \blue{Therefore, the model does not impose a same-plane restriction. Both intra-plane and inter-plane LISLs can be feasible whenever they satisfy this visibility condition.}
 \blue{Note that this visibility model is simplified. We do not model atmospheric effects here because the present LISL formulation focuses on space-to-space propagation. We also do not impose an explicit line-of-sight or Earth-occlusion constraint, so the current connectability approximation is driven only by the range bound and the mutual field of regard test \cite{vallado2022fundamentals,leyva-mayorga2021interplane,yang2024analysis}.}
-Denote by $c_{n,m}$ the binary indicator on whether the LISL from LCT $n$ to $m$ is established or not. If the LISL is established from LCT $n$ to $m$, it is also established from LCT $m$ to $n$, which can be mathematically expressed as
+Denote by $c_{n,m}$ the binary indicator of whether the LISL from LCT $n$ to $m$ is established. If the LISL is established from LCT $n$ to $m$, it is also established from LCT $m$ to $n$, which can be mathematically expressed as
 \begin{equation}\label{eq:const:link:binary_bidirectional_connection}
   \begin{aligned}
     c_{n,m}\in \{0,1\},\ c_{n,m} = c_{m,n} ,\ \forall n\neq m.
   \end{aligned}
 \end{equation}
-Each LCT can only connect to at most one other LCT at a time, i.e., 
+Each LCT can connect to at most one other LCT at a time, i.e.,
 \begin{equation}\label{eq:const:link:one_connection}
   \begin{aligned}
     \sum_{m\in\mathcal{N}} c_{n,m} \leq 1,\ \forall n\in\mathcal{N}.
@@ -375,8 +375,8 @@ By collecting indicators $c_{n,m}$ as a vector  $\mathbf{c} = \{c_{n,m}\}_{(n,m)
 
 \subsection{Traffic Serving and Demand Rates Constraints}
 When there is no restriction, a demanding satellite $s'$ can be served by any satellite with a ground gateway connection. This will lead to a significant number of traffic source-target pairs, increasing the problem complexity.
-To reduce the traffic source-target satellite pairs, we assume that a demanding satellite $s'$ can only be served by its $M$ nearest satellites via LISLs.
-We denote the $M$-nearest satellites with ability to serve traffic for satellite $s'$ as $\mathrm{TopM}_{s:Q_s > 0} -z_{s,s'}$, where $z_{s,s'}$ is the distance from satellite $s$ to $s'$.
+To reduce the number of traffic source-target satellite pairs, we assume that a demanding satellite $s'$ can only be served by its $M$ nearest satellites via LISLs.
+We denote the $M$ nearest satellites that can serve traffic for satellite $s'$ by $\mathrm{TopM}_{s:Q_s > 0} -z_{s,s'}$, where $z_{s,s'}$ is the distance from satellite $s$ to $s'$.
 We collect all the traffic source and target satellite pairs in a set $\mathcal{F}$ as
 \begin{equation}
   \begin{aligned}
@@ -384,13 +384,13 @@ We collect all the traffic source and target satellite pairs in a set $\mathcal{
   \end{aligned}
 \end{equation}
 We denote the amount of traffic demand of satellite $s'$ served by satellite $s$ as $q^{s,s'}$.
-For all source satellite $s$ and target satellite $s'$, the traffic flow rate $q^{s,s'}$ is bounded by the traffic serving and demand rates of the satellites, i.e.,
+For all source satellites $s$ and target satellites $s'$, the traffic flow rate $q^{s,s'}$ is bounded by the traffic serving and demand rates of the satellites, i.e.,
 \begin{equation}\label{eq:const:traffic:flow_rate}
   \begin{aligned}
     \sum_{s':(s,s')\in\mathcal{F}}  q^{s,s'} \leq Q_s,\forall s\in\mathcal{I};\sum_{s:(s,s')\in\mathcal{F}}  q^{s,s'} \leq D_{s'}, \forall s'\in\mathcal{I}.
   \end{aligned}
 \end{equation}
-Collect all traffic flow rates as $\mathbf{q} = \{q^{s,s'}\}_{(s,s')\in\mathcal{F}}$. The set of all feasible non-negative traffic flow rates is given by
+We collect all traffic flow rates as $\mathbf{q} = \{q^{s,s'}\}_{(s,s')\in\mathcal{F}}$. The set of all feasible non-negative traffic flow rates is given by
 \begin{equation}
   \begin{aligned}
     \mathcal{Q} = \{\mathbf{q} \ \big |\  \eqref{eq:const:traffic:flow_rate};\ q^{s,s'} \geq 0,\ \forall (s,s')\in\mathcal{F}\}.
@@ -399,20 +399,20 @@ Collect all traffic flow rates as $\mathbf{q} = \{q^{s,s'}\}_{(s,s')\in\mathcal{
 
 \subsection{Traffic Routing Constraints}
 The traffic will be routed among neighboring satellites.
-We refer to two satellites as neighbors if they have connectable LCTs. All neighboring satellite pairs $i$ and $j$ are denoted as
+We refer to two satellites as neighbors if they have connectable LCTs. The set of all neighboring satellite pairs $i$ and $j$ is denoted by
 \begin{equation}
   \begin{aligned}
     \mathcal{L} = \{(i,j)\ \big|\  \mathcal{E}_{i,j}\neq \emptyset \},
   \end{aligned}
 \end{equation}
-where $\mathcal{E}_{i,j}$ collects connectable LCTs between $i$ and $j$ as
+where $\mathcal{E}_{i,j}$ collects the connectable LCT pairs between $i$ and $j$ as
 \begin{equation}
   \begin{aligned}
     \mathcal{E}_{i,j} = \big\{\{n,m\}\big| i_n = i, i_m = j,\{n,m\}\in\mathcal{E}\big\}, \forall \{i, j\} \in \mathcal{I}.
   \end{aligned}
 \end{equation}
-Denote by $x^{s,s'}_{i,j}$ the binary indicating whether the link from satellite $i$ to $j$ is included in the flow path from satellite $s$ to $s'$ or not. 
-The routing path decisions is subject to the flow conservation constraints on the graph $\mathcal{G}^\text{SAT} = (\mathcal{I},\mathcal{L})$ as
+Denote by $x^{s,s'}_{i,j}$ the binary indicator of whether the link from satellite $i$ to $j$ is included in the flow path from satellite $s$ to $s'$. 
+The routing path decisions are subject to the flow conservation constraints on the graph $\mathcal{G}^\text{SAT} = (\mathcal{I},\mathcal{L})$ as
 \begin{equation}\label{eq:const:path:flow_constraints}
 \begin{aligned}
   \sum_{j:(s,j)\in \mathcal{L}} x^{s,s'}_{s,j} - \sum_{j:(j,s)\in \mathcal{L}} x^{s,s'}_{j,s} & = 1, \quad \text{(source flow)}
@@ -444,10 +444,10 @@ The maximum data rate on a given LISL is determined by the pointing jitter and t
     r_{n,m} = \max_{C'} (1-\Pr\{C(z_{i_n,i_m}\nu,z_{i_n,i_m}) < C'\}) C',
   \end{aligned}
 \end{equation}
-where $1-\Pr\{C(z\nu,z) < C'\}$ is the outage probability of the link capacity falling below $C'$ and 
-$r_{n,m}$ is the effective data rate of the LISL averaged over the time considering the outages.
-Since the satellite distance $z$ is coherent in a short time, the outage probability can be written in terms of the jitter as $\Pr\{C(z\nu,z) < C'\} = \Pr\{\nu > \hat{\nu}\}$, where $C' = C(z\hat{\nu},z)$.
-Here, $\hat{\nu}$ is the threshold of the pointing jitter above which the link capacity is less than $C'$. By fixing and relaxing the outage probability to be less than a threshold $\epsilon$, i.e., $\Pr\{\nu > \hat{\nu}\} \leq \epsilon$, the rate optimization in \eqref{eq:rate_configuration} becomes finding a misalignment threshold $\hat{\nu}$, where $\Pr\{\nu > \hat{\nu}\}$ is less than $\epsilon$.
+where $1-\Pr\{C(z\nu,z) < C'\}$ is the outage probability that the link capacity falls below $C'$, and 
+$r_{n,m}$ is the effective data rate of the LISL averaged over time, considering the outages.
+Since the satellite distance $z$ is approximately constant over a short time, the outage probability can be written in terms of the jitter as $\Pr\{C(z\nu,z) < C'\} = \Pr\{\nu > \hat{\nu}\}$, where $C' = C(z\hat{\nu},z)$.
+Here, $\hat{\nu}$ is the threshold of the pointing jitter above which the link capacity is less than $C'$. By requiring the outage probability to be less than a threshold $\epsilon$, i.e., $\Pr\{\nu > \hat{\nu}\} \leq \epsilon$, the rate optimization in \eqref{eq:rate_configuration} becomes finding a misalignment threshold $\hat{\nu}$, where $\Pr\{\nu > \hat{\nu}\}$ is less than $\epsilon$.
 Since the misalignment is Rayleigh distributed in \eqref{eq:pointing_jitter}, the threshold is given by $\hat{\nu} = \sigma_{\mathrm{J}} \sqrt{-2\ln(\epsilon)}$.
 Substituting $\hat{\nu}$, the maximum link data rate between the LCTs $n$ and $m$ can be approximated as
 \begin{equation}
@@ -455,7 +455,7 @@ Substituting $\hat{\nu}$, the maximum link data rate between the LCTs $n$ and $m
     r_{n,m} \approx (1-\epsilon) C(z_{i_n,i_m}\sigma_{\mathrm{J}} \sqrt{-2\ln(\epsilon)},z_{i_n,i_m}), \ \forall \{n,m\} \in \mathcal{E}.
   \end{aligned}
 \end{equation}
-The link rate constraints are the sum of all traffic flows routed from satellite $i$ to $j$ must not exceed the aggregate rates of the established LISLs between $i$ to $j$, i.e.,
+The link-rate constraint is that the sum of all traffic flows routed from satellite $i$ to $j$ must not exceed the aggregate rates of the established LISLs between $i$ and $j$, i.e.,
 \begin{equation}\label{eq:const:path:flow_rate}
   \begin{aligned}
     \sum_{(s,s')\in\mathcal{F}} q^{s,s'} x^{s,s'}_{i,j} \leq \sum_{\{n,m\}\in\mathcal{E}_{i,j}} r_{n,m} c_{n,m},\ \forall (i,j)\in\mathcal{L}.
@@ -463,7 +463,7 @@ The link rate constraints are the sum of all traffic flows routed from satellite
 \end{equation}
 
 \subsection{Joint Link Matching and Flow Routing Problem}
-Based on the above definitions on the feasible domains of the decision variables and the link rate constraints \eqref{eq:const:path:flow_rate}, we can formulate the joint link matching and flow routing problem to maximize the network throughput, $\sum_{(s,s')\in\mathcal{F}} q^{s,s'}$, as
+Based on the above definitions of the feasible domains of the decision variables and the link-rate constraint \eqref{eq:const:path:flow_rate}, we can formulate the joint link matching and flow routing problem to maximize the network throughput, $\sum_{(s,s')\in\mathcal{F}} q^{s,s'}$, as
 \begin{equation}\label{eq:prob:constrainted_routing_and_matching:primal}
   \begin{aligned}
   \min_{
@@ -476,7 +476,7 @@ Based on the above definitions on the feasible domains of the decision variables
 \tag{\bf{P1}}
 \end{equation}
 where $\mathcal{C}$, $\mathcal{Q}$, and $\mathcal{X}$ are the feasible domains for the LCT connections, traffic flow rates, and routing paths, respectively.
-Here, we write the problem in the standard minimization, i.e., to maximize $\sum_{(s,s')} q^{s,s'}$, we minimize its negative. \blue{Problem \eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition \ref{prop:np_hardness} with its proof in the appendix applies.}
+Here, we write the problem in the standard minimization form, i.e., to maximize $\sum_{(s,s')} q^{s,s'}$, we minimize its negative. \blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition~\ref{prop:np_hardness} with its proof in the appendix applies.}
 
 {\color{blue}
 \begin{defi}[AS-JMR]
@@ -511,17 +511,17 @@ The decision problem AS-JMR is NP-hard.
 
 
 \begin{rem}
-\blue{Proposition \ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation \eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. 
-A direct NP-hardness claim for \eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of \eqref{eq:prob:constrainted_routing_and_matching:primal}.
-Depending on the geometric/orbital parameters, it is possible that some instances of \eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}
+\blue{Proposition~\ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation~\eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. 
+A direct NP-hardness claim for~\eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal}.
+Depending on the geometric/orbital parameters, it is possible that some instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}
 \end{rem}
 \blue{Nevertheless, the NP-hardness of AS-JMR implies that the difficulty of the joint link matching and flow routing problem is inherent in the combinatorial nature of the problem, which motivates us to design efficient algorithms based on Lagrangian dual relaxation to solve the problem in the following section.}
 }
 \section{Joint Link Matching and Flow Routing via Lagrangian Duality}\label{sec:lagrangian_dual_relaxation}
-From the structure of \eqref{eq:prob:constrainted_routing_and_matching:primal}, we observe that by the maximum link rate constraints \eqref{eq:const:path:flow_rate} couple the decisions on the LCT connections, traffic flow rates and routing paths, while the remaining constraints are independent of each other as separate feasible domains $\mathcal{C}$, $\mathcal{Q}$, and $\mathcal{X}$.
+From the structure of \eqref{eq:prob:constrainted_routing_and_matching:primal}, we observe that the maximum link-rate constraints \eqref{eq:const:path:flow_rate} couple the decisions on the LCT connections, traffic flow rates, and routing paths, while the remaining constraints are independent and define the separate feasible domains $\mathcal{C}$, $\mathcal{Q}$, and $\mathcal{X}$.
 Therefore, lifting \eqref{eq:const:path:flow_rate} to the objective function with the Lagrange multipliers decouples the constraints on the LCT connections, the flow rate allocation, and the routing.
-These decisions will affect each other via the Lagrange multipliers that penalize those links with violations in their maximum link rate constraints. 
-Higher violation on a link implies that it will have a high traffic load, which further indicates that the link should be prioritized to be connected, but should be avoided in traffic flows' routing paths.
+These decisions affect each other via the Lagrange multipliers that penalize links with violations of their maximum link-rate constraints. 
+A larger violation on a link implies that it will have a high traffic load, which further indicates that the link should be prioritized for connection but avoided in traffic-flow routing paths.
 By adjusting the Lagrange multipliers, e.g., via subgradient descent, we can jointly optimize the LCT connections, flow rates, and routing paths, while making these decisions separately.
 
 \subsection{Lagrangian Dual Relaxation}\label{subsec:lagrangian_dual_relaxation}
@@ -622,7 +622,7 @@ The dual problem is to maximize the dual function $g(\lambda)$ over the Lagrange
   \end{aligned}
 \tag{\textbf{P3}}
 \end{equation}
-which is a concave maximization problem with optimal value as a lower bound of the original problem \eqref{eq:prob:constrainted_routing_and_matching:primal} \cite{fisher2004lagrangian}.
+which is a concave maximization problem whose optimal value is a lower bound for the original problem \eqref{eq:prob:constrainted_routing_and_matching:primal} \cite{fisher2004lagrangian}.
 
 \subsection{Subgradient Descent for Dual Problem}\label{subsec:subgradient_descent}
 The dual function $g(\lambda)$ is concave in $\lambda$, so the dual problem \eqref{eq:prob:constrainted_routing_and_matching:dual} is a concave maximization problem \cite{boyd2004convex} that can be solved by subgradient descent \cite{boyd2003subgradient}.
@@ -637,13 +637,13 @@ For given Lagrange multipliers in the $k$-th iteration, denoted by $\lambda^{[k]
 where $\hat{q}^{s,s'}(\lambda^{[k]})$, $\hat{x}^{s,s'}_{i,j}(\lambda^{[k]})$, and $\hat{c}_{n,m}(\lambda^{[k]})$ are the optimal decisions given $\lambda^{[k]}$ in \eqref{eq:prob:constrainted_routing_and_matching:relaxed}.
 To obtain these optimal decisions, we observe that the relaxed problem \eqref{eq:prob:constrainted_routing_and_matching:relaxed} can be decomposed into three independent subproblems, which can be solved separately, as shown in \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual}.
 
-In detail, the part (a) in \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual} is an MWM problem on $\mathcal{G}^\text{LCT}=(\mathcal{N},\mathcal{E})$ with the edge weights $ \{\lambda^{[k]}_{i_n,i_m}r_{n,m}\}_{\{n,m\}\in\mathcal{E}}$, solved as
+In detail, part (a) of \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual} is an MWM problem on $\mathcal{G}^\text{LCT}=(\mathcal{N},\mathcal{E})$ with the edge weights $ \{\lambda^{[k]}_{i_n,i_m}r_{n,m}\}_{\{n,m\}\in\mathcal{E}}$, solved as
 \begin{equation}\label{eq:routine:mwm_given_lambda}
   \begin{aligned}
     \hat{\mathbf{c}}(\lambda^{[k]}) = \mathrm{MWM}(\mathcal{N}, \mathcal{E}, \{\lambda^{[k]}_{i_n,i_m}r_{n,m}\}_{\{n,m\}\in\mathcal{E}}).
   \end{aligned}
 \end{equation}
-Here, the matching is heuristically approximated by the greedy weight matching that sequentially matches the LCT pairs from higher weights to lower ones.
+Here, the matching is heuristically approximated by greedy weight matching, which sequentially matches the LCT pairs from higher to lower weights.
 The part (b) is a minimum cost path routing problem that can be efficiently solved by the shortest path first (SPF) algorithm, e.g., Dijkstra's algorithm.
 Routing is performed on the graph $\mathcal{G}^\text{SAT}=(\mathcal{I}, \mathcal{L})$ with the edge weights $\lambda^{[k]}$ for all source-target satellite pairs as
 \begin{equation}\label{eq:routine:spf_given_lambda}
@@ -662,16 +662,16 @@ After obtaining the routing costs $\sum_{(i,j)\in\mathcal{L}}\lambda^{[k]}_{i,j}
       \sum_{(s,s')\in\mathcal{F} } q^{s,s'} (1 - \sum_{(i,j)\in\mathcal{L}}\lambda^{[k]}_{i,j} \hat{x}^{s,s'}_{i,j} (\lambda^{[k]})),
   \end{aligned}
 \end{equation}
-where routing costs are included as the weights of the traffic flow rates in the objective. Higher routing costs imply that the flow was routed through links with higher violations, and thus the flow rate should be reduced in the FRM.
-Note that as all constraints in \eqref{eq:const:path:flow_rate} as well as the objective function are linear in \eqref{eq:routine:flow_rate_given_routing_cost}, implying the problem is LP that can be solved efficiently.
-Finally, using the computed supergradient in \eqref{eq:dual_function_subgradient}, and the Lagrange multipliers are updated as
+where routing costs are included as the weights of the traffic flow rates in the objective. Higher routing costs imply that the flow is routed through links with higher violations, and thus that the flow rate should be reduced in the FRM.
+Note that all constraints in \eqref{eq:const:path:flow_rate} as well as the objective function are linear in \eqref{eq:routine:flow_rate_given_routing_cost}, which implies that the problem is an LP that can be solved efficiently.
+Finally, using the computed supergradient in \eqref{eq:dual_function_subgradient}, the Lagrange multipliers are updated as
 \begin{equation}\label{eq:routine:dual_variable_update}
   \begin{aligned}
     \lambda^{[k+1]} = \big(\lambda^{[k]} + \alpha^{[k]} \delta(\lambda^{[k]})\big)_{+},
   \end{aligned}
 \end{equation}
 where $\alpha^{[k]}$ is the step size in the $k$-th iteration. The initial Lagrange multipliers are $\lambda^{[1]} = \mathbf{0}$.
-The step size $\alpha^{[k]}$ is designed to follow a diminishing rule, i.e., $\alpha^{[k]} = \frac{\alpha_0}{k^\beta}$, where $\alpha_0$ is a positive constant and $0.5\leq\beta<1$ controls the step sizes' decay rate. \blue{Because several flows may compete for the same bottleneck LISLs, the subgradient iterates need not be monotone: the dual variables and the converted primal solutions can oscillate before settling. The diminishing step size attenuates these oscillations asymptotically, so the convergence guarantee below is stated for the best-so-far dual iterate rather than for every individual iterate.} The algorithm is listed in Algorithm \ref{alg:dual_optimization} and is referred to as the ``DuJo'' scheme.
+The step size $\alpha^{[k]}$ is designed to follow a diminishing rule, i.e., $\alpha^{[k]} = \frac{\alpha_0}{k^\beta}$, where $\alpha_0$ is a positive constant and $0.5\leq\beta<1$ controls the step sizes' decay rate. \blue{Because several flows may compete for the same bottleneck LISLs, the subgradient iterates need not be monotone: the dual variables and the converted primal solutions can oscillate before settling. The diminishing step size attenuates these oscillations asymptotically, so the convergence guarantee below is stated for the best-so-far dual iterate rather than for every individual iterate.} The algorithm is listed in Algorithm~\ref{alg:dual_optimization} and is referred to as the ``DuJo'' scheme.
 
 \begin{algorithm}[!t]
 \caption{Lagrangian Dual Optimization for Joint Link Matching and Traffic Routing (\textbf{DuJo}) in Mega-Constellation}\label{alg:dual_optimization}
@@ -685,14 +685,14 @@ The step size $\alpha^{[k]}$ is designed to follow a diminishing rule, i.e., $\a
   \STATE Compute the supergradient as \eqref{eq:dual_function_subgradient}.
   \STATE Update the Lagrange multipliers as \eqref{eq:routine:dual_variable_update}.
 \ENDFOR
-\STATE Convert optimized Lagrange multipliers as \eqref{eq:rounding:mwm}-\eqref{eq:rounding:frm}.
+\STATE Convert the optimized Lagrange multipliers as \eqref{eq:rounding:mwm}-\eqref{eq:rounding:frm}.
 \end{algorithmic}
 \end{algorithm}
 
 \subsection{Convergence and Complexity of Subgradient Descent}\label{subsec:subgradient_convergence_and_complexity_analysis}
-The convergence of the subgradient descent in Algorithm \ref{alg:dual_optimization} is guaranteed by that 1) the initial Lagrange multipliers are not chosen arbitrarily far from the optimal, and 2) that the subgradient is numerically stable with a bounded norm, which is proved in our case as follows.
+The convergence of the subgradient descent in Algorithm~\ref{alg:dual_optimization} is guaranteed by the facts that 1) the initial Lagrange multipliers are not chosen arbitrarily far from the optimum, and 2) the subgradient is numerically stable with a bounded norm, which is proved in our case as follows.
 \begin{lemma}\label{lemma:optimal_dual_variable_bounded}
-    The distance from the initial Lagrange multipliers to optimal ones and the maximum norm of the dual function's supergradient are both bounded by finite constants, i.e., there exist constants $0<\eta_1<\infty$ and $0<\eta_2<\infty$ such that
+    The distance from the initial Lagrange multipliers to the optimal ones and the maximum norm of the dual function's supergradient are both bounded by finite constants, i.e., there exist constants $0<\eta_1<\infty$ and $0<\eta_2<\infty$ such that
     \begin{equation}
       \begin{aligned}
         \|\lambda^{[1]}-\lambda^*\|^2 \leq \eta_1; \ \max_\lambda \|\delta(\lambda)\| \leq \eta_2.
@@ -703,23 +703,23 @@ The convergence of the subgradient descent in Algorithm \ref{alg:dual_optimizati
     The proof is listed in the appendix.
 \end{proof}
 
-Applying Lemma \ref{lemma:optimal_dual_variable_bounded}, we can show that the convergence of the subgradient descent algorithm is guaranteed as \cite{boyd2003subgradient}
+Applying Lemma~\ref{lemma:optimal_dual_variable_bounded}, we can show that the convergence of the subgradient descent algorithm is guaranteed as follows \cite{boyd2003subgradient}:
 \begin{theorem}\label{theorem:convergence:classic}
 \blue{Define the best-so-far dual iterate as $\hat{\lambda}^{[k]} \in \argmax_{\lambda^{[i]}:i=1,\dots,k} g(\lambda^{[i]})$ after $k$ iterations. The corresponding dual value converges to the optimal dual value $g(\lambda^*)$ as $k\to\infty$, i.e., $\lim_{k\to\infty} g(\hat{\lambda}^{[k]}) = g(\lambda^*)$. Specifically, the dual-value gap satisfies $g(\lambda^*) - g(\hat{\lambda}^{[k]}) = \mathcal{O}(k^{-(1-\beta)})$ when $0.5\leq\beta<1$.}
 \end{theorem}
 \begin{proof}
     The proof relies on the convergence of p-series in the step sizes \cite{boyd2003subgradient} and Lemma \ref{lemma:optimal_dual_variable_bounded}, as listed in the appendix.
 \end{proof}
-For simplicity, we return the last iterated Lagrange multipliers $\lambda^{[K]}$ as the optimized Lagrange multipliers $\lambda$.
+For simplicity, we return the last iterate of the Lagrange multipliers, $\lambda^{[K]}$, as the optimized Lagrange multipliers $\lambda$.
 
 
 \begin{cor}\label{cor:complexity:dual_optimization}
-    The complexity of the dual optimization is at $\mathcal{O}\big(K(E\log E + I E\log N  + \mathrm{poly}(I))\big)$, where $E=|\mathcal{E}|$ is the number of connectable LCT pairs in the constellation.
+    The complexity of the dual optimization is $\mathcal{O}\big(K(E\log E + I E\log N  + \mathrm{poly}(I))\big)$, where $E=|\mathcal{E}|$ is the number of connectable LCT pairs in the constellation.
 \end{cor}
 \begin{proof}
 The number of source-target satellite pairs is bounded as $|\mathcal{F}| \leq I \cdot M\approx\mathcal{O}(I)$.
-For approximating the MWM using the greedy weight matching in \eqref{eq:routine:mwm_given_lambda}, we need to sort the edge weights, which takes $\mathcal{O}(E\log E)$ complexity. When matching the LCT pairs, we need to iterate through all edges in the constellation and check whether the LCT pairs have been matched before, which approximately takes $\mathcal{O}(E)$ complexity. Dijkstra's algorithm for computing the shortest path in \eqref{eq:routine:spf_given_lambda} takes $\mathcal{O}(|\mathcal{F}|\cdot E\log N )\approx\mathcal{O}(I E\log N )$ for all $|\mathcal{F}|$ source-target satellite pairs \cite{cormen2022introduction}.
-The LP problem in \eqref{eq:routine:flow_rate_given_routing_cost} can be efficiently solved by the simplex method taking polynomial time at the number of constraints in $\mathcal{Q}$, i.e., $\mathcal{O}(\mathrm{poly}(I))$ \cite{vershynin2009hirsch}.
+To approximate the MWM using the greedy weight matching in \eqref{eq:routine:mwm_given_lambda}, we need to sort the edge weights, which takes $\mathcal{O}(E\log E)$ complexity. When matching the LCT pairs, we need to iterate through all edges in the constellation and check whether the LCT pairs have been matched before, which takes $\mathcal{O}(E)$ complexity. Dijkstra's algorithm for computing the shortest path in \eqref{eq:routine:spf_given_lambda} takes $\mathcal{O}(|\mathcal{F}|\cdot E\log N )\approx\mathcal{O}(I E\log N )$ for all $|\mathcal{F}|$ source-target satellite pairs \cite{cormen2022introduction}.
+The LP problem in \eqref{eq:routine:flow_rate_given_routing_cost} can be efficiently solved by the simplex method, taking polynomial time in the number of constraints in $\mathcal{Q}$, i.e., $\mathcal{O}(\mathrm{poly}(I))$ \cite{vershynin2009hirsch}.
 Collecting these complexities, we have the overall complexity as the statement.
 \end{proof}
 
@@ -768,7 +768,7 @@ Finally, for these connected satellite pairs $(s,s')\in\mathcal{F}'$, we optimiz
   \end{aligned}
 \end{equation}
 
-Similar to Corollary \ref{cor:complexity:dual_optimization}, the above conversion has complexity $\mathcal{O}(E\log E + I E\log N  + \mathrm{poly}(I+E))$.
+Similar to Corollary~\ref{cor:complexity:dual_optimization}, the above conversion has complexity $\mathcal{O}(E\log E + I E\log N  + \mathrm{poly}(I+E))$.
 
 \begin{figure}[!t]
   \centering
@@ -779,20 +779,20 @@ Similar to Corollary \ref{cor:complexity:dual_optimization}, the above conversio
 
 \section{Simulation Results}\label{sec:simulation}
 \subsection{Simulation Setup}
-To efficiently process the graphs and simulate the constellation, we implement our algorithms and simulations in a data-oriented programming paradigm. The constellation data is organized into contiguous data arrays and is processed in just-in-time (JIT) compiled procedures using Python Numba \cite{lam2015numba} for high computing efficiency. Linear programming is solved using the HiGHS solver \cite{huangfu2018parallelizing}. 
+To efficiently process the graphs and simulate the constellation, we implement our algorithms and simulations in a data-oriented programming paradigm. The constellation data is organized into contiguous data arrays and is processed in just-in-time (JIT) compiled procedures using Numba for Python \cite{lam2015numba} for high computational efficiency. Linear programming is solved using the HiGHS solver \cite{huangfu2018parallelizing}. 
 The simulations run on a workstation with an Intel Core Ultra 9 285K (24 cores) and 32 GB of memory.
 \subsubsection{System Parameters}
 We construct the constellation in simulations based on the real-world Starlink constellation two-line element (TLE) data from CelesTrak \cite{CelesTrak} at $\mathcal{T}_0$ as UTC $2025-07-16$ $16:00$. \blue{To study problem-scale sensitivity, we randomly select $I$ satellites out of the Starlink constellation for the varying-$I$ and computing-time results. We also test a structured shell-based Starlink instance with $I=1000$ satellites. Specifically, at $\mathcal{T}_0$ we select a coherent 1000-satellite block from the dominant $53.2^\circ$ shell and then keep the same satellites over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.}
-Each satellite has $N'=2$ LCTs: one LCT points in the direction of the satellite's velocity direction, and the other points in the opposite direction. The attitude control system maintains these orientations.
-We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has aperture area $A=0.01$ $\text{m}^2$ and responsivity $\Psi=0.5$ $\text{A/W}$. The noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A in root-mean-square (RMS) value \cite{maxim_spf_transimpedance}.
+Each satellite has $N'=2$ LCTs: one LCT points in the direction of the satellite's velocity, and the other points in the opposite direction. The attitude control system maintains these orientations.
+We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has an aperture area of $A=0.01$ $\text{m}^2$ and a responsivity of $\Psi=0.5$ $\text{A/W}$. The noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A in root-mean-square (RMS) value \cite{maxim_spf_transimpedance}.
 The power of the beam is $P_0=20$ W and its bandwidth is $B=1$ GHz. The beam's wavelength is $1.55$ $\mu$m and the beam width is $100$ micro-radians, leading to the beam waist radius $W_0=9.87\times10^{-3}$ m and the Rayleigh range $z_\mathrm{R}=1.97\times10^{3}$ m \cite{saleh2019fundamentalsa}. 
 The pointing jitter $\sigma_{\mathrm{J}}$ is set to $10$ micro-radians and the relaxed link outage probability $\epsilon$ is set to $0.001$.
 The field of regard half-angle of each LCT is set to $\theta = 60$ degrees from its mounting direction, and the maximum distance for two LCTs to establish a link is $\hat{z}=3000$ km.
 \blue{Under this setting, candidate LISLs are not restricted to intra-plane neighbors. Any satellite pair, whether intra-plane or inter-plane, is included if it satisfies \eqref{eq:lct_visibility_condition}.}
 The number $U_i$ of active users served by satellite $i$ is determined from the real-world population data \cite{schiavina2023ghspop} within an approximately $200$ km coverage radius. We assume that $0.01\%$ of that population uses the network at the given time, so $U_i$ is Poisson distributed with a mean equal to the covered population. \blue{For the load-stress evaluation, we vary this active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the user-demand model otherwise unchanged.} Each user demands $D=0.1$ Gbps. We randomly select $100$ ground-gateway locations around the globe from SatNOGS \cite{satnogs}. We assume that each satellite can serve up to $Q=20$ Gbps when a ground gateway lies within its coverage area. \blue{Thus, $Q=20$ Gbps is the per-satellite gateway service capacity before subtracting the traffic of the users under that satellite's own coverage, rather than a limit that already includes LISL transit traffic.} If a satellite has positive traffic demand, it routes that demand to the nearest $M=5$ satellites that have gateway connections, thereby defining the source-target pairs in $\mathcal{F}$.
-Fig. \ref{fig:constellation_simulation_1000_compare} shows the constellations with $I=1000$, the uneven distribution of population density and ground-gateway locations, which emphasizes the need to account for these factors in our study.
-It also compares the flow paths routed and the network throughput over the constellation between our DuJo scheme and a non-joint scheme (MRate as introduced below).
-In the remaining simulation, we consider the constellation with $I=1000$ without explicit notation.
+Fig.~\ref{fig:constellation_simulation_1000_compare} shows the constellation with $I=1000$ together with the uneven distributions of population density and ground-gateway locations, which emphasize the need to account for these factors in our study.
+It also compares the routed flow paths and network throughput over the constellation between our DuJo scheme and a non-joint scheme (MRate, as introduced below).
+In the remaining simulations, we consider the constellation with $I=1000$ without explicit notation.
 
 \begin{figure}[!t]
   \centering
@@ -800,10 +800,10 @@ In the remaining simulation, we consider the constellation with $I=1000$ without
   \caption{Convergence of DuJo. Panel (a) shows the subgradient-descent convergence, and panel (b) shows the throughput obtained after converting the Lagrange multipliers.}  \label{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}
 \end{figure}
 \subsubsection{\blue{Baseline Methods}} 
-We compare our duality-based joint method, with legend ``\textbf{DuJo}'', to the following baseline methods for LISL matching, traffic routing, or learned decision inference:
+We compare our duality-based joint method, denoted in the legend as ``\textbf{DuJo},'' with the following baseline methods for LISL matching, traffic routing, or learned decision inference:
 \begin{itemize}
     \item \textbf{+Grid:} A grid-based link matching \cite{bhattacherjee2019network} prioritizes the LCT pairs that are more aligned in their pointing directions, e.g., pairs with higher $\mathbf{d}_{i_n,i_m} \cdot \mathbf{u}_{m}+\mathbf{d}_{i_m,i_n} \cdot \mathbf{u}_{n}$.
-    \item \blue{\textbf{MRate:} Maximum link rate matching sets the weights of LCT pairs to their maximum transmission rates, $r_{n,m}$, to emphasize link-capacity-oriented topology design \cite{guo2024constellation}. Note that in both MRate and +Grid, traffic flows are then routed by open shortest path first (OSPF) \cite{moy1998ospf} using link weights that are the reciprocals of aggregate satellite-pair rates $1/\sum_{\{n,m\}\in \mathcal{E}_{i,j}} c_{n,m}r_{n,m}$, followed by LP-based flow rate allocation.}
+    \item \blue{\textbf{MRate:} Maximum link rate matching sets the weights of LCT pairs to their maximum transmission rates, $r_{n,m}$, to emphasize link-capacity-oriented topology design \cite{guo2024constellation}. Note that in both MRate and +Grid, traffic flows are then routed by open shortest path first (OSPF) \cite{moy1998ospf} using link weights that are the reciprocals of the aggregate satellite-pair rates $1/\sum_{\{n,m\}\in \mathcal{E}_{i,j}} c_{n,m}r_{n,m}$, followed by LP-based flow rate allocation.}
     \item \blue{\textbf{SaTE:} Following the non-joint traffic-engineering setting of SaTE \cite{wu2025sate}, this baseline first fixes the LISL matching by maximum link rate matching and then routes the flows by shortest paths under unit hop cost. Given that topology and routing, the traffic flow rates are computed optimally by LP to maximize the network throughput. Thus, only the traffic rate allocation is optimized, while the link matching and traffic routing are not jointly optimized.}
     \item \blue{\textbf{DRL:} A trained policy-gradient baseline \cite{sutton2000policy} uses the constellation graph as its state, where each satellite node carries its gateway service capacity and traffic demand and each connectable satellite pair carries its candidate LISL capacity. Its action is to infer the price graph over the connectable satellite pairs, and its reward is derived from the resulting traffic-rate allocation after converting those inferred prices to matching, routing, and rate allocation.}
     \item \blue{\textbf{Rand}: Random matching first assigns random weights to the candidate links in the same feasible connectability set $\mathcal{E}$ and then matches the links from the largest weights. The traffic flows are then routed by OSPF on the resulting topology, where the rates of the paths are allocated by LP.}
@@ -812,21 +812,21 @@ We compare our duality-based joint method, with legend ``\textbf{DuJo}'', to the
 
 \subsection{Numerical Results}
 \subsubsection{Convergence of Dual Function}
-The convergence of the dual function $g(\lambda)$ is illustrated in Fig. \ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}a for different $\beta$ values. 
+The convergence of the dual function $g(\lambda)$ is illustrated in Fig.~\ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}a for different $\beta$ values. 
 \blue{As expected for subgradient methods, the per-iteration dual values are not necessarily monotone and may fluctuate when multiple flows compete for the same bottleneck LISLs. Nevertheless, the diminishing step size progressively damps these fluctuations, while Theorem \ref{theorem:convergence:classic} concerns the best-so-far dual value rather than every individual iterate.}
-The performance of the converted LISL matching and flow routing decisions from the iterated Lagrange multipliers is shown in Fig. \ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}b.
-\blue{The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle. The network throughput is higher for $\beta=0.5$ than that for $\beta=0.7$ and $0.9$, indicating that a slower step-size decay leads to better performance because it explores the multiplier space more thoroughly.}
+The performance of the converted LISL matching and flow routing decisions from the iterated Lagrange multipliers is shown in Fig.~\ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}b.
+\blue{The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle. The network throughput is higher for $\beta=0.5$ than for $\beta=0.7$ and $0.9$, indicating that a slower step-size decay leads to better performance because it explores the multiplier space more thoroughly.}
 Also, we observe that the throughput reaches a near-maximum value around $K=500$ iterations. \blue{For the remaining simulations, we fix $\beta=0.5$ and $K=500$.}
 
 \begin{figure}[!t]
   \centering
   \includegraphics[scale=0.85]{plot_test_dual_optimization_vs_grid_rand.pdf}
-  \caption{DuJo vs. baselines for different numbers of satellites $I$.}
+  \caption{DuJo vs.\ baselines for different numbers of satellites $I$.}
   \label{fig:plot_test_dual_optimization_vs_grid_rand}
 \end{figure}
 
 \subsubsection{\blue{Comparison with Baselines}}
-\blue{We compare our method with the baseline methods in Fig. \ref{fig:plot_test_dual_optimization_vs_grid_rand}, where the network throughput is plotted against the number of satellites $I$ in the constellation. The results show that our method improves the network throughput substantially as the constellation size grows. Among the strengthened baselines, SaTE is generally the strongest separated baseline for larger constellations, whereas DRL remains below the heuristic baselines in this varying-$I$ study. This is because the DRL policy is trained using a network-wise reward that is derived from the resulting traffic flow rates, which are not directly supervising how the Lagrange multipliers should be optimized to improve the matching and routing decisions. Thus, the DRL policy may not learn to optimize the Lagrange multipliers effectively, especially when the constellation size grows with many satellite pairs.}
+\blue{We compare our method with the baseline methods in Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand}, where the network throughput is plotted against the number of satellites $I$ in the constellation. The results show that our method improves the network throughput substantially as the constellation size grows. Among the strengthened baselines, SaTE is generally the strongest separated baseline for larger constellations, whereas DRL remains below the heuristic baselines in this varying-$I$ study. This is because the DRL policy is trained using a network-wise reward that is derived from the resulting traffic flow rates, which do not directly supervise how the Lagrange multipliers should be optimized to improve the matching and routing decisions. Thus, the DRL policy may not learn to optimize the Lagrange multipliers effectively, especially when the constellation size grows with many satellite pairs.}
 \blue{Compared with +Grid, MRate, and SaTE, our method achieves a higher throughput because it iteratively updates the Lagrange multipliers to improve the LISL matching decisions together with the resulting routing and rate-allocation structure, rather than fixing the topology first.}
 
 \begin{figure}[!t]
@@ -837,7 +837,7 @@ Also, we observe that the throughput reaches a near-maximum value around $K=500$
 \end{figure}
 
 \subsubsection{\blue{Structured Shell-Based Evaluation Over Time}}\label{subsubsec:structured_shell_time_evaluation}
-\blue{We next evaluate the structured shell-based Starlink instance. Fig. \ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}
+\blue{We next evaluate the structured shell-based Starlink instance. Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}
 \blue{DuJo achieves the highest served throughput and the highest served-demand ratio at all six snapshot times. SaTE and MRate form the next performance tier, +Grid follows, and DRL remains the lowest among the compared methods.}
 
 \begin{figure}[!t]
@@ -848,28 +848,27 @@ Also, we observe that the throughput reaches a near-maximum value around $K=500$
 \end{figure}
 
 \subsubsection{\blue{Load-Stress Evaluation}}\label{subsubsec:load_stress_evaluation}
-\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}
+\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}
 \blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is the strongest at all tested loads. DRL remains below the heuristic baselines across this load range. 
 This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}
 
 \begin{figure}[t]
   \centering
   \includegraphics[scale=0.85]{plot_test_computing_time_measurement.pdf}
-  \caption{Computing time measurement of steps in our method, DuJo, with legend as follows: steps of dual optimization: link matching \eqref{eq:routine:mwm_given_lambda}, flow routing \eqref{eq:routine:spf_given_lambda}, rate allocation \eqref{eq:routine:flow_rate_given_routing_cost}, subgradient descent step \eqref{eq:routine:dual_variable_update} (with legend ``D. MWM'', ``D. SPF'', ``D. FRM'' and ``D. SG'', respectively);
-  steps of conversion of Lagrange multipliers: link matching with given Lagrange multipliers \eqref{eq:rounding:mwm}, flow routing with given matched LISLs \eqref{eq:rounding:spf} and rate allocation with matching and routing decisions \eqref{eq:rounding:frm} (with legend ``P. MWM'', ``P. SPF'' and ``P. FRM'').
+  \caption{Computing time measurements for the steps in our method, DuJo, with the legends interpreted as follows: the dual-optimization steps are link matching \eqref{eq:routine:mwm_given_lambda}, flow routing \eqref{eq:routine:spf_given_lambda}, rate allocation \eqref{eq:routine:flow_rate_given_routing_cost}, and the subgradient descent step \eqref{eq:routine:dual_variable_update} (with legends ``D. MWM'', ``D. SPF'', ``D. FRM'', and ``D. SG'', respectively); the conversion steps from the Lagrange multipliers are link matching with given Lagrange multipliers \eqref{eq:rounding:mwm}, flow routing with given matched LISLs \eqref{eq:rounding:spf}, and rate allocation with matching and routing decisions \eqref{eq:rounding:frm} (with legends ``P. MWM'', ``P. SPF'', and ``P. FRM'', respectively).
   }
   \label{fig:plot_test_computing_time_measurement}
 \end{figure}
 
 
 \subsubsection{Evaluation of Computational Complexity}
-We then evaluate the computational complexity of our method in Fig. \ref{fig:plot_test_computing_time_measurement} by measuring the computing time of the dual optimization algorithm in Algorithm \ref{alg:dual_optimization} and the conversion from Lagrange multipliers to the LISL matching and flow routing decisions in \eqref{eq:rounding:mwm}-\eqref{eq:rounding:frm}.
+We then evaluate the computational complexity of our method in Fig.~\ref{fig:plot_test_computing_time_measurement} by measuring the computing time of the dual optimization algorithm in Algorithm~\ref{alg:dual_optimization} and the conversion from Lagrange multipliers to the LISL matching and flow routing decisions in \eqref{eq:rounding:mwm}-\eqref{eq:rounding:frm}.
 We observe that the computing time increases with the number of satellites $I$ in our method. Here, the conversion of the Lagrange multipliers can be done instantly within $1$ second.
 The dual iterations take about $1$ second each. However, the algorithm needs a few hundred iterations to converge, so the total computing time reaches the order of minutes for larger constellations and therefore still requires acceleration.
 
 
 \subsubsection{\blue{Impact of Constellation Configurations}}
-\blue{We vary the LCT configurations on each satellite, of which network throughput is shown in Fig. \ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}. The network throughput increases with the average number of LCTs on each satellite because more LCTs allow more LISLs to be established. Similarly, the throughput increases with the FOR because a larger FOR creates more connectable LCT pairs. DuJo consistently outperforms the baseline methods across these sweeps. Among the strengthened baselines, SaTE is generally the strongest separated baseline, while DRL remains weak and does not change the overall ordering. The performance of the grid-based scheme varies little with the FOR because only LCTs near the center of the steering range tend to be connected.}
+\blue{We vary the LCT configurations on each satellite, and the resulting network throughput is shown in Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}. The network throughput increases with the average number of LCTs on each satellite because more LCTs allow more LISLs to be established. Similarly, the throughput increases with the FOR because a larger FOR creates more connectable LCT pairs. DuJo consistently outperforms the baseline methods across these sweeps. Among the strengthened baselines, SaTE is generally the strongest separated baseline, while DRL remains weak and does not change the overall ordering. The performance of the grid-based scheme varies little with the FOR because only LCTs near the center of the steering range tend to be connected.}
 \blue{Next, we compare the performance of our method in different constellations. DuJo achieves the highest network throughput in all three constellations. In the Starlink case, SaTE is the strongest separated baseline. In the more regular walker-delta and OneWeb constellations, +Grid and SaTE come much closer to DuJo because those regular orbital structures make it easier to establish high-rate LISLs while preserving connectivity for the traffic flows. DRL remains distinctly lower in all three constellations. However, in the less regular Starlink case, the fixed-topology baselines remain poor because they cannot adapt the LISL matching to the routing bottlenecks as effectively as the joint optimization.}
 
 
@@ -879,8 +878,8 @@ The dual iterations take about $1$ second each. However, the algorithm needs a f
 This paper presents a Lagrangian duality-based method for joint link matching and traffic routing in satellite mega-constellations. The method applies Lagrangian dual relaxation to the per-link rate constraints and decomposes the joint problem into efficiently solvable subproblems.
 Simulations show that our method outperforms the baseline methods in network throughput by iteratively adjusting the Lagrange multipliers to capture both connectivity importance and link congestion, thereby improving LISL matching and flow routing decisions.
 \blue{The results also show that the method is practically computable for this mixed-integer formulation, while the associated fixed-snapshot abstract decision problem is NP-hard and the computing time increases for larger constellations.}
-Research could be done to improve the computing efficiency, e.g., by a proper learning algorithm, integrating the dual optimization for training efficiency, to predict the Lagrange multipliers directly without iterations \cite{gu2026deepladu}.
-The observation on the LCT configurations' impact on the whole constellation suggests optimizing the LCT design to maximize the network profit.
+Further research could improve the computational efficiency, e.g., by using a proper learning algorithm that integrates the dual optimization into training to predict the Lagrange multipliers directly without iterations \cite{gu2026deepladu}.
+The observation on the impact of LCT configurations on the whole constellation suggests optimizing the LCT design to maximize the network profit.
 Moreover, LISLs' ATP processes can be investigated for their influence on the constellation throughput.
 
 \begin{figure}[t]
@@ -902,12 +901,12 @@ Moreover, LISLs' ATP processes can be investigated for their influence on the co
 
 % \appendix
 
-\section*{Appendix: Proof of Lemma \ref{lemma:optimal_dual_variable_bounded}}
-For given Lagrange multipliers $\lambda$, map them to new ones as $\lambda'_{i,j} = \min\{1, \lambda_{i,j}\}$, $\forall (i,j)\in\mathcal{L}$.
-For $\lambda$, let the set of flows with routing cost greater than or equal to $1$ be $\mathcal{F}^+$ and those with routing cost less than $1$ as $\mathcal{F}^-$. Then, consider the flow costs for $\lambda'$. In the set $\mathcal{F}^-$, the routing cost is not changed since the routing cost was less than $1$ for $\lambda$ and is still the minimum cost for $\lambda'$.
-In the set $\mathcal{F}^+$, assuming a flow's routing decisions are changed, and its cost becomes less than $1$, this new routing cost should be also the minimum cost for $\lambda$ since all links in the path have a cost less than $1$, which contradicts the fact that the minimum routing cost is greater than or equal to $1$ for flows in $\mathcal{F}^+$.
-Therefore, the sets $\mathcal{F}^+$ and $\mathcal{F}^-$ remains the same for $\lambda'$ as for $\lambda$.
-Since the flow rates of $\mathcal{F}^+$ computed in the dual function is always $0$ (due to the negative weights in the maximization objective) and the routing cost of flows in $\mathcal{F}^-$ remains the same, the value of the routing cost-weighted flow rate maximization is the same for $\lambda'$ and $\lambda$, i.e.,
+\section*{Appendix: Proof of Lemma~\ref{lemma:optimal_dual_variable_bounded}}
+For given Lagrange multipliers $\lambda$, we map them to new ones as $\lambda'_{i,j} = \min\{1, \lambda_{i,j}\}$, $\forall (i,j)\in\mathcal{L}$.
+For $\lambda$, let the set of flows with routing cost greater than or equal to $1$ be $\mathcal{F}^+$ and the set of those with routing cost less than $1$ be $\mathcal{F}^-$. Then consider the flow costs for $\lambda'$. In the set $\mathcal{F}^-$, the routing cost is unchanged since the routing cost was less than $1$ for $\lambda$ and is still the minimum cost for $\lambda'$.
+In the set $\mathcal{F}^+$, assuming that a flow's routing decisions change and its cost becomes less than $1$, this new routing cost should also be the minimum cost for $\lambda$ since all links in the path have a cost less than $1$, which contradicts the fact that the minimum routing cost is greater than or equal to $1$ for flows in $\mathcal{F}^+$.
+Therefore, the sets $\mathcal{F}^+$ and $\mathcal{F}^-$ remain the same for $\lambda'$ as for $\lambda$.
+Since the flow rates in $\mathcal{F}^+$ computed in the dual function are always $0$ (due to the negative weights in the maximization objective) and the routing costs of flows in $\mathcal{F}^-$ remain the same, the value of the routing-cost-weighted flow-rate maximization is the same for $\lambda'$ and $\lambda$, i.e.,
 \begin{equation}
   \begin{aligned}
       &\max_{
@@ -940,7 +939,7 @@ Since the flow rates of $\mathcal{F}^+$ computed in the dual function is always 
 \end{aligned}
 \notag
 \end{equation}
-Also, we have the MWM with $\lambda'$ leading to matched weights no greater than $\lambda$ since $\lambda'\leq\lambda$ as
+Also, the MWM with $\lambda'$ yields matched weights no greater than those with $\lambda$ since $\lambda'\leq\lambda$, as
 \begin{equation}
   \begin{aligned}
 &\max_{
@@ -969,7 +968,7 @@ Due to the above facts, $g(\lambda')\geq g(\lambda)$. Since we can always find s
 
 
 \section*{Appendix: Proof of Theorem 1}
-The Lagrange multipliers in the $k$-th iteration is denoted as $\lambda^{[k]}$. The optimal Lagrange multipliers are denoted as $\lambda^*$.
+The Lagrange multipliers in the $k$-th iteration are denoted by $\lambda^{[k]}$. The optimal Lagrange multipliers are denoted by $\lambda^*$.
 Denote the set of all possible supergradients of $g(\lambda^{[k]})$ at $\lambda^{[k]}$ as $\hat{\partial}_{\lambda^{[k]}} g(\lambda^{[k]}) \triangleq \{\delta| g(\lambda')\leq g(\lambda^{[k]}) + \delta^{\rm T}(\lambda'-\lambda^{[k]}), \forall \lambda'\}$.
 $\delta(\lambda^{[k]})$ is a supergradient of $g(\lambda^{[k]})$ at $\lambda^{[k]}$, i.e., $ \delta(\lambda^{[k]}) \in \hat{\partial}_{\lambda^{[k]}}  g(\lambda^{[k]})$.
 The difference between the optimal Lagrange multipliers $\lambda^*$ and the iterated ones $\lambda^{[k+1]}$ is given by
@@ -1002,7 +1001,7 @@ Also, $\|\lambda^{[k+1]} - \lambda^*\|^2$ is non-negative. Substituting these fa
   \end{aligned}
   \notag
 \end{equation}
-Using the convergence of $\sum_{i=1}^{k}\alpha^{[i]}$ and $\sum_{i=1}^{k}(\alpha^{[i]})^2$ when $0.5\leq \beta < 1$ \cite{boyd2003subgradient} and the boundedness of $\|\lambda^{[1]} - \lambda^*\|^2$ and $\max_\lambda \|\delta(\lambda)\| $ from Lemma \ref{lemma:optimal_dual_variable_bounded}, we prove the statement.
+Using the convergence of $\sum_{i=1}^{k}\alpha^{[i]}$ and $\sum_{i=1}^{k}(\alpha^{[i]})^2$ when $0.5\leq \beta < 1$ \cite{boyd2003subgradient} and the boundedness of $\|\lambda^{[1]} - \lambda^*\|^2$ and $\max_\lambda \|\delta(\lambda)\| $ from Lemma~\ref{lemma:optimal_dual_variable_bounded}, we prove the statement.
 
 {\color{blue}
 \section*{Appendix: Proof of Proposition \ref{prop:np_hardness}}
@@ -1075,9 +1074,9 @@ Claims 3 and 6 show that $\mathsf{I}_{\mathrm{src}}$ is a yes-instance if and on
 \end{proof}
 
 \section*{Appendix: An MDP Extension for Future Work}
-This appendix outlines an example discrete-time MDP formulation in which the Lagrangian decomposition of Section \ref{sec:lagrangian_dual_relaxation} carries over at each snapshot and the entire temporal coupling is absorbed into the matching subproblem. The formulation is presented as a potential direction for future work; we do not propose an exact solution algorithm or convergence analysis here, and the ATP-time model below is an illustrative abstraction for simplicity \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition,bashir2021adaptive}.
+This appendix outlines an example discrete-time MDP formulation in which the Lagrangian decomposition of Section~\ref{sec:lagrangian_dual_relaxation} carries over at each snapshot and the entire temporal coupling is absorbed into the matching subproblem. The formulation is presented as a potential direction for future work; we do not propose an exact solution algorithm or convergence analysis here, and the ATP-time model below is an illustrative abstraction for simplicity \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition,bashir2021adaptive}.
 
-\noindent\textit{MDP Formulation.} We discretize the continuous time $t$ of Section \ref{sec:system_model} into snapshots of duration $\Delta t$, indexed by $\ell=0,1,\dots$ with snapshot time $t_\ell=\ell\Delta t$, and attach subscript $\ell$ to snapshot-indexed quantities (e.g., $\mathbf{c}_\ell,\mathbf{x}_\ell,\mathbf{q}_\ell$). For each $\{n,m\}\in\mathcal{E}$, let $\tau_{n,m}\in\mathbb{Z}_{\geq 0}$ denote the ATP time (in snapshots) after a newly-established link, and let $h_{\ell,n,m}\in\{0,\dots,\tau_{n,m}\}$ be its remaining countdown; the link is usable iff $h_{\ell,n,m}=0$. Let $\omega_\ell=(\{\mathbf{l}_i(t_\ell)\}_i,\{U_i(t_\ell)\}_i)$ collect deterministic geometry and stochastic traffic. The state, action, and ATP transition are
+\noindent\textit{MDP Formulation.} We discretize the continuous time $t$ of Section~\ref{sec:system_model} into snapshots of duration $\Delta t$, indexed by $\ell=0,1,\dots$ with snapshot time $t_\ell=\ell\Delta t$, and attach subscript $\ell$ to snapshot-indexed quantities (e.g., $\mathbf{c}_\ell,\mathbf{x}_\ell,\mathbf{q}_\ell$). For each $\{n,m\}\in\mathcal{E}$, let $\tau_{n,m}\in\mathbb{Z}_{\geq 0}$ denote the ATP time (in snapshots) after a newly established link, and let $h_{\ell,n,m}\in\{0,\dots,\tau_{n,m}\}$ be its remaining countdown; the link is usable iff $h_{\ell,n,m}=0$. Let $\omega_\ell=(\{\mathbf{l}_i(t_\ell)\}_i,\{U_i(t_\ell)\}_i)$ collect deterministic geometry and stochastic traffic. The state, action, and ATP transition are
 \begin{equation}
 \begin{aligned}
 &\xi_\ell = (\mathbf{c}_{\ell-1},\mathbf{h}_\ell,\omega_\ell),\ \ u_\ell=(\mathbf{c}_\ell,\mathbf{x}_\ell,\mathbf{q}_\ell)\in\mathcal{C}\!\times\!\mathcal{X}\!\times\!\mathcal{Q},\\

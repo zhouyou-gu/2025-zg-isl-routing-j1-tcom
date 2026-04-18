@@ -125,7 +125,7 @@ We have revised the manuscript to address the specific comments from Reviewers 1
 
 \textbf{Manuscript changes:} We have added a short remark to the jitter model in the system model section as follows:
 
-``\dots\blue{Note that the i.i.d. assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}''
+``\dots\blue{Note that the i.i.d.\ assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}''
 
 \textbf{Comment 2: Why is the acquisition and tracking time loss strictly assumed to be zero? To the best of my knowledge, LCT alignment in practical satellite systems incurs non-negligible time overhead.}
 
@@ -166,7 +166,7 @@ In Contribution 1, we stated the additional complexity result as follows:
 
 In the paragraph introducing the complexity formulation, we stated:
 
-``\dots\blue{Problem \eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition \ref{prop:np_hardness} and the appendix proof apply.}''
+``\dots\blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition~\ref{prop:np_hardness} and the appendix proof apply.}''
 
 Immediately after the problem formulation, we inserted the following non-appendix block:
 
@@ -204,9 +204,9 @@ The decision problem AS-JMR is NP-hard.
 
 Immediately after Proposition \ref{prop:np_hardness}, we stated:
 
-``\dots\blue{Proposition \ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation \eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. 
-A direct NP-hardness claim for \eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of \eqref{eq:prob:constrainted_routing_and_matching:primal}.
-Depending on the geometric/orbital parameters, it is possible that some instances of \eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}''
+``\dots\blue{Proposition~\ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation~\eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. 
+A direct NP-hardness claim for~\eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal}.
+Depending on the geometric/orbital parameters, it is possible that some instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}''
 
 In the sentence immediately following that remark, we stated:
 
@@ -250,7 +250,7 @@ In the simulation setup, we stated:
 
 In Subsubsection~\ref{subsubsec:structured_shell_time_evaluation}, we stated:
 
-``\dots\blue{We next evaluate the structured shell-based Starlink instance. Fig. \ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}''
+``\dots\blue{We next evaluate the structured shell-based Starlink instance. Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}''
 
 For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_baselines} is also reproduced in this response letter.
 
@@ -346,7 +346,7 @@ In the abstract, we stated:
 
 In the introduction, we stated:
 
-``\dots\blue{Nevertheless, how to design the Lagrangian dual method for considering practical LCT mechanical limitations and a snapshot-level spatial traffic profile over the globe in LEO mega-constellations is still an open question.}''
+``\dots\blue{Nevertheless, how to design a Lagrangian dual method that considers practical LCT mechanical limitations and a snapshot-level spatial traffic profile over the globe in LEO mega-constellations is still an open problem.}''
 
 In Subsection~\ref{subsec:traffic_profile_model}, we stated:
 
@@ -421,7 +421,7 @@ In the caption of Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling}, we stat
 
 In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
-``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
+``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
 ``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
@@ -474,7 +474,7 @@ In the simulation setup, we stated:
 
 In Subsubsection~\ref{subsubsec:structured_shell_time_evaluation}, we stated:
 
-``\dots\blue{We next evaluate the structured shell-based Starlink instance. Fig. \ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}''
+``\dots\blue{We next evaluate the structured shell-based Starlink instance. Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.}''
 
 For direct inspection, the revised Figs. \ref{fig:plot_test_tcom_shell_time_baselines} and \ref{fig:plot_test_dual_optimization_different_constellation} are also reproduced in this response letter.
 
@@ -504,7 +504,7 @@ In the simulation setup, we stated:
 
 In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
-``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
+``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
 ``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
