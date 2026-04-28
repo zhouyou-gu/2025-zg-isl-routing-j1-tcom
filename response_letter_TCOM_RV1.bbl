@@ -20,9 +20,6 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{arnon2003effects}
-S.~Arnon, ``Effects of atmospheric turbulence and building sway on optical wireless-communication systems,'' \emph{Optics Letters}, vol.~28, no.~2, pp. 129--131, 2003.
-
 \bibitem{kaymak2018survey}
 Y.~Kaymak, R.~{Rojas-Cessa}, J.~Feng, N.~Ansari, M.~Zhou, and T.~Zhang, ``A {{Survey}} on {{Acquisition}}, {{Tracking}}, and {{Pointing Mechanisms}} for {{Mobile Free-Space Optical Communications}},'' \emph{IEEE Communications Surveys \& Tutorials}, vol.~20, no.~2, pp. 1104--1123, 2018.
 

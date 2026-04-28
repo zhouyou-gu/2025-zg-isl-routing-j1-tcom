@@ -256,7 +256,7 @@ The pointing jitter in radians is assumed to follow a Rayleigh distribution \cit
     f_{\text{jitter}}(\nu) = \frac{\nu}{\sigma^2_{\mathrm{J}}} \exp\left(-\frac{\nu^2}{2\sigma^2_{\mathrm{J}}}\right), \nu \geq 0.
   \end{aligned}
 \end{equation}
-Furthermore, the pointing error is assumed to be independent and identically distributed (i.i.d.) for each LCT. \blue{Note that the i.i.d.\ assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}
+\blue{Each LCT's pointing error is characterized by the marginal Rayleigh distribution above. Since the per-link capacity derivation in the next subsection depends only on each LCT's marginal distribution \cite{kaymak2018survey,yang2024analysis}, the framework does not require pointing errors to be statistically independent or identically distributed across LCTs, and per-LCT jitter scales can be accommodated without changing the matching or routing algorithm.}
 
 \subsection{LCT Beam Model}
 Laser beams are modeled as Gaussian beams \cite{saleh2019fundamentalsa}. 

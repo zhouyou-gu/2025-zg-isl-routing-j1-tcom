@@ -97,7 +97,7 @@
 \title{\Large \textbf{Response Letter of Manuscript TCOM-TPS-26-0080}\\
 {\Large Joint Laser Inter-Satellite Link Matching and Traffic Flow Routing in LEO Mega-Constellations via Lagrangian Duality}}
 \author{
-\IEEEauthorblockN{Zhouyou Gu, Jihong Park, Jinho Choi}\\
+\IEEEauthorblockN{Zhouyou Gu, Jinho Choi, Jihong Park}\\
 \thanks{Decision letter received on 21-Mar-2026.}}
 
 
@@ -106,26 +106,46 @@
 
 \maketitle
 
-\section*{\centering\Large\textbf{Response to Editor(s) of Manuscript TCOM-TPS-26-0080}}
+The manuscript was previously rejected based on three reviewer reports; however, after careful examination, it became evident that the comments from Reviewer 2 were irrelevant to the submitted work and appeared to review a different paper. In contrast, the reports from Reviewers 1 and 3 were relevant and constructive, and we have carefully addressed their comments through a thorough revision. Following guidance from the IEEE Transactions on Communications editorial team, we are therefore resubmitting the revised manuscript as a new submission representing a major revision of the original work.
 
-Dear editor(s), we thank you for handling our manuscript and providing us with the reviewers' comments. The manuscript was previously rejected based on three reviewer reports; however, after careful examination, it became evident that the comments from Reviewer 2 were irrelevant to the submitted work and appeared to review a different paper. In contrast, the reports from Reviewers 1 and 3 were relevant and constructive, and we have carefully addressed their comments through a thorough revision. Following guidance from the IEEE Transactions on Communications editorial team, we are therefore resubmitting the revised manuscript as a new submission representing a major revision of the original work.
+We summarize the substantive revisions below so that the changes can be evaluated on their own merits without requiring the original review history. Detailed point-by-point responses to the relevant comments from Reviewers 1 and 3 are provided in the subsequent sections, and the revised text is highlighted in blue for easy reference.
 
-We have revised the manuscript to address the specific comments from Reviewers 1 and 3, which are detailed in the attached response letters. The key changes include clarifications on the assumptions and scope of our model, a more rigorous complexity analysis with a step-by-step reduction, an expanded baseline comparison in the simulations, and a focused writing cleanup to improve clarity. We believe that these revisions have significantly strengthened the manuscript and addressed the concerns raised by the reviewers. We have also carefully proofread the manuscript to correct any typographical errors and improve the overall presentation. Furthermore, we hope that the revised manuscript will now meet the standards for publication in IEEE Transactions on Communications, and we look forward to your feedback. The revised text is highlighted in blue for easy reference.
+\begin{itemize}
+
+\item \textbf{Step-by-step NP-hardness proof.} The fixed-snapshot abstract decision problem, abstract snapshot joint matching and routing (AS-JMR), was introduced, NP-hardness was stated as Proposition~\ref{prop:np_hardness}, and a new appendix proves it through a step-by-step reduction from integral 2-commodity flow in symmetric digraphs. A remark in the main text explains the precise scope of the hardness statement and why it does not by itself imply NP-hardness of the full geometric/orbital formulation.
+
+\item \textbf{Convergence statement clarified.} The dual convergence guarantee was restated in terms of the best-so-far dual iterate, transient subgradient oscillations on bottleneck links were explained, and the simulation discussion was adjusted so that it no longer implies monotone per-iteration improvement.
+
+\item \textbf{Stronger baseline set.} The baseline set was strengthened to include a deep reinforcement learning baseline (DRL), a non-joint traffic-engineering baseline (SaTE), a maximum-rate matching baseline (MRate), and a grid-based matching baseline (``+Grid''), all compared against the proposed DuJo. The previous random-matching baseline is retained as supporting context only.
+
+\item \textbf{More realistic simulation setup.} A coherent shell-tracking benchmark on a deterministic Starlink shell across multiple snapshot offsets and a load-stress benchmark across eight load levels were added under the strengthened baseline set. The previous random-subset evaluation is retained as a separate scale study.
+
+\item \textbf{Pointing-jitter assumption removed.} The i.i.d.\ assumption on pointing errors across LCTs was removed from the system model. Each LCT is now characterized only by its marginal Rayleigh jitter distribution, which is all that the per-link capacity derivation requires, so per-LCT jitter scales can be accommodated without changing the matching or routing algorithm.
+
+\item \textbf{Acquisition-and-tracking scope made explicit.} The original ideal-acquisition wording was replaced with an explicit per-snapshot scope statement and an acknowledged acquisition, pointing, and tracking (ATP) limitation, and a new appendix formalizes an ATP-aware Markov decision process (MDP) extension and shows that our three-way Lagrangian decomposition is preserved at each snapshot.
+
+\item \textbf{LCT visibility model formalized.} The relevant subsection was renamed to ``LCT Visibility and Connection Constraints,'' an explicit connectable-pair condition built from the maximum-distance bound and the mutual field of regard test was added, both intra-plane and inter-plane LISLs are now explicitly admitted whenever the geometric condition is satisfied, and a scope note on atmospheric and Earth-occlusion effects was added.
+
+\item \textbf{Traffic-profile scope tightened.} The high-level claim was narrowed to a snapshot-level spatial traffic profile, the omission of temporal variation and purchasing-capability effects was acknowledged, and inline citations to richer demand-modeling directions were added.
+
+\item \textbf{Gateway capacity terminology clarified.} The variable $Q$ is now stated explicitly as the gateway service capacity between a gateway-connected satellite and the terrestrial Internet, distinguished from LISL transit capacity, and ``gateway'' terminology is used consistently across the notation table and the simulation setup.
+
+\item \textbf{Deployment scope clarified.} The optimization is now framed as a centrally orchestrated per-snapshot planner carried out by the ground or network-control segment, and practical deployment challenges including control-plane latency, imperfect traffic and state estimates, robustness to disturbances, and hierarchical or distributed control are discussed as future directions.
+
+\item \textbf{Focused writing cleanup.} A focused proofreading pass was applied to the introduction, notation paragraph, LCT-mechanics exposition, simulation discussion, complexity discussion, and conclusion, including the correction of typographical errors.
+\end{itemize}
+
+We believe that these revisions substantially strengthen the manuscript, and we hope that the revised manuscript will now meet the standards for publication in IEEE Transactions on Communications.
 
 \section*{\centering\Large\textbf{Response to Reviewer 1 of Manuscript TCOM-TPS-26-0080}}
 
-\textbf{Summary by Reviewer 1: This paper proposes a Lagrangian duality-based method, called DuJo, for the joint optimization of Laser Inter-Satellite Link (LISL) matching and traffic flow routing in Low Earth Orbit (LEO) mega constellations. The objective is to maximize network throughput while considering the mechanical constraints of Laser Communication Terminals (LCTs), such as steering ranges and pointing jitters, alongside non-uniform global traffic demands. However, the paper may not be suitable for publication in its current form. To improve the quality of the paper, the authors should consider the following comments:}
-
-\textbf{Response:} We agree that the original manuscript needed to make several modeling assumptions, the complexity discussion, and the simulation design more explicit. In the revised manuscript, we therefore clarified the scope of the pointing-jitter model and the ATP-free per-snapshot formulation, added a step-by-step NP-hardness treatment for the induced fixed-snapshot abstract decision problem, stated the non-monotone nature of the subgradient iterations more carefully, distinguished the random-subset and structured-shell Starlink evaluations, strengthened the baseline comparison, and performed a focused writing cleanup. Below, we respond point by point to each comment and identify the corresponding manuscript changes.
-
-
 \textbf{Comment 1: Is the assumption of independent and identically distributed pointing errors across LCTs realistic in practical satellite platforms?}
 
-\textbf{Response:} We thank the reviewer for this important comment. We would like to clarify that the i.i.d. Rayleigh assumption \cite{arnon2003effects} plays a limited technical role in our formulation, so the realism concern is narrower than it may appear. Specifically, the independence part is never actually invoked by the optimization: the per-link outage threshold $\hat{\nu}$ and the effective rate $r_{n,m}$ are derived purely from the marginal jitter distribution of a single link, and we never evaluate any joint outage event across multiple links. Hence correlated jitter across terminals would not alter any individual link's rate model nor any step of the matching/routing algorithm; it would matter only in a joint-outage analysis, which is outside our scope. The identically-distributed part is used only to adopt a common Rayleigh scale $\sigma_{\mathrm{J}}$, which is consistent with LCTs sharing the same mechanical design, control loop, and attitude reference on a common spacecraft bus after calibration \cite{kaymak2018survey,yang2024analysis}. Allowing per-terminal jitter scales would simply change the per-link marginal distribution and hence the values of $r_{n,m}$, leaving the matching/routing framework unchanged.
+\textbf{Response:} We thank the reviewer for raising this point. We agree that strict statistical independence and identical distribution of pointing errors across LCTs are simplifications that may not hold on practical multi-LCT platforms, where jitter can be correlated through shared attitude and control dynamics, and per-terminal jitter scales can differ when terminals are not identically calibrated \cite{kaymak2018survey,yang2024analysis}. Accordingly, the i.i.d.\ assumption was removed from the manuscript. Each LCT's pointing jitter is now characterized only by its marginal Rayleigh distribution, and the per-link capacity derivation depends only on this marginal. Per-LCT jitter scales can therefore be accommodated without changing the matching or routing algorithm.
 
-\textbf{Manuscript changes:} We have added a short remark to the jitter model in the system model section as follows:
+\textbf{Manuscript changes:} The previous i.i.d.\ statement was replaced with a marginal-distribution statement in the system model as follows:
 
-``\dots\blue{Note that the i.i.d.\ assumption plays a limited role here: the subsequent per-link capacity derivation depends only on the marginal jitter distribution of a single link, so correlated jitter across terminals would not alter any link's capacity or the matching/routing algorithm \cite{kaymak2018survey,yang2024analysis}. Allowing heterogeneous per-terminal jitter scales would simply yield heterogeneous link rates without changing the framework.}''
+``\dots\blue{Each LCT's pointing error is characterized by the marginal Rayleigh distribution above. Since the per-link capacity derivation in the next subsection depends only on each LCT's marginal distribution \cite{kaymak2018survey,yang2024analysis}, the framework does not require pointing errors to be statistically independent or identically distributed across LCTs, and per-LCT jitter scales can be accommodated without changing the matching or routing algorithm.}''
 
 \textbf{Comment 2: Why is the acquisition and tracking time loss strictly assumed to be zero? To the best of my knowledge, LCT alignment in practical satellite systems incurs non-negligible time overhead.}
 
