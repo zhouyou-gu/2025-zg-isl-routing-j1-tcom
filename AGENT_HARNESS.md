@@ -116,6 +116,8 @@ Use this as a mental or written template when handling a review item:
 - Use title case for a formal problem or method name only when it functions as a formal heading, definition label, or exact name introduction. In ordinary prose, prefer lowercase phrasing plus the acronym when needed.
 - In response documents, prefer plain text or `\textbf{...}` labels over decorative emphasis unless stronger emphasis is genuinely necessary.
 - In response-document prose, lead with the mathematical reasoning or writing principle behind a revision before enumerating the concrete edits.
+- In response-document prose, answer the reviewer's actual question in the first response paragraph before explaining manuscript edits, technical background, figures, or appendices.
+- Response-letter answers must be self-contained enough for a reviewer to understand the answer without reading the revised manuscript. When the answer relies on a proof, metric, figure, or appendix, include the key reasoning, definition, or interpretation directly in the response letter before pointing to the manuscript excerpt.
 - In completed response-document sections, describe manuscript changes in past tense rather than present tense.
 - When a reviewer questions a proof or claim, explain the standard being enforced and why the revised statement is the correct one, rather than mainly narrating what text was moved or added.
 - In manuscript prose and response-document prose, avoid `:` by default. Prefer full sentences, commas, or a separate lead-in sentence unless a colon is genuinely necessary for a formal label, a definition, a list, or displayed material.

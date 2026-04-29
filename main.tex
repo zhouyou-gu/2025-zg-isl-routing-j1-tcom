@@ -476,10 +476,10 @@ Based on the above definitions of the feasible domains of the decision variables
 \tag{\bf{P1}}
 \end{equation}
 where $\mathcal{C}$, $\mathcal{Q}$, and $\mathcal{X}$ are the feasible domains for the LCT connections, traffic flow rates, and routing paths, respectively.
-Here, we write the problem in the standard minimization form, i.e., to maximize $\sum_{(s,s')} q^{s,s'}$, we minimize its negative. \blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition~\ref{prop:np_hardness} with its proof in the appendix applies.}
+Here, we write the problem in the standard minimization form, i.e., to maximize $\sum_{(s,s')} q^{s,s'}$, we minimize its negative. \blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem. Proposition~\ref{prop:np_hardness} states the fixed-input scope of the hardness result, and its proof is given in the appendix.}
 
 {\color{blue}
-\begin{defi}[AS-JMR]
+\begin{defi}[AS-JMR]\label{def:as_jmr}
 The abstract snapshot joint matching and routing (AS-JMR) decision problem has input
 \begin{equation}
   \begin{aligned}
@@ -501,8 +501,8 @@ The task is to verify the existence of $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\i
 \end{equation}
 \end{defi}
 
-\begin{prop}\label{prop:np_hardness}
-The decision problem AS-JMR is NP-hard.
+\begin{prop}[Fixed-snapshot AS-JMR hardness]\label{prop:np_hardness}
+Consider the fixed-snapshot AS-JMR decision problem in Definition~\ref{def:as_jmr}, where the connectable LCT-pair set $\mathcal{E}$, the source-target pair set $\mathcal{F}$, the link rates $\{r_{n,m}\}_{\{n,m\}\in\mathcal{E}}$, the serving bounds $\{Q_i\}_{i\in\mathcal{I}}$, and the demand bounds $\{D_i\}_{i\in\mathcal{I}}$ are given as part of the combinatorial snapshot input. Deciding whether there exist $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\in\mathcal{Q}$, and $\mathbf{x}\in\mathcal{X}$ that satisfy \eqref{eq:const:path:flow_rate} and $\sum_{(s,s')\in\mathcal{F}} q^{s,s'} \geq \zeta$ is NP-hard.
 \end{prop}
 
 \begin{proof}
@@ -510,12 +510,7 @@ The decision problem AS-JMR is NP-hard.
 \end{proof}
 
 
-\begin{rem}
-\blue{Proposition~\ref{prop:np_hardness} concerns AS-JMR. We do not directly claim here that the full geometric/orbital formulation~\eqref{eq:prob:constrainted_routing_and_matching:primal} is NP-hard. The current reduction fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. 
-A direct NP-hardness claim for~\eqref{eq:prob:constrainted_routing_and_matching:primal} would require an additional realization argument or a separate reduction that maps source instances to legal geometric/orbital instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal}.
-Depending on the geometric/orbital parameters, it is possible that some instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}
-\end{rem}
-\blue{Nevertheless, the NP-hardness of AS-JMR implies that the difficulty of the joint link matching and flow routing problem is inherent in the combinatorial nature of the problem, which motivates us to design efficient algorithms based on Lagrangian dual relaxation to solve the problem in the following section.}
+This fixed-snapshot hardness result shows that the difficulty of joint link matching and flow routing is already present in the combinatorial coupling among matching, routing, and rate allocation once the snapshot connectability, link rates, and traffic-pair inputs are fixed. This motivates us to design efficient algorithms based on Lagrangian dual relaxation to solve the problem in the following section.
 }
 \section{Joint Link Matching and Flow Routing via Lagrangian Duality}\label{sec:lagrangian_dual_relaxation}
 From the structure of \eqref{eq:prob:constrainted_routing_and_matching:primal}, we observe that the maximum link-rate constraints \eqref{eq:const:path:flow_rate} couple the decisions on the LCT connections, traffic flow rates, and routing paths, while the remaining constraints are independent and define the separate feasible domains $\mathcal{C}$, $\mathcal{Q}$, and $\mathcal{X}$.
