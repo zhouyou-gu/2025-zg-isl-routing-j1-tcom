@@ -196,7 +196,7 @@ This file tracks the current state of the paper revision.
 - R1 C5 and R3 C9 in `response_letter_TCOM_RV1.tex` were tightened as the fourth one-by-one response-letter directness/self-containedness edit. Both responses now state directly that random Starlink subsets are not the realism evidence, explain that they are retained only for scale and computing-time sensitivity, and identify the coherent shell block plus Walker-delta/OneWeb comparisons as the structured-geometry evidence.
 - R1 C7 in `response_letter_TCOM_RV1.tex` was tightened as the fifth one-by-one response-letter directness/self-containedness edit. The response now states that the full manuscript was rechecked for typographical, grammatical, and clarity issues, with focused edits concentrated where issues were found.
 - R3 C6 received a final directness polish after re-review. The response now states up front that constellation-level unserved-demand information is provided through the paired served-throughput and served-demand-ratio metrics, with the absolute and ratio formulas included in the first response paragraph.
-- The AS-JMR NP-hardness wording was revised in both `main.tex` and `response_letter_TCOM_RV1.tex` after the user flagged the post-proposition caveat as response-letter prose. Proposition~`\ref{prop:np_hardness}` now states the fixed-snapshot combinatorial-input scope directly, and the following manuscript sentence was rewritten as a manuscript-style motivation statement.
+- The AS-JMR-related quoted manuscript excerpts in `response_letter_TCOM_RV1.tex` were resynchronized to the current `main.tex` wording after the manuscript NP-hardness scope text was adjusted back to a concise proposition plus follow-up remark.
 
 ## Current Blockers or Risks
 
