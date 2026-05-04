@@ -122,7 +122,7 @@ We summarize the substantive revisions below so that the changes can be evaluate
 
 \item \textbf{Pointing-jitter assumption removed.} The i.i.d.\ assumption on pointing errors across LCTs was removed from the system model. Each LCT is now characterized only by its marginal Rayleigh jitter distribution, which is all that the per-link capacity derivation requires, so per-LCT jitter scales can be accommodated without changing the matching or routing algorithm.
 
-\item \textbf{Acquisition-and-tracking scope made explicit.} The original ideal-acquisition wording was replaced with an explicit per-snapshot scope statement and an acknowledged acquisition, pointing, and tracking (ATP) limitation, and a new appendix formalizes an ATP-aware Markov decision process (MDP) extension and shows that our three-way Lagrangian decomposition is preserved at each snapshot.
+\item \textbf{Non-zero ATP transition evaluation added.} The original ideal-acquisition wording was replaced with an explicit per-snapshot scope statement, and a new ATP-time sensitivity simulation was added using a $10$ s topology-evaluation interval and ATP times from $0$ to $30$ s. A LISL that is decided to be connected at a snapshot is unavailable until acquisition completes, and its ATP state is discarded if it is dropped before acquisition completes. The MDP appendix is kept only as the future fully ATP-aware optimization direction.
 
 \item \textbf{LCT visibility model formalized.} The relevant subsection was renamed to ``LCT Visibility and Connection Constraints,'' an explicit connectable-pair condition built from the maximum-distance bound and the mutual field of regard test was added, both intra-plane and inter-plane LISLs are now explicitly admitted whenever the geometric condition is satisfied, and a scope note on atmospheric and Earth-occlusion effects was added.
 
@@ -149,13 +149,32 @@ We believe that these revisions substantially strengthen the manuscript, and we 
 
 \textbf{Comment 2: Why is the acquisition and tracking time loss strictly assumed to be zero? To the best of my knowledge, LCT alignment in practical satellite systems incurs non-negligible time overhead.}
 
-\textbf{Response:} We agree with the reviewer. Zero acquisition and tracking loss is not a realistic operational assumption for practical optical inter-satellite links \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. In the revised manuscript, we therefore no longer present it as an ideal physical condition. Instead, we state explicitly that the present formulation is a per-snapshot optimization at a fixed time $t$, so it optimizes the matching, routing, and rate allocation within one snapshot but does not model the time overhead caused by changing LCT alignments across consecutive snapshots. This is a scope limitation, especially when snapshot intervals are short. To make the limitation clear, we revised the system model to acknowledge ATP overhead directly and added an appendix that outlines how an ATP-aware extension could be formulated as an MDP for future work.
+\textbf{Response:} We agree with the reviewer. Zero acquisition and tracking loss is not a realistic operational assumption for practical optical inter-satellite links \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. In the revised manuscript, we therefore no longer defend a zero-ATP assumption. We now state explicitly that the proposed algorithm is a per-snapshot optimizer and add an ATP-time sensitivity simulation to quantify the effect of non-zero ATP time on the resulting schedules.
 
-\textbf{Manuscript changes:} We have replaced the ``ideal acquisition and tracking'' wording with an explicit per-snapshot scope, an ATP limitation statement, and the MDP extension as follows:
+Specifically, we added an ATP-time sensitivity evaluation on the structured Starlink-shell benchmark. The topology is evaluated every $10$ s, and the ATP time is swept over $T_{\mathrm{ATP}}\in\{0,10,20,30\}$ s. Reported initial acquisition times on the order of $40$--$50$ s in an optical inter-satellite link demonstration \cite{smutny2009gbps} motivate considering non-zero ATP overhead, while the plotted $0$--$30$ s range focuses on the onset of the transition loss before the curves become severely degraded. For each method and LCT pair, a LISL that is decided to be connected at snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}})$ and becomes usable once the acquisition time has elapsed. If it is dropped before acquisition completes, its ATP state is discarded. We then recompute throughput by LP using only the ATP-usable LISLs. Thus, the new experiment is not a fully ATP-aware optimizer, but it directly tests how positive ATP time affects the current per-snapshot schedules.
 
-``\dots\blue{Our formulation performs per-snapshot joint design of the matching, routing, and rate allocation at a fixed time $t$, and does not model acquisition, pointing, and tracking (ATP) overheads that arise when the matching changes across snapshots \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. At short snapshot intervals on the order of seconds, ATP overheads are not negligible, which we acknowledge as a scope limitation of this work. An ATP-aware extension can be cast as a Markov decision process (MDP) on the matching state in which our current three-way Lagrangian decomposition is preserved at each snapshot; details are provided in the appendix. The present formulation corresponds to the degenerate case with zero ATP time, and the full MDP extension is left as future work.}''
+The results show that non-zero ATP time can materially reduce realized throughput when a method changes many LISLs across nearby snapshots. The revised figure reports both the average throughput and the retained fraction relative to the original per-snapshot throughput as $T_{\mathrm{ATP}}$ increases. This directly addresses the reviewer's concern: the revised manuscript no longer relies on a non-practical zero-ATP assumption, uses $T_{\mathrm{ATP}}=0$ only as a sensitivity baseline, and keeps the MDP appendix as the future fully ATP-aware temporal optimization direction.
 
-We have also added a new appendix ``An MDP Extension for Future Work'' to outline the ATP-aware formulation and to show that the present paper is recovered as the degenerate ATP-free case.
+\textbf{Manuscript changes:} We revised the system-model scope statement, added the new ATP-time subsection, and retained the MDP appendix as future work. The revised system-model text states:
+
+``\dots\blue{Our formulation performs per-snapshot joint design of the matching, routing, and rate allocation at a fixed time $t$. It therefore does not internally optimize acquisition, pointing, and tracking (ATP) transition overheads that arise when the matching changes across consecutive snapshots \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition}. At snapshot intervals on the order of seconds, such ATP overheads are not negligible; for example, optical inter-satellite link experiments have reported initial acquisition times on the order of tens of seconds, with shorter times after optimization \cite{smutny2009gbps}. We evaluate the impact of non-zero ATP time in Section~\ref{subsubsec:atp_transition_evaluation}. A fully ATP-aware optimizer can be cast as an MDP on the matching state in which our current three-way Lagrangian decomposition is preserved at each snapshot; this is consistent with recent time-dependent LEO topology optimization work that explicitly accounts for link churn over time \cite{ron2025time}, and details are provided in the appendix as a future extension.}''
+
+In the new ``Impact of ATP Time'' subsection, we state:
+
+``\dots\blue{To evaluate non-zero ATP overhead without replacing the proposed per-snapshot optimizer, we perform an ATP-time sensitivity simulation on the same structured shell-based Starlink instance. The topology-evaluation interval is fixed to $10$ s, and the ATP acquisition time is swept from $0$ to $30$ s.}''
+
+``\dots\blue{For each method, we first compute the original per-snapshot matching, routing, and rate allocation once for each offset. We then replay the ATP transition process for each value of $T_{\mathrm{ATP}}$. A LISL that is decided to be connected at the snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}})$, and it becomes usable once the acquisition time has elapsed. If it is dropped before acquisition completes, its ATP state is discarded. Finally, we recompute the throughput by LP using only the ATP-usable LISLs.}''
+
+``\dots\blue{The results in Fig.~\ref{fig:plot_test_tcom_atp_transition} show that increasing ATP acquisition time can materially reduce realized throughput when the per-snapshot topology changes quickly. The retention ratios quantify how much of the original per-snapshot throughput remains when ATP overhead is considered. Methods that change many LISLs across nearby snapshots have lower retention ratios as $T_{\mathrm{ATP}}$ increases, whereas methods with more persistent LISLs are less sensitive. These results motivate the future ATP-aware temporal optimization described in the appendix, complementing recent time-dependent topology optimization studies for LEO constellations \cite{ron2025time}.}''
+
+For direct inspection, the added ATP-time figure is reproduced below.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.85]{plot_test_tcom_atp_transition.pdf}
+\caption{\blue{(Fig. \ref{fig:plot_test_tcom_atp_transition} in the revised manuscript) ATP-time sensitivity evaluation on the structured shell-based Starlink instance. The topology is evaluated every $10$ s over offsets of $0,10,\ldots,360$ s, while the ATP time is swept over $T_{\mathrm{ATP}}\in\{0,10,20,30\}$ s. The top plot shows the average throughput, and the bottom plot shows the retained fraction relative to the original per-snapshot throughput.}}
+\label{fig:resp_plot_test_tcom_atp_transition}
+\end{figure}
 
 \textbf{Comment 3: You’d better provide a step-by-step mathematical reduction for the NP hardness proof.}
 
@@ -224,9 +243,8 @@ The decision problem AS-JMR is NP-hard.
 
 Immediately after Proposition \ref{prop:np_hardness}, we stated:
 
-``\dots\blue{The reduction in Proposition~\ref{prop:np_hardness} fixes the combinatorial snapshot input and proves hardness for the resulting fixed-snapshot abstract decision problem, rather than deriving those objects from the underlying geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules.
-A direct NP-hardness claim for~\eqref{eq:prob:constrainted_routing_and_matching:primal} requires mapping AS-JMR instances to the realization of~\eqref{eq:prob:constrainted_routing_and_matching:primal}.
-Depending on the geometric/orbital parameters, it is possible that some instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal} are not NP-hard, e.g., when there are no connectable pairs or no source-target pairs.}''
+``\dots\blue{Proposition~\ref{prop:np_hardness} establishes NP-hardness for the fixed-snapshot AS-JMR decision problem with combinatorial snapshot inputs. It does not establish NP-hardness for every geometric/orbital instance of~\eqref{eq:prob:constrainted_routing_and_matching:primal}, whose connectable pairs, source-target pairs, and link rates are induced by orbital geometry, field-of-regard constraints, distance thresholds, and traffic-pair construction rules. Extending the hardness result to the full geometric/orbital formulation would require a realization argument that maps AS-JMR inputs to feasible geometric/orbital instances.
+In extreme cases, the geometric/orbital constraints could yield trivial instances of~\eqref{eq:prob:constrainted_routing_and_matching:primal} that are not NP-hard, e.g., when there are no connectable LCT pairs or no source-target pairs.}''
 
 In the sentence immediately following that remark, we stated:
 
@@ -443,7 +461,7 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
-``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
+``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is the strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
 For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
 
@@ -514,7 +532,7 @@ For direct inspection, the revised Figs. \ref{fig:plot_test_tcom_shell_time_base
 
 \textbf{Comment 10: A detailed analysis of the method performance in scenarios with a large traffic demand should be provided to have an idea of the resilience of the method.}
 
-\textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we therefore added a load-stress evaluation on the structured shell-based Starlink instance by varying the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The added figure reports both the served throughput and the served-demand ratio, so the revised evaluation captures both throughput saturation and the shrinking served share in higher-load regimes. The resulting curves show that DuJo is strongest at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
+\textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we therefore added a load-stress evaluation on the structured shell-based Starlink instance by varying the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The added figure reports both the served throughput and the served-demand ratio, so the revised evaluation captures both throughput saturation and the shrinking served share in higher-load regimes. The resulting curves show that DuJo is the strongest at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
 
 \textbf{Manuscript changes:} In the simulation setup and the added load-stress subsection, we introduced the higher-load evaluation and the associated metrics. The key revised text read as follows.
 
@@ -526,7 +544,7 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
-``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
+``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is the strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
 
 \bibliography{main}

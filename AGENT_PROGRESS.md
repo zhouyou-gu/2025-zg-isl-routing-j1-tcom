@@ -197,6 +197,18 @@ This file tracks the current state of the paper revision.
 - R1 C7 in `response_letter_TCOM_RV1.tex` was tightened as the fifth one-by-one response-letter directness/self-containedness edit. The response now states that the full manuscript was rechecked for typographical, grammatical, and clarity issues, with focused edits concentrated where issues were found.
 - R3 C6 received a final directness polish after re-review. The response now states up front that constellation-level unserved-demand information is provided through the paired served-throughput and served-demand-ratio metrics, with the absolute and ratio formulas included in the first response paragraph.
 - The AS-JMR-related quoted manuscript excerpts in `response_letter_TCOM_RV1.tex` were resynchronized to the current `main.tex` wording after the manuscript NP-hardness scope text was adjusted back to a concise proposition plus follow-up remark.
+- Response-like and conversational phrasing in `main.tex` was formalized in the AS-JMR scope remark and ATP MDP appendix, and the matching AS-JMR quote in `response_letter_TCOM_RV1.tex` was synchronized.
+- `AGENT_HARNESS.md` now records the durable manuscript-tone rule from this pass: avoid response-letter or conversational framing in manuscript prose, and express scope limitations as formal manuscript claims.
+- The R1 C2 ATP system-model quote in `response_letter_TCOM_RV1.tex` was resynchronized to the current `main.tex` wording, including the "tens of seconds" acquisition-time phrasing and the exact ATP-transition section reference sentence.
+- The ATP transition evaluation in `main.tex` was moved to the end of the numerical-results sequence, after the constellation-configuration comparison and its figures and before the conclusion, while preserving the existing ATP text, figure, label, and citations.
+- The ATP results subsection title in `main.tex` was renamed to "Impact of ATP Time" while keeping the existing label for cross-references.
+- The previous post-schedule wording was removed from the ATP simulation text in `main.tex` and the corresponding response-letter summary, quotes, and reproduced caption; the text now describes it plainly as an ATP-time sensitivity evaluation applied to per-snapshot schedules.
+- The R1 C2 ATP subsection quotes in `response_letter_TCOM_RV1.tex` were resynchronized to the current `main.tex` "Impact of ATP Time" paragraphs, including the updated LISL availability wording and results paragraph.
+- The response-letter ATP reproduced caption was resynchronized again to the current `main.tex` caption, including "ATP time", "average throughput", and removal of the previous first-snapshot exclusion sentence. Load-stress quote wording was also resynchronized to "DuJo is the strongest".
+- The response-letter R1 C2 summary prose was synchronized again to the current `main.tex` ATP wording by replacing the older "newly selected/retained acquired LISLs" language with the current connected-at-snapshot LISL availability and ATP-state discard wording.
+- The response-letter AS-JMR NP-hardness remark quote was resynchronized to the current `main.tex` two-sentence extreme-case wording, and a trailing whitespace issue in the matching `main.tex` line was removed.
+- The ATP-time sensitivity figure `plot_test_tcom_atp_transition.pdf` was regenerated with the upper-panel y-axis fixed to `0`--`150` Gbps and the lower-panel retention-ratio y-axis fixed to `0`--`1` with explicit ticks.
+- The same ATP figure was regenerated again with the upper-panel y-axis label changed from "Avg. Throughput (Gbps)" to "Throughput (Gbps)".
 
 ## Current Blockers or Risks
 

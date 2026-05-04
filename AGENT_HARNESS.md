@@ -112,6 +112,7 @@ Use this as a mental or written template when handling a review item:
 - Avoid reusing the same symbol for semantically different roles.
 - Add supporting citations inline where claims are made.
 - Prefer formal prose in technical explanations and proofs, and avoid symbolic directional shorthand when plain language is clearer.
+- In manuscript prose, avoid response-letter or conversational framing such as explaining what the paper does not claim "here," defending why a proof is scoped a certain way, or saying "we do not propose" as a reviewer-facing caveat. State scope limitations as formal manuscript claims instead.
 - Check new appendix or auxiliary technical material for likely render or layout issues.
 - Use title case for a formal problem or method name only when it functions as a formal heading, definition label, or exact name introduction. In ordinary prose, prefer lowercase phrasing plus the acronym when needed.
 - In response documents, prefer plain text or `\textbf{...}` labels over decorative emphasis unless stronger emphasis is genuinely necessary.
