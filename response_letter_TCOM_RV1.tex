@@ -106,9 +106,9 @@
 
 \maketitle
 
-The manuscript was previously rejected based on three reviewer reports; however, after careful examination, it became evident that the comments from Reviewer 2 were irrelevant to the submitted work and appeared to review a different paper. In contrast, the reports from Reviewers 1 and 3 were relevant and constructive, and we have carefully addressed their comments through a thorough revision. Following guidance from the IEEE Transactions on Communications editorial team, we are therefore resubmitting the revised manuscript as a new submission representing a major revision of the original work.
+The manuscript was previously received with three reviewer reports; however, after careful examination, it became evident that the comments from Reviewer 2 were irrelevant to the submitted work and appeared to review a different paper. In contrast, the reports from Reviewers 1 and 3 were relevant and constructive, and we have carefully addressed their comments through a thorough revision. Following guidance from the IEEE Transactions on Communications editorial team, we are therefore resubmitting the revised manuscript as a new submission representing a major revision of the original work.
 
-We summarize the substantive revisions below so that the changes can be evaluated on their own merits without requiring the original review history. Detailed point-by-point responses to the relevant comments from Reviewers 1 and 3 are provided in the subsequent sections, and the revised text is highlighted in blue for easy reference.
+We summarize the substantive revisions below so that the changes can be evaluated on their own merits. Detailed point-by-point responses to the relevant comments from Reviewers 1 and 3 are provided in the subsequent sections, and the revised text is highlighted in blue for easy reference.
 
 \begin{itemize}
 
@@ -124,7 +124,7 @@ We summarize the substantive revisions below so that the changes can be evaluate
 
 \item \textbf{Non-zero ATP transition evaluation added.} The original ideal-acquisition wording was replaced with an explicit per-snapshot scope statement, and a new ATP-time sensitivity simulation was added using a $10$ s topology-evaluation interval and ATP times from $0$ to $30$ s. A LISL that is decided to be connected at a snapshot is unavailable until acquisition completes, and its ATP state is discarded if it is dropped before acquisition completes. The MDP appendix is kept only as the future fully ATP-aware optimization direction.
 
-\item \textbf{LCT visibility model formalized.} The relevant subsection was renamed to ``LCT Visibility and Connection Constraints,'' an explicit connectable-pair condition built from the maximum-distance bound and the mutual field of regard test was added, both intra-plane and inter-plane LISLs are now explicitly admitted whenever the geometric condition is satisfied, and a scope note on atmospheric and Earth-occlusion effects was added.
+\item \textbf{LCT visibility model formalized.} The relevant subsection was renamed to ``LCT Visibility and Connection Constraints'', an explicit connectable-pair condition built from the maximum-distance bound and the mutual field of regard test was added, both intra-plane and inter-plane LISLs are now explicitly admitted whenever the geometric condition is satisfied, and a scope note on atmospheric and Earth-occlusion effects was added.
 
 \item \textbf{Traffic-profile scope tightened.} The high-level claim was narrowed to a snapshot-level spatial traffic profile, the omission of temporal variation and purchasing-capability effects was acknowledged, and inline citations to richer demand-modeling directions were added.
 
@@ -180,11 +180,11 @@ For direct inspection, the added ATP-time figure is reproduced below.
 
 \textbf{Comment 3: You’d better provide a step-by-step mathematical reduction for the NP hardness proof.}
 
-\textbf{Response:} We agree that the proof needed to be written out step by step. In the revised manuscript, we first define the fixed-snapshot abstract snapshot joint matching and routing (AS-JMR) decision problem, then prove AS-JMR is NP-hard by a direct polynomial reduction from integral 2-commodity flow in symmetric digraphs. We also state explicitly that this proposition applies to AS-JMR, whose snapshot inputs are combinatorial, and not automatically to every geometric/orbital instance of the full physical formulation.
+\textbf{Response:} We agree that the proof needed to be written out step by step. In the revised manuscript, we first explain how the original throughput optimization is converted into the standard threshold decision question used for hardness analysis, then define the abstract snapshot joint matching and routing (AS-JMR) decision problem. We then prove AS-JMR is NP-hard by a direct polynomial reduction from integral 2-commodity flow in symmetric digraphs \cite[Theorem 1]{jarry2012multiflows}, and state explicitly that the proposition applies to AS-JMR with combinatorial snapshot inputs, not automatically to every geometric/orbital instance of the full physical formulation.
 
-The reduction is from integral 2-commodity flow in symmetric digraphs \cite[Theorem 1]{jarry2012multiflows}. The source instance consists of a symmetric directed graph with two integral commodities, capacities $\kappa(u,v)$, demands $d_1,d_2$, and total demand $D=d_1+d_2$. From it, we construct an AS-JMR instance by creating the original graph vertices as satellites, adding one source-terminal and one target-terminal satellite for each unit demand, setting the AS-JMR throughput threshold to $\zeta=D$, creating one unit-rate dedicated LCT pair for each unit of source-arc capacity, and adding attachment LCT pairs from each unit source terminal to its commodity source and from its commodity target to the corresponding unit target terminal. Isolated LCTs are added only to equalize the number of LCTs per satellite and do not create extra connectable pairs.
+The reduction is from the integral 2-commodity flow problem on a symmetric digraph $\mathcal{G}$, which is NP-complete \cite[Theorem 1]{jarry2012multiflows}. Each unordered edge $\{u,v\}$ in $\mathcal{G}$ has an integer capacity $\kappa(u,v)=\kappa(v,u)$ that applies to both directed arcs $(u,v)$ and $(v,u)$. The instance has two requests $(s_1,t_1,d_1)$ and $(s_2,t_2,d_2)$, where $s_1,s_2,t_1,t_2$ are distinct vertices in $\mathcal{G}$, and $d_1$ and $d_2$ are positive integers denoting the required flow values. Set $D=d_1+d_2$. From it, we construct an AS-JMR instance by first creating one satellite for each vertex in $\mathcal{G}$, then adding one source-terminal and one target-terminal satellite to the AS-JMR satellite set for each unit demand. We set the AS-JMR throughput threshold to $\zeta=D$, create one dedicated connectable LCT pair between satellites $u$ and $v$ with rate $\kappa(u,v)$ for each unordered source edge $\{u,v\}$, and add unit-rate attachment LCT pairs from each unit source terminal to its commodity source and from its commodity target to the corresponding unit target terminal. Isolated LCTs are added only to equalize the number of LCTs per satellite and do not create extra connectable pairs.
 
-The equivalence is then shown in both directions. If the source instance has feasible integral 2-commodity flows, decomposing those flows into unit paths gives one feasible AS-JMR route for each unit-demand terminal pair, and the dedicated LCT pairs provide exactly the copied arc capacities, so AS-JMR attains throughput $D=\zeta$. Conversely, if the constructed AS-JMR instance attains throughput at least $D$, then all $D$ unit-demand variables must equal one. Each corresponding binary routing vector contains a unit path from its added source terminal to its added target terminal; deleting the two attachment arcs yields an original $s_h$--$t_h$ path. Because only $\kappa(u,v)$ dedicated unit-rate LCT pairs exist between any adjacent original satellites, aggregating the extracted paths respects the original arc capacities and gives feasible integral 2-commodity flows. The construction is polynomial because the hard source family has polynomially bounded demands and capacities in $\{1,2,3\}$, and the isolated-LCT padding is also polynomial.
+The equivalence is then shown in both directions. If the source instance has feasible integral 2-commodity flows, decomposing those flows into unit paths gives one feasible AS-JMR route for each unit-demand terminal pair. For every unordered source edge $\{u,v\}$ used by at least one of these paths, the dedicated bidirectional LISL provides rate $\kappa(u,v)$ on each directed arc $(u,v)$ and $(v,u)$, so AS-JMR attains throughput $D=\zeta$. Conversely, if the constructed AS-JMR instance attains throughput at least $D$, then all $D$ unit-demand variables must equal one. Each corresponding binary routing vector contains a unit path from its added source terminal to its added target terminal; deleting the two attachment arcs yields an original $s_h$--$t_h$ path. Because the only real connectable LCT pair between any adjacent original satellites $u$ and $v$ has rate $\kappa(u,v)$, aggregating the extracted paths respects the original arc capacities and gives feasible integral 2-commodity flows. The construction is polynomial in the source instance size because it creates one satellite per source vertex, $D$ source-terminal satellites, $D$ target-terminal satellites, and one dedicated LCT pair per unordered source edge; the isolated-LCT padding is polynomial.
 
 We state Proposition \ref{prop:np_hardness} for AS-JMR, rather than directly for the full physical formulation \eqref{eq:prob:constrainted_routing_and_matching:primal}, because the reduction fixes the combinatorial snapshot input instead of deriving it from the geometry, field of regard constraints, distance thresholds, and traffic-pair construction rules. Thus, the proposition, the scope clarification in the main text, and the appendix proof are aligned.
 
@@ -193,47 +193,25 @@ We state Proposition \ref{prop:np_hardness} for AS-JMR, rather than directly for
 
 In the abstract, we stated:
 
-``\dots\blue{The resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is proved to be NP-hard.}''
+``\dots\blue{We show that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard.}''
 
 We revised the introduction as follows.
 
 ``\dots\blue{The joint link-matching and flow-routing formulation leads to a mixed-integer optimization problem \cite{ahuja1993network}, and the associated fixed-snapshot abstract decision problem is NP-hard \cite{jarry2012multiflows} (as proved later in Proposition~\ref{prop:np_hardness} and the appendix).}''
 
-In the transition to the method section, we stated:
-
-``\dots\blue{To tackle this mixed-integer problem, we apply the Lagrangian dual relaxation method by lifting the maximum rate limitation constraints between neighboring satellites via Lagrange multipliers.}''
-
 In Contribution 1, we stated the additional complexity result as follows:
 
-``\dots\blue{We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows}.}''
+``\dots\blue{We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows} (\textbf{Proposition~\ref{prop:np_hardness}}).}''
 
 In the paragraph introducing the complexity formulation, we stated:
 
-``\dots\blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition~\ref{prop:np_hardness} with its proof in the appendix applies.}''
+``\dots\blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we use the standard threshold decision version of this optimization problem, since any exact solver for the optimization problem could answer the threshold question by comparing the optimum throughput with $\zeta$. For a fixed snapshot and a target throughput $\zeta$, we keep the same feasible set as~\eqref{eq:prob:constrainted_routing_and_matching:primal}, namely $\mathbf{c}\in\mathcal{C}$, $\mathbf{x}\in\mathcal{X}$, $\mathbf{q}\in\mathcal{Q}$, and the link-rate constraint \eqref{eq:const:path:flow_rate}. The decision question asks whether this feasible set contains any solution whose served throughput is at least $\zeta$. This fixed-snapshot threshold decision problem is the abstract snapshot joint matching and routing (AS-JMR) problem defined as follows.}''
 
-Immediately after the problem formulation, we inserted the following non-appendix block:
+Immediately after the problem formulation, we inserted the following definition and proposition, with the proof in the appendix.
 
 {\color{blue}
 \begin{defi}[AS-JMR]
-The abstract snapshot joint matching and routing (AS-JMR) decision problem has input
-\begin{equation}
-  \begin{aligned}
-    (\mathcal{I},\mathcal{N},\{i_n\}_{n\in\mathcal{N}},\mathcal{E},\mathcal{F},\{r_{n,m}\}_{\{n,m\}\in\mathcal{E}},\{Q_i\}_{i\in\mathcal{I}},\{D_i\}_{i\in\mathcal{I}},\zeta),
-  \end{aligned}
-\end{equation}
-where $\mathcal{I}$ is the satellite set, $\mathcal{N}$ is the LCT set, $i_n\in\mathcal{I}$ is the satellite carrying LCT $n$, $\mathcal{E}$ is the set of connectable LCT pairs, $\mathcal{F}$ is the set of source-target satellite pairs, $r_{n,m}\geq 0$ is the rate of pair $\{n,m\}$, $Q_i\geq 0$ and $D_i\geq 0$ are the serving and demand bounds, and $\zeta\geq 0$ is a threshold. Define
-\begin{equation}
-  \begin{aligned}
-    \mathcal{E}_{i,j} = \big\{\{n,m\}\in\mathcal{E}\big| i_n = i, i_m = j\big\},
-    \mathcal{L} = \big\{(i,j)\big| \mathcal{E}_{i,j}\neq \emptyset \big\}.
-  \end{aligned}
-\end{equation}
-The task is to verify the existence of $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\in\mathcal{Q}$, and $\mathbf{x}\in\mathcal{X}$ satisfying \eqref{eq:const:path:flow_rate} and
-\begin{equation}
-  \begin{aligned}
-    \sum_{(s,s')\in\mathcal{F}} q^{s,s'} \geq \zeta.
-  \end{aligned}
-\end{equation}
+For fixed snapshot inputs $(\mathcal{I},\mathcal{N},\{i_n\}_{n\in\mathcal{N}},\mathcal{E},\mathcal{F},\{r_{n,m}\}_{\{n,m\}\in\mathcal{E}},\{Q_i\}_{i\in\mathcal{I}},\{D_i\}_{i\in\mathcal{I}},\zeta)$, with the same meanings as in~\eqref{eq:prob:constrainted_routing_and_matching:primal}, the AS-JMR decision problem asks whether there exist $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\in\mathcal{Q}$, and $\mathbf{x}\in\mathcal{X}$ satisfying \eqref{eq:const:path:flow_rate} and $\sum_{(s,s')\in\mathcal{F}}q^{s,s'}\geq\zeta$.
 \end{defi}
 
 \begin{prop}\label{prop:np_hardness}
@@ -256,7 +234,7 @@ In the sentence immediately following that remark, we stated:
 
 In the conclusion, we stated:
 
-``\dots\blue{It has also shown that the method can be practically computable for this mixed-integer formulation, while the associated fixed-snapshot abstract decision problem is NP-hard and the computing time increases for larger constellations.}''
+``\dots\blue{The results also show that the method is practically computable for this mixed-integer formulation, while the associated fixed-snapshot abstract decision problem is NP-hard and the computing time increases for larger constellations.}''
 
 \textbf{Comment 4: Will the subgradient descent handle potential oscillations when multiple flows compete for the same bottleneck LISLs?}
 
@@ -280,7 +258,7 @@ In the numerical-results discussion, we stated:
 
 ``\dots\blue{As expected for subgradient methods, the per-iteration dual values are not necessarily monotone and may fluctuate when multiple flows compete for the same bottleneck LISLs. Nevertheless, the diminishing step size progressively damps these fluctuations, while Theorem \ref{theorem:convergence:classic} concerns the best-so-far dual value rather than every individual iterate.}''
 
-``\dots\blue{The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle.}''
+``\dots\blue{The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle. The network throughput is higher for $\beta=0.5$ than for $\beta=0.7$ and $0.9$, indicating that a slower step-size decay leads to better performance because it explores the multiplier space more thoroughly.}''
 
 \textbf{Comment 5: Why does the evaluation only randomly sample a given number of satellites from the Starlink data instead of simulating a complete structured orbital shell (or multiple shells)?}
 
@@ -367,7 +345,7 @@ The edits were concentrated in the introduction and notation section, the LCT-me
 
 This condition is now stated directly in Subsection~\ref{subsec:lct_visibility_connection} and formalized in \eqref{eq:lct_visibility_condition}. We also stated explicitly that the model does not impose a same-plane restriction, so both intra-plane and inter-plane LISLs can be feasible when they satisfy the same visibility condition. A short limitation note then states that the current connectability approximation does not model atmospheric effects or an explicit line-of-sight or Earth-occlusion constraint.
 
-\textbf{Manuscript changes:} In Subsection~\ref{subsec:lct_visibility_connection}, entitled ``\blue{LCT Visibility and Connection Constraints},'' we revised the wording so that the visibility condition was stated explicitly, the defining condition was given in \eqref{eq:lct_visibility_condition}, the lack of a same-plane restriction was stated explicitly, and the current scope limitation was stated afterward. The key revised text read as follows.
+\textbf{Manuscript changes:} In Subsection~\ref{subsec:lct_visibility_connection}, entitled ``\blue{LCT Visibility and Connection Constraints}'', we revised the wording so that the visibility condition was stated explicitly, the defining condition was given in \eqref{eq:lct_visibility_condition}, the lack of a same-plane restriction was stated explicitly, and the current scope limitation was stated afterward. The key revised text read as follows.
 
 ``\dots\blue{The visibility condition for a potential LISL is determined by the maximum beam transmission distance $\hat{z}$ and the mutual field of regard test at the two LCTs.}
 \blue{Accordingly, the set $\mathcal{E}$ of all connectable LCT pairs is defined by the following visibility condition.}''
@@ -478,7 +456,8 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
-``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is the strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
+``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo gives the best reported performance at all tested loads. DRL remains below the heuristic baselines across this load range.
+This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
 For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
 
@@ -557,7 +536,7 @@ For direct inspection, the revised Figs. \ref{fig:plot_test_tcom_shell_time_base
 
 \textbf{Response:} We agree that resilience under higher offered load should be evaluated explicitly. In the revised manuscript, we added a load-stress evaluation that reports both served throughput and served-demand ratio, so the results show both throughput saturation and the shrinking served share under higher load.
 
-The added evaluation uses the structured shell-based Starlink instance and varies the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The resulting curves show that DuJo is the strongest at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
+The added evaluation uses the structured shell-based Starlink instance and varies the active-user percentage from $0.0005\%$ to $0.1\%$ while keeping the per-user demand fixed at $D=0.1$ Gbps. The resulting curves show that DuJo gives the best reported performance at all tested loads, while DRL remains below the heuristic baselines. For direct inspection, the revised Fig. \ref{fig:plot_test_tcom_shell_time_load_scaling} is also reproduced in this response letter.
 
 \textbf{Manuscript changes:} In the simulation setup and the added load-stress subsection, we introduced the higher-load evaluation and the associated metrics. The key revised text read as follows.
 
@@ -569,7 +548,8 @@ In Subsubsection~\ref{subsubsec:load_stress_evaluation}, we stated:
 
 ``\dots\blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}''
 
-``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is the strongest at all tested loads. DRL remains below the heuristic baselines across this load range. This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
+``\dots\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo gives the best reported performance at all tested loads. DRL remains below the heuristic baselines across this load range.
+This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}''
 
 
 \bibliography{main}

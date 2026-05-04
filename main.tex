@@ -90,13 +90,13 @@ the University of Adelaide, Adelaide, SA 5005, Australia
 }% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
 % email address}\\
 \thanks{Source codes will be available upon acceptance. Corresponding authors: J. Park and Z. Gu.}
-% \vspace{-1.25cm}
+\vspace{-0.75cm}
 }
 
 \maketitle
 
 \begin{abstract}
-Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. \blue{This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile.} \blue{We have shown that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard.} Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with proven convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
+Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. \blue{This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile.} \blue{We show that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard.} Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with proven convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
 \end{abstract}
 
 \begin{IEEEkeywords} 
@@ -203,7 +203,7 @@ This decouples the joint problem into three Lagrange multiplier-weighted subprob
 Based on the relaxation, we jointly optimize the LISL matching and flow routing decisions by adjusting the multipliers, e.g., via subgradient descent \cite{boyd2003subgradient}.
 Our contributions are as follows.
 \begin{itemize}
-  \item \blue{We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows}.}
+  \item \blue{We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows} (\textbf{Proposition~\ref{prop:np_hardness}}).}
   \item We relax the link rate limitation constraints of satellite pairs in \eqref{eq:prob:constrainted_routing_and_matching:relaxed} and  \eqref{eq:prob:constrainted_routing_and_matching:dual}, separating the original problem into subproblems (i.e., (a), (b), and (c) in \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual}) that are solved independently at polynomial complexity.
   \item Building on this, we design a Lagrangian dual-based subgradient-descent algorithm (\textbf{DuJo}) and prove that the set of optimal Lagrange multipliers and the subgradient are bounded, guaranteeing the convergence of the algorithm to the optimal multipliers (\textbf{Theorem} \ref{theorem:convergence:classic}).
   \item With simulations based on real-world constellation and terrestrial information, we show that our method \textbf{DuJo} can improve the network throughput in Starlink-based constellations approximately by up to $145\%$ compared to a grid-aligned LISL scheme and up to $35\%$ compared to a scheme prioritizing high-capacity LISLs.
@@ -485,29 +485,12 @@ Based on the above definitions of the feasible domains of the decision variables
 \tag{\bf{P1}}
 \end{equation}
 where $\mathcal{C}$, $\mathcal{Q}$, and $\mathcal{X}$ are the feasible domains for the LCT connections, traffic flow rates, and routing paths, respectively.
-Here, we write the problem in the standard minimization form, i.e., to maximize $\sum_{(s,s')} q^{s,s'}$, we minimize its negative. \blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we fix one snapshot and abstract away the geometric/orbital derivation of the connectable pairs, the source-target pair set, and the link rates. This yields the following fixed-snapshot abstract decision problem, to which Proposition~\ref{prop:np_hardness} with its proof in the appendix applies.}
+Here, we write the problem in the standard minimization form, i.e., to maximize $\sum_{(s,s')} q^{s,s'}$, we minimize its negative.
+\blue{Problem~\eqref{eq:prob:constrainted_routing_and_matching:primal} is the physical mixed-integer formulation built from the geometric/orbital system model. To analyse its hardness, we use the standard threshold decision version of this optimization problem, since any exact solver for the optimization problem could answer the threshold question by comparing the optimum throughput with $\zeta$. For a fixed snapshot and a target throughput $\zeta$, we keep the same feasible set as~\eqref{eq:prob:constrainted_routing_and_matching:primal}, namely $\mathbf{c}\in\mathcal{C}$, $\mathbf{x}\in\mathcal{X}$, $\mathbf{q}\in\mathcal{Q}$, and the link-rate constraint \eqref{eq:const:path:flow_rate}. The decision question asks whether this feasible set contains any solution whose served throughput is at least $\zeta$. This fixed-snapshot threshold decision problem is the abstract snapshot joint matching and routing (AS-JMR) problem defined as follows.}
 
 {\color{blue}
 \begin{defi}[AS-JMR]
-The abstract snapshot joint matching and routing (AS-JMR) decision problem has input
-\begin{equation}
-  \begin{aligned}
-    (\mathcal{I},\mathcal{N},\{i_n\}_{n\in\mathcal{N}},\mathcal{E},\mathcal{F},\{r_{n,m}\}_{\{n,m\}\in\mathcal{E}},\{Q_i\}_{i\in\mathcal{I}},\{D_i\}_{i\in\mathcal{I}},\zeta),
-  \end{aligned}
-\end{equation}
-where $\mathcal{I}$ is the satellite set, $\mathcal{N}$ is the LCT set, $i_n\in\mathcal{I}$ is the satellite carrying LCT $n$, $\mathcal{E}$ is the set of connectable LCT pairs, $\mathcal{F}$ is the set of source-target satellite pairs, $r_{n,m}\geq 0$ is the rate of pair $\{n,m\}$, $Q_i\geq 0$ and $D_i\geq 0$ are the serving and demand bounds, and $\zeta\geq 0$ is a threshold. Define
-\begin{equation}
-  \begin{aligned}
-    \mathcal{E}_{i,j} = \big\{\{n,m\}\in\mathcal{E}\big| i_n = i, i_m = j\big\},
-    \mathcal{L} = \big\{(i,j)\big| \mathcal{E}_{i,j}\neq \emptyset \big\}.
-  \end{aligned}
-\end{equation}
-The task is to verify the existence of $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\in\mathcal{Q}$, and $\mathbf{x}\in\mathcal{X}$ satisfying \eqref{eq:const:path:flow_rate} and
-\begin{equation}
-  \begin{aligned}
-    \sum_{(s,s')\in\mathcal{F}} q^{s,s'} \geq \zeta.
-  \end{aligned}
-\end{equation}
+For fixed snapshot inputs $(\mathcal{I},\mathcal{N},\{i_n\}_{n\in\mathcal{N}},\mathcal{E},\mathcal{F},\{r_{n,m}\}_{\{n,m\}\in\mathcal{E}},\{Q_i\}_{i\in\mathcal{I}},\{D_i\}_{i\in\mathcal{I}},\zeta)$, with the same meanings as in~\eqref{eq:prob:constrainted_routing_and_matching:primal}, the AS-JMR decision problem asks whether there exist $\mathbf{c}\in\mathcal{C}$, $\mathbf{q}\in\mathcal{Q}$, and $\mathbf{x}\in\mathcal{X}$ satisfying \eqref{eq:const:path:flow_rate} and $\sum_{(s,s')\in\mathcal{F}}q^{s,s'}\geq\zeta$.
 \end{defi}
 
 \begin{prop}\label{prop:np_hardness}
@@ -857,7 +840,7 @@ Also, we observe that the throughput reaches a near-maximum value around $K=500$
 
 \subsubsection{\blue{Load-Stress Evaluation}}\label{subsubsec:load_stress_evaluation}
 \blue{For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.}
-\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo is the strongest at all tested loads. DRL remains below the heuristic baselines across this load range. 
+\blue{As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo gives the best reported performance at all tested loads. DRL remains below the heuristic baselines across this load range.
 This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.}
 
 \begin{figure}[t]
@@ -1023,77 +1006,19 @@ Using the convergence of $\sum_{i=1}^{k}\alpha^{[i]}$ and $\sum_{i=1}^{k}(\alpha
 {\color{blue}
 \section*{Appendix: Proof of Proposition \ref{prop:np_hardness}}
 \begin{proof}
-We use two instances throughout the proof. The source instance is denoted by $\mathsf{I}_{\mathrm{src}}$. It is an instance of the integral 2-commodity flow problem in symmetric digraphs. The constructed instance is denoted by $\mathsf{I}_{\mathrm{tar}}$, an instance of the decision problem AS-JMR. The proof is organized as explicit claims.
+We reduce from the integral 2-commodity flow problem on a symmetric digraph $\mathcal{G}$, which is NP-complete \cite[Theorem 1]{jarry2012multiflows}. Each unordered edge $\{u,v\}$ in $\mathcal{G}$ has an integer capacity $\kappa(u,v)=\kappa(v,u)$ that applies to both directed arcs $(u,v)$ and $(v,u)$. The instance has two requests $(s_1,t_1,d_1)$ and $(s_2,t_2,d_2)$, where $s_1,s_2,t_1,t_2$ are distinct vertices in $\mathcal{G}$, and $d_1$ and $d_2$ are positive integers denoting the required flow values. Set $D=d_1+d_2$. The symmetric source problem matches AS-JMR because an established LISL is available in both directions by \eqref{eq:const:link:binary_bidirectional_connection}.
 
-\noindent\textbf{Claim 1.} The source instance $\mathsf{I}_{\mathrm{src}}$ consists of a symmetric directed graph $G=(V,A)$, a symmetric integer capacity function $\kappa:A\to\mathbb{Z}_{>0}$ satisfying $\kappa(u,v)=\kappa(v,u)$ whenever $(u,v)\in A$, and two requests $(s_1,t_1,d_1)$ and $(s_2,t_2,d_2)$. The source question is whether there exist two integral flows of values $d_1$ and $d_2$ that satisfy flow conservation at every intermediate vertex and the arc-capacity constraints. This source problem is NP-complete \cite[Theorem 1]{jarry2012multiflows}. Set $D=d_1+d_2$. The target instance $\mathsf{I}_{\mathrm{tar}}$ will be an instance of AS-JMR. The target question is whether $\mathsf{I}_{\mathrm{tar}}$ has a feasible solution with throughput at least $\zeta$. We set $\zeta=D$. The NP-hard family used in \cite[Section 3]{jarry2012multiflows} has request values $(3n+6m,4m)$ and capacities in $\{1,2,3\}$. Therefore the numeric parameters of the source hard family are polynomially bounded.
+We construct an AS-JMR instance as follows. First, form the AS-JMR satellite set by creating one satellite for each vertex in $\mathcal{G}$. For each commodity $h\in\{1,2\}$ and each unit $p=1,\dots,d_h$, add two new terminal satellites to this AS-JMR satellite set, a source-terminal satellite $a_{h,p}$ and a target-terminal satellite $b_{h,p}$, and include $(a_{h,p},b_{h,p})$ in $\mathcal{F}$. Set $Q_{a_{h,p}}=1$ and $D_{b_{h,p}}=1$ for these terminal pairs, set all other serving and demand bounds to zero, and set the AS-JMR threshold to $\zeta=D$. For each unordered source edge $\{u,v\}$, create one dedicated connectable LCT pair between satellites $u$ and $v$ with rate $\kappa(u,v)$, and create no other real connectable pair between them. For each terminal pair $(a_{h,p},b_{h,p})$, create one unit-rate attachment LCT pair between $a_{h,p}$ and $s_h$ and one unit-rate attachment LCT pair between $t_h$ and $b_{h,p}$. Finally, add isolated LCTs as needed so that all satellites have the same number of LCTs; these added LCTs are not included in any connectable pair and therefore do not affect routing or matching feasibility.
 
-\medskip
-\noindent\textit{Proof of Claim 1.} This is the cited source problem. We use it because one established LISL in AS-JMR is available in both directions by \eqref{eq:const:link:binary_bidirectional_connection}. Therefore a symmetric directed source problem matches the target model. \hfill$\blacksquare$
+If the source instance is feasible, decompose each integral commodity flow into unit directed paths. For every unit path of commodity $h$, route the corresponding AS-JMR pair $(a_{h,p},b_{h,p})$ through the attachment edge $a_{h,p}\to s_h$, the selected unit $s_h$--$t_h$ path in $\mathcal{G}$, and the attachment edge $t_h\to b_{h,p}$. For every unordered source edge $\{u,v\}$ used by at least one of these paths, establish the dedicated LCT pair created between satellites $u$ and $v$; this bidirectional LISL provides rate $\kappa(u,v)$ on each directed arc $(u,v)$ and $(v,u)$. We also establish all attachment LCT pairs. Since the source flow uses each directed arc $(u,v)$ at most $\kappa(u,v)$ times, the AS-JMR link-rate constraints hold. Thus all $D$ unit terminal pairs are served and the AS-JMR throughput is $D=\zeta$.
 
-\medskip
-\noindent\textbf{Claim 2.} Construct $\mathsf{I}_{\mathrm{tar}}$ from $\mathsf{I}_{\mathrm{src}}$ as follows. Let
-\begin{equation}
-  \begin{aligned}
-    \mathcal{I}
-    &= V \cup \{a_{h,p}\mid h\in\{1,2\},\ p=1,\dots,d_h\} \\
-    &\quad \cup \{b_{h,p}\mid h\in\{1,2\},\ p=1,\dots,d_h\}.
-  \end{aligned}
-\end{equation}
-For each $h\in\{1,2\}$ and each $p\in\{1,\dots,d_h\}$, create a source terminal $a_{h,p}$ and a target terminal $b_{h,p}$. Define
-\begin{equation}
-  \mathcal{F}=\{(a_{h,p},b_{h,p})\mid h\in\{1,2\},\ p=1,\dots,d_h\}.
-\end{equation}
-Set $Q_{a_{h,p}}=1$ and $D_{b_{h,p}}=1$ for all $(h,p)$. Set all remaining serving and demand rates to zero. For each unordered arc pair $\{u,v\}$ of the symmetric digraph, create $\kappa(u,v)$ dedicated connectable LCT pairs between satellites $u$ and $v$, each with rate one, and create no other real connectable pairs between $u$ and $v$. For each $(h,p)$, create one dedicated connectable LCT pair of rate one between $a_{h,p}$ and $s_h$ and one dedicated connectable LCT pair of rate one between $t_h$ and $b_{h,p}$. Let $b_i$ be the number of LCTs on satellite $i$ that are used by these real connectable pairs. Set $N'=\max_i b_i$. For each satellite $i$, add $N'-b_i$ extra LCTs and do not include any of them in a connectable pair. Let $\mathcal{N}$ be the set of all real and added LCTs, and let $i_n$ denote the satellite carrying LCT $n$. Then each satellite has exactly $N'$ LCTs. Every real LCT is incident to exactly one connectable pair. Every added LCT is incident to no connectable pair. Since \eqref{eq:const:link:one_connection} is an at-most-one constraint, the added LCTs may remain unused. Let $\mathcal{E}$ be the set of all real connectable LCT pairs just created, set $r_{n,m}=1$ for each $\{n,m\}\in\mathcal{E}$, and set the threshold of AS-JMR to $\zeta=D$. Since each established LISL is bidirectional in this model, the dedicated pairs between $u$ and $v$ provide unit capacity on both directions $(u,v)$ and $(v,u)$.
-
-\medskip
-\noindent\textit{Proof of Claim 2.} This is a direct construction of an AS-JMR instance. The added isolated LCTs create no connectable pair and no neighboring satellite pair. Therefore they do not change the routing instance. \hfill$\blacksquare$
-
-\medskip
-\noindent\textbf{Claim 3.} If $\mathsf{I}_{\mathrm{src}}$ is a yes-instance, then $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance.
-
-\medskip
-\noindent\textit{Proof of Claim 3.} Assume that $\mathsf{I}_{\mathrm{src}}$ is a yes-instance. By the standard decomposition of an integral flow into unit path flows, each commodity $h$ can be written as $d_h$ unit directed $s_h$--$t_h$ paths in $G$; denote them by $P_{h,1},\dots,P_{h,d_h}$. For each $p$, route the unit-demand pair $(a_{h,p},b_{h,p})$ along the path obtained by prefixing $P_{h,p}$ with the attachment arc $a_{h,p}\to s_h$ and suffixing it with $t_h\to b_{h,p}$. Set $q^{a_{h,p},b_{h,p}}=1$ for every $(h,p)$. For each unordered source edge $\{u,v\}$, establish all $\kappa(u,v)$ dedicated LCT pairs between satellites $u$ and $v$ that were created in Claim 2. For each $(h,p)$, establish the two attachment pairs $a_{h,p}$--$s_h$ and $t_h$--$b_{h,p}$. Set every other connection variable to zero. The LCT-connection constraints hold because each real LCT is incident to at most one connectable pair and each added LCT is isolated. The traffic-rate constraints \eqref{eq:const:traffic:flow_rate} hold by construction. Now fix one directed arc $(u,v)$ of $G$. The source solution uses $(u,v)$ at most $\kappa(u,v)$ times. The established dedicated pairs between $u$ and $v$ provide total rate $\kappa(u,v)$ on the directed arc $(u,v)$. Therefore the link-rate constraint \eqref{eq:const:path:flow_rate} holds on $(u,v)$. This argument applies to every directed arc. Therefore $\mathsf{I}_{\mathrm{tar}}$ has a feasible solution with throughput $D=\zeta$. Hence $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance. \hfill$\blacksquare$
-
-\medskip
-\noindent\textbf{Claim 4.} If $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance, then every constructed variable $q^{a_{h,p},b_{h,p}}$ equals $1$.
-
-\medskip
-\noindent\textit{Proof of Claim 4.} Suppose that $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance. Then it admits a feasible solution with throughput at least $D$. For each $(h,p)$, the source and demand constraints give $0\leq q^{a_{h,p},b_{h,p}}\leq 1$. There are exactly $D$ such variables. The throughput bound
-\begin{equation}
-  \sum_{h,p} q^{a_{h,p},b_{h,p}}\geq D
-\end{equation}
-Each term in this sum is at most $1$. Therefore the sum can be at least $D$ only if every term equals $1$. Hence
-\begin{equation}
-  q^{a_{h,p},b_{h,p}}=1,\qquad \forall h\in\{1,2\},\ p=1,\dots,d_h.
-\end{equation}
-\hfill$\blacksquare$
-
-\medskip
-\noindent\textbf{Claim 5.} Fix one pair $(a_{h,p},b_{h,p})$. The vector $\mathbf{x}^{a_{h,p},b_{h,p}}$ defines one directed $s_h$--$t_h$ path in the original symmetric digraph after deleting directed cycles and then deleting the two attachment arcs.
-
-\medskip
-\noindent\textit{Proof of Claim 5.} The vector $\mathbf{x}^{a_{h,p},b_{h,p}}$ is binary and satisfies the flow-conservation constraints \eqref{eq:const:path:flow_constraints}. Therefore it is an integral unit flow from $a_{h,p}$ to $b_{h,p}$. By standard flow decomposition, it equals one directed path from $a_{h,p}$ to $b_{h,p}$ plus zero or more directed cycles. Delete the cycles. Satellite $a_{h,p}$ is adjacent only to $s_h$. The source balance equation therefore forces the remaining path to start with $a_{h,p}\to s_h$. Satellite $b_{h,p}$ is adjacent only to $t_h$. The target balance equation therefore forces the remaining path to end with $t_h\to b_{h,p}$. Delete these two attachment arcs. The remaining path is a directed $s_h$--$t_h$ path in the original symmetric digraph $G$. \hfill$\blacksquare$
-
-\medskip
-\noindent\textbf{Claim 6.} If $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance, then $\mathsf{I}_{\mathrm{src}}$ is a yes-instance.
-
-\medskip
-\noindent\textit{Proof of Claim 6.} Assume that $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance. By Claim 4, every constructed variable $q^{a_{h,p},b_{h,p}}$ equals $1$. Fix a commodity $h$. Apply Claim 5 to every pair $(a_{h,p},b_{h,p})$, for $p=1,\dots,d_h$. This gives $d_h$ unit directed $s_h$--$t_h$ paths in $G$. Aggregate these $d_h$ unit paths. The result is an integral flow of value $d_h$ for commodity $h$ in $\mathsf{I}_{\mathrm{src}}$. Now fix one directed arc $(u,v)$ of $G$. Each extracted unit path that uses $(u,v)$ contributes one unit to the left-hand side of \eqref{eq:const:path:flow_rate}. By Claim 2, there are only $\kappa(u,v)$ dedicated unit-rate LCT pairs between satellites $u$ and $v$. Therefore the right-hand side of \eqref{eq:const:path:flow_rate} on $(u,v)$ is at most $\kappa(u,v)$. Hence at most $\kappa(u,v)$ extracted unit paths use $(u,v)$. Therefore the aggregated flows satisfy the arc capacities. This argument applies to both commodities. Therefore $\mathsf{I}_{\mathrm{src}}$ is a yes-instance. \hfill$\blacksquare$
-
-\medskip
-\noindent\textbf{Claim 7.} The reduction is polynomial.
-
-\medskip
-\noindent\textit{Proof of Claim 7.} The unit-demand expansion in Claim 2 is polynomial because the source hard family has request values $(3n+6m,4m)$. The replacement of each source arc by $\kappa(u,v)$ dedicated unit pairs is polynomial because the source hard family has capacities in $\{1,2,3\}$. The isolated-LCT padding in Claim 2 is polynomial because $N'=\max_i b_i \leq \sum_i b_i = O(|A|+D)$, so the total number of added LCTs is at most $|\mathcal{I}|N'$. Therefore the full construction is polynomial. \hfill$\blacksquare$
-
-\medskip
-Claims 3 and 6 show that $\mathsf{I}_{\mathrm{src}}$ is a yes-instance if and only if $\mathsf{I}_{\mathrm{tar}}$ is a yes-instance. Claim 7 shows that the construction of $\mathsf{I}_{\mathrm{tar}}$ from $\mathsf{I}_{\mathrm{src}}$ is polynomial. Therefore AS-JMR is NP-hard.
+Conversely, suppose the constructed AS-JMR instance has a feasible solution with throughput at least $D$. There are exactly $D$ terminal-pair variables $q^{a_{h,p},b_{h,p}}$, each upper bounded by one, so every one of them must equal one. For each such pair, the binary routing constraints define an integral unit flow from $a_{h,p}$ to $b_{h,p}$. After deleting cycles, the path must begin with $a_{h,p}\to s_h$ because $a_{h,p}$ has no other real neighbor, and must end with $t_h\to b_{h,p}$ because $b_{h,p}$ has no other real neighbor. Removing these two attachment arcs gives a directed $s_h$--$t_h$ path in the original graph. Aggregating these extracted paths for each commodity gives integral flows of values $d_1$ and $d_2$. The capacity constraints are respected because the only real connectable LCT pair between any adjacent original satellites $u$ and $v$ has rate $\kappa(u,v)$. Hence the source instance is feasible. The construction is polynomial in the source instance size because it creates one satellite per source vertex, $D$ source-terminal satellites, $D$ target-terminal satellites, and one dedicated LCT pair per unordered source edge; the isolated-LCT padding is polynomial in the number of created real LCTs. Therefore, AS-JMR is NP-hard.
 \end{proof}
 
 \section*{Appendix: An MDP Extension for Future Work}
 This appendix outlines an example discrete-time MDP formulation in which the Lagrangian decomposition of Section~\ref{sec:lagrangian_dual_relaxation} carries over at each snapshot and the entire temporal coupling is absorbed into the matching subproblem. The formulation is presented as a future-work direction, in line with recent time-dependent topology optimization for LEO constellations \cite{ron2025time}. Exact solution algorithms, convergence analysis, and detailed ATP-time models are outside the scope of this appendix; the ATP-time model below is an illustrative abstraction \cite{kaymak2018survey,li2011analytical,scheinfeild2000acquisition,bashir2021adaptive}.
 
-\noindent\textit{MDP Formulation.} We discretize the continuous time $t$ of Section~\ref{sec:system_model} into snapshots of duration $\Delta t$, indexed by $\ell=0,1,\dots$ with snapshot time $t_\ell=\ell\Delta t$, and attach subscript $\ell$ to snapshot-indexed quantities (e.g., $\mathbf{c}_\ell,\mathbf{x}_\ell,\mathbf{q}_\ell$). For each $\{n,m\}\in\mathcal{E}$, let $\tau_{n,m}\in\mathbb{Z}_{\geq 0}$ denote the ATP time (in snapshots) after a newly established link, and let $h_{\ell,n,m}\in\{0,\dots,\tau_{n,m}\}$ be its remaining countdown; the link is usable iff $h_{\ell,n,m}=0$. Let $\omega_\ell=(\{\mathbf{l}_i(t_\ell)\}_i,\{U_i(t_\ell)\}_i)$ collect deterministic geometry and stochastic traffic. The state, action, and ATP transition are
+\noindent\textit{MDP Formulation.} We discretize the continuous time $t$ of Section~\ref{sec:system_model} into snapshots of duration $\Delta t$, indexed by $\ell=0,1,\dots$ with snapshot time $t_\ell=\ell\Delta t$, and attach subscript $\ell$ to snapshot-indexed quantities (e.g., $\mathbf{c}_\ell,\mathbf{x}_\ell,\mathbf{q}_\ell$). For each $\{n,m\}\in\mathcal{E}$, let $\tau_{n,m}\in\mathbb{Z}_{\geq 0}$ denote the ATP time (in snapshots) required after a link is newly established, and let $h_{\ell,n,m}\in\{0,\dots,\tau_{n,m}\}$ be its remaining countdown; the link is usable iff $h_{\ell,n,m}=0$. Let $\omega_\ell=(\{\mathbf{l}_i(t_\ell)\}_i,\{U_i(t_\ell)\}_i)$ collect deterministic geometry and stochastic traffic. The state, action, and ATP transition are
 \begin{equation}
 \begin{aligned}
 &\xi_\ell = (\mathbf{c}_{\ell-1},\mathbf{h}_\ell,\omega_\ell),\ \ u_\ell=(\mathbf{c}_\ell,\mathbf{x}_\ell,\mathbf{q}_\ell)\in\mathcal{C}\!\times\!\mathcal{X}\!\times\!\mathcal{Q},\\
