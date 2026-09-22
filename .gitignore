@@ -35,3 +35,12 @@ build/
 # Editor-specific files (optional, adjust as needed)
 *.swp
 *.tmp
+
+# New-round validation outputs
+response_letter_TCOM_RV2.pdf
+response_letter_TCOM_RV2.bbl
+/tmp/
+/output/
+
+# Local decision letter
+/TCOM_RV2_decision_letter.txt

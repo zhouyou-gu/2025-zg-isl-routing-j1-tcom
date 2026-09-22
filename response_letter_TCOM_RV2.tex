@@ -1,0 +1,220 @@
+\documentclass[journal,12pt,onecolumn,draftclsnofoot,]{IEEEtran}
+
+\usepackage{xr-hyper}
+\makeatletter
+
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+\typeout{(#1)}% latexmk will find this if $recorder=0
+\@addtofilelist{#1}
+\IfFileExists{#1}{}{\typeout{No file #1.}}
+}\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+\externaldocument[][nocite]{#1}%
+\addFileDependency{#1.tex}%
+\addFileDependency{#1.aux}%
+\addFileDependency{#1.bbl}%
+}
+\myexternaldocument{main}
+
+
+\usepackage[parfill]{parskip}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bbding}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\newcommand\algorithmicprocedure{\textbf{procedure}}
+\newcommand{\algorithmicendprocedure}{\algorithmicend\ \algorithmicprocedure}
+\makeatletter
+\newcommand\PROCEDURE[3][default]{%
+  \ALC@it
+  \algorithmicprocedure\ \textsc{#2}(#3)%
+  \ALC@com{#1}%
+  \begin{ALC@prc}%
+}
+\newcommand\ENDPROCEDURE{%
+  \end{ALC@prc}%
+  \ifthenelse{\boolean{ALC@noend}}{}{%
+    \ALC@it\algorithmicendprocedure
+  }%
+}
+\newenvironment{ALC@prc}{\begin{ALC@g}}{\end{ALC@g}}
+\makeatother
+
+\usepackage{color}
+\usepackage{cite}
+
+\allowdisplaybreaks
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\DeclareMathOperator{\sgn}{\bf sgn}
+\DeclareMathOperator{\cov}{\bf cov}
+\DeclareMathOperator{\dom}{\bf dom}
+\DeclareMathOperator{\var}{\bf var}
+\DeclareMathOperator{\svd}{\bf svd}
+\DeclareMathOperator{\expt}{\mathbb{E}}
+\DeclareMathOperator{\vari}{\mathbb{V}}
+\DeclareMathOperator{\proj}{\textrm{proj}}
+\DeclareMathOperator{\gram}{\bf gram}
+\DeclareMathOperator{\diag}{\bf diag}
+\DeclareMathOperator{\Tr}{\bf Tr}
+\DeclareMathOperator{\nsl}{\bf nsl}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+% \DeclareMathOperator{\inf}{\bf inf}
+
+%\renewcommand{\baselinestretch}{1.0}
+\usepackage{amsthm}
+\usepackage{stfloats}
+\newtheorem{defi}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{condition}{Condition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{rem}{Remark}
+\newtheorem{pro}{Property}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newcommand{\red}[1]{{\color[rgb]{1,0,0}{#1}}}
+\newcommand{\blue}[1]{{\color[rgb]{0,0,1}{#1}}}
+\newcommand{\purple}[1]{{\color[rgb]{0.65,0,0.5}{#1}}}
+
+
+\newcommand{\pendingcomment}{\color[rgb]{1,0,0}}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\DeclareUnicodeCharacter{2011}{\mbox{-}}
+\DeclareUnicodeCharacter{03B8}{\ensuremath{\theta}}
+
+\title{\Large\textbf{Response Letter}\\
+{\Large Joint Laser Inter-Satellite Link Matching and Traffic Flow Routing in LEO Mega-Constellations via Lagrangian Duality}}
+
+\author{
+\IEEEauthorblockN{Zhouyou Gu, Jinho Choi, and Jihong Park}
+}
+
+\begin{document}
+
+\maketitle
+
+We sincerely thank the editor and reviewers for their careful evaluation of our manuscript and constructive comments. We appreciate the opportunity to revise and resubmit manuscript TCOM-TPS-26-1250 for consideration by IEEE Transactions on Communications.
+
+\section*{\centering\Large\textbf{Response to the Editor's Note}}
+
+We thank the editor for identifying the principal issues requiring attention and for the opportunity to address them in this revision.
+
+\noindent{\bfseries\pendingcomment Comment E.1: All reviewers still have notable suggestions on this paper, particularly in the performance evaluation part. Therefore, I recommend that you update your paper and submit a revised version for further processing.}
+
+\textbf{Response:} We will focus this revision on the remaining evaluation and deployment questions. The planned evaluation will extend the acquisition, pointing, and tracking (ATP) sensitivity range, broaden constellation coverage, and quantify the effects of gateway density and terminal availability. We will also clarify the distinction between routed throughput and end-to-end latency, explain the payload assumptions, and improve figure readability and language. The responses will identify which conclusions follow from the existing model and which require the planned experiments. Numerical conclusions will be added after those experiments have been completed and checked.
+
+\textbf{Planned manuscript changes:} We will revise the relevant system-model and simulation discussions, update the affected figures, and prepare a concise summary of the completed changes for the editor. Each reviewer response will then cite its specific manuscript location and supporting evidence.
+
+\section*{\centering\Large\textbf{Response to Reviewer 1}}
+
+\noindent{\bfseries\pendingcomment Thanks for the revision. The authors have addressed my major concerns. A few issues still need clarification.}
+
+We thank the reviewer for the careful assessment and constructive comments. We will clarify the ATP replay and the practical timing limits of centralized deployment in the responses that follow.
+
+\noindent{\bfseries\pendingcomment Comment 1.1: The ATP study uses 10 s topology intervals and TATP values up to 30 s, while the manuscript cites optical acquisition times on the order of tens of seconds. Why is this parameter range sufficient, and what happens when TATP exceeds the topology interval for several consecutive snapshots?}
+
+\textbf{Response:} The $10$ s interval is the sampling interval of the ATP replay, not a requirement that acquisition finish within one interval. A newly selected link remains unavailable until it has been retained continuously for $T_{\mathrm{ATP}}$; its acquisition timer continues across snapshots, and dropping the link discards that timer. Thus, the existing $30$ s setting already spans three intervals. A link retained for less than its acquisition time never becomes usable, so repeated reconfiguration can substantially reduce throughput. We will explain this behavior explicitly and acknowledge that the current range does not establish robustness to longer acquisition times. We plan to extend the sweep to $60$ and $120$ s and distinguish the existing initially acquired-link condition from a cold-start condition.
+
+\textbf{Planned manuscript changes:} We will extend Fig.~\ref{fig:plot_test_tcom_atp_transition} while retaining the existing $0$, $10$, $20$, and $30$ s cases. The replay horizon will be extended to at least ten times the largest acquisition time, with initialization and warm-up treatment stated explicitly. We will report throughput, the fraction of links still acquiring, and link-persistence statistics, and add a short example showing a timer carried across consecutive snapshots.
+
+\noindent{\bfseries\pendingcomment Comment 1.2: Computing time still reaches minutes for larger constellations, but the system model presents a central controller operating per snapshot. Will the dissemination delay and solver time fit the intended control interval once ATP overhead and traffic prediction updates are included? You\textquotesingle{}d better discuss this deployment issue more concretely.}
+
+\textbf{Response:} The reported solver times do not support a claim that the full controller cycle always fits within a seconds-scale snapshot interval. We will state this limitation directly. The current method is a centralized snapshot optimizer whose practical use requires sufficient planning lead time and sufficiently accurate predictions for the intended execution epoch. We will separate state collection and traffic estimation, optimization, schedule dissemination, and ATP activation in the control-cycle description. A schedule computed from a state that has become invalid should be refreshed rather than executed unchanged. Predictive scheduling, longer topology holding times, warm starts, and reduced iteration budgets are possible deployment choices, but their adequacy must be checked against the measured computation and state-validity times.
+
+\textbf{Planned manuscript changes:} We will revise the system-operation remark and the computing-time discussion around Fig.~\ref{fig:plot_test_computing_time_measurement}. We will add an explicit timing budget that distinguishes measured solver time from unmeasured communication and prediction overhead, and explain why the $10$ s ATP replay is not an end-to-end real-time controller demonstration. Any proposed acceleration or longer control interval will be presented as a deployment option requiring validation.
+
+\section*{\centering\Large\textbf{Response to Reviewer 2}}
+
+\noindent{\bfseries\pendingcomment The authors in this paper have made noticeable revisions, but the novelty is still incremental and the evaluation remains limited to a single static shell. Further major revision is needed.}
+
+We thank the reviewer for the careful assessment and constructive comments. We will sharpen the novelty discussion around the joint terminal-matching, routing, and rate-allocation decisions, and broaden the evaluation beyond the existing shell block. We will separate these contributions from related routing methods and avoid claiming novelty merely from using Lagrangian duality.
+
+\noindent{\bfseries\pendingcomment Comment 2.1: The structured‑shell test uses only one 1000‑satellite block from a single Starlink shell at a fixed epoch. Real mega‑constellations involve multiple shells, orbital precession, and time‑varying link geometry. Testing on a single static snapshot limits the generality of the conclusions.}
+
+\textbf{Response:} The existing evaluation is not limited to one static epoch. Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} uses the same structured $1000$-satellite block at offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min, and Fig.~\ref{fig:plot_test_dual_optimization_different_constellation} includes additional constellation configurations. However, the reviewer correctly identifies that one Starlink shell block provides limited coverage of multi-shell geometry. We will clarify the existing temporal evaluation and extend it to multiple structured blocks and a multi-shell Starlink configuration, using matched constellation states and traffic inputs across methods. We will also distinguish short-term orbital propagation from evidence about slower changes such as orbital precession, which the existing three-hour window does not establish.
+
+\textbf{Planned manuscript changes:} We will expand the simulation setup and the structured-shell evaluation with repeated shell/block selections, multiple starting epochs, and time-varying multi-shell tests. We will report the included shell populations, sampling procedure, throughput, served-demand ratio, and variability across instances. Longer-horizon cases will use orbital data appropriate to their epochs, and conclusions about precession will remain bounded to the modeled and tested time span.
+
+\noindent{\bfseries\pendingcomment Comment 2.2: Some figures, e.g., Figs. 4 and 8, still have very small axis labels and thin lines. They are hard to read even on screen. Enlarging the fonts and thickening the curves would improve readability.}
+
+\textbf{Response:} We will enlarge the axis labels, tick labels, and legends in Figs.~4 and~8 and increase line and marker visibility at the final manuscript size. The plotting data and the meaning of the curves will be preserved. We will use consistent method colors, distinguishable line styles or markers, and adequate panel spacing, and inspect the regenerated figures within the compiled two-column manuscript rather than judging readability only from enlarged standalone images.
+
+\textbf{Planned manuscript changes:} We will update the plotting settings for Figs.~\ref{fig:plot_test_dual_optimization_vs_grid_rand} and~\ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}, re-export vector PDFs, and check the remaining figures for the same readability issue. Revised figures will be reproduced in the corresponding completed response where useful.
+
+\noindent{\bfseries\pendingcomment Comment 2.3: A few grammatical errors remain, such as \textquotesingle{}\textquotesingle{}focuse imization\textquotesingle{}\textquotesingle{} in the abstract and inconsistent hyphenation of \textquotesingle{}\textquotesingle{}inter‑satellite\textquotesingle{}\textquotesingle{}. A final proofread is recommended before resubmission.}
+
+\textbf{Response:} We will perform a final source and rendered-PDF proofreading pass, including the abstract, captions, equations with surrounding prose, and the response letter. The exact string quoted by the reviewer is not present in the current abstract source, so we will also check the submitted version and PDF text extraction before identifying the correction. We will standardize the usage of inter-satellite and other recurring compound terms, while preserving the wording of the reviewer comments. This proofreading pass will not alter the technical claims or notation.
+
+\textbf{Planned manuscript changes:} We will correct confirmed typographical and grammatical errors in their actual locations and align terminology throughout the manuscript. Proofreading-only corrections will remain unhighlighted under the established revision convention. The completed response will describe the corrections actually made rather than claim that an unverified error was fixed.
+
+\noindent{\bfseries\pendingcomment Comment 2.4: Finally, some other routing schemes, such as \textquotesingle{}multipath adaptive energy-efficient routing scheme\textquotesingle{}, \textquotesingle{}sparrow search-based energy-adaptive routing scheme\textquotesingle{} have been proposed for similar scenarios. A brief mention of these alternative models in the introduction or related work section would help readers understand the modeling landscape and the rationale behind the chosen approach.}
+
+\textbf{Response:} We will review the two suggested studies and add a concise discussion of their relevance to LEO routing. The comparison will distinguish their routing objectives, energy assumptions, and path-selection mechanisms from this paper's joint optimization of mechanically constrained laser-terminal matching, flow routing, and rate allocation. We will make the rationale for our throughput-oriented formulation explicit without implying that it supersedes energy-aware routing or evaluates objectives absent from our model. The discussion will be based on the papers themselves, with bibliographic details and technical distinctions checked before inclusion.
+
+\textbf{Planned manuscript changes:} We will add the verified references to the related-work discussion and bibliography and refine the gap paragraph around the actual joint decision variables. The comparison will cover the suggested multipath adaptive energy-efficient scheme and the sparrow-search energy-adaptive scheme, and will state the limitations of comparing methods with different objectives and system assumptions.
+
+\section*{\centering\Large\textbf{Response to Reviewer 3}}
+
+\noindent{\bfseries\pendingcomment Authors present a significant contribution on the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile. Theoretical approach is ully proved. References perfectly suit the paper scope.
+Concerns are not critical but should be explained by authors before acceptance for publication in TCOM. Most of them are related to system modeling or simulation parameters.}
+
+We thank the reviewer for the careful assessment and constructive comments. We will clarify the model and simulation assumptions, add the requested sensitivity studies, and distinguish the metrics supported by the present model from deployment characteristics that require further modeling.
+
+\noindent{\bfseries\pendingcomment Comment 3.1: One of the relevant indicators in satellite constellations is end-to-end  latency. Authors should clarify why latency results are not presented.}
+
+\textbf{Response:} The current objective maximizes steady-state routed throughput under capacity constraints; it does not model packet arrivals, queues, packet sizes, processing delays, or access-link scheduling. Consequently, throughput results alone do not establish end-to-end latency. We will explain this scope and add a route-level propagation-delay evaluation using the sum of the physical LISL lengths divided by the speed of light. We will report it together with served traffic and route reachability, so a low delay is not interpreted without considering which flows are actually served. This metric will be identified as the space-segment propagation component, not as a complete end-to-end latency result.
+
+\textbf{Planned manuscript changes:} We will clarify the latency scope in the formulation and simulation discussion and add a propagation-delay and hop-count comparison for DuJo and the baselines on matched states. The metric will specify its route population, weighting, and treatment of unserved flows. Queueing, transmission, processing, gateway, and user-access delays will remain explicit exclusions unless an appropriate packet-level model is introduced.
+
+\noindent{\bfseries\pendingcomment Comment 3.2: Served demand does not reach 50\%. Authors are requested to explain if it is due to mismatch of simulation parameters (e.g. user demand vs capacity of ISLs), ISL bottlenecks or due to the proposed optimization.}
+
+\textbf{Response:} A served-demand ratio below $50\%$ does not by itself identify either a modeling error or an optimization failure. The present setup combines heterogeneous demand, finite gateway service capacity, limited LISL connectivity, and a restricted set of candidate serving satellites. For the residual demands routed through the constellation, total routed throughput cannot exceed $\min\{\sum_i D_i,\sum_i Q_i\}$ even before link and path restrictions are imposed. We will audit the plotted numerator and denominator, including whether locally served traffic is counted, and then quantify the aggregate supply limit, route reachability, and link utilization. We will also compare against a suitable relaxed upper bound or exact small-instance solution so that an algorithmic gap is not dismissed as a physical bottleneck without evidence.
+
+\textbf{Planned manuscript changes:} We will define the served-demand ratio beside its first use, reconcile it with the traffic equations, and add bottleneck diagnostics to the existing load-stress study. The evaluation will distinguish offered demand, locally served traffic, LISL-carried traffic, and unserved traffic where applicable. Gateway-capacity and connectivity sensitivity will be used to explain the dominant limits, and any remaining optimization gap will be reported honestly.
+
+\noindent{\bfseries\pendingcomment Comment 3.3: Please include θ in figure 1.}
+
+\textbf{Response:} We will mark $\theta$ explicitly as the angle between an LCT's mounting direction and a boundary of its steering region in Fig.~1. The figure already labels the full field-of-regard span as $2\theta$; adding the half-angle will make its relationship to the visibility test clear and avoid confusing the two angular quantities.
+
+\textbf{Planned manuscript changes:} We will add a clearly visible half-angle arc and $\theta$ label to Fig.~\ref{fig:leo_system_diagram}, retain the $2\theta$ span where appropriate, and align the caption with the half-angle definition and the $\cos\theta$ visibility condition. The underlying geometry and simulation parameters will remain unchanged.
+
+\noindent{\bfseries\pendingcomment Comment 3.4: 100 seem to be a large number. Please evaluate the sensitivity of the proposed optimization to the number of gateways.}
+
+\textbf{Response:} The $100$ gateways are a global scenario choice, not a requirement of the optimization or an assertion that every satellite has gateway access. In the current model, gateway locations determine which satellites have feeder connectivity, and a gateway-connected satellite receives the per-satellite service budget $Q$. We will explain this assumption and quantify sensitivity to gateway count. Increasing the number of sites may improve geographical access and aggregate available supply, but its benefit need not be linear because coverage overlaps, traffic is uneven, and LISLs can remain bottlenecks.
+
+\textbf{Planned manuscript changes:} We plan to compare $25$, $50$, $100$, $150$, and $200$ gateway sites using nested subsets of the same site pool across multiple placement seeds. Constellation states, user demand, per-satellite $Q$, and algorithm settings will be matched across methods. We will report gateway-connected satellite counts, available gateway supply, throughput, and served-demand ratio, and explicitly retain the current assumption that several gateways visible to one satellite do not multiply its $Q$.
+
+\noindent{\bfseries\pendingcomment Comment 3.5: Some details on the comm payload should be provided, i.e., is it multibeam, beam-hopping payload? How many users can be simultaneously served by a given satellite?}
+
+\textbf{Response:} The manuscript models optical inter-satellite terminals and aggregate user traffic; it does not specify a multibeam or beam-hopping radio payload or optimize its scheduler. We will make that abstraction explicit instead of assigning an unsupported beam count or simultaneous-user limit. In particular, $U_i(t)$ is the modeled active-user population, $D$ is per-user offered demand, and $Q$ is gateway service capacity, not a radio-access beam budget. Although $Q/D=200$ for the stated $20$ Gbps and $0.1$ Gbps values, this is only a gateway-capacity equivalent and is not a claim that a satellite payload can simultaneously serve $200$ users. A physical user limit would additionally require access bandwidth, beam allocation, link budgets, and scheduling assumptions.
+
+\textbf{Planned manuscript changes:} We will add a payload-scope paragraph to the traffic model and clarify $U_i(t)$, $D$, and $Q$ in the simulation setup. We will state that user-access scheduling is outside the model and that evaluating simultaneous-user capacity requires explicit radio-access constraints.
+
+\noindent{\bfseries\pendingcomment Comment 3.6: What \textquotedbl{}average\textquotedbl{} number of LCT per satellite mean in Figure 8? If the number of LCT is increased to 4, would the throughput increase linearly as shown in Fig 8?}
+
+\textbf{Response:} The average in Fig.~8 denotes available terminals across satellites, not a fractional physical terminal on each satellite. The existing sweep applies independent availability masks to the two nominal front/back LCTs. If each terminal is unavailable with probability $\rho$, the expected number available per satellite is $2(1-\rho)$; an individual satellite still has an integer number of available terminals. We will clarify this distinction and extend the evaluation to explicit three- and four-terminal layouts. Four terminals require additional mounting directions beyond the present front/back pair. We will evaluate that geometry directly rather than extrapolate the two-terminal availability curve. Extra terminals can improve routing diversity, but neither the model nor the existing results guarantee linear throughput growth.
+
+\textbf{Planned manuscript changes:} We will define expected and realized average availability in the simulation setup and Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}. We plan matched two-, three-, and four-terminal tests using front/back and stated side-terminal placements, with multiple seeds and identical traffic and orbital states. We will report throughput and reachability, distinguishing changes in terminal availability from changes in installed terminal geometry.
+
+\noindent{\bfseries\pendingcomment Comment 3.7: In fig 8 throughput does monotonically increase with FOR, which seems to have some explanation. Please provide some inputs on this issue.}
+
+\textbf{Response:} For fixed satellite geometry, terminal orientations, link-rate parameters, and demand, increasing the field-of-regard half-angle relaxes the visibility constraints and enlarges the set of candidate links. A solution feasible at a smaller angle remains feasible at a larger angle, because additional links need not be selected. Thus, the optimal throughput cannot decrease under these matched conditions, although it may saturate and need not grow linearly. The observed gain is consistent with additional matching and routing alternatives that relieve bottlenecks. We will distinguish this feasible-set argument from a guarantee about every output of DuJo's finite-iteration procedure or its baselines, whose heuristic decisions need not be monotone.
+
+\textbf{Planned manuscript changes:} We will add this explanation to the constellation-configuration discussion, verify matched states and fixed non-FOR parameters, and clarify whether the horizontal axis shows $\theta$ or $2\theta$. Candidate-link counts, reachability, and repeated-run variability will help explain gains, plateaus, and the weaker sensitivity of fixed-pattern baselines.
+
+\end{document}

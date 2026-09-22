@@ -51,7 +51,7 @@ This workspace supports technical revision work that spans multiple synchronized
 - Citations used to support new claims are present where needed.
 - Added terminology and notation are consistent across the synchronized artifacts.
 - When quoting manuscript text in the response document, omit non-highlighted surrounding text unless it is needed for meaning, location, or a displayed block that would otherwise become unclear.
-- When a quoted manuscript excerpt omits preceding text, begin the retained quote with `\dots` to mark the omission explicitly.
+- When a quoted manuscript excerpt omits preceding text, begin the retained quote with literal `...` before the first blue paragraph, following the reference response-letter standard.
 - For figure-driven comments, prefer embedding the revised figure directly in the response document near the relevant response block rather than relying only on prose description.
 - Add a short bridge sentence before an embedded response figure.
 - For an embedded response figure, start the caption with `(Fig. \ref{fig:xxx} in the revised manuscript)` and use a response-specific `\label{fig:resp_...}` instead of reusing the manuscript figure label.
@@ -102,7 +102,7 @@ Use this as a mental or written template when handling a review item:
 - Keep the control files low entropy: durable outcomes in the progress file, reusable guidance in the harness file.
 - Keep quoted highlighted text verbatim between the manuscript and the response document.
 - Omit non-highlighted surrounding text from quotes unless it is needed for meaning, location, or clarity.
-- If prior text is omitted from a quote, mark the omission with `\dots`.
+- If prior text is omitted from a quote, mark the omission with literal `...` before the first blue paragraph.
 - Substantive manuscript revisions are highlighted by default.
 - Grammar-only or typo-only fixes remain unhighlighted unless requested otherwise.
 - While one review item is actively being refined, temporarily mark the active substantive manuscript edits in a distinct in-progress highlight color. Once that item is accepted or treated as stable, convert the same substantive text back to the standard revision color.
@@ -128,7 +128,68 @@ Use this as a mental or written template when handling a review item:
 ## Project Context for This Workspace
 
 - Primary manuscript source: `main.tex`
-- Primary response-letter source: `response_letter_TCOM_RV1.tex`
+- Identify the active round and response-letter source from `AGENT_PROGRESS.md`; preserve earlier-round letters as historical artifacts.
 - Progress tracker: `AGENT_PROGRESS.md`
 - Supporting code and experiment repo: `../leo-sat-flow`
 - Supporting remote code checkout may exist on the SSH host and may need sync verification when code-backed revisions are part of the work
+
+## Revision-Response Playbook
+
+These durable rules apply only when active work involves coordinated manuscript and response-letter revision. They are reusable operating rules, not mission scope or current task state.
+
+- After completing the mandatory core AGENT-file read order, consult `REVISION_TASK.md` only when it exists and active work involves joint manuscript and response-letter revision; treat it as a lower-precedence current-state brief, not as a control file.
+- Do not patch `AGENT.md` to register `REVISION_TASK.md`; the control file is immutable after scaffold. These rules may describe when the sidecar is useful and which revision facts it owns, but they do not change core read order, precedence, file roles, or update-dispatcher authority.
+- Handle one review item at a time unless the user explicitly asks for grouped handling.
+- When the user requests plans for every comment, draft all requested items together. Separate existing facts from proposed work, use future tense and `Planned manuscript changes:` for unimplemented revisions, and keep comments pending. Neighboring responses may inform the approach, but their numerical results and method-specific claims are not evidence for this paper.
+- For each review item, identify the manuscript change, response-letter claim, supporting evidence, and any highlighted-manuscript effect before marking the item resolved.
+- Revise manuscript content before finalizing response-letter text when the response depends on a technical or textual manuscript change.
+- Keep manuscript, response letter, highlighted manuscript, appendix material, figures, simulations, and bibliography mutually consistent when one of them changes the substance of the reply.
+- Do not claim that a reviewer concern has been addressed unless the manuscript source and response-letter draft make compatible claims and cite or point to the same supporting evidence.
+- Keep response-letter drafting concise, specific, and respectful. State what changed, where it changed, and why the change addresses the concern.
+- Vary response-letter openings and avoid starting most responses with `We agree`; use it only when agreement is substantive, and otherwise state the revision action directly.
+- When a reviewer comment uses numbered references to papers, tables, figures, or equations, preserve the reviewer's original number in the response text. For paper references, append an immediate parenthetical mapping in the form `(\cite{...} in this letter)`. For table, figure, and equation references whose numbers changed, use mappings such as `(now Table~\ref{...})`, `(now Fig.~\ref{...})`, or `(now \eqref{...})` rather than replacing the reviewer-supplied number. If the number is unchanged, refer to it directly and do not add a redundant mapping such as `Fig. 1 (now Fig. 1)`.
+- In response-letter entries, keep the visual paragraph structure consistent: put a blank line after the reviewer comment, after `\textbf{Response:}` text, after `\textbf{Manuscript changes:}` or `\textbf{Planned manuscript changes:}` text, and before the next reviewer comment.
+- When a response-letter change entry describes completed manuscript edits, use the label `\textbf{Manuscript changes:}`, name the manuscript location, and introduce each quoted change with a short sentence ending in "as". Quote a single-paragraph change as ``...\blue{revised text.}''. Quote a contiguous multi-paragraph change in the same style, with the literal `...` only before the first blue paragraph:
+
+~~~tex
+``...\blue{first paragraph.}
+
+\blue{second paragraph.}
+
+\blue{final paragraph.}''
+~~~
+
+Use separate quoted excerpts only for non-contiguous manuscript changes.
+- When reproducing a manuscript table in a response letter, preserve the manuscript table's semantic content, caption identity, and reviewer traceability, while adapting only the local presentation needed for the response-letter class and page geometry. Use a caption prefix such as ``(Table~\ref{...} in the manuscript)'' when needed to distinguish the reproduced letter table from the manuscript table. Keep the reproduced table fixed under the relevant reviewer comment so it does not float past the next comment. Validate by rendering the response-letter PDF and visually comparing the reproduced table against the manuscript table. Do not rely on source equality or text extraction alone for table-layout checks.
+- When reproducing a manuscript figure in a response letter, use the manuscript figure artifact directly and preserve its visual content, caption meaning, manuscript figure identity, and reviewer traceability, while adapting only the local size needed for the response-letter class and page geometry. Place the reproduced figure after the relevant quoted manuscript change, use a caption prefix such as ``(Fig.~\ref{...} in the manuscript)'' to distinguish the response-letter figure number from the manuscript figure number, and keep the figure fixed under the relevant reviewer comment so it does not float past the next comment. Validate by rendering the response-letter PDF and visually comparing the reproduced figure and caption against the manuscript figure. Do not rely on matching source paths, file hashes, or text extraction alone for figure-layout checks.
+- Format reviewer and editor comments in the response letter in bold; keep responses and planned/manuscript-change notes under their existing labels.
+- Render unchecked reviewer and editor comments in red. Keep a comment red and pending after drafting, editing, synchronization, or successful validation; these actions do not constitute approval. Remove the pending-comment color and mark a comment checked only when the user explicitly says ``OK'' for that specific comment.
+- Treat highlighting as a derivative artifact of concrete manuscript edits. Do not use highlighting notes as the source of truth for manuscript content.
+- Only when the user explicitly requests final PDF variants for a revision submission, compile each requested existing LaTeX source entry point directly without creating alternate `.tex` files. Put temporary build state in the gitignored `tmp/` directory and final PDFs in the gitignored `output/pdf/` directory. Treat `<source-stem>_untracked.pdf` as the primary target and remap every tracked-content color declaration at compile time, including macros and direct color commands in prose, tables, and equations, so all revised document text renders in the normal uncolored text color. Name the blue tracked companion `<source-stem>_blue_tracked.pdf` and force only tracked document content to blue. Produce a suffix-free `<source-stem>.pdf` that preserves source-defined coloring only when the user specifically requests a direct source-colored build. Leave embedded figure content unchanged, and do not run this export workflow as routine validation.
+- Highlight all revised manuscript text in blue, using the manuscript's existing blue-text convention or a minimal LaTeX blue-text macro introduced before the first highlighted edit.
+- Treat proofreading-only language cleanup as an exception to the blue-highlight and quoted-change rules when the user asks for proofreading rather than a substantive manuscript change. Do not individually blue-highlight or quote minor proofreading edits; state in the response letter that the manuscript was proofread.
+- Record active review item state, artifact mapping, evidence gaps, and the next review-item-local coordination step in `REVISION_TASK.md`. Record execution blockers, cross-item resume needs, and the canonical resume point in `AGENT_PROGRESS.md`, not in this playbook.
+
+
+### Starting a New Review Round
+
+- When the user resets revision tracking for a new round, remove prior-round color wrappers with brace-aware editing while preserving their contents, and remove any old blue-to-black override so the retained highlight macro works for new changes. Keep archived prior-round markup unchanged.
+
+- Create a separate response source using the next local `response_letter_TCOM_RV<n>.tex` stem. Treat that suffix as a workspace round label until the decision letter confirms the editorial round. Preserve previous response letters.
+- Obtain the new decision letter and all reviewer reports before creating numbered comments or substantive replies. Preserve original wording and reviewer identifiers, and verify the current submission identifier and decision date instead of reusing prior-round metadata.
+- If the reports are unavailable, create a visibly labeled draft with pending-input notices and a commented authoring template. Do not invent comments, assume the previous reviewer set, or claim revisions have been completed.
+- Preserve the previous submission's manuscript baseline and color state when initializing a round. Distinguish new substantive edits before enabling their blue highlighting so previous-round changes are not presented as new.
+- Keep manuscript labels out of quoted excerpts and give reproduced figures and tables response-specific labels. Do not disable all local labels or suppress reference warnings globally.
+
+### Archiving a Completed Review Round
+
+- Archive only round-specific response letters, cover letters, their build files, and response progress records in `archive/rv<n>/`. Preserve their contents and update active tracker links.
+- Keep manuscript files, tracked manuscript variants, figures, bibliography databases, and class files outside the response archive. Do not add dependency snapshots or expand the archive beyond response-related files.
+- Keep archival simple. Do not add manifests, archive documentation, or rebuild packages unless requested. Preserve existing Git tracking and ignore conventions.
+
+### Verbatim Decision-Letter Intake
+
+- Preserve supplied decision letters and reviewer reports as byte-identical source files. Build comment blocks directly from that source, retaining spelling errors, punctuation, original numbering, and Unicode symbols; apply only LaTeX escaping and layout markup.
+- Follow the supplied reference response letter directly: use inline bold `Comment E.1:` / `Comment 1.1:` labels, then `Response:` and `Manuscript changes:`. Replace source list markers with those comment labels while preserving every word of the comment. Verify comment wording after reversing LaTeX escaping.
+- For a scaffold-only request, leave the reference's response and manuscript-change fields empty. Do not add scaffold banners, separate comment headings, duplicated numbering, forced reviewer page breaks, bracketed drafting instructions, or custom comment environments. Do not draft substantive answers or mark items approved.
+- Include the editor's substantive assessment as the editor comment. Keep the full administrative email in the original source file rather than reproducing its salutation, submission link, instructions, or signature in the response letter. Preserve reviewer opening assessments as unnumbered introductory paragraphs without separate response fields.
