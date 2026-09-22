@@ -35,6 +35,7 @@ This workspace supports technical revision work that spans multiple synchronized
 - If the user says they made minor changes or asks to double-check again, re-read the relevant files directly and verify title, notation, citations, figures, and quoted text from source.
 - If the argument is weak, refine the key points before rewriting.
 - Keep the manuscript body concise. Shorten the body first, and move extension material elsewhere only if it is still needed.
+- Use normal LaTeX line breaking for prose revisions. Do not add manual line-fitting commands such as `\looseness` unless the user requests them.
 - Keep notation aligned with the existing document and avoid symbol or index collisions.
 - Avoid referencing symbols before they are defined.
 - Add supporting citations inline where claims are made.
@@ -112,6 +113,7 @@ Use this as a mental or written template when handling a review item:
 - Avoid reusing the same symbol for semantically different roles.
 - Add supporting citations inline where claims are made.
 - Prefer formal prose in technical explanations and proofs, and avoid symbolic directional shorthand when plain language is clearer.
+- Describe related work in third person, using the authors or method name; avoid ownership phrases such as "our related work."
 - In manuscript prose, avoid response-letter or conversational framing such as explaining what the paper does not claim "here," defending why a proof is scoped a certain way, or saying "we do not propose" as a reviewer-facing caveat. State scope limitations as formal manuscript claims instead.
 - Check new appendix or auxiliary technical material for likely render or layout issues.
 - Use title case for a formal problem or method name only when it functions as a formal heading, definition label, or exact name introduction. In ordinary prose, prefer lowercase phrasing plus the acronym when needed.
