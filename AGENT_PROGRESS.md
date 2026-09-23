@@ -4,10 +4,14 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- Comment 2.3 proofreading is implemented and validated, pending acceptance. Corrected minor grammar, agreement, capitalization and caption wording; checked current source and available PDFs for the quoted typo (absent) and inter-satellite hyphenation (consistent). Review PDF: `output/pdf/main_comment_2_3_review.pdf`.
+
+- Comment 2.2 readability is implemented and validated, pending acceptance. Fonts enlarged in Figs. 3–10; Fig. 4 bars widened by 25%; Fig. 8 now shows four cases per panel with wider bars. Response describes changes without reproduced figures.
+
 - Comment 2.1 is implemented and validated. All 54 snapshot instances / 270 method evaluations completed on the RTX 5090 workstation. The single-shell and two-shell plots are stacked in one manuscript column as Fig. 5(a)/(b); blue setup/results passages and the response are synchronized; explicit user acceptance remains pending.
 - Both panels now use one fixed population at six times. The two-shell plot uses predetermined selection 0 (initial minimum-span RAAN blocks), 6 snapshots / 30 evaluations, with DuJo leading at all six times. No averaging or shading. All 270 evaluations remain archived, including the unfavorable mixed-selection result.
 
-- Comment 1.2 remains implemented, validated, pending acceptance, and unchanged. The other 12 items retain their drafted plans. All 14 comments remain red and pending.
+- Comment 1.2 remains implemented, validated, pending acceptance, and unchanged. Comment 2.2 is also implemented and pending; the other 11 items retain their drafted plans. All 14 comments remain red and pending.
 
 ## Repository State
 
@@ -31,9 +35,13 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 - RV1 comments were recorded as complete in the historical tracker.
 - E.1 contains the editor's substantive assessment; 13 numbered reviewer items use the reference's inline `Comment n.m:` labels. Three opening assessments remain unnumbered introductions. Reviewer 1 has two items, Reviewer 2 has four, and Reviewer 3 has seven.
-- Comment 1.2 has a completed-work `Response:` and `Manuscript changes:` block quoting its single new manuscript paragraph verbatim. Comment 2.1 also has a completed-work response, verbatim quotations, and the reproduced revised figure. The remaining 12 entries retain planned responses and changes. All 14 comments remain red and pending; implementation does not constitute approval.
+- Comment 1.2 has a completed-work `Response:` and `Manuscript changes:` block quoting its single new manuscript paragraph verbatim. Comment 2.1 also has a completed-work response, verbatim quotations, and the reproduced revised figure. Comment 2.2 has a completed readability response without reproduced figures. Comment 2.3 has a completed proofreading response. The remaining 10 entries retain planned responses and changes. All 14 comments remain red and pending; implementation does not constitute approval.
 
 ## Rolling Progress Log
+
+- 2026-09-23. Rechecked the 5090 workstation at the user's direction. Recovered exact raw runs for Figs. 3/7 into local ignored data directories. Located Fig. 5(a) in the load-scaling CSV at load 0.0001 and verified all ten curves against the original vector PDF (maximum error 0.000011 pt). Figs. 5(b)/6/10 also have saved data. Only the augmented DRL/SaTE merged inputs for Figs. 4/8/9 remain unlocated; older base runs are not substitutes. Recorded paths/hashes in revision_data/comment_2_2/data_inventory.json. Current figure styling is unchanged.
+
+- 2026-09-23. Increased vector text in Figs. 3–10 by approximately 11% and widened bars/groups in Figs. 4/8 by 25%, preserving bar heights, curves, colors, and figure page sizes. Abbreviated two Fig. 8 axis labels to avoid overlap. Some historical raw data are unavailable, so a reproducible pypdf/PyMuPDF restyler uses nine immutable pre-edit vector PDFs; all input/output hashes and geometry checks are in `revision_data/comment_2_2/`. No simulations or manuscript text were changed. Updated only the Comment 2.2 response, reproducing Figs. 4/8. Code assets and reproduction materials are synchronized with the isolated 5090 workspace. No commit/push requested for this step.
 
 - 2026-09-23. Committed and pushed manuscript/evidence checkpoint `4ad8122` and simulator implementation `e85a867` to their respective `origin/main` branches, as requested. This follow-up records the publication state. Comment review statuses remain pending.
 
@@ -114,6 +122,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Validation
 
+- 2026-09-23, Comment 2.2. Verified all nine figure assets (Fig. 5 has two), font-size ratio 10/9, 42/84 bars widened by 1.25, unchanged vector path heights/control points, and unchanged labels except two documented abbreviations. Source hashes match paper commit 1c553ab. Manuscript text is byte-identical and all response blocks outside 2.2 are unchanged. Direct isolated builds produced 15 manuscript / 12 response pages with no unresolved references or overfull boxes; existing underfull warnings remain. Inspected all standalone figures, manuscript pages 9–12, and response reproductions. Both repositories pass `git diff --check`. PDFs: `output/pdf/main_comment_2_2_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`.
+
 - 2026-09-23, Fig. 6 presentation update. Direct isolated builds in `tmp/comment-2-1-two-shell/build/` produced a 15-page manuscript and 12-page response. Inspected manuscript pages 8–11 and response pages 4–6. Fig. 6 follows Fig. 5 immediately on page 10. References/citations resolve and neither document has overfull boxes; the manuscript retains three existing underfull hboxes and one underfull vbox. All six quoted blue blocks/caption match. Original manuscript wording and Fig. 5 are preserved byte-for-byte; only additions remain relative to HEAD. Other responses, protected figures/bibliography, and neighboring ToN files are unchanged. Refreshed both review PDFs, evidence/plotter hashes, and the code patch, whose reverse-application check passed. Later figures shift by one; reviewer wording and inactive response blocks remain unchanged.
 
 - 2026-09-22, Comment 2.1. All 54 geometry checks agree with Skyfield (maximum position difference 3.54e-10 km); the original selection matches saved membership/order exactly. All 270 evaluations passed matching feasibility, throughput bounds, and identical-input fingerprint checks. Three focused regression tests passed; incomplete plot inputs are rejected. Local simulator hashes match the isolated run; the code patch passes a reverse-application dry run.
@@ -144,11 +154,27 @@ This is the live-state record for the current paper revision. Historical RV1 det
 ## Current Blockers or Risks
 
 
-- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Experiments and revisions for the other 12 items remain planned.
+- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Comment 2.2 improves figure readability; experiments and revisions for the other 11 items remain planned.
 - The updated supplied letter confirms the decision date as 28-Aug-2026 and specifies a 60-day revision window.
 - Four-file contract migration was not performed because the manuscript-writing scaffold skill requires an unavailable initialization tool. Response workflow updates use the existing three-file contract.
 - The previous tracker records an external-subdocument post-processing issue in `latexmkrc`. Validate the RV2 scaffold with direct `pdflatex` passes and existing manuscript references to avoid external BibTeX/post-processing side effects.
 
 ## Next Safe Resume Point
 
-- Review the completed Comment 2.1 manuscript, response, figure, and evidence with the user. Keep it red/pending until explicitly accepted. No automatic move to another review item, commit, or push. Comment 1.2 remains pending and unchanged. The paper checkpoint includes Comment 2.1 source, figures, and evidence; publication is recorded in Git history. The simulator implementation is committed as e85a867 and pushed to leo-sat-flow origin/main; it is also preserved in the paper's reproducible patch. The run is complete and does not need restarting.
+- Review the figure-readability changes for Comment 2.2. Keep it and all other comments pending until accepted. Both repositories have uncommitted readability edits; earlier Comment 2.1 commits remain published. No rerun of experiments is needed. Use the immutable source PDFs and `restyle_tcom_rv2_figures.py` for this formatting checkpoint, rather than regenerating historical figures from missing raw data.
+
+- 2026-09-23 further result search: recovered all four final numerical tables for Figs. 4, 8, and 9 from archived April 10 tool outputs, at six-decimal display precision. Saved under `../leo-sat-flow/sim_alg_v1_res/recovered_legacy_results/recovered-20260923-ail/`, with source excerpts and comparison against all 144 original PDF bars. Original merged CSV folders were deleted in a recorded April 10 cleanup; full precision has not been recovered. No simulation rerun or manuscript/figure edit in this search. User-requested `revision_data/` removal remains in effect; folder was moved to Trash and has not been recreated.
+
+- 2026-09-23: Fig. 8 bars widened another 12% (40% relative to original), preserving fonts, colors and all bar heights. Restyling script and code figure copy synchronized; Comment 2.2 percentage updated. Still pending review.
+
+- 2026-09-23 Fig. 8 follow-up: displayed LCT 0.8/1.2/1.6/2.0 and FOR 30/50/70/90 only, retaining all original source data. Regenerated from recovered six-decimal tables with wider bars and 10-point fonts; verified all 48 bar heights against retained rows and inspected rendering. Updated response 2.2, compiled both documents, and refreshed review PDFs. Pending review; uncommitted.
+
+- 2026-09-23 Comment 2.2 response finalized around the completed font enlargement, wider bars, and four displayed cases per Fig. 8 panel. Revised Figs. 4 and 8 reproduced in the letter; reviewer wording and other responses preserved. No prose addition to main.tex is needed for this graphics-only revision. Comment 2.2 remains red and pending explicit acceptance.
+
+- Comment 2.2: removed the manuscript-change lead-in and both reproduced figures at the user’s request. Retained only the response describing the completed figure changes. Comment remains pending; other responses unchanged.
+
+- Comment 2.3 completed proofreading: 18 targeted replacement rules in main.tex; synchronized the corrected single-shell caption in Comment 2.1 and replaced only Comment 2.3 planned response. No added highlighting for grammar-only edits. Equations and reviewer wording verified unchanged. Both isolated two-pass builds passed without undefined references or overfull boxes; affected pages inspected. All comments remain pending.
+
+- Comment 2.3 meaning-preservation audit: reviewed every proofreading diff against the pre-edit snapshot. Verified all inline math, displayed equations, numbers, citations, labels/references and figure inputs are identical. Prose edits retain the original claims and assumptions; no additional manuscript edits were made in this audit.
+
+- Publication: preparing both main-branch commits for Comments 2.2/2.3, plotting code and recovered table inputs, and requested removal of revision_data. Review statuses remain pending.
