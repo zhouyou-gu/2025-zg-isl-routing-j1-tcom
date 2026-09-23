@@ -53,6 +53,8 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 ## Next Item-Local Step
 
+- Publication checkpoint: manuscript/evidence `4ad8122` and simulator implementation `e85a867` were committed and pushed to their respective `origin/main` branches on 2026-09-23.
+
 - 2026-09-23. Synchronized Comment 2.1 to the user-edited manuscript: copied the latest Fig. 5 caption verbatim and aligned the performance-summary wording. Verified all five blue text/caption/subcaption blocks against main.tex. Preserved the user's latest response shortening and did not alter the manuscript. Rebuilt both PDFs and inspected main page 10 and response page 6; no undefined references or overfull boxes. Comment 2.1 remains pending.
 
 - 2026-09-23. Shortened only Comment 2.1 performance/scope paragraphs to two sentences, preserving the performance result and continuous-feasibility/precession limits. Rebuilt and inspected response page 4; refreshed the PDF. Pending status unchanged.

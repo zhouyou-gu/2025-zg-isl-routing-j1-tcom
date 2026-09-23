@@ -35,6 +35,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Rolling Progress Log
 
+- 2026-09-23. Committed and pushed manuscript/evidence checkpoint `4ad8122` and simulator implementation `e85a867` to their respective `origin/main` branches, as requested. This follow-up records the publication state. Comment review statuses remain pending.
+
 - 2026-09-23. Prepared the user-requested main-branch commit/push in the manuscript repository, covering synchronized Comment 2.1 source, stacked single-/two-shell plots, complete experiment evidence, and reproducible code patch. Removed one trailing space; manuscript wording is unchanged. Existing build/quotation/figure checks passed. The separate simulator checkout remains uncommitted; all comment review statuses remain pending.
 
 - 2026-09-23. Synchronized Comment 2.1 to the user-edited manuscript: copied the latest Fig. 5 caption verbatim and aligned the performance-summary wording. Verified all five blue text/caption/subcaption blocks against main.tex. Preserved the user's latest response shortening and did not alter the manuscript. Rebuilt both PDFs and inspected main page 10 and response page 6; no undefined references or overfull boxes. Comment 2.1 remains pending.
@@ -149,4 +151,4 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Next Safe Resume Point
 
-- Review the completed Comment 2.1 manuscript, response, figure, and evidence with the user. Keep it red/pending until explicitly accepted. No automatic move to another review item, commit, or push. Comment 1.2 remains pending and unchanged. The paper checkpoint includes Comment 2.1 source, figures, and evidence; publication is recorded in Git history. The separate leo-sat-flow checkout still has uncommitted experiment implementation files, preserved in the paper's reproducible patch. The run is complete and does not need restarting.
+- Review the completed Comment 2.1 manuscript, response, figure, and evidence with the user. Keep it red/pending until explicitly accepted. No automatic move to another review item, commit, or push. Comment 1.2 remains pending and unchanged. The paper checkpoint includes Comment 2.1 source, figures, and evidence; publication is recorded in Git history. The simulator implementation is committed as e85a867 and pushed to leo-sat-flow origin/main; it is also preserved in the paper's reproducible patch. The run is complete and does not need restarting.
