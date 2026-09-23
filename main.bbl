@@ -65,6 +65,12 @@ D.~Ron, F.~A. Yusufzai, S.~Kwakye, S.~Roy, N.~Sastry, and V.~K. Shah, ``Time- {{
 \bibitem{wu2025sate}
 H.~Wu, Y.~Han, M.~Rajpal, Q.~Zhang, and J.~Wang, ``Sate: Low-latency traffic engineering for satellite networks,'' in \emph{ACM SIGCOMM 2025 Conference}, Sep. 2025, pp. 896--916.
 
+\bibitem{xu2025mpaee}
+G.~Xu, L.~Wang, S.~Chen, L.~Zhu, M.~Guizani, and L.~Shi, ``{MPAEE}: A multipath adaptive energy-efficient routing scheme for low earth orbit-based industrial internet of things,'' \emph{IEEE Internet of Things Journal}, vol.~12, no.~17, pp. 34\,793--34\,805, 2025.
+
+\bibitem{xu2025sparrow}
+G.~Xu, S.~Chen, L.~Wang, L.~Zhu, and Z.~Song, ``A sparrow search-based energy-adaptive routing scheme for satellite internet,'' \emph{Science China Information Sciences}, vol.~68, no.~9, p. 190310, 2025.
+
 \bibitem{ahuja1993network}
 R.~K. Ahuja, T.~L. Magnanti, and J.~B. Orlin, \emph{Network Flows: Theory, Algorithms and Applications}.\hskip 1em plus 0.5em minus 0.4em\relax Englewood Cliffs (N. J.): Prentice Hall, 1993.
 

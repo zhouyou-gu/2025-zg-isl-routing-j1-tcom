@@ -122,7 +122,7 @@ More flexible designs use maximum weight matching (MWM) that assigns weights to 
 However, these designs ignore the diverse traffic profiles across the constellation due to the uneven distribution of users and gateways.
 This can lead to underutilized LCTs and LISLs and suboptimal network throughput \cite{bhattacherjee2019network}. 
 Incorporating traffic flow routing into the LCT connection design is essential to improve the overall throughput of the constellation.
-Recent traffic-engineering approaches such as SaTE optimize the traffic-rate allocation after the topology and routes are fixed, rather than jointly optimizing the LISL matching, routing, and rate allocation \cite{wu2025sate}.
+\blue{SaTE \cite{wu2025sate} optimizes traffic-rate allocation over fixed topologies and routes, while multipath adaptive energy-efficient routing \cite{xu2025mpaee} and sparrow search-based energy-adaptive routing \cite{xu2025sparrow} adapt path selection to energy and link-performance metrics, but none jointly optimizes LCT matching, routing, and rate allocation under LCT mechanical constraints.}
 
 The joint link-matching and flow-routing formulation leads to a mixed-integer optimization problem \cite{ahuja1993network}, and the associated fixed-snapshot abstract decision problem is NP-hard \cite{jarry2012multiflows} (as proved later in Proposition~\ref{prop:np_hardness} and the appendix).
 One powerful technique to solve the problem efficiently is to use Lagrangian duality \cite{fisher2004lagrangian}.

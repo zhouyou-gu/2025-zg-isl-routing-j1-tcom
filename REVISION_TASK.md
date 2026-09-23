@@ -24,7 +24,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 2.1 | Reviewer 2 item 1 | Implemented, synchronized, and validated; acceptance pending |
 | 2.2 | Reviewer 2 item 2 | Figure readability implemented and validated; acceptance pending |
 | 2.3 | Reviewer 2 item 3 | Proofreading implemented and validated, pending |
-| 2.4 | Reviewer 2 item 4 | Planned response drafted, pending |
+| 2.4 | Reviewer 2 item 4 | Implemented, synchronized, and validated; acceptance pending |
 | 3.general | Reviewer 3 opening assessment | Preserved as an unnumbered introduction |
 | 3.1 | Reviewer 3 item 1 | Planned response drafted, pending |
 | 3.2 | Reviewer 3 item 2 | Planned response drafted, pending |
@@ -68,3 +68,17 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - Comment 2.2: removed the manuscript-change lead-in and both reproduced figures at the user’s request. Retained only the response describing the completed figure changes. Comment remains pending; other responses unchanged.
 
 - Comment 2.3 proofreading implemented and validated, pending review. Minor grammar/capitalization/agreement corrections in manuscript; single-shell caption synchronized in response 2.1. Response 2.3 states completed corrections and the absence of the quoted typo in current source/available PDFs. Both documents compiled successfully and affected pages inspected; technical equations unchanged.
+
+- Comment 2.4: added one blue sentence immediately after SaTE in the Introduction, citing MPAEE and sparrow-search energy-adaptive routing and stating this paper’s joint throughput objective. Bibliographic metadata verified against publisher/Crossref records. Response quotes the sentence verbatim; pending explicit acceptance.
+
+- Comment 2.4 refined to a simple related-work sentence, removing the present-paper comparison and preserving the user’s removal of the MPAEE acronym. Response quotation synchronized; pending review.
+
+- Comment 2.4 source review reopened at user request. Read the complete five-page publisher supplement for SSA-DW (saved under tmp/comment-2-4/papers) and MPAEE abstract. SSA-DW evaluates delay, throughput and hop count as well as energy; an energy-versus-throughput contrast is not justified. Full main texts remain inaccessible (Springer subscription, IEEE access challenge, SciEngine 403/429); do not claim both papers have been read in full. No manuscript edits during this check; the current simple citation sentence remains pending review.
+
+- 2026-09-24: read both complete user-supplied papers in tmp/reference, plus SSA-DW supplement. MPAEE Sections II–III and Algorithm 2 optimize weighted paths over an input graph; SSA-DW equations (4)–(5) and algorithm discussion optimize routing costs over adjacent nodes. Neither formulates mechanical LCT matching as a joint decision. Replaced the generic citation sentence with one sentence describing this specific distinction; response quotation synchronized. Earlier full-text access blocker resolved. Comment 2.4 remains pending.
+
+- Removed the repeated joint-optimization contrast from the existing SaTE sentence; retained its fixed-topology/routing description and the mechanical-LCT distinction in the following cited sentence. Meaning unchanged; Comment 2.4 quotation remains exact.
+
+- Comment 2.4: combined SaTE and both added routing methods into one blue sentence, with a shared statement that none jointly optimizes LCT matching, routing and rate allocation under LCT mechanical constraints. Response quotation synchronized.
+
+- Comment 2.4 response finalized with the completed citations and specific joint-decision distinction. One combined manuscript sentence retained verbatim in the letter; both full papers reviewed. No experiments added; other comments unchanged.

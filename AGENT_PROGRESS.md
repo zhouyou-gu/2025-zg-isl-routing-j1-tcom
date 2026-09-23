@@ -4,6 +4,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- Comment 2.4 implemented and synchronized with the single combined blue related-work sentence. Both full papers read; citations verified. Pending acceptance; included in the user-requested Comment 2.4 publication checkpoint.
+
 - Comment 2.3 proofreading is implemented and validated, pending acceptance. Corrected minor grammar, agreement, capitalization and caption wording; checked current source and available PDFs for the quoted typo (absent) and inter-satellite hyphenation (consistent). Review PDF: `output/pdf/main_comment_2_3_review.pdf`.
 
 - Comment 2.2 readability is implemented and validated, pending acceptance. Fonts enlarged in Figs. 3–10; Fig. 4 bars widened by 25%; Fig. 8 now shows four cases per panel with wider bars. Response describes changes without reproduced figures.
@@ -178,3 +180,19 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - Comment 2.3 meaning-preservation audit: reviewed every proofreading diff against the pre-edit snapshot. Verified all inline math, displayed equations, numbers, citations, labels/references and figure inputs are identical. Prose edits retain the original claims and assumptions; no additional manuscript edits were made in this audit.
 
 - Publication: preparing both main-branch commits for Comments 2.2/2.3, plotting code and recovered table inputs, and requested removal of revision_data. Review statuses remain pending.
+
+- Comment 2.4: added one blue sentence immediately after SaTE in the Introduction, citing MPAEE and sparrow-search energy-adaptive routing and stating this paper’s joint throughput objective. Bibliographic metadata verified against publisher/Crossref records. Response quotes the sentence verbatim; pending explicit acceptance.
+
+- Comment 2.4 refined to a simple related-work sentence, removing the present-paper comparison and preserving the user’s removal of the MPAEE acronym. Response quotation synchronized; pending review.
+
+- Comment 2.4 source review reopened at user request. Read the complete five-page publisher supplement for SSA-DW (saved under tmp/comment-2-4/papers) and MPAEE abstract. SSA-DW evaluates delay, throughput and hop count as well as energy; an energy-versus-throughput contrast is not justified. Full main texts remain inaccessible (Springer subscription, IEEE access challenge, SciEngine 403/429); do not claim both papers have been read in full. No manuscript edits during this check; the current simple citation sentence remains pending review.
+
+- 2026-09-24: read both complete user-supplied papers in tmp/reference, plus SSA-DW supplement. MPAEE Sections II–III and Algorithm 2 optimize weighted paths over an input graph; SSA-DW equations (4)–(5) and algorithm discussion optimize routing costs over adjacent nodes. Neither formulates mechanical LCT matching as a joint decision. Replaced the generic citation sentence with one sentence describing this specific distinction; response quotation synchronized. Earlier full-text access blocker resolved. Comment 2.4 remains pending.
+
+- Removed the repeated joint-optimization contrast from the existing SaTE sentence; retained its fixed-topology/routing description and the mechanical-LCT distinction in the following cited sentence. Meaning unchanged; Comment 2.4 quotation remains exact.
+
+- Comment 2.4: combined SaTE and both added routing methods into one blue sentence, with a shared statement that none jointly optimizes LCT matching, routing and rate allocation under LCT mechanical constraints. Response quotation synchronized.
+
+- Finalized Comment 2.4 response; exact manuscript quotation verified. Reviewer wording and other responses preserved.
+
+- 2026-09-24 publication checkpoint: user requested commit and push of Comment 2.4 to main. Reviewed all six changed files, including the generated bibliography; diff whitespace checks passed. Prior isolated compilation and quotation/layout validation remain valid. Comment acceptance statuses are unchanged.

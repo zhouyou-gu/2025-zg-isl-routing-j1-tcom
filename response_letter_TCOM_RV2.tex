@@ -186,9 +186,11 @@ The combined Fig.~\ref{fig:structured_shell_comparison} is reproduced here.
 
 \noindent{\bfseries\pendingcomment Comment 2.4: Finally, some other routing schemes, such as \textquotesingle{}multipath adaptive energy-efficient routing scheme\textquotesingle{}, \textquotesingle{}sparrow search-based energy-adaptive routing scheme\textquotesingle{} have been proposed for similar scenarios. A brief mention of these alternative models in the introduction or related work section would help readers understand the modeling landscape and the rationale behind the chosen approach.}
 
-\textbf{Response:} We will review the two suggested studies and add a concise discussion of their relevance to LEO routing. The comparison will distinguish their routing objectives, energy assumptions, and path-selection mechanisms from this paper's joint optimization of mechanically constrained laser-terminal matching, flow routing, and rate allocation. We will make the rationale for our throughput-oriented formulation explicit without implying that it supersedes energy-aware routing or evaluates objectives absent from our model. The discussion will be based on the papers themselves, with bibliographic details and technical distinctions checked before inclusion.
+\textbf{Response:} We cited both suggested studies alongside SaTE in the Introduction. These routing schemes adapt path selection to energy and link-performance metrics, but do not jointly optimize LCT matching, routing, and rate allocation under LCT mechanical constraints; this distinction clarifies the scope of our joint formulation.
 
-\textbf{Planned manuscript changes:} We will add the verified references to the related-work discussion and bibliography and refine the gap paragraph around the actual joint decision variables. The comparison will cover the suggested multipath adaptive energy-efficient scheme and the sparrow-search energy-adaptive scheme, and will state the limitations of comparing methods with different objectives and system assumptions.
+\textbf{Manuscript changes:} In Section I, we revised the related-work sentence as
+
+``...\blue{SaTE \cite{wu2025sate} optimizes traffic-rate allocation over fixed topologies and routes, while multipath adaptive energy-efficient routing \cite{xu2025mpaee} and sparrow search-based energy-adaptive routing \cite{xu2025sparrow} adapt path selection to energy and link-performance metrics, but none jointly optimizes LCT matching, routing, and rate allocation under LCT mechanical constraints.}''
 
 \section*{\centering\Large\textbf{Response to Reviewer 3}}
 
