@@ -1,0 +1,15 @@
+{
+  "host": "zhouyou-Z890-AORUS-ELITE-WIFI7",
+  "gpu": "NVIDIA GeForce RTX 5090, 32607 MiB",
+  "environment": {
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "2",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "PYTHONHASHSEED": "0"
+  },
+  "pilot_workers": 3,
+  "full_workers": 6,
+  "started_utc": "2026-09-22T11:41:58.630342+00:00",
+  "finished_utc": "2026-09-22T12:26:43.012438+00:00"
+}

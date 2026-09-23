@@ -1,0 +1,146 @@
+[
+  {
+    "job": "full-shell43-s0",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "shell43",
+      "--selection",
+      "0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-shell43-s1",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "shell43",
+      "--selection",
+      "1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-shell53-s0",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "shell53",
+      "--selection",
+      "0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-mixed-s0",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "mixed",
+      "--selection",
+      "0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-shell53-s1",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "shell53",
+      "--selection",
+      "1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-mixed-s1",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "mixed",
+      "--selection",
+      "1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-shell53-s2",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "shell53",
+      "--selection",
+      "2"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-shell43-s2",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "shell43",
+      "--selection",
+      "2"
+    ],
+    "exit_code": 0
+  },
+  {
+    "job": "full-mixed-s2",
+    "command": [
+      "/home/zhouyou/tcom-comment21-ail/.venv/bin/python",
+      "sim_alg_v1_res/test_tcom_multishell.py",
+      "--stage",
+      "full",
+      "--output",
+      "results",
+      "--config",
+      "mixed",
+      "--selection",
+      "2"
+    ],
+    "exit_code": 0
+  }
+]

@@ -4,20 +4,22 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
-- Comment 1.2 has one new deployment-limitation paragraph in the computing-time discussion and a synchronized completed-work response. Validation passed; explicit user acceptance remains pending.
-- The other 13 editor/reviewer items retain their drafted plans and pending status. Original reviewer wording and all pre-existing manuscript text are preserved. No new experiments were performed.
+- Comment 2.1 is implemented and validated. All 54 snapshot instances / 270 method evaluations completed on the RTX 5090 workstation. The single-shell and two-shell plots are stacked in one manuscript column as Fig. 5(a)/(b); blue setup/results passages and the response are synchronized; explicit user acceptance remains pending.
+- Both panels now use one fixed population at six times. The two-shell plot uses predetermined selection 0 (initial minimum-span RAAN blocks), 6 snapshots / 30 evaluations, with DuJo leading at all six times. No averaging or shading. All 270 evaluations remain archived, including the unfavorable mixed-selection result.
+
+- Comment 1.2 remains implemented, validated, pending acceptance, and unchanged. The other 12 items retain their drafted plans. All 14 comments remain red and pending.
 
 ## Repository State
 
 - Work began on `main` at `4cd632f` (`Render revision text in black`) with a clean worktree.
-- `main.tex` now has prior-round blue wrappers removed without changing their enclosed content. `main.bib` and experiment assets are unchanged. The only substantive RV2 manuscript change is the added Comment 1.2 paragraph after the runtime discussion. The RV2 source contains the exact new-round comments. RV1-specific files were moved byte-for-byte into `archive/rv1/`.
+- `main.tex` now has prior-round blue wrappers removed without changing their enclosed content. `main.bib` and existing experiment assets are unchanged. RV2 manuscript changes are the Comment 1.2 runtime paragraph and the Comment 2.1 added setup/evaluation passages and combined Fig. 5 with single-shell and two-shell subfigures. The RV2 source contains the exact new-round comments. RV1-specific files were moved byte-for-byte into `archive/rv1/`.
 - The old blue-to-black color remap was removed from `main.tex`. The active Comment 1.2 addition and its response quotation both use the standard `\blue` macro, as requested by the user. The color change does not change the pending review status.
 - The existing three-file agent contract remains active. The four-file migration skill's required `agent_files_init` tool is unavailable. No `AGENT_GOAL.md` was created and `AGENT.md` was not replaced.
 - The user authorized committing and pushing this RV2 planning checkpoint to `origin/main` on 2026-09-22. Git history and remote branch state record its publication status.
 
 ## Workspace Artifacts
 
-- `response_letter_TCOM_RV2.tex` is the active response draft for `TCOM-TPS-26-1250`, with a completed-work reply for Comment 1.2 and planned replies for the remaining numbered comments. RV2 is the local round label.
+- `response_letter_TCOM_RV2.tex` is the active response draft for `TCOM-TPS-26-1250`, with completed-work replies for Comments 1.2 and 2.1 and planned replies for the remaining items. RV2 is the local round label.
 - `TCOM_RV2_decision_letter.txt` is a local-only, gitignored, byte-identical copy of the supplied editor letter and reviewer reports.
 - `REVISION_TASK.md` holds submission metadata, item-by-item plan status, and outstanding evidence needs.
 - `archive/rv1/AGENT_PROGRESS_RV1.md` preserves the previous progress file verbatim as historical context, including its older repository-state statements.
@@ -29,9 +31,45 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 - RV1 comments were recorded as complete in the historical tracker.
 - E.1 contains the editor's substantive assessment; 13 numbered reviewer items use the reference's inline `Comment n.m:` labels. Three opening assessments remain unnumbered introductions. Reviewer 1 has two items, Reviewer 2 has four, and Reviewer 3 has seven.
-- Comment 1.2 has a completed-work `Response:` and `Manuscript changes:` block quoting its single new manuscript paragraph verbatim. The remaining 13 entries retain planned responses and changes. All 14 comments remain red and pending; implementation does not constitute approval.
+- Comment 1.2 has a completed-work `Response:` and `Manuscript changes:` block quoting its single new manuscript paragraph verbatim. Comment 2.1 also has a completed-work response, verbatim quotations, and the reproduced revised figure. The remaining 12 entries retain planned responses and changes. All 14 comments remain red and pending; implementation does not constitute approval.
 
 ## Rolling Progress Log
+
+- 2026-09-23. Prepared the user-requested main-branch commit/push in the manuscript repository, covering synchronized Comment 2.1 source, stacked single-/two-shell plots, complete experiment evidence, and reproducible code patch. Removed one trailing space; manuscript wording is unchanged. Existing build/quotation/figure checks passed. The separate simulator checkout remains uncommitted; all comment review statuses remain pending.
+
+- 2026-09-23. Synchronized Comment 2.1 to the user-edited manuscript: copied the latest Fig. 5 caption verbatim and aligned the performance-summary wording. Verified all five blue text/caption/subcaption blocks against main.tex. Preserved the user's latest response shortening and did not alter the manuscript. Rebuilt both PDFs and inspected main page 10 and response page 6; no undefined references or overfull boxes. Comment 2.1 remains pending.
+
+- 2026-09-23. Shortened only Comment 2.1 performance/scope paragraphs to two sentences, preserving the performance result and continuous-feasibility/precession limits. Rebuilt and inspected response page 4; refreshed the PDF. Pending status unchanged.
+
+- 2026-09-23. Reordered only the Comment 2.1 opening response: first clarified that the original evaluation was not a single static snapshot, then explained fixed membership and propagation to six times in Fig. 5(a), then introduced the added two-shell case in Fig. 5(b). Retained performance, limitations, all manuscript quotations, and other responses. Two direct LaTeX passes succeeded with no unresolved references or overfull boxes; inspected page 4 and refreshed the response PDF. Comment 2.1 remains pending.
+
+- 2026-09-23. Matched the two-shell presentation to the single-shell case at the user's explicit request: selection 0, one fixed population, six snapshots, no averaging. The plotter reads exactly 30 matching records and preserves the original style. Verified DuJo leads on both metrics at all six times; 316–349 inter-cluster links are selected. Updated manuscript performance/caption, only Comment 2.1 response, and evidence metadata/docs/patch. All other selections and unfavorable results are preserved. Synchronized code/PDF/docs to the isolated 5090 run. Both documents compile without unresolved references or overfull boxes; inspected main page 10 and response page 6 and refreshed PDFs. Comment 2.1 remains pending.
+
+- 2026-09-23. Added one performance sentence to the concise structured-shell passage. DuJo leads at all six single-shell times and has the highest two-shell mean throughput/served ratio across three selections. Verified the latter directly against the saved CSV at each time; this does not claim a win in every individual mixed instance. Synchronized the response quotation, rebuilt and visually checked both PDFs with no unresolved references or overfull boxes. Comment 2.1 remains pending.
+
+- 2026-09-23. Simplified the requested results passage to two sentences introducing the single-shell/two-shell comparison and multiple link-geometry instances over six times. Removed the longer replacement discussion as directed; detailed experimental results and limitations remain in the response and evidence. Synchronized the quotation and removed the stale claim that the manuscript explicitly states the limitations. Rebuilt both PDFs, inspected main page 10 and response page 5, and verified quotation equality; no unresolved references or overfull boxes. Comment 2.1 remains pending.
+
+- 2026-09-23. Rewrote the requested structured-shell discussion as two concise blue paragraphs comparing single-shell and two-shell results. Explained six propagated snapshot times, three overlapping fixed populations / 18 two-shell instances, 17/18 DuJo wins with the unfavorable case, selected inter-cluster links, and limits on continuous feasibility and long-term precession. Synchronized the Comment 2.1 quotation verbatim; other response blocks are unchanged. Direct isolated builds have no undefined references or overfull boxes; inspected main page 10 and response page 5. Review PDFs refreshed; Comment 2.1 remains pending.
+
+- 2026-09-23. Rewrote only the requested setup line to introduce the 1000-satellite single-shell and 500+500 two-shell configurations and fixed membership over the six offsets. Preserved the user's removal of the longer setup paragraphs; replaced their stale response quotation with the new sentence pair verbatim. Both documents rebuilt without unresolved references or overfull boxes; Comment 2.1 remains pending.
+
+- 2026-09-23. Changed the combined Fig. 5 to one manuscript column, stacking subfigures (a)/(b) vertically. Matched the response figure layout. Plot assets, data, captions, and pending statuses are unchanged. Rebuilt both PDFs with no undefined references or overfull boxes; inspected the stacked figure on manuscript page 10 and response page 6. Refreshed the review PDFs.
+
+- 2026-09-23. Combined the single-shell and two-shell assets into one full-width Fig. 5 with side-by-side subfigures (a)/(b), as requested. Both assets and their data remain unchanged, with no shading. Added synchronized blue subcaptions and a shared caption, preserved panel-specific references through subfigure labels, and reproduced the combined figure in Comment 2.1. Later figure numbering returns to its original sequence. Direct isolated builds passed with no unresolved references or overfull boxes; inspected manuscript page 11 and response page 6. All other response blocks and pending statuses remain unchanged. Refreshed review PDFs.
+
+- 2026-09-23. Removed shaded ranges from Fig. 6 at the user's request, retaining the same mean curves, markers, colors, and layout. Synchronized both captions, the Comment 2.1 response summary, evidence documentation, and reproduction script. Per-selection data are unchanged; Comment 2.1 remains pending. Rebuilt both documents and inspected main page 10 and response page 6; no shading, unresolved references, or overfull boxes. Refreshed both review PDFs and verified quotation equality and code-patch consistency.
+
+- 2026-09-23. At the user's request, restored the original Fig. 5, caption, setup wording, heading, and discussion, then added the two-shell experiment as Fig. 6 using the same stacked two-panel layout, size, legend, colors, and markers. Means/ranges use all three mixed selections. Narrowed the blue passages and Comment 2.1 to the displayed 18 snapshots, preserving the unfavorable case and all 270 archived evaluations. The full-width plot remains an unused supporting artifact. Added a dedicated plotter and synchronized it, its PDF, and instructions to the isolated 5090 run; no simulations were rerun.
+
+- 2026-09-22. Completed Comment 2.1. All 270 evaluations and all pilot/full jobs passed. Tailscale connectivity was restored after a temporary interruption; the detached run completed normally. Added the full-width two-row/three-column figure, blue setup/evaluation changes, explicit 53/54 result and 0.4% exception, selection-overlap disclosure, and temporal-scope limitation. Updated only Comment 2.1 with verbatim excerpts and the figure. Evidence and a reproducible code patch are in `revision_data/comment_2_1/`. All comments remain pending.
+
+- 2026-09-22. All 15 pilot evaluations passed matched-input, feasible-matching, and throughput consistency checks. Three regression tests passed (RAAN wraparound, shifted selection membership, and rejection of failures/nonfinite states at any evaluation epoch). Full-matrix execution started with six workers on the RTX 5090 workstation. The last confirmed remote count was 244/270 evaluations with no failed jobs; 180 records are synchronized locally. SSH to both the campus and Tailscale IPs subsequently timed out. The detached run may continue remotely; awaiting restored connectivity before retrieving the full results. Selected TLE epochs span 2025-07-14 23:55 UTC to 2025-07-16 06:00 UTC.
+
+- 2026-09-22. User specified the 5090 GPU workstation. Confirmed the configured host at `10.34.23.184` has an RTX 5090 and working CUDA. Geometry checks use CPU; pilots/full DRL inference will use GPU 0, while DuJo and heuristic computations remain CPU-based.
+
+- 2026-09-22. Implemented opt-in historical-epoch TLE validation and shifted cluster selection, a gated/resumable multi-shell driver, and a complete-matrix plotter in `../leo-sat-flow`. Running an isolated local-source snapshot at `/home/zhouyou/tcom-comment21-ail` on the configured workstation; existing remote edits are preserved. Epoch-valid catalogue has 7,960 records; the original selected block matches saved IDs/order exactly. All 54 geometry checks passed, including Skyfield agreement and feasible inter-shell candidates in all 18 mixed instances. All three five-method pilots passed with GPU DRL inference. The full matrix is running with six workers; no final results claims have been written.
+
+- 2026-09-22. Started implementation of the approved Comment 2.1 experiment plan. Code work is in `../leo-sat-flow`; manuscript claims will be updated only after measured results pass validation.
 
 - 2026-09-22. Updated the Comment 1.2 response summary to use "Further research can..." and explain that learned multiplier estimation retains matching, routing, and rate allocation. The manuscript quotation remains verbatim; all other responses and pending statuses are unchanged. Preparing the user-requested commit and push to `origin/main`.
 
@@ -74,6 +112,13 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Validation
 
+- 2026-09-23, Fig. 6 presentation update. Direct isolated builds in `tmp/comment-2-1-two-shell/build/` produced a 15-page manuscript and 12-page response. Inspected manuscript pages 8–11 and response pages 4–6. Fig. 6 follows Fig. 5 immediately on page 10. References/citations resolve and neither document has overfull boxes; the manuscript retains three existing underfull hboxes and one underfull vbox. All six quoted blue blocks/caption match. Original manuscript wording and Fig. 5 are preserved byte-for-byte; only additions remain relative to HEAD. Other responses, protected figures/bibliography, and neighboring ToN files are unchanged. Refreshed both review PDFs, evidence/plotter hashes, and the code patch, whose reverse-application check passed. Later figures shift by one; reviewer wording and inactive response blocks remain unchanged.
+
+- 2026-09-22, Comment 2.1. All 54 geometry checks agree with Skyfield (maximum position difference 3.54e-10 km); the original selection matches saved membership/order exactly. All 270 evaluations passed matching feasibility, throughput bounds, and identical-input fingerprint checks. Three focused regression tests passed; incomplete plot inputs are rejected. Local simulator hashes match the isolated run; the code patch passes a reverse-application dry run.
+- Direct isolated LaTeX/BibTeX builds in `tmp/comment-2-1/build/` produced a 15-page manuscript and 12-page response with no undefined references/citations or overfull boxes. The manuscript retains three existing underfull hboxes and one underfull vbox; the response has no LaTeX/box warnings. The new figure uses embedded TrueType fonts; Poppler warnings from unchanged older figures also occur in the preceding manuscript PDF. Inspected main pages 8–11 and response pages 4–6, including the reproduced figure/caption.
+- Verified all five new manuscript paragraphs and the caption are quoted verbatim; all reviewer wording and every other response are unchanged. The manuscript diff is confined to the setup and structured-evaluation regions. Comment 1.2, bibliography, original figure artifact, and neighboring ToN sources are unchanged. `git diff --check` passed in both repositories.
+- Current review PDFs are `output/pdf/main_comment_2_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Raw per-method JSON and logs are preserved in `../leo-sat-flow/sim_alg_v1_res/test_tcom_multishell/comment-2-1-20260922-ail/`; the isolated remote run is `/home/zhouyou/tcom-comment21-ail/` on `100.122.104.12` (campus IP `10.34.23.184`). Existing remote working-copy edits were not touched.
+
 - 2026-09-22, response wording update. Two direct isolated LaTeX passes completed without warnings or unresolved references/citations. Inspected the affected page and refreshed the response PDF. Verified exact quotation equality, exactly one added manuscript paragraph relative to HEAD, and unchanged reviewer wording and other response blocks. `git diff --check` passed.
 
 - 2026-09-22, DeepLaDu extension. Verified that the latest manuscript change adds exactly two sentences within the existing blue paragraph and that the full paragraph is quoted verbatim in Comment 1.2. All other response entries and reviewer wording are unchanged; the response bibliography now contains the existing `gu2026deepladu` entry. The bibliography database and neighboring ToN sources are unchanged.
@@ -96,11 +141,12 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Blockers or Risks
 
-- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Experiments and revisions for the other 13 items remain planned; numerical conclusions must wait for evidence.
+
+- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Experiments and revisions for the other 12 items remain planned.
 - The updated supplied letter confirms the decision date as 28-Aug-2026 and specifies a 60-day revision window.
 - Four-file contract migration was not performed because the manuscript-writing scaffold skill requires an unavailable initialization tool. Response workflow updates use the existing three-file contract.
 - The previous tracker records an external-subdocument post-processing issue in `latexmkrc`. Validate the RV2 scaffold with direct `pdflatex` passes and existing manuscript references to avoid external BibTeX/post-processing side effects.
 
 ## Next Safe Resume Point
 
-- Review the implemented and validated single-paragraph Comment 1.2 revision with the user. Keep the comment pending until explicit acceptance; do not advance automatically to another item.
+- Review the completed Comment 2.1 manuscript, response, figure, and evidence with the user. Keep it red/pending until explicitly accepted. No automatic move to another review item, commit, or push. Comment 1.2 remains pending and unchanged. The paper checkpoint includes Comment 2.1 source, figures, and evidence; publication is recorded in Git history. The separate leo-sat-flow checkout still has uncommitted experiment implementation files, preserved in the paper's reproducible patch. The run is complete and does not need restarting.

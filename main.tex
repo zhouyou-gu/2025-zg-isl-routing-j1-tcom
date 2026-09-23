@@ -773,7 +773,8 @@ Similar to Corollary~\ref{cor:complexity:dual_optimization}, the above conversio
 To efficiently process the graphs and simulate the constellation, we implement our algorithms and simulations in a data-oriented programming paradigm. The constellation data is organized into contiguous data arrays and is processed in just-in-time (JIT) compiled procedures using Numba for Python \cite{lam2015numba} for high computational efficiency. Linear programming is solved using the HiGHS solver \cite{huangfu2018parallelizing}. 
 The simulations run on a workstation with an Intel Core Ultra 9 285K (24 cores) and 32 GB of memory.
 \subsubsection{System Parameters}
-We construct the constellation in simulations based on the real-world Starlink constellation two-line element (TLE) data from CelesTrak \cite{CelesTrak} at $\mathcal{T}_0$ as UTC $2025-07-16$ $16:00$. To study problem-scale sensitivity, we randomly select $I$ satellites out of the Starlink constellation for the varying-$I$ and computing-time results. We also test a structured shell-based Starlink instance with $I=1000$ satellites. Specifically, at $\mathcal{T}_0$ we select a coherent 1000-satellite block from the dominant $53.2^\circ$ shell and then keep the same satellites over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.
+We construct the constellation in simulations based on the real-world Starlink constellation two-line element (TLE) data from CelesTrak \cite{CelesTrak} at $\mathcal{T}_0$ as UTC $2025-07-16$ $16:00$. To study problem-scale sensitivity, we randomly select $I$ satellites out of the Starlink constellation for the varying-$I$ and computing-time results. We also test a structured shell-based Starlink instance with $I=1000$ satellites.
+\blue{Specifically, at $\mathcal{T}_0$ we select a single-shell configuration with $1000$ satellites from the $53.22^\circ$ TLE-derived orbital cluster and a two-shell configuration with $500$ satellites from each of the $53.22^\circ$ and $43.00^\circ$ clusters. Each selected population remains fixed over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.}
 Each satellite has $N'=2$ LCTs: one LCT points in the direction of the satellite's velocity, and the other points in the opposite direction. The attitude control system maintains these orientations.
 We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has an aperture area of $A=0.01$ $\text{m}^2$ and a responsivity of $\Psi=0.5$ $\text{A/W}$. The noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A in root-mean-square (RMS) value \cite{maxim_spf_transimpedance}.
 The power of the beam is $P_0=20$ W and its bandwidth is $B=1$ GHz. The beam's wavelength is $1.55$ $\mu$m and the beam width is $100$ micro-radians, leading to the beam waist radius $W_0=9.87\times10^{-3}$ m and the Rayleigh range $z_\mathrm{R}=1.97\times10^{3}$ m \cite{saleh2019fundamentalsa}. 
@@ -822,14 +823,17 @@ Compared with +Grid, MRate, and SaTE, our method achieves a higher throughput be
 
 \begin{figure}[!t]
   \centering
-  \includegraphics[scale=0.85]{plot_test_tcom_shell_time_baselines.pdf}
-  \caption{Structured shell-based Starlink evaluation over time. A coherent $I=1000$ satellite block from the dominant $53.2^\circ$ shell is kept fixed while the constellation is propagated over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min. The top plot shows the served throughput and the bottom plot shows the served-demand ratio for DuJo, DRL, SaTE, MRate, and +Grid.}
-  \label{fig:plot_test_tcom_shell_time_baselines}
+  \subfloat[\blue{Single-shell configuration.}\label{fig:plot_test_tcom_shell_time_baselines}]{%
+    \includegraphics[scale=0.85]{plot_test_tcom_shell_time_baselines.pdf}}
+  \par\medskip
+  \subfloat[\blue{Two-shell configuration.}\label{fig:plot_test_tcom_two_shell}]{%
+    \includegraphics[scale=0.85]{plot_test_tcom_two_shell.pdf}}
+  \caption{\blue{Structured shell-based Starlink evaluation over time. (a) Single-shell evaluation with the same $I=1000$ satellites from $53.22^\circ$ clusters. (b) Two-shell evaluation with $500$ satellites from each of the $53.22^\circ$ and $43.00^\circ$ clusters. In each subfigure, the top and bottom plots show throughput and served-demand ratio, respectively, while the constellation is propagated over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.}}
+    \label{fig:structured_shell_comparison}
 \end{figure}
 
 \subsubsection{Structured Shell-Based Evaluation Over Time}\label{subsubsec:structured_shell_time_evaluation}
-We next evaluate the structured shell-based Starlink instance. Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} shows the results for the same $I=1000$ satellite block over six snapshot times.
-DuJo achieves the highest served throughput and the highest served-demand ratio at all six snapshot times. SaTE and MRate form the next performance tier, +Grid follows, and DRL remains the lowest among the compared methods.
+\blue{Fig.~\ref{fig:structured_shell_comparison} compares the single-shell and two-shell configurations over six snapshot times spanning three hours. Satellite membership remains fixed while the orbital positions are propagated, allowing the methods to be tested on multiple instances of the link geometry over time. DuJo achieves the highest throughput and served-demand ratio at all six snapshot times in both configurations.}
 
 \begin{figure}[!t]
   \centering

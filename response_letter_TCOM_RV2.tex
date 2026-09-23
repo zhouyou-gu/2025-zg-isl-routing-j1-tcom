@@ -148,9 +148,31 @@ We thank the reviewer for the careful assessment and constructive comments. We w
 
 \noindent{\bfseries\pendingcomment Comment 2.1: The structured‑shell test uses only one 1000‑satellite block from a single Starlink shell at a fixed epoch. Real mega‑constellations involve multiple shells, orbital precession, and time‑varying link geometry. Testing on a single static snapshot limits the generality of the conclusions.}
 
-\textbf{Response:} The existing evaluation is not limited to one static epoch. Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} uses the same structured $1000$-satellite block at offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min, and Fig.~\ref{fig:plot_test_dual_optimization_different_constellation} includes additional constellation configurations. However, the reviewer correctly identifies that one Starlink shell block provides limited coverage of multi-shell geometry. We will clarify the existing temporal evaluation and extend it to multiple structured blocks and a multi-shell Starlink configuration, using matched constellation states and traffic inputs across methods. We will also distinguish short-term orbital propagation from evidence about slower changes such as orbital precession, which the existing three-hour window does not establish.
+\textbf{Response:} The structured-shell evaluation was not limited to a single static snapshot. In the original evaluation, now shown in Fig.~\ref{fig:plot_test_tcom_shell_time_baselines}, we kept the identities of the $1000$ selected satellites fixed and propagated their orbits to offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min from $\mathcal{T}_0$. The satellite positions and feasible link geometry were evaluated at each time, and all methods were tested on each resulting snapshot. Thus, Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} covers six instances of the time-varying link geometry over three hours.
 
-\textbf{Planned manuscript changes:} We will expand the simulation setup and the structured-shell evaluation with repeated shell/block selections, multiple starting epochs, and time-varying multi-shell tests. We will report the included shell populations, sampling procedure, throughput, served-demand ratio, and variability across instances. Longer-horizon cases will use orbital data appropriate to their epochs, and conclusions about precession will remain bounded to the modeled and tested time span.
+The original evaluation nevertheless used satellites from only one shell. To broaden this coverage, we added the two-shell case in Fig.~\ref{fig:plot_test_tcom_two_shell}, with $500$ satellites from each of the $53.22^\circ$ and $43.00^\circ$ TLE-derived orbital clusters. We kept this selected population fixed and applied the same six-snapshot evaluation, using matched geometry, traffic, and gateway inputs across methods at each time.
+DuJo achieves the highest throughput and served-demand ratio at all six snapshot times in both configurations.
+
+\textbf{Manuscript changes:} In Section~\ref{sec:simulation}, under ``Simulation Setup,'' we revised the configuration description as
+
+``...\blue{Specifically, at $\mathcal{T}_0$ we select a single-shell configuration with $1000$ satellites from the $53.22^\circ$ TLE-derived orbital cluster and a two-shell configuration with $500$ satellites from each of the $53.22^\circ$ and $43.00^\circ$ clusters. Each selected population remains fixed over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.}''
+
+Under ``Structured Shell-Based Evaluation Over Time,'' we revised the description to include the two-shell case and multiple link geometries over time as
+
+``...\blue{Fig.~\ref{fig:structured_shell_comparison} compares the single-shell and two-shell configurations over six snapshot times spanning three hours. Satellite membership remains fixed while the orbital positions are propagated, allowing the methods to be tested on multiple instances of the link geometry over time. DuJo achieves the highest throughput and served-demand ratio at all six snapshot times in both configurations.}''
+
+The combined Fig.~\ref{fig:structured_shell_comparison} is reproduced here.
+
+\begin{figure}[H]
+  \centering
+  \subfloat[\blue{Single-shell configuration.}\label{fig:resp_tcom_single_shell}]{%
+    \includegraphics[scale=0.85]{plot_test_tcom_shell_time_baselines.pdf}}
+  \par\medskip
+  \subfloat[\blue{Two-shell configuration.}\label{fig:resp_tcom_two_shell}]{%
+    \includegraphics[scale=0.85]{plot_test_tcom_two_shell.pdf}}
+  \caption{(Fig.~\ref{fig:structured_shell_comparison} in the revised manuscript) \blue{Structured shell-based Starlink evaluation over time. (a) Single-shell evaluation with the same $I=1000$ satellites from $53.22^\circ$ clusters. (b) Two-shell evaluation with $500$ satellites from each of the $53.22^\circ$ and $43.00^\circ$ clusters. In each subfigure, the top and bottom plots show throughput and served-demand ratio, respectively, while the constellation is propagated over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.}}
+  \label{fig:resp_tcom_shell_comparison}
+\end{figure}
 
 \noindent{\bfseries\pendingcomment Comment 2.2: Some figures, e.g., Figs. 4 and 8, still have very small axis labels and thin lines. They are hard to read even on screen. Enlarging the fonts and thickening the curves would improve readability.}
 
