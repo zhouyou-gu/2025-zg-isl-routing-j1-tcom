@@ -4,16 +4,18 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
-- Comment 2.4 implemented and synchronized with the single combined blue related-work sentence. Both full papers read; citations verified. Pending acceptance; included in the user-requested Comment 2.4 publication checkpoint.
+- Comment 1.1 is implemented, validated, and accepted by the user; its comment is black. The RTX 5090 workstation completed 185 snapshot decisions and 1,295 ATP replay evaluations at 0/10/20/30/50/70/90 s. Fig. 10, its blue caption/discussion, and the verbatim response reproduction are synchronized. Both PDFs compile and affected pages were inspected. User authorized commit and push to main in both repositories.
 
-- Comment 2.3 proofreading is implemented and validated, pending acceptance. Corrected minor grammar, agreement, capitalization and caption wording; checked current source and available PDFs for the quoted typo (absent) and inter-satellite hyphenation (consistent). Review PDF: `output/pdf/main_comment_2_3_review.pdf`.
+- Comment 2.4 implemented and synchronized with the single combined blue related-work sentence. Both full papers read; citations verified. Accepted by the user; Comment 2.4 is now black in the response letter. Content checkpoint published as 6ff5259; acceptance marking is uncommitted.
 
-- Comment 2.2 readability is implemented and validated, pending acceptance. Fonts enlarged in Figs. 3–10; Fig. 4 bars widened by 25%; Fig. 8 now shows four cases per panel with wider bars. Response describes changes without reproduced figures.
+- Comment 2.3 proofreading is implemented, validated, and accepted; its comment is black. Corrected minor grammar, agreement, capitalization and caption wording; checked current source and available PDFs for the quoted typo (absent) and inter-satellite hyphenation (consistent). Review PDF: `output/pdf/main_comment_2_3_review.pdf`.
 
-- Comment 2.1 is implemented and validated. All 54 snapshot instances / 270 method evaluations completed on the RTX 5090 workstation. The single-shell and two-shell plots are stacked in one manuscript column as Fig. 5(a)/(b); blue setup/results passages and the response are synchronized; explicit user acceptance remains pending.
+- Comment 2.2 readability is implemented, validated, and accepted; its comment is black. Fonts enlarged in Figs. 3–10; Fig. 4 bars widened by 25%; Fig. 8 now shows four cases per panel with wider bars. Response describes changes without reproduced figures.
+
+- Comment 2.1 is implemented and validated. All 54 snapshot instances / 270 method evaluations completed on the RTX 5090 workstation. The single-shell and two-shell plots are stacked in one manuscript column as Fig. 5(a)/(b); blue setup/results passages and the response are synchronized; accepted by the user; its comment is black.
 - Both panels now use one fixed population at six times. The two-shell plot uses predetermined selection 0 (initial minimum-span RAAN blocks), 6 snapshots / 30 evaluations, with DuJo leading at all six times. No averaging or shading. All 270 evaluations remain archived, including the unfavorable mixed-selection result.
 
-- Comment 1.2 remains implemented, validated, pending acceptance, and unchanged. Comment 2.2 is also implemented and pending; the other 11 items retain their drafted plans. All 14 comments remain red and pending.
+- Comment 1.2 is implemented, validated, and accepted. Comments 1.2 and 2.1–2.4 are black. Comment 1.1 is accepted and black; the other eight entries retain planned responses.
 
 ## Repository State
 
@@ -37,7 +39,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 - RV1 comments were recorded as complete in the historical tracker.
 - E.1 contains the editor's substantive assessment; 13 numbered reviewer items use the reference's inline `Comment n.m:` labels. Three opening assessments remain unnumbered introductions. Reviewer 1 has two items, Reviewer 2 has four, and Reviewer 3 has seven.
-- Comment 1.2 has a completed-work `Response:` and `Manuscript changes:` block quoting its single new manuscript paragraph verbatim. Comment 2.1 also has a completed-work response, verbatim quotations, and the reproduced revised figure. Comment 2.2 has a completed readability response without reproduced figures. Comment 2.3 has a completed proofreading response. The remaining 10 entries retain planned responses and changes. All 14 comments remain red and pending; implementation does not constitute approval.
+- Six responses are implemented: 1.1, 1.2, and 2.1–2.4. Comments 1.1, 1.2, and 2.1–2.4 are accepted and black. Eight entries retain planned responses. Reviewer wording and all non-1.1 responses are preserved.
 
 ## Rolling Progress Log
 
@@ -156,14 +158,14 @@ This is the live-state record for the current paper revision. Historical RV1 det
 ## Current Blockers or Risks
 
 
-- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Comment 2.2 improves figure readability; experiments and revisions for the other 11 items remain planned.
+- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Comment 2.2 improves figure readability; Comment 1.1 tests a 360 s replay with pre-acquired initial links; eight entries remain planned.
 - The updated supplied letter confirms the decision date as 28-Aug-2026 and specifies a 60-day revision window.
 - Four-file contract migration was not performed because the manuscript-writing scaffold skill requires an unavailable initialization tool. Response workflow updates use the existing three-file contract.
 - The previous tracker records an external-subdocument post-processing issue in `latexmkrc`. Validate the RV2 scaffold with direct `pdflatex` passes and existing manuscript references to avoid external BibTeX/post-processing side effects.
 
 ## Next Safe Resume Point
 
-- Review the figure-readability changes for Comment 2.2. Keep it and all other comments pending until accepted. Both repositories have uncommitted readability edits; earlier Comment 2.1 commits remain published. No rerun of experiments is needed. Use the immutable source PDFs and `restyle_tcom_rv2_figures.py` for this formatting checkpoint, rather than regenerating historical figures from missing raw data.
+- Review Comment 1.1 in `output/pdf/main_comment_1_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Comment 1.1 is now accepted; await the user’s next item. No more ATP runs are needed. User authorized committing and pushing both repositories to main on 2026-09-25.
 
 - 2026-09-23 further result search: recovered all four final numerical tables for Figs. 4, 8, and 9 from archived April 10 tool outputs, at six-decimal display precision. Saved under `../leo-sat-flow/sim_alg_v1_res/recovered_legacy_results/recovered-20260923-ail/`, with source excerpts and comparison against all 144 original PDF bars. Original merged CSV folders were deleted in a recorded April 10 cleanup; full precision has not been recovered. No simulation rerun or manuscript/figure edit in this search. User-requested `revision_data/` removal remains in effect; folder was moved to Trash and has not been recreated.
 
@@ -196,3 +198,29 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - Finalized Comment 2.4 response; exact manuscript quotation verified. Reviewer wording and other responses preserved.
 
 - 2026-09-24 publication checkpoint: user requested commit and push of Comment 2.4 to main. Reviewed all six changed files, including the generated bibliography; diff whitespace checks passed. Prior isolated compilation and quotation/layout validation remain valid. Comment acceptance statuses are unchanged.
+
+- 2026-09-24: user accepted the addressed Comment 2.4 by requesting black marking. Removed its pending-color command and synchronized the brief. Reviewer wording, blue manuscript quotation, and all other comment statuses are unchanged.
+
+- 2026-09-24: user accepted Comments 2.1, 2.2, and 2.3 and requested black marking. Removed only their pending-color commands, verified unchanged response wording, and synchronized current tracking. Comments 2.1–2.4 are now black; acceptance markings remain uncommitted.
+
+- 2026-09-24: user accepted Comment 1.2 and requested black marking. Removed its pending-color command and synchronized tracking; comment wording and blue revision quotations are unchanged. Comments 1.2 and 2.1–2.4 are accepted and black. Acceptance markings remain uncommitted.
+
+- Comment 1.1 implementation started: extending ATP sweep to 0/10/20/30/50/70/90 s on the RTX 5090, preserving the saved population and legacy/last 500-step protocol, 360 s horizon, and pre-acquired initialization. Comment remains pending.
+
+- Comment 1.1: four methods completed all seven settings. DuJo precomputation uses eight independent workers, then chronological replay. Exact five-step equivalence validates omission of unused intermediate diagnostics; all 500 dual updates and final conversion remain. Timer and cache serialization checks passed.
+
+- 2026-09-25. Completed Comment 1.1 on the RTX 5090 workstation (DuJo CPU, DRL GPU). All 185 decisions / 1,295 replay evaluations passed independent timer, matched-input, throughput-bound, and 36-snapshot-average checks. All 37 DuJo final results reproduce the saved run exactly. At 90 s, DuJo achieves 4.98 Gbps (3.3% retention), +Grid 46.30 Gbps (81.7%). Regenerated seven-point Fig. 10 without shading; synchronized blue manuscript paragraphs/caption and response verbatim. Direct isolated LaTeX/BibTeX builds passed with no undefined references or overfull boxes; existing underfull warnings remain. Data and validation are in the ignored code experiment directory `sim_alg_v1_res/test_tcom_atp_transition/comment-1-1-20260924-ail/` and remote `/home/zhouyou/tcom-comment11-ail/results/`; large caches remain remote. Comment 1.1 pending; accepted statuses preserved.
+
+- 2026-09-25. Condensed the ATP discussion into one paragraph in the previous simulation-description style at the user’s request. Preserved protocol, timer behavior, measured results, and scope; retained the numerical timer example in the response opening. Synchronized the quotation and the user-shortened figure caption. Comment 1.1 remains pending.
+
+- 2026-09-25. Based the Comment 1.1 passage on the user-restored wording with minimal changes: nine-interval range, pre-acquired initialization/excluded initial snapshot, newly selected pairs, persistent timers and drop/reselection behavior, and tested-window limitation. Preserved the original qualitative results discussion and synchronized the response quotation. Still pending review.
+
+- 2026-09-25. Shortened only the Comment 1.1 response opening to directly answer range sufficiency and acquisition across multiple snapshots. Preserved manuscript quotations, figure, reviewer wording, and pending status.
+
+- 2026-09-25. Removed forced `[H]` placement from response figures at the user’s request; use normal `[htbp]` placement. Updated the reusable harness to remove the forced-figure-placement rule. Text and comment statuses are unchanged.
+
+- 2026-09-25. Removed the final sufficiency/long-run caveat from the Comment 1.1 response at the user’s request. Other text and pending status unchanged.
+
+- 2026-09-25. User explicitly accepted Comment 1.1. Removed its pending red color and marked it done. Comments 1.1, 1.2, and 2.1–2.4 are accepted/black; remaining statuses unchanged.
+
+- 2026-09-25. Preparing the accepted Comment 1.1 manuscript/response/figure and supporting experiment code for the user-requested commit and push to both main branches. Synchronized the quotation with the user’s latest manuscript shortening. Timer tests and complete replay validation passed.

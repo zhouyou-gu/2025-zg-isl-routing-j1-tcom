@@ -9,7 +9,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 - RV2 remains the local round label. The new identifier is used in `response_letter_TCOM_RV2.tex`.
 - The local-only, gitignored `TCOM_RV2_decision_letter.txt` preserves the entire supplied attachment byte-for-byte, including the administrative instructions and reviewer report headers.
 - Active response source is `response_letter_TCOM_RV2.tex`; the compiled response draft is `output/pdf/response_letter_TCOM_RV2_draft.pdf`.
-- The manuscript content baseline is `main.tex` at `4cd632f`, with all prior-round blue wrappers and the blue-to-black override now removed. RV2 changes comprise the blue Comment 1.2 runtime paragraph and the Comment 2.1 added simulation setup/evaluation passages and combined Fig. 5 containing single-shell and two-shell subfigures. Comment 1.2 is unchanged by this extension; both items remain pending acceptance.
+- The manuscript content baseline is `main.tex` at `4cd632f`, with all prior-round blue wrappers and the blue-to-black override now removed. RV2 changes comprise the blue Comment 1.2 runtime paragraph and the Comment 2.1 added simulation setup/evaluation passages and combined Fig. 5 containing single-shell and two-shell subfigures. Comment 1.2 is unchanged by this extension; Comments 1.2 and 2.1 are accepted.
 - Prior-round response and cover-letter files, their build files, and response progress remain in `archive/rv1/`. Manuscript files and figures are outside this response-only archive.
 
 ## Review-Item State
@@ -18,13 +18,13 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | --- | --- | --- |
 | E.1 | Editor substantive assessment paragraph | Planned response drafted, pending |
 | 1.general | Reviewer 1 opening assessment | Preserved as an unnumbered introduction |
-| 1.1 | Reviewer 1 item 1 | Planned response drafted, pending |
-| 1.2 | Reviewer 1 item 2 | Implemented, synchronized, and validated; acceptance pending |
+| 1.1 | Reviewer 1 item 1 | Implemented, validated, and accepted |
+| 1.2 | Reviewer 1 item 2 | Accepted; comment marked black |
 | 2.general | Reviewer 2 opening assessment | Preserved as an unnumbered introduction |
-| 2.1 | Reviewer 2 item 1 | Implemented, synchronized, and validated; acceptance pending |
-| 2.2 | Reviewer 2 item 2 | Figure readability implemented and validated; acceptance pending |
-| 2.3 | Reviewer 2 item 3 | Proofreading implemented and validated, pending |
-| 2.4 | Reviewer 2 item 4 | Implemented, synchronized, and validated; acceptance pending |
+| 2.1 | Reviewer 2 item 1 | Accepted; comment marked black |
+| 2.2 | Reviewer 2 item 2 | Accepted; comment marked black |
+| 2.3 | Reviewer 2 item 3 | Accepted; comment marked black |
+| 2.4 | Reviewer 2 item 4 | Accepted; comment marked black |
 | 3.general | Reviewer 3 opening assessment | Preserved as an unnumbered introduction |
 | 3.1 | Reviewer 3 item 1 | Planned response drafted, pending |
 | 3.2 | Reviewer 3 item 2 | Planned response drafted, pending |
@@ -35,7 +35,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 3.7 | Reviewer 3 item 7 | Planned response drafted, pending |
 
 - The response follows `../2025-zg-isl-routing/response_letter_ToN_RR.tex` directly. Comments 1.2 and 2.1 have completed `Response:` and `Manuscript changes:` fields with verbatim quotations; Comment 2.1 also reproduces the revised figure. Comments 2.2 and 2.3 have completed readability and proofreading responses; the other 10 entries retain drafted plans. Three reviewer opening assessments remain unnumbered introductory paragraphs, followed by topic-specific acknowledgments.
-- Comment wording is unchanged. Original list markers are replaced with reference-style `Comment 1.1:` labels, without duplicate numbering. All comments remain bold red and pending.
+- Comment wording is unchanged. Original list markers are replaced with reference-style `Comment 1.1:` labels, without duplicate numbering. Comments 1.1, 1.2, and 2.1–2.4 are accepted and bold black; other substantive comments remain red and pending.
 - The complete administrative editor email remains in `TCOM_RV2_decision_letter.txt`; only its substantive assessment appears as E.1 in the response.
 
 ## Evidence Gaps
@@ -52,6 +52,10 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 - `revision_data/comment_2_1/` contains the complete CSV, summaries, manifest, geometry/validation records, execution settings, and implementation patch. The driver, plotter, tests, and reproduction instructions are in `../leo-sat-flow`.
 
 ## Next Item-Local Step
+
+Review Comment 1.1 and the updated Fig. 10. All seven ATP settings completed and passed validation. Comments 1.1, 1.2, and 2.1–2.4 are accepted and black. Current PDFs are `output/pdf/main_comment_1_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Experiment artifacts are in the ignored code-repository run directory and on the 5090 workstation.
+
+### Historical steps
 
 - 2026-09-23. Rechecked the 5090 workstation at the user's direction. Recovered exact raw runs for Figs. 3/7 into local ignored data directories. Located Fig. 5(a) in the load-scaling CSV at load 0.0001 and verified all ten curves against the original vector PDF (maximum error 0.000011 pt). Figs. 5(b)/6/10 also have saved data. Only the augmented DRL/SaTE merged inputs for Figs. 4/8/9 remain unlocated; older base runs are not substitutes. Recorded paths/hashes in revision_data/comment_2_2/data_inventory.json. Current figure styling is unchanged.
 
@@ -82,3 +86,15 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - Comment 2.4: combined SaTE and both added routing methods into one blue sentence, with a shared statement that none jointly optimizes LCT matching, routing and rate allocation under LCT mechanical constraints. Response quotation synchronized.
 
 - Comment 2.4 response finalized with the completed citations and specific joint-decision distinction. One combined manuscript sentence retained verbatim in the letter; both full papers reviewed. No experiments added; other comments unchanged.
+
+- Comment 1.1 approved implementation scope: ATP settings 0/10/20/30/50/70/90 s, unchanged 10 s intervals and 360 s horizon, pre-acquired initial links, five methods, existing legacy/last 500-step settings. Timer and cache round-trip tests passed; RTX 5090 run underway.
+
+- 2026-09-25. Comment 1.1 completed: 185 decisions reused across seven delays, 1,295 replay records, 35 method/delay means excluding initialization. Independent timer/input/throughput validation passed. Fig. 10 and only its manuscript caption/discussion revised in blue; response quotes match verbatim. Direct isolated builds and visual checks passed. Pending review; no new approval or commit.
+
+- 2026-09-25. Condensed the ATP discussion into one paragraph in the previous simulation-description style at the user’s request. Preserved protocol, timer behavior, measured results, and scope; retained the numerical timer example in the response opening. Synchronized the quotation and the user-shortened figure caption. Comment 1.1 remains pending.
+
+- 2026-09-25. Based the Comment 1.1 passage on the user-restored wording with minimal changes: nine-interval range, pre-acquired initialization/excluded initial snapshot, newly selected pairs, persistent timers and drop/reselection behavior, and tested-window limitation. Preserved the original qualitative results discussion and synchronized the response quotation. Still pending review.
+
+- 2026-09-25. Shortened only the Comment 1.1 response opening to directly answer range sufficiency and acquisition across multiple snapshots. Preserved manuscript quotations, figure, reviewer wording, and pending status.
+
+- 2026-09-25. Comment 1.1 accepted by the user and marked black/done. Other statuses unchanged.

@@ -126,13 +126,26 @@ We thank the editor for identifying the principal issues requiring attention and
 
 We thank the reviewer for the careful assessment and constructive comments. We will clarify the ATP replay and the practical timing limits of centralized deployment in the responses that follow.
 
-\noindent{\bfseries\pendingcomment Comment 1.1: The ATP study uses 10 s topology intervals and TATP values up to 30 s, while the manuscript cites optical acquisition times on the order of tens of seconds. Why is this parameter range sufficient, and what happens when TATP exceeds the topology interval for several consecutive snapshots?}
+\noindent{\bfseries Comment 1.1: The ATP study uses 10 s topology intervals and TATP values up to 30 s, while the manuscript cites optical acquisition times on the order of tens of seconds. Why is this parameter range sufficient, and what happens when TATP exceeds the topology interval for several consecutive snapshots?}
 
-\textbf{Response:} The $10$ s interval is the sampling interval of the ATP replay, not a requirement that acquisition finish within one interval. A newly selected link remains unavailable until it has been retained continuously for $T_{\mathrm{ATP}}$; its acquisition timer continues across snapshots, and dropping the link discards that timer. Thus, the existing $30$ s setting already spans three intervals. A link retained for less than its acquisition time never becomes usable, so repeated reconfiguration can substantially reduce throughput. We will explain this behavior explicitly and acknowledge that the current range does not establish robustness to longer acquisition times. We plan to extend the sweep to $60$ and $120$ s and distinguish the existing initially acquired-link condition from a cold-start condition.
+\textbf{Response:} The original range covered acquisition over two or three topology intervals, but did not test longer delays. We therefore extended Fig.~\ref{fig:plot_test_tcom_atp_transition} to include $50$, $70$, and $90$ s, covering up to nine intervals. When $T_{\mathrm{ATP}}$ exceeds the $10$ s interval, a newly selected terminal pair remains unavailable while acquisition progresses across snapshots. It becomes usable after $T_{\mathrm{ATP}}$ if continuously retained; dropping and reselecting it restarts acquisition. Thus, frequent link changes can prevent acquisition from completing and reduce throughput, as Fig.~\ref{fig:plot_test_tcom_atp_transition} shows. The evaluation uses a $360$ s replay with pre-acquired initial links and excludes the initial snapshot from the averages.
 
-\textbf{Planned manuscript changes:} We will extend Fig.~\ref{fig:plot_test_tcom_atp_transition} while retaining the existing $0$, $10$, $20$, and $30$ s cases. The replay horizon will be extended to at least ten times the largest acquisition time, with initialization and warm-up treatment stated explicitly. We will report throughput, the fraction of links still acquiring, and link-persistence statistics, and add a short example showing a timer carried across consecutive snapshots.
+\textbf{Manuscript changes:} In Section~\ref{sec:simulation}, under ``Impact of ATP Time,'' we revised the evaluation description and discussion as
 
-\noindent{\bfseries\pendingcomment Comment 1.2: Computing time still reaches minutes for larger constellations, but the system model presents a central controller operating per snapshot. Will the dissemination delay and solver time fit the intended control interval once ATP overhead and traffic prediction updates are included? You\textquotesingle{}d better discuss this deployment issue more concretely.}
+``...\blue{To evaluate non-zero ATP overhead without replacing the proposed per-snapshot optimizer, we perform an ATP-time sensitivity simulation on the single-shell-based Starlink instance. The topology-evaluation interval is fixed to $10$ s over $0$--$360$ s, and the ATP acquisition time is swept from $0$ to $90$ s.
+For each method, we first compute the original per-snapshot matching, routing, and rate allocation once for each offset. We then replay the ATP transition process for each value of $T_{\mathrm{ATP}}$. Initial LISLs are assumed already acquired, and the initial snapshot is excluded from the averages. A LISL newly selected at snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}})$, and it becomes usable once the acquisition time has elapsed. Acquisition progress is carried across snapshots while the same terminal pair remains selected. If the pair is dropped before acquisition completes, its ATP state is discarded, and reselection starts a new acquisition. Finally, we recompute the throughput by LP using only the ATP-completed LISLs.
+The results in Fig.~\ref{fig:plot_test_tcom_atp_transition} show that increasing ATP acquisition time can materially reduce realized throughput when the per-snapshot topology changes quickly.
+The retention ratios quantify how much of the original per-snapshot throughput remains when ATP overhead is considered. Methods that change many LISLs across nearby snapshots have lower retention ratios as $T_{\mathrm{ATP}}$ increases, whereas methods with more persistent LISLs are less sensitive. These results characterize the tested replay window rather than long-run performance for arbitrary acquisition times. These results motivate the future ATP-aware temporal optimization described in the appendix, complementing recent time-dependent topology optimization studies for LEO constellations \cite{ron2025time}.}''
+
+The revised Fig.~\ref{fig:plot_test_tcom_atp_transition} and its updated caption are reproduced here.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.62\linewidth]{plot_test_tcom_atp_transition.pdf}
+  \caption{(Fig.~\ref{fig:plot_test_tcom_atp_transition} in the revised manuscript) \blue{ATP-time sensitivity evaluation on the structured single-shell Starlink instance, with $10$ s snapshot intervals over $0,10,\ldots,360$ s and $T_{\mathrm{ATP}}\in\{0,10,20,30,50,70,90\}$ s. The top plot shows average throughput, and the bottom plot shows its ratio to the average throughput without ATP overhead.}}
+  \label{fig:resp_tcom_atp_transition}
+\end{figure}
+
+\noindent{\bfseries Comment 1.2: Computing time still reaches minutes for larger constellations, but the system model presents a central controller operating per snapshot. Will the dissemination delay and solver time fit the intended control interval once ATP overhead and traffic prediction updates are included? You\textquotesingle{}d better discuss this deployment issue more concretely.}
 
 \textbf{Response:} The current implementation does not establish that the complete controller cycle fits within a seconds-scale update interval. For larger constellations, optimization already takes minutes, before adding state collection, traffic-prediction updates, dissemination, and ATP execution. Advance planning is a possible deployment option, conditional on sufficient lead time, applicable predicted inputs, and continued link feasibility during acquisition and service. Invalidating disturbances require refreshed state and recomputation. Further research can accelerate the approximation of optimal Lagrange multipliers using duality-guided graph learning (DeepLaDu), which estimates the multipliers in a single forward pass of an offline-trained graph neural network \cite{gu2026deepladu}. This approach can replace iterative online dual updates while retaining the subsequent matching, routing, and rate-allocation steps. We added the timing limitation, the associated deployment conditions, and this direction for further research to the computing-time discussion.
 
@@ -146,7 +159,7 @@ We thank the reviewer for the careful assessment and constructive comments. We w
 
 We thank the reviewer for the careful assessment and constructive comments. We will sharpen the novelty discussion around the joint terminal-matching, routing, and rate-allocation decisions, and broaden the evaluation beyond the existing shell block. We will separate these contributions from related routing methods and avoid claiming novelty merely from using Lagrangian duality.
 
-\noindent{\bfseries\pendingcomment Comment 2.1: The structured‑shell test uses only one 1000‑satellite block from a single Starlink shell at a fixed epoch. Real mega‑constellations involve multiple shells, orbital precession, and time‑varying link geometry. Testing on a single static snapshot limits the generality of the conclusions.}
+\noindent{\bfseries Comment 2.1: The structured‑shell test uses only one 1000‑satellite block from a single Starlink shell at a fixed epoch. Real mega‑constellations involve multiple shells, orbital precession, and time‑varying link geometry. Testing on a single static snapshot limits the generality of the conclusions.}
 
 \textbf{Response:} The structured-shell evaluation was not limited to a single static snapshot. In the original evaluation, now shown in Fig.~\ref{fig:plot_test_tcom_shell_time_baselines}, we kept the identities of the $1000$ selected satellites fixed and propagated their orbits to offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min from $\mathcal{T}_0$. The satellite positions and feasible link geometry were evaluated at each time, and all methods were tested on each resulting snapshot. Thus, Fig.~\ref{fig:plot_test_tcom_shell_time_baselines} covers six instances of the time-varying link geometry over three hours.
 
@@ -163,7 +176,7 @@ Under ``Structured Shell-Based Evaluation Over Time,'' we revised the descriptio
 
 The combined Fig.~\ref{fig:structured_shell_comparison} is reproduced here.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \subfloat[\blue{Single-shell configuration.}\label{fig:resp_tcom_single_shell}]{%
     \includegraphics[scale=0.85]{plot_test_tcom_shell_time_baselines.pdf}}
@@ -174,17 +187,17 @@ The combined Fig.~\ref{fig:structured_shell_comparison} is reproduced here.
   \label{fig:resp_tcom_shell_comparison}
 \end{figure}
 
-\noindent{\bfseries\pendingcomment Comment 2.2: Some figures, e.g., Figs. 4 and 8, still have very small axis labels and thin lines. They are hard to read even on screen. Enlarging the fonts and thickening the curves would improve readability.}
+\noindent{\bfseries Comment 2.2: Some figures, e.g., Figs. 4 and 8, still have very small axis labels and thin lines. They are hard to read even on screen. Enlarging the fonts and thickening the curves would improve readability.}
 
 \textbf{Response:} We enlarged the axis labels, tick labels, and legends in Figs.~3--10 and widened the bars in Figs.~4 and~8. For Fig.~8, we reduced the displayed cases to average LCT counts of $0.8$, $1.2$, $1.6$, and $2.0$ and field-of-regard angles of $30^\circ$, $50^\circ$, $70^\circ$, and $90^\circ$, allowing wider bars and clearer spacing. The retained results are unchanged. We checked readability at the final manuscript size.
 
-\noindent{\bfseries\pendingcomment Comment 2.3: A few grammatical errors remain, such as \textquotesingle{}\textquotesingle{}focuse imization\textquotesingle{}\textquotesingle{} in the abstract and inconsistent hyphenation of \textquotesingle{}\textquotesingle{}inter‑satellite\textquotesingle{}\textquotesingle{}. A final proofread is recommended before resubmission.}
+\noindent{\bfseries Comment 2.3: A few grammatical errors remain, such as \textquotesingle{}\textquotesingle{}focuse imization\textquotesingle{}\textquotesingle{} in the abstract and inconsistent hyphenation of \textquotesingle{}\textquotesingle{}inter‑satellite\textquotesingle{}\textquotesingle{}. A final proofread is recommended before resubmission.}
 
 \textbf{Response:} We proofread the manuscript and corrected grammatical errors in the abstract, section headings, captions, and proof descriptions. We also checked that ``inter-satellite'' is consistently hyphenated. The quoted abstract typo is absent from the current source and the available manuscript PDFs.
 
 \textbf{Manuscript changes:} We corrected minor wording, capitalization, and subject--verb agreement throughout the manuscript without changing the technical content.
 
-\noindent{\bfseries\pendingcomment Comment 2.4: Finally, some other routing schemes, such as \textquotesingle{}multipath adaptive energy-efficient routing scheme\textquotesingle{}, \textquotesingle{}sparrow search-based energy-adaptive routing scheme\textquotesingle{} have been proposed for similar scenarios. A brief mention of these alternative models in the introduction or related work section would help readers understand the modeling landscape and the rationale behind the chosen approach.}
+\noindent{\bfseries Comment 2.4: Finally, some other routing schemes, such as \textquotesingle{}multipath adaptive energy-efficient routing scheme\textquotesingle{}, \textquotesingle{}sparrow search-based energy-adaptive routing scheme\textquotesingle{} have been proposed for similar scenarios. A brief mention of these alternative models in the introduction or related work section would help readers understand the modeling landscape and the rationale behind the chosen approach.}
 
 \textbf{Response:} We cited both suggested studies alongside SaTE in the Introduction. These routing schemes adapt path selection to energy and link-performance metrics, but do not jointly optimize LCT matching, routing, and rate allocation under LCT mechanical constraints; this distinction clarifies the scope of our joint formulation.
 
