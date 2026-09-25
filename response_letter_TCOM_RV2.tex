@@ -133,7 +133,8 @@ We thank the reviewer for the careful assessment and constructive comments. We w
 \textbf{Manuscript changes:} In Section~\ref{sec:simulation}, under ``Impact of ATP Time,'' we revised the evaluation description and discussion as
 
 ``...\blue{To evaluate non-zero ATP overhead without replacing the proposed per-snapshot optimizer, we perform an ATP-time sensitivity simulation on the single-shell-based Starlink instance. The topology-evaluation interval is fixed to $10$ s over $0$--$360$ s, and the ATP acquisition time is swept from $0$ to $90$ s.
-For each method, we first compute the original per-snapshot matching, routing, and rate allocation once for each offset. We then replay the ATP transition process for each value of $T_{\mathrm{ATP}}$. Initial LISLs are assumed already acquired, and the initial snapshot is excluded from the averages. A LISL newly selected at snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}})$, and it becomes usable once the acquisition time has elapsed. Acquisition progress is carried across snapshots while the same terminal pair remains selected. If the pair is dropped before acquisition completes, its ATP state is discarded, and reselection starts a new acquisition. Finally, we recompute the throughput by LP using only the ATP-completed LISLs.
+For each method, we first compute the original per-snapshot matching, routing, and rate allocation once for each offset. We then replay the ATP transition process for each value of $T_{\mathrm{ATP}}$.
+A LISL newly selected at snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}})$, and it becomes usable once the acquisition time has elapsed. Acquisition progress is carried across snapshots while the same terminal pair remains selected. If the pair is dropped before acquisition completes, its ATP state is discarded, and reselection starts a new acquisition. Finally, we recompute the throughput by LP using only the ATP-completed LISLs.
 The results in Fig.~\ref{fig:plot_test_tcom_atp_transition} show that increasing ATP acquisition time can materially reduce realized throughput when the per-snapshot topology changes quickly.
 The retention ratios quantify how much of the original per-snapshot throughput remains when ATP overhead is considered. Methods that change many LISLs across nearby snapshots have lower retention ratios as $T_{\mathrm{ATP}}$ increases, whereas methods with more persistent LISLs are less sensitive. These results characterize the tested replay window rather than long-run performance for arbitrary acquisition times. These results motivate the future ATP-aware temporal optimization described in the appendix, complementing recent time-dependent topology optimization studies for LEO constellations \cite{ron2025time}.}''
 
@@ -214,9 +215,32 @@ We thank the reviewer for the careful assessment and constructive comments. We w
 
 \noindent{\bfseries\pendingcomment Comment 3.1: One of the relevant indicators in satellite constellations is end-to-end  latency. Authors should clarify why latency results are not presented.}
 
-\textbf{Response:} The current objective maximizes steady-state routed throughput under capacity constraints; it does not model packet arrivals, queues, packet sizes, processing delays, or access-link scheduling. Consequently, throughput results alone do not establish end-to-end latency. We will explain this scope and add a route-level propagation-delay evaluation using the sum of the physical LISL lengths divided by the speed of light. We will report it together with served traffic and route reachability, so a low delay is not interpreted without considering which flows are actually served. This metric will be identified as the space-segment propagation component, not as a complete end-to-end latency result.
+\textbf{Response:} The objective of this work is throughput maximization; therefore, the original evaluation did not compare flow delays. We added an appendix table comparing the mean and $95$th-percentile propagation delays and mean route distances of DuJo, DRL, SaTE, MRate, and +Grid. Propagation delay is calculated from each served flow's routed LISL distance divided by the speed of light, with statistics weighted by allocated flow rate. DuJo achieves a mean delay of $11.26$ ms and the lowest $95$th-percentile delay of $23.68$ ms among the tested methods. The comparison covers LISL propagation delay; queueing, transmission, processing, and ground-access delays are outside the present model.
 
-\textbf{Planned manuscript changes:} We will clarify the latency scope in the formulation and simulation discussion and add a propagation-delay and hop-count comparison for DuJo and the baselines on matched states. The metric will specify its route population, weighting, and treatment of unserved flows. Queueing, transmission, processing, gateway, and user-access delays will remain explicit exclusions unless an appropriate packet-level model is introduced.
+\textbf{Manuscript changes:} We added an appendix entitled ``Flow Propagation Delay'' as
+
+``...\blue{To examine flow propagation delays, we compare DuJo, DRL, SaTE, MRate, and +Grid on the same $1000$-satellite single-shell instance at snapshots over $0$--$360$ s, with $10$ s spacing and no ATP overhead. Each flow's LISL propagation delay is the sum of the physical link distances along its selected route divided by the speed of light. Queueing, transmission, processing, and ground-access delays are not included. Table~\ref{tab:flow_propagation_delay} reports the mean route distance and the mean and $95$th-percentile propagation delays, weighted by allocated flow rate over all served flow--snapshot observations. Zero-rate and unreachable flows are excluded from these delay statistics. The delay statistics describe each method's served traffic, which can differ between methods. DuJo has a mean propagation delay of $11.26$ ms, compared with $10.75$ ms for SaTE and MRate, $15.64$ ms for DRL, and $23.71$ ms for +Grid. Its $95$th-percentile delay is $23.68$ ms, the lowest among the tested methods. +Grid prioritizes terminal alignment when selecting links, so a longer link can be preferred over a shorter, less aligned link. Its inverse-capacity routing costs do not directly minimize propagation distance, resulting in longer routes in this evaluation.}''
+
+The comparison table is reproduced here.
+\begin{table}[t]
+\centering
+\caption{(Table~\ref{tab:flow_propagation_delay} in the revised manuscript) \blue{Flow propagation delay over single-shell snapshots.}}
+\label{tab:resp_flow_propagation_delay}
+\small
+{\color{blue}
+\begin{tabular}{lrrr}
+\hline
+Method & \shortstack{Mean\\delay (ms)} & \shortstack{95th pct.\\delay (ms)} & \shortstack{Mean route\\distance (km)} \\
+\hline
+DuJo & 11.26 & 23.68 & 3374.93 \\
+DRL & 15.64 & 35.32 & 4688.35 \\
+SaTE & 10.75 & 24.01 & 3223.30 \\
+MRate & 10.75 & 24.01 & 3223.30 \\
++Grid & 23.71 & 142.74 & 7109.09 \\
+\hline
+\end{tabular}
+}
+\end{table}
 
 \noindent{\bfseries\pendingcomment Comment 3.2: Served demand does not reach 50\%. Authors are requested to explain if it is due to mismatch of simulation parameters (e.g. user demand vs capacity of ISLs), ISL bottlenecks or due to the proposed optimization.}
 

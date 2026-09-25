@@ -4,6 +4,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- Comment 3.1 is implemented and validated, pending user review (red). Added the blue Flow Propagation Delay appendix and five-method table over 37 snapshots, synchronized the response and table reproduction. All 185 cases and independent audits passed on the 5090 workstation; DuJo reused cached decisions. Review PDFs are `output/pdf/main_comment_3_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. User authorized commit and push to main in both repositories.
+
 - Comment 1.1 is implemented, validated, and accepted by the user; its comment is black. The RTX 5090 workstation completed 185 snapshot decisions and 1,295 ATP replay evaluations at 0/10/20/30/50/70/90 s. Fig. 10, its blue caption/discussion, and the verbatim response reproduction are synchronized. Both PDFs compile and affected pages were inspected. User authorized commit and push to main in both repositories.
 
 - Comment 2.4 implemented and synchronized with the single combined blue related-work sentence. Both full papers read; citations verified. Accepted by the user; Comment 2.4 is now black in the response letter. Content checkpoint published as 6ff5259; acceptance marking is uncommitted.
@@ -39,7 +41,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 - RV1 comments were recorded as complete in the historical tracker.
 - E.1 contains the editor's substantive assessment; 13 numbered reviewer items use the reference's inline `Comment n.m:` labels. Three opening assessments remain unnumbered introductions. Reviewer 1 has two items, Reviewer 2 has four, and Reviewer 3 has seven.
-- Six responses are implemented: 1.1, 1.2, and 2.1–2.4. Comments 1.1, 1.2, and 2.1–2.4 are accepted and black. Eight entries retain planned responses. Reviewer wording and all non-1.1 responses are preserved.
+- Seven responses are implemented: 1.1, 1.2, 2.1–2.4, and 3.1. Comments 1.1, 1.2, and 2.1–2.4 are accepted and black. Comment 3.1 is red/pending; seven entries retain planned responses. Reviewer wording and all non-1.1 responses are preserved.
 
 ## Rolling Progress Log
 
@@ -165,7 +167,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Next Safe Resume Point
 
-- Review Comment 1.1 in `output/pdf/main_comment_1_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Comment 1.1 is now accepted; await the user’s next item. No more ATP runs are needed. User authorized committing and pushing both repositories to main on 2026-09-25.
+- Review Comment 3.1 and the appendix table in the current PDFs. Keep 3.1 pending until explicit acceptance; 1.1, 1.2, and 2.1–2.4 remain accepted. No further experiments are needed for this implementation. User authorized commit and push to main in both repositories.
 
 - 2026-09-23 further result search: recovered all four final numerical tables for Figs. 4, 8, and 9 from archived April 10 tool outputs, at six-decimal display precision. Saved under `../leo-sat-flow/sim_alg_v1_res/recovered_legacy_results/recovered-20260923-ail/`, with source excerpts and comparison against all 144 original PDF bars. Original merged CSV folders were deleted in a recorded April 10 cleanup; full precision has not been recovered. No simulation rerun or manuscript/figure edit in this search. User-requested `revision_data/` removal remains in effect; folder was moved to Trash and has not been recreated.
 
@@ -224,3 +226,21 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-25. User explicitly accepted Comment 1.1. Removed its pending red color and marked it done. Comments 1.1, 1.2, and 2.1–2.4 are accepted/black; remaining statuses unchanged.
 
 - 2026-09-25. Preparing the accepted Comment 1.1 manuscript/response/figure and supporting experiment code for the user-requested commit and push to both main branches. Synchronized the quotation with the user’s latest manuscript shortening. Timer tests and complete replay validation passed.
+
+- 2026-09-25. Completed Comment 3.1: 185 method/snapshot evaluations, with 37 cached DuJo decisions and 148 fresh baseline evaluations using the frozen PG checkpoint and seed 0. Validated matched inputs, routes, physical units, rate alignment, throughput bounds, deterministic cached-run agreement, weighted statistics, and independent straight-line bounds/artifact checks. Mean propagation delay / throughput: DuJo 11.26 ms / 149.26 Gbps, SaTE and MRate 10.75 ms / 112.35 Gbps, DRL 15.64 ms / 41.28 Gbps, +Grid 23.71 ms / 56.84 Gbps. Added only the new appendix and Comment 3.1 response, with exact quotations and table reproduction. No undefined references or new overfull boxes after direct isolated builds; response retains the user’s pre-existing h-to-ht float warning. Tables and affected pages visually inspected. Data/provenance are in the ignored code `sim_alg_v1_res/test_tcom_flow_delay/comment-3-1-20260925-ail/` and remote `tcom-comment11-ail/delay-results/`; no `revision_data` created.
+
+- 2026-09-25. Removed the ATP initialization/initial-snapshot sentence from the manuscript at the user’s request and synchronized the response quotation. Experimental protocol and all comment statuses unchanged.
+
+- 2026-09-25. At the user’s request, narrowed the Comment 3.1 appendix and reproduced table to propagation delay only. Removed throughput/served-demand columns and comparison prose; retained weighting and served-flow definition. Response synchronized; raw results unchanged and Comment 3.1 pending.
+
+- 2026-09-25. Combined the delay appendix discussion into one paragraph without changing wording; synchronized the response quotation. Table and comment status unchanged.
+
+- 2026-09-25. Added two sentences explaining +Grid’s alignment-based link selection and inverse-capacity routing costs, which do not directly minimize physical distance. Saved-route diagnostics confirm longer paths in this evaluation (traffic-weighted 7,109 km versus DuJo’s 3,375 km). Kept the appendix in one paragraph and synchronized the quotation; Comment 3.1 pending.
+
+- 2026-09-25. Added the allocated-rate-weighted mean route distance (km) to the delay table and its response reproduction, calculated from full-precision results. Updated the metric description and caption; no simulations rerun.
+
+- 2026-09-25. Preserved the user’s removal of the snapshot count and shortened caption in the delay appendix; synchronized the response quotation/caption. Experiment data unchanged.
+
+- 2026-09-25. Finalized Comment 3.1’s direct response: explains the original throughput objective, identifies the added delay/distance table, defines rate weighting, summarizes DuJo’s measured delays, and states the modeled delay components. Manuscript and verbatim quotation/table unchanged; pending explicit acceptance.
+
+- 2026-09-25. Preparing the user-requested commit/push of Comment 3.1 and its delay-analysis code to both main branches. Included the user’s ATP sentence deletion and preserved pending status for 3.1. Source/table synchronization, metric tests, full experiment audits, and isolated document builds passed.

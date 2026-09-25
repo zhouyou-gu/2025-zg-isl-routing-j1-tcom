@@ -26,7 +26,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 2.3 | Reviewer 2 item 3 | Accepted; comment marked black |
 | 2.4 | Reviewer 2 item 4 | Accepted; comment marked black |
 | 3.general | Reviewer 3 opening assessment | Preserved as an unnumbered introduction |
-| 3.1 | Reviewer 3 item 1 | Planned response drafted, pending |
+| 3.1 | Reviewer 3 item 1 | Implemented and validated; pending review |
 | 3.2 | Reviewer 3 item 2 | Planned response drafted, pending |
 | 3.3 | Reviewer 3 item 3 | Planned response drafted, pending |
 | 3.4 | Reviewer 3 item 4 | Planned response drafted, pending |
@@ -53,7 +53,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 ## Next Item-Local Step
 
-Review Comment 1.1 and the updated Fig. 10. All seven ATP settings completed and passed validation. Comments 1.1, 1.2, and 2.1–2.4 are accepted and black. Current PDFs are `output/pdf/main_comment_1_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Experiment artifacts are in the ignored code-repository run directory and on the 5090 workstation.
+Review Comment 3.1 and the new propagation-delay appendix/table. All 185 cases passed validation. Current PDFs are `output/pdf/main_comment_3_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Keep 3.1 red/pending; accepted comments remain black.
 
 ### Historical steps
 
@@ -98,3 +98,19 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-25. Shortened only the Comment 1.1 response opening to directly answer range sufficiency and acquisition across multiple snapshots. Preserved manuscript quotations, figure, reviewer wording, and pending status.
 
 - 2026-09-25. Comment 1.1 accepted by the user and marked black/done. Other statuses unchanged.
+
+- 2026-09-25. Comment 3.1 implementation started under the approved plan: five methods, 37 snapshots, propagation-only delay, cached DuJo decisions, matched inputs, rate-weighted mean/p95 and throughput/served ratio in an appendix table. Pending review.
+
+- 2026-09-25. Comment 3.1 implemented with the approved propagation-only metric, allocated-rate weighting, all 37 snapshots including initialization, and throughput/served-demand context. Appendix text/table and response are synchronized; both PDFs compiled and inspected. Pending review.
+
+- 2026-09-25. At the user’s request, narrowed the Comment 3.1 appendix and reproduced table to propagation delay only. Removed throughput/served-demand columns and comparison prose; retained weighting and served-flow definition. Response synchronized; raw results unchanged and Comment 3.1 pending.
+
+- 2026-09-25. Combined the delay appendix discussion into one paragraph without changing wording; synchronized the response quotation. Table and comment status unchanged.
+
+- 2026-09-25. Added two sentences explaining +Grid’s alignment-based link selection and inverse-capacity routing costs, which do not directly minimize physical distance. Saved-route diagnostics confirm longer paths in this evaluation (traffic-weighted 7,109 km versus DuJo’s 3,375 km). Kept the appendix in one paragraph and synchronized the quotation; Comment 3.1 pending.
+
+- 2026-09-25. Added the allocated-rate-weighted mean route distance (km) to the delay table and its response reproduction, calculated from full-precision results. Updated the metric description and caption; no simulations rerun.
+
+- 2026-09-25. Preserved the user’s removal of the snapshot count and shortened caption in the delay appendix; synchronized the response quotation/caption. Experiment data unchanged.
+
+- 2026-09-25. Finalized Comment 3.1’s direct response: explains the original throughput objective, identifies the added delay/distance table, defines rate weighting, summarizes DuJo’s measured delays, and states the modeled delay components. Manuscript and verbatim quotation/table unchanged; pending explicit acceptance.
