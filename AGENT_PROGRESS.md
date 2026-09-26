@@ -4,6 +4,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- Comment 3.3 implemented, pending review (red). Verified the user-updated Fig. 1(b) labels the FOR half-angle theta and retains the full FOR 2theta. Replaced the planned response with one sentence describing the completed figure change; no figure edits or manuscript prose changes.
+
 - Comment 3.2 implemented and validated, pending review (red). Audited residual-demand accounting and two maximum-flow relaxations on existing cached snapshots; added one blue paragraph under Load-Stress Evaluation and synchronized only response 3.2. Current PDFs are `output/pdf/main_comment_3_2_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. No DuJo rerun or figure change. Uncommitted.
 
 - Comment 3.1 is implemented and validated, pending user review (red). Added the blue Flow Propagation Delay appendix and five-method table over 37 snapshots, synchronized the response and table reproduction. All 185 cases and independent audits passed on the 5090 workstation; DuJo reused cached decisions. Review PDFs are `output/pdf/main_comment_3_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. User authorized commit and push to main in both repositories.
@@ -258,3 +260,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-26. Removed the two-LCT explanation from Comment 3.2 manuscript wording, response, and quotation at the user’s request. Retained the general LISL connectivity/capacity explanation.
 
 - 2026-09-26. Replaced the manuscript’s matching/routing improvement sentence with increasing LCTs per satellite or satellite count, conditional on fixed traffic demand. Synchronized response and quotation; no new experimental claim.
+
+- 2026-09-26. Visually verified the user’s updated `leo_system_diagram.pdf` and its half-angle label. Finalized the concise Comment 3.3 response; pending status preserved.
+
+- 2026-09-26. Reproduced the user-updated Fig. 1 in Comment 3.3 using the manuscript PDF directly, its exact caption with figure-reference prefix, a response-specific label, and normal float placement. Pending status unchanged.

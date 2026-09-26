@@ -28,7 +28,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 3.general | Reviewer 3 opening assessment | Preserved as an unnumbered introduction |
 | 3.1 | Reviewer 3 item 1 | Implemented and validated; pending review |
 | 3.2 | Reviewer 3 item 2 | Implemented and validated; pending review |
-| 3.3 | Reviewer 3 item 3 | Planned response drafted, pending |
+| 3.3 | Reviewer 3 item 3 | Figure updated by user; response completed, pending review |
 | 3.4 | Reviewer 3 item 4 | Planned response drafted, pending |
 | 3.5 | Reviewer 3 item 5 | Planned response drafted, pending |
 | 3.6 | Reviewer 3 item 6 | Planned response drafted, pending |
@@ -126,3 +126,7 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-26. Removed the two-LCT explanation from Comment 3.2 manuscript wording, response, and quotation at the user’s request. Retained the general LISL connectivity/capacity explanation.
 
 - 2026-09-26. Replaced the manuscript’s matching/routing improvement sentence with increasing LCTs per satellite or satellite count, conditional on fixed traffic demand. Synchronized response and quotation; no new experimental claim.
+
+- 2026-09-26. Comment 3.3: confirmed theta in user-updated Fig. 1(b), finalized the completed-work response, and preserved the figure unchanged. Pending acceptance.
+
+- 2026-09-26. Reproduced the user-updated Fig. 1 in Comment 3.3 using the manuscript PDF directly, its exact caption with figure-reference prefix, a response-specific label, and normal float placement. Pending status unchanged.
