@@ -846,6 +846,7 @@ Compared with +Grid, MRate, and SaTE, our method achieves a higher throughput be
 For the load-stress evaluation, we vary the active-user percentage while keeping the per-user demand fixed at $D=0.1$ Gbps. Fig.~\ref{fig:plot_test_tcom_shell_time_load_scaling} reports both the served throughput and the served-demand ratio.
 As the active-user percentage increases, all methods carry more traffic in absolute terms, but the served-demand ratio also decreases, which indicates growing congestion in the gateway and LISL resources. DuJo gives the best reported performance at all tested loads. DRL remains below the heuristic baselines across this load range.
 This suggests that the joint optimization remains the most effective approach on this structured-shell benchmark, especially once the network becomes meaningfully loaded.
+\blue{The served ratio considers residual demand after local gateway service. Limited LISL connectivity and capacity prevent available gateway resources from reaching all demanding satellites. Increasing the number of LCTs per satellite or the number of satellites can improve connectivity and increase throughput and the served-demand ratio for a fixed traffic demand.}
 
 \begin{figure}[t]
   \centering

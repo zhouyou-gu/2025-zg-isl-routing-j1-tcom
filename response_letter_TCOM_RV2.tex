@@ -244,9 +244,12 @@ MRate & 10.75 & 24.01 & 3223.30 \\
 
 \noindent{\bfseries\pendingcomment Comment 3.2: Served demand does not reach 50\%. Authors are requested to explain if it is due to mismatch of simulation parameters (e.g. user demand vs capacity of ISLs), ISL bottlenecks or due to the proposed optimization.}
 
-\textbf{Response:} A served-demand ratio below $50\%$ does not by itself identify either a modeling error or an optimization failure. The present setup combines heterogeneous demand, finite gateway service capacity, limited LISL connectivity, and a restricted set of candidate serving satellites. For the residual demands routed through the constellation, total routed throughput cannot exceed $\min\{\sum_i D_i,\sum_i Q_i\}$ even before link and path restrictions are imposed. We will audit the plotted numerator and denominator, including whether locally served traffic is counted, and then quantify the aggregate supply limit, route reachability, and link utilization. We will also compare against a suitable relaxed upper bound or exact small-instance solution so that an algorithmic gap is not dismissed as a physical bottleneck without evidence.
+\textbf{Response:} LISL connectivity and capacity limit traffic delivery in the evaluated topologies.
+Increasing the number of LCTs per satellite or the number of satellites can improve connectivity and increase throughput and the served-demand ratio for a fixed traffic demand.
 
-\textbf{Planned manuscript changes:} We will define the served-demand ratio beside its first use, reconcile it with the traffic equations, and add bottleneck diagnostics to the existing load-stress study. The evaluation will distinguish offered demand, locally served traffic, LISL-carried traffic, and unserved traffic where applicable. Gateway-capacity and connectivity sensitivity will be used to explain the dominant limits, and any remaining optimization gap will be reported honestly.
+\textbf{Manuscript changes:} Under ``Load-Stress Evaluation,'' we clarified the served-demand ratio and the connectivity and capacity limitations as
+
+``...\blue{The served ratio considers residual demand after local gateway service. Limited LISL connectivity and capacity prevent available gateway resources from reaching all demanding satellites. Increasing the number of LCTs per satellite or the number of satellites can improve connectivity and increase throughput and the served-demand ratio for a fixed traffic demand.}''
 
 \noindent{\bfseries\pendingcomment Comment 3.3: Please include θ in figure 1.}
 

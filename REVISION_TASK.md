@@ -27,7 +27,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 2.4 | Reviewer 2 item 4 | Accepted; comment marked black |
 | 3.general | Reviewer 3 opening assessment | Preserved as an unnumbered introduction |
 | 3.1 | Reviewer 3 item 1 | Implemented and validated; pending review |
-| 3.2 | Reviewer 3 item 2 | Planned response drafted, pending |
+| 3.2 | Reviewer 3 item 2 | Implemented and validated; pending review |
 | 3.3 | Reviewer 3 item 3 | Planned response drafted, pending |
 | 3.4 | Reviewer 3 item 4 | Planned response drafted, pending |
 | 3.5 | Reviewer 3 item 5 | Planned response drafted, pending |
@@ -53,7 +53,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 ## Next Item-Local Step
 
-Review Comment 3.1 and the new propagation-delay appendix/table. All 185 cases passed validation. Current PDFs are `output/pdf/main_comment_3_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. Keep 3.1 red/pending; accepted comments remain black.
+Review Comment 3.2’s served-demand definition and cached-state diagnostics. Keep 3.1 and 3.2 red pending acceptance; other statuses unchanged. Current PDFs are `output/pdf/main_comment_3_2_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`.
 
 ### Historical steps
 
@@ -114,3 +114,15 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-25. Preserved the user’s removal of the snapshot count and shortened caption in the delay appendix; synchronized the response quotation/caption. Experiment data unchanged.
 
 - 2026-09-25. Finalized Comment 3.1’s direct response: explains the original throughput objective, identifies the added delay/distance table, defines rate weighting, summarizes DuJo’s measured delays, and states the modeled delay components. Manuscript and verbatim quotation/table unchanged; pending explicit acceptance.
+
+- 2026-09-25. Comment 3.2 implemented: clarified residual demand/local-service accounting, measured selected-topology and candidate-graph maximum-flow upper bounds, and explicitly retained possible matching/routing improvement. One blue manuscript paragraph and exact response quote; both documents validated.
+
+- 2026-09-25. Rewrote only the Comment 3.2 response opening to answer directly: selected-LISL connectivity/capacity limits, adequate aggregate gateway supply, possible optimization improvement, and residual-demand accounting. Removed detailed bound discussion from the opening; manuscript evidence and quotation unchanged.
+
+- 2026-09-25. Shortened the Comment 3.2 manuscript addition to two sentences explaining residual demand and limited LISL connectivity/capacity, retaining possible matching/routing improvement. Removed numerical bounds from manuscript prose, synchronized the response quotation, and retained audit evidence in the code results.
+
+- 2026-09-26. Shortened the Comment 3.2 response to directly identify LISL connectivity/capacity bottlenecks, distinguish them from aggregate gateway shortage in the audited snapshots, and acknowledge a possible optimization gap. Manuscript and quotation unchanged; pending review.
+
+- 2026-09-26. Removed the two-LCT explanation from Comment 3.2 manuscript wording, response, and quotation at the user’s request. Retained the general LISL connectivity/capacity explanation.
+
+- 2026-09-26. Replaced the manuscript’s matching/routing improvement sentence with increasing LCTs per satellite or satellite count, conditional on fixed traffic demand. Synchronized response and quotation; no new experimental claim.

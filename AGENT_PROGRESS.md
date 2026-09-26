@@ -4,6 +4,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- Comment 3.2 implemented and validated, pending review (red). Audited residual-demand accounting and two maximum-flow relaxations on existing cached snapshots; added one blue paragraph under Load-Stress Evaluation and synchronized only response 3.2. Current PDFs are `output/pdf/main_comment_3_2_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. No DuJo rerun or figure change. Uncommitted.
+
 - Comment 3.1 is implemented and validated, pending user review (red). Added the blue Flow Propagation Delay appendix and five-method table over 37 snapshots, synchronized the response and table reproduction. All 185 cases and independent audits passed on the 5090 workstation; DuJo reused cached decisions. Review PDFs are `output/pdf/main_comment_3_1_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. User authorized commit and push to main in both repositories.
 
 - Comment 1.1 is implemented, validated, and accepted by the user; its comment is black. The RTX 5090 workstation completed 185 snapshot decisions and 1,295 ATP replay evaluations at 0/10/20/30/50/70/90 s. Fig. 10, its blue caption/discussion, and the verbatim response reproduction are synchronized. Both PDFs compile and affected pages were inspected. User authorized commit and push to main in both repositories.
@@ -167,7 +169,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Next Safe Resume Point
 
-- Review Comment 3.1 and the appendix table in the current PDFs. Keep 3.1 pending until explicit acceptance; 1.1, 1.2, and 2.1–2.4 remain accepted. No further experiments are needed for this implementation. User authorized commit and push to main in both repositories.
+- Review Comment 3.2 and its single manuscript paragraph. Keep 3.1 and 3.2 pending; 1.1, 1.2, and 2.1–2.4 remain accepted. Audit code and manuscript changes are uncommitted.
 
 - 2026-09-23 further result search: recovered all four final numerical tables for Figs. 4, 8, and 9 from archived April 10 tool outputs, at six-decimal display precision. Saved under `../leo-sat-flow/sim_alg_v1_res/recovered_legacy_results/recovered-20260923-ail/`, with source excerpts and comparison against all 144 original PDF bars. Original merged CSV folders were deleted in a recorded April 10 cleanup; full precision has not been recovered. No simulation rerun or manuscript/figure edit in this search. User-requested `revision_data/` removal remains in effect; folder was moved to Trash and has not been recreated.
 
@@ -244,3 +246,15 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-25. Finalized Comment 3.1’s direct response: explains the original throughput objective, identifies the added delay/distance table, defines rate weighting, summarizes DuJo’s measured delays, and states the modeled delay components. Manuscript and verbatim quotation/table unchanged; pending explicit acceptance.
 
 - 2026-09-25. Preparing the user-requested commit/push of Comment 3.1 and its delay-analysis code to both main branches. Included the user’s ATP sentence deletion and preserved pending status for 3.1. Source/table synchronization, metric tests, full experiment audits, and isolated document builds passed.
+
+- 2026-09-25. Comment 3.2 audit completed on the 5090 host using 37 cached DuJo states. Mean residual supply/demand 1619.29/382.18 Gbps, selected-topology max-flow relaxation 179.60 Gbps (mean ratio 47.03%), achieved 149.26 Gbps (39.08%). Candidate-link relaxation reaches full demand while dropping matching restrictions; no global-optimality claim. Local service averages 33.14 Gbps and is excluded from both terms of the published ratio. Verified all 240 load-stress ratios, tested capacity cuts/disconnections/deduplication, checked bound inequalities, preserved other responses, and compiled/inspected both PDFs. Data are ignored under code `test_tcom_served_demand_audit/comment-3-2-20260925-ail/` and remote `demand-audit/`. Pending review.
+
+- 2026-09-25. Rewrote only the Comment 3.2 response opening to answer directly: selected-LISL connectivity/capacity limits, adequate aggregate gateway supply, possible optimization improvement, and residual-demand accounting. Removed detailed bound discussion from the opening; manuscript evidence and quotation unchanged.
+
+- 2026-09-25. Shortened the Comment 3.2 manuscript addition to two sentences explaining residual demand and limited LISL connectivity/capacity, retaining possible matching/routing improvement. Removed numerical bounds from manuscript prose, synchronized the response quotation, and retained audit evidence in the code results.
+
+- 2026-09-26. Shortened the Comment 3.2 response to directly identify LISL connectivity/capacity bottlenecks, distinguish them from aggregate gateway shortage in the audited snapshots, and acknowledge a possible optimization gap. Manuscript and quotation unchanged; pending review.
+
+- 2026-09-26. Removed the two-LCT explanation from Comment 3.2 manuscript wording, response, and quotation at the user’s request. Retained the general LISL connectivity/capacity explanation.
+
+- 2026-09-26. Replaced the manuscript’s matching/routing improvement sentence with increasing LCTs per satellite or satellite count, conditional on fixed traffic demand. Synchronized response and quotation; no new experimental claim.
