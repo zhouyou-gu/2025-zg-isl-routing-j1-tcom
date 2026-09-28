@@ -146,3 +146,7 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-28. Replaced the numerical gateway-performance sentence at the user’s request with a qualitative increase over the evaluated range; synchronized the response quotation. Other wording and pending status unchanged.
 
 - 2026-09-28. User authorized commit/push of Comment 3.4 paper and supporting experiment code to both main branches. Final display is 50/100/150/200, Fig. 10 layout retained, latest user wording preserved and quotation exact. Raw extended cases remain archived. Acceptance status unchanged.
+
+- 2026-09-28. Replaced “site catalogue” with “list of ground-station locations” in the gateway-count paragraph and response quotation. Preserved other user edits and comment status.
+
+- 2026-09-28. Synchronized Comment 3.4 to the latest manuscript, including the user’s removal of the reference epoch from the figure caption. Paragraph and caption match verbatim; manuscript and pending status preserved.
