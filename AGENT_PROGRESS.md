@@ -358,3 +358,5 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-28. Expanded Comment 3.7 explanation at user request: multiplier/capacity-weighted greedy matching, changed routes and bottlenecks with new candidate links, and final-iterate reporting without a smaller-FOR fallback can yield nonmonotonic approximate throughput despite feasible-set inclusion. Added corresponding blue manuscript sentences and synchronized quotation. Described possible mechanism, not a proven diagnosis of unavailable historical decisions. Both isolated builds pass; pending/red unchanged.
 
 - 2026-09-28. User authorized commit and push of Comment 3.7 to main. Publishing synchronized FOR explanation/caption and response, with prior successful isolated builds and visual checks. Comment remains red/pending; committing is not acceptance. Discarded generated main.bbl line-wrap-only churn after verifying identical non-whitespace content.
+
+- 2026-09-28. Added the requested paragraph break between LCT-count and FOR discussions under Impact of Constellation Configurations. Wording unchanged; response quotations remain synchronized.
