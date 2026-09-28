@@ -868,7 +868,10 @@ The dual iterations take about $1$ second each. However, the algorithm needs a f
 
 
 \subsubsection{Impact of Constellation Configurations}
-We vary the LCT configurations on each satellite, and the resulting network throughput is shown in Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}. The network throughput increases with the average number of LCTs on each satellite because more LCTs allow more LISLs to be established. Similarly, the throughput increases with the FOR because a larger FOR creates more connectable LCT pairs. DuJo consistently outperforms the baseline methods across these sweeps. Among the strengthened baselines, SaTE is generally the strongest separated baseline, while DRL remains weak and does not change the overall ordering. The performance of the grid-based scheme varies little with the FOR because only LCTs near the center of the steering range tend to be connected.
+\blue{In Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand_varying_availability_and_for}, the average LCT count is the expected number of available terminals per satellite.
+Each of the two front/back LCTs is independently unavailable with probability $\rho$, giving an expected count of $2(1-\rho)$; each satellite has an integer number of available terminals. More available LCTs allow more LISLs to be established and improve throughput in the evaluated range.
+A separate comparison of two, three, and four installed LCTs is reported in Table~\ref{tab:installed_lct_count} in the appendix.}
+Similarly, the throughput increases with the FOR because a larger FOR creates more connectable LCT pairs. DuJo consistently outperforms the baseline methods across these sweeps. Among the strengthened baselines, SaTE is generally the strongest separated baseline, while DRL remains weak and does not change the overall ordering. The performance of the grid-based scheme varies little with the FOR because only LCTs near the center of the steering range tend to be connected.
 Next, we compare the performance of our method in different constellations. DuJo achieves the highest network throughput in all three constellations. In the Starlink case, SaTE is the strongest separated baseline. In the more regular Walker-delta and OneWeb constellations, +Grid and SaTE come much closer to DuJo because those regular orbital structures make it easier to establish high-rate LISLs while preserving connectivity for the traffic flows. DRL remains distinctly lower in all three constellations. However, in the less regular Starlink case, the fixed-topology baselines remain poor because they cannot adapt the LISL matching to the routing bottlenecks as effectively as the joint optimization.
 
 \begin{figure}[t]
@@ -1064,8 +1067,8 @@ i.e., a one-step-lookahead MDP-matching with Lagrangian-weighted per-step reward
 
 \noindent\textit{Degenerate case.} When $\tau_{n,m}=0$ for all pairs, $r^{\text{eff}}_{\ell,n,m}\equiv r_{n,m}(t_\ell)$, the matching decouples from the past, and the continuation term in (a) reduces to a constant, so subproblem (a) collapses to the per-snapshot MWM \eqref{eq:routine:mwm_given_lambda} and the proposed per-snapshot formulation is recovered as the ATP-free case of this MDP extension.
 
-\section*{\blue{Appendix: Flow Propagation Delay}}
-\blue{To examine flow propagation delays, we compare DuJo, DRL, SaTE, MRate, and +Grid on the same $1000$-satellite single-shell instance at snapshots over $0$--$360$ s, with $10$ s spacing and no ATP overhead. Each flow's LISL propagation delay is the sum of the physical link distances along its selected route divided by the speed of light. Queueing, transmission, processing, and ground-access delays are not included. Table~\ref{tab:flow_propagation_delay} reports the mean route distance and the mean and $95$th-percentile propagation delays, weighted by allocated flow rate over all served flow--snapshot observations. Zero-rate and unreachable flows are excluded from these delay statistics. The delay statistics describe each method's served traffic, which can differ between methods. DuJo has a mean propagation delay of $11.26$ ms, compared with $10.75$ ms for SaTE and MRate, $15.64$ ms for DRL, and $23.71$ ms for +Grid. Its $95$th-percentile delay is $23.68$ ms, the lowest among the tested methods. +Grid prioritizes terminal alignment when selecting links, so a longer link can be preferred over a shorter, less aligned link. Its inverse-capacity routing costs do not directly minimize propagation distance, resulting in longer routes in this evaluation.}
+\section*{\blue{Appendix: Ablation Study}}
+\noindent\textit{\blue{Flow Propagation Delay.}} \blue{To examine flow propagation delays, we compare DuJo, DRL, SaTE, MRate, and +Grid on the same $1000$-satellite single-shell instance at snapshots over $0$--$360$ s, with $10$ s spacing and no ATP overhead. Each flow's LISL propagation delay is the sum of the physical link distances along its selected route divided by the speed of light. Queueing, transmission, processing, and ground-access delays are not included. Table~\ref{tab:flow_propagation_delay} reports the mean route distance and the mean and $95$th-percentile propagation delays, weighted by allocated flow rate over all served flow--snapshot observations. Zero-rate and unreachable flows are excluded from these delay statistics. The delay statistics describe each method's served traffic, which can differ between methods. DuJo has a mean propagation delay of $11.26$ ms, compared with $10.75$ ms for SaTE and MRate, $15.64$ ms for DRL, and $23.71$ ms for +Grid. Its $95$th-percentile delay is $23.68$ ms, the lowest among the tested methods. +Grid prioritizes terminal alignment when selecting links, so a longer link can be preferred over a shorter, less aligned link. Its inverse-capacity routing costs do not directly minimize propagation distance, resulting in longer routes in this evaluation.}
 
 \begin{table}[t]
 \centering
@@ -1082,6 +1085,30 @@ DRL & 15.64 & 35.32 & 4688.35 \\
 SaTE & 10.75 & 24.01 & 3223.30 \\
 MRate & 10.75 & 24.01 & 3223.30 \\
 +Grid & 23.71 & 142.74 & 7109.09 \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+\noindent\textit{\blue{Installed LCT Count.}} \blue{We compare two, three, and four fully available LCTs per satellite on the $1000$-satellite single-shell instance at $\mathcal{T}_0$, keeping satellite geometry, traffic, and the $100$ gateways fixed. The two-terminal configuration uses the front/back directions; the third and fourth terminals successively add the two opposite lateral directions normal to the orbital plane. For this comparison, each LCT has a full FOR of $90$ degrees ($\theta=45$ degrees), so adjacent terminals have no overlapping FOR interiors. Gateway-source assignments are fixed to the original two-LCT reference across all counts and methods. DuJo uses $500$ iterations with fixed traffic and the final iterate, and DRL uses the same frozen checkpoint without retraining. Table~\ref{tab:installed_lct_count} shows that DuJo achieves $121.90$, $218.77$, and $263.07$ Gbps with two, three, and four LCTs, respectively. MRate achieves the highest four-LCT throughput at $296.04$ Gbps. Throughput increases with the installed LCT count for all five methods in this comparison, although the gains are not linear. DuJo achieves the highest throughput with two and three LCTs. With four LCTs, the additional connection opportunities allow SaTE and MRate to prioritize high-capacity links while maintaining a connected topology. This can reduce the tradeoff between link capacity and connectivity when selecting links. Since DuJo provides an approximation to the optimal solution, directly prioritizing high-capacity links can achieve higher throughput in this setting.}
+
+\begin{table}[t]
+\centering
+\caption{\blue{Throughput (Gbps) and served-demand ratio (\%) with fully available installed LCTs.}}
+\label{tab:installed_lct_count}
+\small
+\setlength{\tabcolsep}{3pt}
+{\color{blue}
+\begin{tabular}{lrrrrrr}
+\hline
+ & \multicolumn{2}{c}{2 LCTs} & \multicolumn{2}{c}{3 LCTs} & \multicolumn{2}{c}{4 LCTs} \\
+Method & Gbps & \% & Gbps & \% & Gbps & \% \\
+\hline
+DuJo & 121.90 & 31.56 & 218.77 & 56.63 & 263.07 & 68.10 \\
+DRL & 44.01 & 11.39 & 89.81 & 23.25 & 117.56 & 30.43 \\
+SaTE & 105.32 & 27.26 & 153.61 & 39.77 & 276.87 & 71.68 \\
+MRate & 105.32 & 27.26 & 154.15 & 39.91 & 296.04 & 76.64 \\
++Grid & 60.84 & 15.75 & 88.49 & 22.91 & 235.83 & 61.05 \\
 \hline
 \end{tabular}
 }
