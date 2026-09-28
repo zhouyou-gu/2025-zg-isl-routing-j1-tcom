@@ -4,6 +4,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- Comment 3.5: checked aggregate-traffic and gateway-capacity code; added one blue traffic-model paragraph and direct response defining the payload abstraction and absence of a simultaneous-user limit. No experiments needed; validated and pending review.
+
 - 2026-09-27. User requested displaying only 50/100/150/200 gateways. Removed 250 from the plotting filter and synchronized manuscript/response to the displayed range; preserved all raw 250/400 measurements. Fig. 10 layout settings unchanged. No simulations rerun. Comment 3.4 remains pending, changes uncommitted.
 
 - 2026-09-26. Replaced the displayed 400-gateway case with 250 as requested. Completed all five new evaluations on the 5090 workstation; 25 active cases passed independent audits and original 50–200 results are unchanged. DuJo at 250 is 150.98 Gbps / 41.35%. Fig. 11 retains Fig. 10 layout constants. Manuscript and response quotations synchronized; isolated builds and affected-page inspections passed, with no undefined references or overfull boxes. Prior 400 results remain archived, excluded from the displayed sweep. Comment 3.4 remains pending/red; paper and code uncommitted.
@@ -290,3 +292,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-28. Replaced “site catalogue” with “list of ground-station locations” in the gateway-count paragraph and response quotation. Preserved other user edits and comment status.
 
 - 2026-09-28. Synchronized Comment 3.4 to the latest manuscript, including the user’s removal of the reference epoch from the figure caption. Paragraph and caption match verbatim; manuscript and pending status preserved.
+
+- 2026-09-28. Comment 3.5: code inspection confirmed population-derived aggregate demand and per-satellite gateway supply, with no radio-access beam/scheduler model. Added one blue paragraph in the Traffic Profile Model and exact response quotation. No unsupported payload type or simultaneous-user count assigned. All other responses/statuses preserved.
+
+- 2026-09-28. Comment 3.5 validation passed: only one manuscript paragraph added, exact quotation, other responses unchanged. Both documents compiled in an isolated directory with no undefined references or overfull boxes; underfull warnings and existing response float warning remain. Inspected manuscript page 4 and response page 12. Review PDFs refreshed; no commit or acceptance.

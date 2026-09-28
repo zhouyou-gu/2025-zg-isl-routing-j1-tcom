@@ -345,6 +345,8 @@ Here, positive traffic demand of a satellite needs to be served by other satelli
 This simplified model does not incorporate temporal demand variation or socioeconomic modifiers such as purchasing capability. Richer broadband-demand models along these dimensions are important future work \cite{zamacola2025profiling,qin2024satformer}. Gateway-aware traffic estimation is also relevant to this broader modeling direction \cite{guo2021gateway}.
 Satellites with positive serving rates or positive demand rates are referred to as serving and demanding satellites, respectively.
 
+\blue{The service-link radio payload is represented through aggregate user demand, without specifying a multibeam or beam-hopping architecture or modeling user-access scheduling. The quantity $U_i(t)$ represents users generating demand, rather than a guaranteed number of simultaneously served users, and $Q$ denotes gateway service capacity. The maximum number of users that a satellite can serve simultaneously depends on radio-access resources and scheduling, which are outside the present model.}
+
 \section{Problem Formulation}\label{sec:problem_formulation}
 We consider the constellation at a given time $t$, and we omit $t$ for simplicity in the rest of the paper. 
 The task is to maximize the network throughput in the constellation by optimizing 1) the connecting pairs of LCTs, 2) the traffic flow allocation between serving and demanding satellites, and 3) the routing of the traffic flows through the established LISLs.

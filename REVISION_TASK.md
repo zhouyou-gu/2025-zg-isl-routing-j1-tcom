@@ -30,7 +30,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 3.2 | Reviewer 3 item 2 | Implemented and validated; pending review |
 | 3.3 | Reviewer 3 item 3 | Figure updated by user; response completed, pending review |
 | 3.4 | Reviewer 3 item 4 | Implemented and validated; pending review |
-| 3.5 | Reviewer 3 item 5 | Planned response drafted, pending |
+| 3.5 | Reviewer 3 item 5 | Clarification implemented; pending review |
 | 3.6 | Reviewer 3 item 6 | Planned response drafted, pending |
 | 3.7 | Reviewer 3 item 7 | Planned response drafted, pending |
 
@@ -150,3 +150,7 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-28. Replaced “site catalogue” with “list of ground-station locations” in the gateway-count paragraph and response quotation. Preserved other user edits and comment status.
 
 - 2026-09-28. Synchronized Comment 3.4 to the latest manuscript, including the user’s removal of the reference epoch from the figure caption. Paragraph and caption match verbatim; manuscript and pending status preserved.
+
+- 2026-09-28. Comment 3.5: code inspection confirmed population-derived aggregate demand and per-satellite gateway supply, with no radio-access beam/scheduler model. Added one blue paragraph in the Traffic Profile Model and exact response quotation. No unsupported payload type or simultaneous-user count assigned. All other responses/statuses preserved.
+
+- 2026-09-28. Comment 3.5 validation passed: only one manuscript paragraph added, exact quotation, other responses unchanged. Both documents compiled in an isolated directory with no undefined references or overfull boxes; underfull warnings and existing response float warning remain. Inspected manuscript page 4 and response page 12. Review PDFs refreshed; no commit or acceptance.
