@@ -897,6 +897,17 @@ A LISL newly selected at snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}}
 The results in Fig.~\ref{fig:plot_test_tcom_atp_transition} show that increasing ATP acquisition time can materially reduce realized throughput when the per-snapshot topology changes quickly.
 The retention ratios quantify how much of the original per-snapshot throughput remains when ATP overhead is considered. Methods that change many LISLs across nearby snapshots have lower retention ratios as $T_{\mathrm{ATP}}$ increases, whereas methods with more persistent LISLs are less sensitive. These results characterize the tested replay window rather than long-run performance for arbitrary acquisition times. These results motivate the future ATP-aware temporal optimization described in the appendix, complementing recent time-dependent topology optimization studies for LEO constellations \cite{ron2025time}.}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[scale=0.85]{plot_test_tcom_gateway_count.pdf}
+  \caption{\blue{Gateway-count sensitivity on the single-shell Starlink instance at $\mathcal{T}_0$. The top and bottom plots show throughput and served-demand ratio, respectively.}}
+  \label{fig:gateway_count}
+\end{figure}
+
+\subsubsection{\blue{Impact of Gateway Count}}\label{subsubsec:gateway_count}
+\blue{We evaluate $50$, $100$, $150$, and $200$ gateways using nested subsets of the same site catalogue on the $1000$-satellite single-shell instance at $\mathcal{T}_0$. A gateway-connected satellite retains the service capacity $Q=20$ Gbps regardless of how many gateways it sees. Fig.~\ref{fig:gateway_count} shows that DuJo achieves the highest throughput and served-demand ratio at all four gateway counts.
+Its throughput and served-demand ratio increase with the number of gateways over the evaluated range.}
+
 \section{Conclusion}\label{sec:conclusion}
 This paper presents a Lagrangian duality-based method for joint link matching and traffic routing in satellite mega-constellations. The method applies Lagrangian dual relaxation to the per-link rate constraints and decomposes the joint problem into efficiently solvable subproblems.
 Simulations show that our method outperforms the baseline methods in network throughput by iteratively adjusting the Lagrange multipliers to capture both connectivity importance and link congestion, thereby improving LISL matching and flow routing decisions.

@@ -265,9 +265,20 @@ The revised Fig.~\ref{fig:leo_system_diagram} is reproduced here.
 
 \noindent{\bfseries\pendingcomment Comment 3.4: 100 seem to be a large number. Please evaluate the sensitivity of the proposed optimization to the number of gateways.}
 
-\textbf{Response:} The $100$ gateways are a global scenario choice, not a requirement of the optimization or an assertion that every satellite has gateway access. In the current model, gateway locations determine which satellites have feeder connectivity, and a gateway-connected satellite receives the per-satellite service budget $Q$. We will explain this assumption and quantify sensitivity to gateway count. Increasing the number of sites may improve geographical access and aggregate available supply, but its benefit need not be linear because coverage overlaps, traffic is uneven, and LISLs can remain bottlenecks.
+\textbf{Response:} We added a sensitivity evaluation with $50$, $100$, $150$, and $200$ gateways, keeping the satellite geometry and user demand fixed. The new Fig.~\ref{fig:gateway_count} compares all five methods using nested gateway sets. DuJo achieves the highest throughput and served-demand ratio over the displayed range, increasing from $128.83$ Gbps and $32.38\%$ at $50$ gateways to $172.71$ Gbps and $46.54\%$ at $200$ gateways. Each gateway-connected satellite retains the same capacity $Q=20$ Gbps; multiple visible gateways do not multiply this capacity.
 
-\textbf{Planned manuscript changes:} We plan to compare $25$, $50$, $100$, $150$, and $200$ gateway sites using nested subsets of the same site pool across multiple placement seeds. Constellation states, user demand, per-satellite $Q$, and algorithm settings will be matched across methods. We will report gateway-connected satellite counts, available gateway supply, throughput, and served-demand ratio, and explicitly retain the current assumption that several gateways visible to one satellite do not multiply its $Q$.
+\textbf{Manuscript changes:} We added the subsection ``Impact of Gateway Count'' in Section~\ref{sec:simulation} as
+
+``...\blue{We evaluate $50$, $100$, $150$, and $200$ gateways using nested subsets of the same site catalogue on the $1000$-satellite single-shell instance at $\mathcal{T}_0$. A gateway-connected satellite retains the service capacity $Q=20$ Gbps regardless of how many gateways it sees. Fig.~\ref{fig:gateway_count} shows that DuJo achieves the highest throughput and served-demand ratio at all four gateway counts.
+Its throughput and served-demand ratio increase with the number of gateways over the evaluated range.}''
+
+The new Fig.~\ref{fig:gateway_count} is reproduced here.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\linewidth]{plot_test_tcom_gateway_count.pdf}
+  \caption{(Fig.~\ref{fig:gateway_count} in the revised manuscript) \blue{Gateway-count sensitivity on the single-shell Starlink instance at $\mathcal{T}_0$. The top and bottom plots show throughput and served-demand ratio, respectively.}}
+  \label{fig:resp_gateway_count}
+\end{figure}
 
 \noindent{\bfseries\pendingcomment Comment 3.5: Some details on the comm payload should be provided, i.e., is it multibeam, beam-hopping payload? How many users can be simultaneously served by a given satellite?}
 

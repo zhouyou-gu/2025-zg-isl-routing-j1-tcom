@@ -197,3 +197,5 @@ Use separate quoted excerpts only for non-contiguous manuscript changes.
 - Include the editor's substantive assessment as the editor comment. Keep the full administrative email in the original source file rather than reproducing its salutation, submission link, instructions, or signature in the response letter. Preserve reviewer opening assessments as unnumbered introductory paragraphs without separate response fields.
 
 - When the user removes a sentence or rejects its inclusion, preserve that editorial decision during later synchronization; do not restore it from an earlier plan or quotation.
+
+- When matching an existing figure, copy its plot dimensions, axis boxes, legend placement, and typography directly from its plotting source; do not independently adjust those values.

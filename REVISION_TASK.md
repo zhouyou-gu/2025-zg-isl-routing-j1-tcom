@@ -29,7 +29,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 | 3.1 | Reviewer 3 item 1 | Implemented and validated; pending review |
 | 3.2 | Reviewer 3 item 2 | Implemented and validated; pending review |
 | 3.3 | Reviewer 3 item 3 | Figure updated by user; response completed, pending review |
-| 3.4 | Reviewer 3 item 4 | Planned response drafted, pending |
+| 3.4 | Reviewer 3 item 4 | Implemented and validated; pending review |
 | 3.5 | Reviewer 3 item 5 | Planned response drafted, pending |
 | 3.6 | Reviewer 3 item 6 | Planned response drafted, pending |
 | 3.7 | Reviewer 3 item 7 | Planned response drafted, pending |
@@ -53,7 +53,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 ## Next Item-Local Step
 
-Review Comment 3.2’s served-demand definition and cached-state diagnostics. Keep 3.1 and 3.2 red pending acceptance; other statuses unchanged. Current PDFs are `output/pdf/main_comment_3_2_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`.
+Review Comment 3.4 and Fig. 11. Keep 3.1–3.4 red/pending; accepted statuses unchanged. Review PDFs: `output/pdf/main_comment_3_4_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`.
 
 ### Historical steps
 
@@ -130,3 +130,19 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-26. Comment 3.3: confirmed theta in user-updated Fig. 1(b), finalized the completed-work response, and preserved the figure unchanged. Pending acceptance.
 
 - 2026-09-26. Reproduced the user-updated Fig. 1 in Comment 3.3 using the manuscript PDF directly, its exact caption with figure-reference prefix, a response-specific label, and normal float placement. Pending status unchanged.
+
+- 2026-09-26. Comment 3.4 started with user-selected 50/100/150/200 gateways; one nested seed-0 placement, all five methods, fixed physical settings and raw user demand, fresh fixed-traffic optimization. Pending validation and plotting.
+
+- 2026-09-26. Comment 3.4 implemented and validated, pending review (red). Completed 20 evaluations for 50/100/150/200 gateways on the 5090 workstation, with one nested seed-0 placement and fixed geometry/raw demand. Added Fig. 11 and one blue paragraph; response quotations match exactly. Matched-input, route/rate, capacity and independent result audits passed. Both isolated document builds and affected-page visual inspections passed; no undefined references or overfull boxes. Response retains the existing h-to-ht warning. Results and source provenance are archived under code sim_alg_v1_res/test_tcom_gateway_count/comment-3-4-20260926-ail/ and remote gateway-results/. Paper and code changes are uncommitted.
+
+- 2026-09-26. Extended Comment 3.4 to 400 gateways. All 25 cases passed preflight, matched-input, route/rate and independent capacity/result audits; original 20 rows unchanged. DuJo at 400: 150.60 Gbps / 42.46%, below its 200-gateway peak but highest among the five methods. Manuscript and response now state the nonmonotonic result. Fig. 11 copies Fig. 10 canvas dimensions, axis/legend boxes, typography and marker sizes; only experiment-specific axes/data differ. Layout constants checked directly against source, and compiled manuscript/response pages visually inspected. No undefined references or overfull boxes; underfull spacing warnings and the existing response h-to-ht warning remain. Both review PDFs refreshed. Comment 3.4 remains red/pending; both repos uncommitted.
+
+- 2026-09-26. Replaced the displayed 400-gateway case with 250 as requested. Completed all five new evaluations on the 5090 workstation; 25 active cases passed independent audits and original 50–200 results are unchanged. DuJo at 250 is 150.98 Gbps / 41.35%. Fig. 11 retains Fig. 10 layout constants. Manuscript and response quotations synchronized; isolated builds and affected-page inspections passed, with no undefined references or overfull boxes. Prior 400 results remain archived, excluded from the displayed sweep. Comment 3.4 remains pending/red; paper and code uncommitted.
+
+- 2026-09-27. User requested displaying only 50/100/150/200 gateways. Removed 250 from the plotting filter and synchronized manuscript/response to the displayed range; preserved all raw 250/400 measurements. Fig. 10 layout settings unchanged. No simulations rerun. Comment 3.4 remains pending, changes uncommitted.
+
+- 2026-09-28. Preserved the user’s current gateway-count paragraph verbatim, including removal of the fixed-geometry/traffic and 500-iteration sentence. Synchronized only the Comment 3.4 manuscript quotation. Main text unchanged; pending status preserved.
+
+- 2026-09-28. Replaced the numerical gateway-performance sentence at the user’s request with a qualitative increase over the evaluated range; synchronized the response quotation. Other wording and pending status unchanged.
+
+- 2026-09-28. User authorized commit/push of Comment 3.4 paper and supporting experiment code to both main branches. Final display is 50/100/150/200, Fig. 10 layout retained, latest user wording preserved and quotation exact. Raw extended cases remain archived. Acceptance status unchanged.

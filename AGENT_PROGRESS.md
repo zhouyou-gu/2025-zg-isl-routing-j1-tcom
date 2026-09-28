@@ -4,6 +4,14 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- 2026-09-27. User requested displaying only 50/100/150/200 gateways. Removed 250 from the plotting filter and synchronized manuscript/response to the displayed range; preserved all raw 250/400 measurements. Fig. 10 layout settings unchanged. No simulations rerun. Comment 3.4 remains pending, changes uncommitted.
+
+- 2026-09-26. Replaced the displayed 400-gateway case with 250 as requested. Completed all five new evaluations on the 5090 workstation; 25 active cases passed independent audits and original 50–200 results are unchanged. DuJo at 250 is 150.98 Gbps / 41.35%. Fig. 11 retains Fig. 10 layout constants. Manuscript and response quotations synchronized; isolated builds and affected-page inspections passed, with no undefined references or overfull boxes. Prior 400 results remain archived, excluded from the displayed sweep. Comment 3.4 remains pending/red; paper and code uncommitted.
+
+- 2026-09-26. Extended Comment 3.4 to 400 gateways. All 25 cases passed preflight, matched-input, route/rate and independent capacity/result audits; original 20 rows unchanged. DuJo at 400: 150.60 Gbps / 42.46%, below its 200-gateway peak but highest among the five methods. Manuscript and response now state the nonmonotonic result. Fig. 11 copies Fig. 10 canvas dimensions, axis/legend boxes, typography and marker sizes; only experiment-specific axes/data differ. Layout constants checked directly against source, and compiled manuscript/response pages visually inspected. No undefined references or overfull boxes; underfull spacing warnings and the existing response h-to-ht warning remain. Both review PDFs refreshed. Comment 3.4 remains red/pending; both repos uncommitted.
+
+- Comment 3.4 implemented and validated, pending review (red). Completed 20 evaluations for 50/100/150/200 gateways on the 5090 workstation, with one nested seed-0 placement and fixed geometry/raw demand. Added Fig. 11 and one blue paragraph; response quotations match exactly. Matched-input, route/rate, capacity and independent result audits passed. Both isolated document builds and affected-page visual inspections passed; no undefined references or overfull boxes. Response retains the existing h-to-ht warning. Results and source provenance are archived under code sim_alg_v1_res/test_tcom_gateway_count/comment-3-4-20260926-ail/ and remote gateway-results/. Paper and code changes are uncommitted.
+
 - Comment 3.3 implemented, pending review (red). Verified the user-updated Fig. 1(b) labels the FOR half-angle theta and retains the full FOR 2theta. Replaced the planned response with one sentence describing the completed figure change; no figure edits or manuscript prose changes.
 
 - Comment 3.2 implemented and validated, pending review (red). Audited residual-demand accounting and two maximum-flow relaxations on existing cached snapshots; added one blue paragraph under Load-Stress Evaluation and synchronized only response 3.2. Current PDFs are `output/pdf/main_comment_3_2_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`. No DuJo rerun or figure change. Uncommitted.
@@ -171,7 +179,7 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Next Safe Resume Point
 
-- Review Comment 3.2 and its single manuscript paragraph. Keep 3.1 and 3.2 pending; 1.1, 1.2, and 2.1–2.4 remain accepted. Audit code and manuscript changes are uncommitted.
+- Review Comment 3.4 and Fig. 11. Comments 3.1–3.4 remain pending; 1.1, 1.2 and 2.1–2.4 remain accepted. Current 3.4 paper/code edits are uncommitted; previous work was published.
 
 - 2026-09-23 further result search: recovered all four final numerical tables for Figs. 4, 8, and 9 from archived April 10 tool outputs, at six-decimal display precision. Saved under `../leo-sat-flow/sim_alg_v1_res/recovered_legacy_results/recovered-20260923-ail/`, with source excerpts and comparison against all 144 original PDF bars. Original merged CSV folders were deleted in a recorded April 10 cleanup; full precision has not been recovered. No simulation rerun or manuscript/figure edit in this search. User-requested `revision_data/` removal remains in effect; folder was moved to Trash and has not been recreated.
 
@@ -264,3 +272,17 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-26. Visually verified the user’s updated `leo_system_diagram.pdf` and its half-angle label. Finalized the concise Comment 3.3 response; pending status preserved.
 
 - 2026-09-26. Reproduced the user-updated Fig. 1 in Comment 3.3 using the manuscript PDF directly, its exact caption with figure-reference prefix, a response-specific label, and normal float placement. Pending status unchanged.
+
+- 2026-09-26. Comment 3.4 implemented and validated, pending review (red). Completed 20 evaluations for 50/100/150/200 gateways on the 5090 workstation, with one nested seed-0 placement and fixed geometry/raw demand. Added Fig. 11 and one blue paragraph; response quotations match exactly. Matched-input, route/rate, capacity and independent result audits passed. Both isolated document builds and affected-page visual inspections passed; no undefined references or overfull boxes. Response retains the existing h-to-ht warning. Results and source provenance are archived under code sim_alg_v1_res/test_tcom_gateway_count/comment-3-4-20260926-ail/ and remote gateway-results/. Paper and code changes are uncommitted.
+
+- 2026-09-26. Extended Comment 3.4 to 400 gateways. All 25 cases passed preflight, matched-input, route/rate and independent capacity/result audits; original 20 rows unchanged. DuJo at 400: 150.60 Gbps / 42.46%, below its 200-gateway peak but highest among the five methods. Manuscript and response now state the nonmonotonic result. Fig. 11 copies Fig. 10 canvas dimensions, axis/legend boxes, typography and marker sizes; only experiment-specific axes/data differ. Layout constants checked directly against source, and compiled manuscript/response pages visually inspected. No undefined references or overfull boxes; underfull spacing warnings and the existing response h-to-ht warning remain. Both review PDFs refreshed. Comment 3.4 remains red/pending; both repos uncommitted.
+
+- 2026-09-26. Replaced the displayed 400-gateway case with 250 as requested. Completed all five new evaluations on the 5090 workstation; 25 active cases passed independent audits and original 50–200 results are unchanged. DuJo at 250 is 150.98 Gbps / 41.35%. Fig. 11 retains Fig. 10 layout constants. Manuscript and response quotations synchronized; isolated builds and affected-page inspections passed, with no undefined references or overfull boxes. Prior 400 results remain archived, excluded from the displayed sweep. Comment 3.4 remains pending/red; paper and code uncommitted.
+
+- 2026-09-27. User requested displaying only 50/100/150/200 gateways. Removed 250 from the plotting filter and synchronized manuscript/response to the displayed range; preserved all raw 250/400 measurements. Fig. 10 layout settings unchanged. No simulations rerun. Comment 3.4 remains pending, changes uncommitted.
+
+- 2026-09-28. Preserved the user’s current gateway-count paragraph verbatim, including removal of the fixed-geometry/traffic and 500-iteration sentence. Synchronized only the Comment 3.4 manuscript quotation. Main text unchanged; pending status preserved.
+
+- 2026-09-28. Replaced the numerical gateway-performance sentence at the user’s request with a qualitative increase over the evaluated range; synchronized the response quotation. Other wording and pending status unchanged.
+
+- 2026-09-28. User authorized commit/push of Comment 3.4 paper and supporting experiment code to both main branches. Final display is 50/100/150/200, Fig. 10 layout retained, latest user wording preserved and quotation exact. Raw extended cases remain archived. Acceptance status unchanged.
