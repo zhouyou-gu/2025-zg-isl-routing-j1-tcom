@@ -53,7 +53,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 ## Next Item-Local Step
 
-All comments are addressed and accepted as requested on 2026-10-01. No pending review items remain.
+All reviewer comments remain addressed and accepted. Final grammar proofreading and isolated builds passed on 2026-10-01. Theorem 1 boundary-rate/projection and approximate-matching convergence concerns found during proofreading need a separate technical review; see AGENT_PROGRESS.md.
 
 ### Historical steps
 

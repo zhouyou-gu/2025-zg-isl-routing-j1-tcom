@@ -204,7 +204,7 @@ Based on the relaxation, we jointly optimize the LISL matching and flow routing 
 Our contributions are as follows.
 \begin{itemize}
   \item We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows} (\textbf{Proposition~\ref{prop:np_hardness}}).
-  \item We relax the link rate limitation constraints of satellite pairs in \eqref{eq:prob:constrainted_routing_and_matching:relaxed} and  \eqref{eq:prob:constrainted_routing_and_matching:dual}, separating the original problem into subproblems (i.e., (a), (b), and (c) in \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual}) that are solved independently at polynomial complexity.
+  \item We relax the link rate limitation constraints of satellite pairs in \eqref{eq:prob:constrainted_routing_and_matching:relaxed} and  \eqref{eq:prob:constrainted_routing_and_matching:dual}, separating the original problem into subproblems (i.e., (a), (b), and (c) in \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual}) that are solved independently with polynomial complexity.
   \item Building on this, we design a Lagrangian dual-based subgradient-descent algorithm (\textbf{DuJo}) and prove that the set of optimal Lagrange multipliers and the subgradient are bounded, guaranteeing the convergence of the algorithm to the optimal multipliers (\textbf{Theorem} \ref{theorem:convergence:classic}).
   \item With simulations based on real-world constellation and terrestrial information, we show that our method \textbf{DuJo} can improve the network throughput in Starlink-based constellations approximately by up to $145\%$ compared to a grid-aligned LISL scheme and up to $35\%$ compared to a scheme prioritizing high-capacity LISLs.
 \end{itemize}
@@ -439,7 +439,7 @@ By denoting $\mathbf{x}^{s,s'} = \{x^{s,s'}_{i,j}\}_{(i,j)\in\mathcal{L}}$ as th
     \mathcal{X}^{s,s'} = \{\mathbf{x}^{s,s'} \ \big |  \eqref{eq:const:path:flow_constraints};\ x^{s,s'}_{i,j}\in\{0,1\},\forall (i,j)\in\mathcal{L}\}.
   \end{aligned}
 \end{equation}
-In addition, let $\mathbf{x} = \{\mathbf{x}^{s,s'}\}_{(s,s')\in\mathcal{F}}$ be routing decisions of all flows, and its feasible domain is denoted as
+In addition, let $\mathbf{x} = \{\mathbf{x}^{s,s'}\}_{(s,s')\in\mathcal{F}}$ denote the routing decisions of all flows. Its feasible domain is defined as
 \begin{equation}
   \begin{aligned}
     \mathcal{X} = \{\mathbf{x} \ \big | \ \mathbf{x}^{s,s'} \in \mathcal{X}^{s,s'},\forall (s,s')\in\mathcal{F}\}.
@@ -455,7 +455,7 @@ The maximum data rate on a given LISL is determined by the pointing jitter and t
     r_{n,m} = \max_{C'} (1-\Pr\{C(z_{i_n,i_m}\nu,z_{i_n,i_m}) < C'\}) C',
   \end{aligned}
 \end{equation}
-where $1-\Pr\{C(z\nu,z) < C'\}$ is the outage probability that the link capacity falls below $C'$, and 
+where $\Pr\{C(z\nu,z) < C'\}$ is the outage probability that the link capacity falls below $C'$, and
 $r_{n,m}$ is the effective data rate of the LISL averaged over time, considering the outages.
 Since the satellite distance $z$ is approximately constant over a short time, the outage probability can be written in terms of the jitter as $\Pr\{C(z\nu,z) < C'\} = \Pr\{\nu > \hat{\nu}\}$, where $C' = C(z\hat{\nu},z)$.
 Here, $\hat{\nu}$ is the threshold of the pointing jitter above which the link capacity is less than $C'$. By requiring the outage probability to be less than a threshold $\epsilon$, i.e., $\Pr\{\nu > \hat{\nu}\} \leq \epsilon$, the rate optimization in \eqref{eq:rate_configuration} becomes finding a misalignment threshold $\hat{\nu}$, where $\Pr\{\nu > \hat{\nu}\}$ is less than $\epsilon$.
@@ -500,7 +500,7 @@ The decision problem AS-JMR is NP-hard.
 \end{prop}
 
 \begin{proof}
-  The proof is listed in the appendix.
+  The proof is provided in the appendix.
 \end{proof}
 
 
@@ -693,7 +693,7 @@ The convergence of the subgradient descent in Algorithm~\ref{alg:dual_optimizati
     \end{equation} 
 \end{lemma}
 \begin{proof}
-    The proof is listed in the appendix.
+    The proof is provided in the appendix.
 \end{proof}
 
 Applying Lemma~\ref{lemma:optimal_dual_variable_bounded}, we show that the convergence of the subgradient descent algorithm is guaranteed as follows \cite{boyd2003subgradient}.
@@ -739,7 +739,7 @@ The connected satellite pairs in the above are given by
 Based on these connected satellite pairs $(i,j)\in\mathcal{L}'$, we use Dijkstra's algorithm to compute the shortest path from each source satellite $s$ to each target satellite $s'$ in the graph $(\mathcal{I}, \mathcal{L}')$ with the edge weights $\{\lambda_{i,j}\}_{(i,j)\in \mathcal{L}'}$ as
 \begin{equation}\label{eq:rounding:spf}
   \begin{aligned}
-    \tilde{\mathbf{x}}^{s,s'} \leftarrow \mathrm{SFP}(s,s',\mathcal{I}, \mathcal{L}', \{\lambda_{i,j}\}_{(i,j)\in \mathcal{L}'}), \ \forall (s,s')\in\mathcal{F}.
+    \tilde{\mathbf{x}}^{s,s'} \leftarrow \mathrm{SPF}(s,s',\mathcal{I}, \mathcal{L}', \{\lambda_{i,j}\}_{(i,j)\in \mathcal{L}'}), \ \forall (s,s')\in\mathcal{F}.
   \end{aligned}
 \end{equation}
 Note that not all source-target satellite pairs $(s,s')\in\mathcal{F}$ have a routing path in the connected constellation, and we collect those connected source-target satellite pairs $(s,s')$ as
@@ -775,7 +775,7 @@ Similar to Corollary~\ref{cor:complexity:dual_optimization}, the above conversio
 To efficiently process the graphs and simulate the constellation, we implement our algorithms and simulations in a data-oriented programming paradigm. The constellation data are organized into contiguous data arrays and are processed in just-in-time (JIT) compiled procedures using Numba for Python \cite{lam2015numba} for high computational efficiency. Linear programming is solved using the HiGHS solver \cite{huangfu2018parallelizing}.
 The simulations run on a workstation with an Intel Core Ultra 9 285K (24 cores) and 32 GB of memory.
 \subsubsection{System Parameters}
-We construct the constellation in simulations based on the real-world Starlink constellation two-line element (TLE) data from CelesTrak \cite{CelesTrak} at $\mathcal{T}_0$ as UTC $2025-07-16$ $16:00$. To study problem-scale sensitivity, we randomly select $I$ satellites out of the Starlink constellation for the varying-$I$ and computing-time results. We also test a structured shell-based Starlink instance with $I=1000$ satellites.
+We construct the simulated constellation using real-world Starlink two-line element (TLE) data from CelesTrak \cite{CelesTrak}, with the reference time $\mathcal{T}_0$ set to $2025-07-16$ $16:00$ UTC. To study problem-scale sensitivity, we randomly select $I$ satellites out of the Starlink constellation for the varying-$I$ and computing-time results. We also test a structured shell-based Starlink instance with $I=1000$ satellites.
 \blue{Specifically, at $\mathcal{T}_0$ we select a single-shell configuration with $1000$ satellites from the $53.22^\circ$ TLE-derived orbital cluster and a two-shell configuration with $500$ satellites from each of the $53.22^\circ$ and $43.00^\circ$ clusters. Each selected population remains fixed over snapshot offsets of $0$, $30$, $60$, $90$, $120$, and $180$ min.}
 Each satellite has $N'=2$ LCTs: one LCT points in the direction of the satellite's velocity, and the other points in the opposite direction. The attitude control system maintains these orientations.
 We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has an aperture area of $A=0.01$ $\text{m}^2$ and a responsivity of $\Psi=0.5$ $\text{A/W}$. The noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A in root-mean-square (RMS) value \cite{maxim_spf_transimpedance}.
@@ -861,10 +861,10 @@ This suggests that the joint optimization remains the most effective approach on
 
 \subsubsection{Evaluation of Computational Complexity}
 We then evaluate the computational complexity of our method in Fig.~\ref{fig:plot_test_computing_time_measurement} by measuring the computing time of the dual optimization algorithm in Algorithm~\ref{alg:dual_optimization} and the conversion from Lagrange multipliers to the LISL matching and flow routing decisions in \eqref{eq:rounding:mwm}-\eqref{eq:rounding:frm}.
-We observe that the computing time increases with the number of satellites $I$ in our method. Here, the conversion of the Lagrange multipliers can be done instantly within $1$ second.
+We observe that the computing time increases with the number of satellites $I$ in our method. Here, the conversion of the Lagrange multipliers can be completed within $1$ second.
 The dual iterations take about $1$ second each. However, the algorithm needs a few hundred iterations to converge, so the total computing time reaches the order of minutes for larger constellations and therefore still requires acceleration.
 
-\blue{These measurements cover dual optimization and decision conversion. The minutes-scale optimization time for larger constellations does not support seconds-scale controller updates, even before including state collection, traffic-prediction updates, schedule dissemination, and ATP execution. Further research can accelerate the approximation of optimal Lagrange multipliers using duality-guided graph learning (DeepLaDu), which uses an offline-trained graph neural network to estimate the multipliers in a single forward pass \cite{gu2026deepladu}. This approach can replace iterative online dual updates while retaining the subsequent matching, routing, and rate-allocation steps. Advance planning would require sufficient lead time and predicted inputs that remain applicable at the intended execution epoch, with selected links remaining connectable throughout acquisition and service. Unexpected failures or traffic changes that invalidate a schedule require refreshed state and recomputation.}
+\blue{These measurements cover dual optimization and decision conversion. The minutes-scale optimization time for larger constellations does not support seconds-scale controller updates, even before including state collection, traffic-prediction updates, schedule dissemination, and ATP execution. Further research can accelerate the approximation of optimal multipliers using deep Lagrangian duality-guided graph learning (DeepLaDu), which uses an offline-trained graph neural network to estimate the multipliers in a single forward pass \cite{gu2026deepladu}. This approach can replace iterative online dual updates while retaining the subsequent matching, routing, and rate-allocation steps. Advance planning would require sufficient lead time and predicted inputs that remain applicable at the intended execution epoch, with selected links remaining connectable throughout acquisition and service. Unexpected failures or traffic changes that invalidate a schedule require refreshed state and recomputation.}
 
 
 \subsubsection{Impact of Constellation Configurations}
@@ -898,11 +898,11 @@ Next, we compare the performance of our method in different constellations. DuJo
 \end{figure}
 
 \subsubsection{Impact of ATP Time}\label{subsubsec:atp_transition_evaluation}
-\blue{To evaluate non-zero ATP overhead without replacing the proposed per-snapshot optimizer, we perform an ATP-time sensitivity simulation on the single-shell-based Starlink instance. The topology-evaluation interval is fixed to $10$ s over $0$--$360$ s, and the ATP acquisition time is swept from $0$ to $90$ s.
+\blue{To evaluate non-zero ATP overhead without replacing the proposed per-snapshot optimizer, we perform an ATP-time sensitivity simulation on the single-shell Starlink instance. The topology-evaluation interval is fixed at $10$ s over $0$--$360$ s, and the ATP acquisition time is swept from $0$ to $90$ s.
 For each method, we first compute the original per-snapshot matching, routing, and rate allocation once for each offset. We then replay the ATP transition process for each value of $T_{\mathrm{ATP}}$.
 A LISL newly selected at snapshot $t$ is unavailable over $[t,t+T_{\mathrm{ATP}})$, and it becomes usable once the acquisition time has elapsed. Acquisition progress is carried across snapshots while the same terminal pair remains selected. If the pair is dropped before acquisition completes, its ATP state is discarded, and reselection starts a new acquisition. Finally, we recompute the throughput by LP using only the ATP-completed LISLs.
 The results in Fig.~\ref{fig:plot_test_tcom_atp_transition} show that increasing ATP acquisition time can materially reduce realized throughput when the per-snapshot topology changes quickly.
-The retention ratios quantify how much of the original per-snapshot throughput remains when ATP overhead is considered. Methods that change many LISLs across nearby snapshots have lower retention ratios as $T_{\mathrm{ATP}}$ increases, whereas methods with more persistent LISLs are less sensitive. These results characterize the tested replay window rather than long-run performance for arbitrary acquisition times. These results motivate the future ATP-aware temporal optimization described in the appendix, complementing recent time-dependent topology optimization studies for LEO constellations \cite{ron2025time}.}
+The retention ratios quantify how much of the original per-snapshot throughput remains when ATP overhead is considered. Methods that change many LISLs across nearby snapshots have lower retention ratios as $T_{\mathrm{ATP}}$ increases, whereas methods with more persistent LISLs are less sensitive. These results characterize the tested replay window rather than long-run performance for arbitrary acquisition times. They also motivate the future ATP-aware temporal optimization described in the appendix, complementing recent time-dependent topology optimization studies for LEO constellations \cite{ron2025time}.}
 
 \begin{figure}[t]
   \centering
@@ -920,7 +920,7 @@ This paper presents a Lagrangian duality-based method for joint link matching an
 Simulations show that our method outperforms the baseline methods in network throughput by iteratively adjusting the Lagrange multipliers to capture both connectivity importance and link congestion, thereby improving LISL matching and flow routing decisions.
 The results also show that the method is practically computable for this mixed-integer formulation, while the associated fixed-snapshot abstract decision problem is NP-hard and the computing time increases for larger constellations.
 Further research could improve the computational efficiency, e.g., by using a proper learning algorithm that integrates the dual optimization into training to predict the Lagrange multipliers directly without iterations \cite{gu2026deepladu}.
-The observation on the impact of LCT configurations on the whole constellation suggests optimizing the LCT design to maximize the network profit.
+The observation of the impact of LCT configurations on the whole constellation suggests optimizing the LCT design to maximize the network profit.
 The ATP-time sensitivity evaluation further shows that non-zero acquisition time can substantially reduce realized throughput when per-snapshot topologies change rapidly. A full ATP-aware temporal optimizer that jointly balances instantaneous throughput and link persistence is therefore an important future direction.
 
 
