@@ -16,26 +16,26 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 | Local item | Source item | State |
 | --- | --- | --- |
-| E.1 | Editor substantive assessment paragraph | Planned response drafted, pending |
-| 1.general | Reviewer 1 opening assessment | Preserved as an unnumbered introduction |
-| 1.1 | Reviewer 1 item 1 | Implemented, validated, and accepted |
-| 1.2 | Reviewer 1 item 2 | Accepted; comment marked black |
-| 2.general | Reviewer 2 opening assessment | Preserved as an unnumbered introduction |
-| 2.1 | Reviewer 2 item 1 | Accepted; comment marked black |
-| 2.2 | Reviewer 2 item 2 | Accepted; comment marked black |
-| 2.3 | Reviewer 2 item 3 | Accepted; comment marked black |
-| 2.4 | Reviewer 2 item 4 | Accepted; comment marked black |
-| 3.general | Reviewer 3 opening assessment | Preserved as an unnumbered introduction |
-| 3.1 | Reviewer 3 item 1 | Implemented and validated; pending review |
-| 3.2 | Reviewer 3 item 2 | Implemented and validated; pending review |
-| 3.3 | Reviewer 3 item 3 | Figure updated by user; response completed, pending review |
-| 3.4 | Reviewer 3 item 4 | Implemented and validated; pending review |
-| 3.5 | Reviewer 3 item 5 | Clarification implemented; pending review |
-| 3.6 | Reviewer 3 item 6 | Clarification implemented; pending review |
-| 3.7 | Reviewer 3 item 7 | Planned response drafted, pending |
+| E.1 | Editor substantive assessment paragraph | Addressed and accepted; black |
+| 1.general | Reviewer 1 opening assessment | Removed at user request; short author summary retained |
+| 1.1 | Reviewer 1 item 1 | Addressed and accepted; black |
+| 1.2 | Reviewer 1 item 2 | Addressed and accepted; black |
+| 2.general | Reviewer 2 opening assessment | Removed at user request; short author summary retained |
+| 2.1 | Reviewer 2 item 1 | Addressed and accepted; black |
+| 2.2 | Reviewer 2 item 2 | Addressed and accepted; black |
+| 2.3 | Reviewer 2 item 3 | Addressed and accepted; black |
+| 2.4 | Reviewer 2 item 4 | Addressed and accepted; black |
+| 3.general | Reviewer 3 opening assessment | Removed at user request; short author summary retained |
+| 3.1 | Reviewer 3 item 1 | Addressed and accepted; black |
+| 3.2 | Reviewer 3 item 2 | Addressed and accepted; black |
+| 3.3 | Reviewer 3 item 3 | Addressed and accepted; black |
+| 3.4 | Reviewer 3 item 4 | Addressed and accepted; black |
+| 3.5 | Reviewer 3 item 5 | Addressed and accepted; black |
+| 3.6 | Reviewer 3 item 6 | Addressed and accepted; black |
+| 3.7 | Reviewer 3 item 7 | Addressed and accepted; black |
 
-- The response follows `../2025-zg-isl-routing/response_letter_ToN_RR.tex` directly. Comments 1.2 and 2.1 have completed `Response:` and `Manuscript changes:` fields with verbatim quotations; Comment 2.1 also reproduces the revised figure. Comments 2.2 and 2.3 have completed readability and proofreading responses; the other 10 entries retain drafted plans. Three reviewer opening assessments remain unnumbered introductory paragraphs, followed by topic-specific acknowledgments.
-- Comment wording is unchanged. Original list markers are replaced with reference-style `Comment 1.1:` labels, without duplicate numbering. Comments 1.1, 1.2, and 2.1–2.4 are accepted and bold black; other substantive comments remain red and pending.
+- The response follows `../2025-zg-isl-routing/response_letter_ToN_RR.tex`. All 14 responses are completed. Each reviewer section opens with a short author summary; the original unnumbered reviewer assessments were removed at the user’s request.
+- Comment wording is unchanged. Original list markers are replaced with reference-style `Comment 1.1:` labels, without duplicate numbering. All 14 comments (E.1, 1.1–1.2, 2.1–2.4, and 3.1–3.7) are addressed and accepted, with bold black headings.
 - The complete administrative editor email remains in `TCOM_RV2_decision_letter.txt`; only its substantive assessment appears as E.1 in the response.
 
 ## Evidence Gaps
@@ -53,7 +53,7 @@ This is a lower-precedence current-state brief. Read the three core agent files 
 
 ## Next Item-Local Step
 
-Review Comment 3.4 and Fig. 11. Keep 3.1–3.4 red/pending; accepted statuses unchanged. Review PDFs: `output/pdf/main_comment_3_4_review.pdf` and `output/pdf/response_letter_TCOM_RV2_draft.pdf`.
+All comments are addressed and accepted as requested on 2026-10-01. No pending review items remain.
 
 ### Historical steps
 

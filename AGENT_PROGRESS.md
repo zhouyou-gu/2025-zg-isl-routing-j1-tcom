@@ -4,6 +4,10 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- 2026-10-01. User accepted all comments. E.1, 1.1–1.2, 2.1–2.4, and 3.1–3.7 are addressed and black; no pending comments remain. Earlier dated pending-status entries are historical. Response wording and blue manuscript quotations remain unchanged.
+
+- 2026-10-01. Updated E.1 following the neighboring ToN reference letter: completed-work opening, grouped evaluation/modeling/presentation summary, and transition to detailed responses. Removed the obsolete planned-changes paragraph; preserved editor wording, pending color, all other responses, and the user’s shortened opening acknowledgment. Manuscript unchanged.
+
 - 2026-09-28. Implemented Comment 3.7, pending/red: explained wider FOR adds candidate pairings/routing choices; optimal nondecrease applies with all other inputs fixed, not to every approximate output. Checked original driver sets FOR_THETA_HALF and plotted recovered CSV: DuJo 164.274795 to 158.707583 Gbps at half-angles 70 to 90, so did not claim strict empirical monotonicity. Added blue FOR explanation and half-angle caption clarification; completed direct response and verbatim quotations. No new simulations or claim of full historical raw-state revalidation. Both isolated builds and affected-page checks passed, no undefined references/overfull boxes. Figures/data and other comment statuses unchanged; uncommitted.
 
 - 2026-09-28. User authorized commit/push of current paper and code to main. Code e6bba75 publishes controlled LCT-count/FOR and iteration drivers, audits and documentation. Paper checkpoint includes 90-degree full-FOR Table III, unified Ablation Study, synchronized Comment 3.6 response and bibliography audit/corrections (including tracked main.bbl). Final isolated manuscript/letter builds and quotation checks passed; no undefined references or overfull boxes. Comment 3.6 remains pending; one 3GPP web-reference verification remains incomplete as documented. Raw experiment archives remain ignored locally and preserved on 5090 host.
@@ -73,9 +77,9 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Status by Comment
 
-- RV1 comments were recorded as complete in the historical tracker.
-- E.1 contains the editor's substantive assessment; 13 numbered reviewer items use the reference's inline `Comment n.m:` labels. Three opening assessments remain unnumbered introductions. Reviewer 1 has two items, Reviewer 2 has four, and Reviewer 3 has seven.
-- Seven responses are implemented: 1.1, 1.2, 2.1–2.4, and 3.1. Comments 1.1, 1.2, and 2.1–2.4 are accepted and black. Comment 3.1 is red/pending; seven entries retain planned responses. Reviewer wording and all non-1.1 responses are preserved.
+- All 14 RV2 comments (E.1, 1.1–1.2, 2.1–2.4, and 3.1–3.7) are addressed and accepted by the user on 2026-10-01; all comment headings are black.
+- Each reviewer section begins with a short author summary; the reviewers' unnumbered opening assessments were removed as requested.
+- RV1 comments remain complete in the historical tracker.
 
 ## Rolling Progress Log
 
@@ -194,14 +198,14 @@ This is the live-state record for the current paper revision. Historical RV1 det
 ## Current Blockers or Risks
 
 
-- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Comment 2.2 improves figure readability; Comment 1.1 tests a 360 s replay with pre-acquired initial links; eight entries remain planned.
+- Comment 1.2 clarifies timing limitations without establishing end-to-end deployment feasibility. Comment 2.1 establishes results only for the tested clusters/selections and three-hour window. Comment 2.2 improves figure readability; Comment 1.1 tests a 360 s replay with pre-acquired initial links; All comments are now addressed and accepted.
 - The updated supplied letter confirms the decision date as 28-Aug-2026 and specifies a 60-day revision window.
 - Four-file contract migration was not performed because the manuscript-writing scaffold skill requires an unavailable initialization tool. Response workflow updates use the existing three-file contract.
 - The previous tracker records an external-subdocument post-processing issue in `latexmkrc`. Validate the RV2 scaffold with direct `pdflatex` passes and existing manuscript references to avoid external BibTeX/post-processing side effects.
 
 ## Next Safe Resume Point
 
-- Review Comment 3.4 and Fig. 11. Comments 3.1–3.4 remain pending; 1.1, 1.2 and 2.1–2.4 remain accepted. Current 3.4 paper/code edits are uncommitted; previous work was published.
+- All comments are addressed. Await the next user instruction; response and tracking changes are uncommitted.
 
 - 2026-09-23 further result search: recovered all four final numerical tables for Figs. 4, 8, and 9 from archived April 10 tool outputs, at six-decimal display precision. Saved under `../leo-sat-flow/sim_alg_v1_res/recovered_legacy_results/recovered-20260923-ail/`, with source excerpts and comparison against all 144 original PDF bars. Original merged CSV folders were deleted in a recorded April 10 cleanup; full precision has not been recovered. No simulation rerun or manuscript/figure edit in this search. User-requested `revision_data/` removal remains in effect; folder was moved to Trash and has not been recreated.
 
@@ -360,3 +364,13 @@ This is the live-state record for the current paper revision. Historical RV1 det
 - 2026-09-28. User authorized commit and push of Comment 3.7 to main. Publishing synchronized FOR explanation/caption and response, with prior successful isolated builds and visual checks. Comment remains red/pending; committing is not acceptance. Discarded generated main.bbl line-wrap-only churn after verifying identical non-whitespace content.
 
 - 2026-09-28. Added the requested paragraph break between LCT-count and FOR discussions under Impact of Constellation Configurations. Wording unchanged; response quotations remain synchronized.
+
+- 2026-10-01. E.1 validation: isolated two-pass response build succeeded with no undefined references or overfull boxes; existing h-to-ht float warning remains. Inspected the editor-summary page and verified all reviewer-response blocks unchanged. Refreshed the response review PDF.
+
+- 2026-10-01. Removed all three unnumbered reviewer summaries and their introductory author replies as requested. Reviewer headings, numbered comments, responses, and statuses are unchanged.
+
+- 2026-10-01. Added a concise acknowledgment and completed-revision summary below each reviewer heading, following the neighboring reference letter style. Removed reviewer assessments remain omitted; numbered comments/responses and statuses unchanged.
+
+- 2026-10-01. Verified all 14 comment bodies against TCOM_RV2_decision_letter.txt character-for-character after decoding only LaTeX quote/percent escapes. Original wording, punctuation, typos and internal spacing match. All headings are black, every item has one completed Response block, and no planned-change placeholder remains. The three unnumbered assessments remain omitted by user request. No manuscript or response wording changed during this audit.
+
+- 2026-10-01. User authorized commit and push of the completed response-letter summaries and all-addressed status to main. Original comment wording verified; isolated response build passed. Removed only generated bibliography whitespace churn after confirming identical non-whitespace content.

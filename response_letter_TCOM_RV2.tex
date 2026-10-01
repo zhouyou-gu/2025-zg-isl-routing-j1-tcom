@@ -108,23 +108,27 @@
 
 \maketitle
 
-We sincerely thank the editor and reviewers for their careful evaluation of our manuscript and constructive comments. We appreciate the opportunity to revise and resubmit manuscript TCOM-TPS-26-1250 for consideration by IEEE Transactions on Communications.
+We sincerely thank the editor and reviewers for their careful evaluation of our manuscript and constructive comments.
 
 \section*{\centering\Large\textbf{Response to the Editor's Note}}
 
 We thank the editor for identifying the principal issues requiring attention and for the opportunity to address them in this revision.
 
-\noindent{\bfseries\pendingcomment Comment E.1: All reviewers still have notable suggestions on this paper, particularly in the performance evaluation part. Therefore, I recommend that you update your paper and submit a revised version for further processing.}
+\noindent{\bfseries Comment E.1: All reviewers still have notable suggestions on this paper, particularly in the performance evaluation part. Therefore, I recommend that you update your paper and submit a revised version for further processing.}
 
-\textbf{Response:} We will focus this revision on the remaining evaluation and deployment questions. The planned evaluation will extend the acquisition, pointing, and tracking (ATP) sensitivity range, broaden constellation coverage, and quantify the effects of gateway density and terminal availability. We will also clarify the distinction between routed throughput and end-to-end latency, explain the payload assumptions, and improve figure readability and language. The responses will identify which conclusions follow from the existing model and which require the planned experiments. Numerical conclusions will be added after those experiments have been completed and checked.
+\textbf{Response:} We revised the manuscript to address the reviewers' remaining concerns, particularly those regarding performance evaluation. The main changes are summarized below.
 
-\textbf{Planned manuscript changes:} We will revise the relevant system-model and simulation discussions, update the affected figures, and prepare a concise summary of the completed changes for the editor. Each reviewer response will then cite its specific manuscript location and supporting evidence.
+\begin{itemize}
+  \item \textbf{Performance evaluation.} We extended the ATP sensitivity study to acquisition times of up to $90$ s, added a two-shell case evaluated at multiple snapshot times, and added a gateway-count comparison. The appendix now compares flow propagation delays and installed LCT counts across DuJo and the baseline methods.
+  \item \textbf{Modeling and deployment.} We clarified acquisition-timer behavior, the timing limitations of centralized deployment, the aggregate traffic and payload assumptions, and the interpretation of served-demand ratios. We also explained the effects of LCT availability and FOR, including the nonmonotonic throughput of approximate solutions.
+  \item \textbf{Presentation and related work.} We enlarged figure fonts and bars, added the FOR half-angle to the system diagram, clarified the distinction from related routing methods, and proofread the manuscript.
+\end{itemize}
+
+The detailed point-by-point responses to the reviewers are listed as follows.
 
 \section*{\centering\Large\textbf{Response to Reviewer 1}}
 
-\noindent{\bfseries\pendingcomment Thanks for the revision. The authors have addressed my major concerns. A few issues still need clarification.}
-
-We thank the reviewer for the careful assessment and constructive comments. We will clarify the ATP replay and the practical timing limits of centralized deployment in the responses that follow.
+We thank the reviewer for the constructive comments, which helped us extend the ATP sensitivity study and clarify acquisition behavior and the practical timing limits of centralized deployment.
 
 \noindent{\bfseries Comment 1.1: The ATP study uses 10 s topology intervals and TATP values up to 30 s, while the manuscript cites optical acquisition times on the order of tens of seconds. Why is this parameter range sufficient, and what happens when TATP exceeds the topology interval for several consecutive snapshots?}
 
@@ -156,9 +160,7 @@ The revised Fig.~\ref{fig:plot_test_tcom_atp_transition} and its updated caption
 
 \section*{\centering\Large\textbf{Response to Reviewer 2}}
 
-\noindent{\bfseries\pendingcomment The authors in this paper have made noticeable revisions, but the novelty is still incremental and the evaluation remains limited to a single static shell. Further major revision is needed.}
-
-We thank the reviewer for the careful assessment and constructive comments. We will sharpen the novelty discussion around the joint terminal-matching, routing, and rate-allocation decisions, and broaden the evaluation beyond the existing shell block. We will separate these contributions from related routing methods and avoid claiming novelty merely from using Lagrangian duality.
+We thank the reviewer for the constructive comments, which helped us extend the evaluation to a two-shell configuration, clarify the comparisons with related work, and improve figure readability and language.
 
 \noindent{\bfseries Comment 2.1: The structured‑shell test uses only one 1000‑satellite block from a single Starlink shell at a fixed epoch. Real mega‑constellations involve multiple shells, orbital precession, and time‑varying link geometry. Testing on a single static snapshot limits the generality of the conclusions.}
 
@@ -208,12 +210,9 @@ The combined Fig.~\ref{fig:structured_shell_comparison} is reproduced here.
 
 \section*{\centering\Large\textbf{Response to Reviewer 3}}
 
-\noindent{\bfseries\pendingcomment Authors present a significant contribution on the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile. Theoretical approach is ully proved. References perfectly suit the paper scope.
-Concerns are not critical but should be explained by authors before acceptance for publication in TCOM. Most of them are related to system modeling or simulation parameters.}
+We thank the reviewer for the detailed comments, which helped us add propagation-delay, gateway-count, and installed-LCT comparisons, clarify the modeling assumptions, and explain the effects of connectivity and FOR on throughput.
 
-We thank the reviewer for the careful assessment and constructive comments. We will clarify the model and simulation assumptions, add the requested sensitivity studies, and distinguish the metrics supported by the present model from deployment characteristics that require further modeling.
-
-\noindent{\bfseries\pendingcomment Comment 3.1: One of the relevant indicators in satellite constellations is end-to-end  latency. Authors should clarify why latency results are not presented.}
+\noindent{\bfseries Comment 3.1: One of the relevant indicators in satellite constellations is end-to-end  latency. Authors should clarify why latency results are not presented.}
 
 \textbf{Response:} The objective of this work is throughput maximization; therefore, the original evaluation did not compare flow delays. We added an appendix table comparing the mean and $95$th-percentile propagation delays and mean route distances of DuJo, DRL, SaTE, MRate, and +Grid. Propagation delay is calculated from each served flow's routed LISL distance divided by the speed of light, with statistics weighted by allocated flow rate. DuJo achieves a mean delay of $11.26$ ms and the lowest $95$th-percentile delay of $23.68$ ms among the tested methods. The comparison covers LISL propagation delay; queueing, transmission, processing, and ground-access delays are outside the present model.
 
@@ -242,7 +241,7 @@ MRate & 10.75 & 24.01 & 3223.30 \\
 }
 \end{table}
 
-\noindent{\bfseries\pendingcomment Comment 3.2: Served demand does not reach 50\%. Authors are requested to explain if it is due to mismatch of simulation parameters (e.g. user demand vs capacity of ISLs), ISL bottlenecks or due to the proposed optimization.}
+\noindent{\bfseries Comment 3.2: Served demand does not reach 50\%. Authors are requested to explain if it is due to mismatch of simulation parameters (e.g. user demand vs capacity of ISLs), ISL bottlenecks or due to the proposed optimization.}
 
 \textbf{Response:} LISL connectivity and capacity limit traffic delivery in the evaluated topologies.
 Increasing the number of LCTs per satellite or the number of satellites can improve connectivity and increase throughput and the served-demand ratio for a fixed traffic demand.
@@ -251,7 +250,7 @@ Increasing the number of LCTs per satellite or the number of satellites can impr
 
 ``...\blue{The served ratio considers residual demand after local gateway service. Limited LISL connectivity and capacity prevent available gateway resources from reaching all demanding satellites. Increasing the number of LCTs per satellite or the number of satellites can improve connectivity and increase throughput and the served-demand ratio for a fixed traffic demand.}''
 
-\noindent{\bfseries\pendingcomment Comment 3.3: Please include θ in figure 1.}
+\noindent{\bfseries Comment 3.3: Please include θ in figure 1.}
 
 \textbf{Response:} We added the field-of-regard half-angle $\theta$ to Fig.~\ref{fig:leo_system_diagram}(b).
 
@@ -263,7 +262,7 @@ The revised Fig.~\ref{fig:leo_system_diagram} is reproduced here.
   \label{fig:resp_leo_system_diagram}
 \end{figure}
 
-\noindent{\bfseries\pendingcomment Comment 3.4: 100 seem to be a large number. Please evaluate the sensitivity of the proposed optimization to the number of gateways.}
+\noindent{\bfseries Comment 3.4: 100 seem to be a large number. Please evaluate the sensitivity of the proposed optimization to the number of gateways.}
 
 \textbf{Response:} We added a sensitivity evaluation with $50$, $100$, $150$, and $200$ gateways, keeping the satellite geometry and user demand fixed. The new Fig.~\ref{fig:gateway_count} compares all five methods using nested gateway sets. DuJo achieves the highest throughput and served-demand ratio over the displayed range, increasing from $128.83$ Gbps and $32.38\%$ at $50$ gateways to $172.71$ Gbps and $46.54\%$ at $200$ gateways. Each gateway-connected satellite retains the same capacity $Q=20$ Gbps; multiple visible gateways do not multiply this capacity.
 
@@ -280,7 +279,7 @@ The new Fig.~\ref{fig:gateway_count} is reproduced here.
   \label{fig:resp_gateway_count}
 \end{figure}
 
-\noindent{\bfseries\pendingcomment Comment 3.5: Some details on the comm payload should be provided, i.e., is it multibeam, beam-hopping payload? How many users can be simultaneously served by a given satellite?}
+\noindent{\bfseries Comment 3.5: Some details on the comm payload should be provided, i.e., is it multibeam, beam-hopping payload? How many users can be simultaneously served by a given satellite?}
 
 \textbf{Response:} The model does not specify a multibeam or beam-hopping service-link payload. It represents user traffic as aggregate demand and does not model radio-access resources or user scheduling, so it does not determine a maximum number of simultaneously served users per satellite. In particular, $U_i(t)$ denotes users generating demand, and $Q$ is gateway service capacity. We clarified this scope in the traffic profile model.
 
@@ -288,7 +287,7 @@ The new Fig.~\ref{fig:gateway_count} is reproduced here.
 
 ``...\blue{The service-link radio payload is represented through aggregate user demand, without specifying a multibeam or beam-hopping architecture or modeling user-access scheduling. The quantity $U_i(t)$ represents users generating demand, rather than a guaranteed number of simultaneously served users, and $Q$ denotes gateway service capacity. The maximum number of users that a satellite can serve simultaneously depends on radio-access resources and scheduling, which are outside the present model.}''
 
-\noindent{\bfseries\pendingcomment Comment 3.6: What \textquotedbl{}average\textquotedbl{} number of LCT per satellite mean in Figure 8? If the number of LCT is increased to 4, would the throughput increase linearly as shown in Fig 8?}
+\noindent{\bfseries Comment 3.6: What \textquotedbl{}average\textquotedbl{} number of LCT per satellite mean in Figure 8? If the number of LCT is increased to 4, would the throughput increase linearly as shown in Fig 8?}
 
 \textbf{Response:} The average in Fig.~8 is the expected number of available LCTs per satellite, $2(1-\rho)$, where each of the two front/back terminals is independently unavailable with probability $\rho$. Each satellite has an integer number available. We added a separate two-, three-, and four-LCT comparison in the appendix, with all installed terminals available, a full FOR of $90$ degrees ($\theta=45$ degrees) per terminal, and the same gateway-source assignments fixed across configurations. DuJo achieves $121.90$, $218.77$, and $263.07$ Gbps, respectively. Throughput increases for all five methods, but the gains are not linear. MRate achieves the highest four-LCT throughput at $296.04$ Gbps. With four LCTs, the additional connection opportunities allow SaTE and MRate to prioritize high-capacity links while maintaining a connected topology. This can reduce the tradeoff between link capacity and connectivity when selecting links. Since DuJo provides an approximation to the optimal solution, directly prioritizing high-capacity links can achieve higher throughput in this setting.
 
@@ -323,7 +322,7 @@ MRate & 105.32 & 27.26 & 154.15 & 39.91 & 296.04 & 76.64 \\
 }
 \end{table}
 
-\noindent{\bfseries\pendingcomment Comment 3.7: In fig 8 throughput does monotonically increase with FOR, which seems to have some explanation. Please provide some inputs on this issue.}
+\noindent{\bfseries Comment 3.7: In fig 8 throughput does monotonically increase with FOR, which seems to have some explanation. Please provide some inputs on this issue.}
 
 \textbf{Response:} A wider FOR permits more LCT pairs to connect, providing more matching and routing choices to relieve bottlenecks. With all other inputs fixed, the optimal throughput cannot decrease because every solution feasible at a smaller FOR remains feasible. However, Fig.~8 does not show strictly monotonic performance for every method: DuJo decreases from $164.27$ to $158.71$ Gbps between $70$ and $90$ degrees. DuJo provides an approximation to the optimal solution: its greedy matching uses link capacities weighted by Lagrange multipliers, rather than directly maximizing the final throughput. New candidate links can change the selected matching and routes and shift bottlenecks. The implementation reports the final iterate without retaining the smaller-FOR solution as a fallback, so the returned throughput can decrease even though the feasible set expands. We clarified this distinction and specified that the plotted FOR is the half-angle $\theta$.
 
