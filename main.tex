@@ -96,7 +96,7 @@ the University of Adelaide, Adelaide, SA 5005, Australia
 \maketitle
 
 \begin{abstract}
-Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering the realistic LCT mechanics and a snapshot-level spatial traffic profile. We show that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard. Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching problem for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with proven convergence. Simulations using real-world constellation and terrestrial data show that our methods substantially improve network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
+Low Earth orbit (LEO) mega-constellations greatly extend the coverage and resilience of future wireless systems. Within the mega-constellations, laser inter-satellite links (LISLs) enable high-capacity, long-range connectivity. Existing LISL schemes often overlook mechanical limitations of laser communication terminals (LCTs) and non-uniform global traffic profiles caused by uneven user and gateway distributions, leading to suboptimal throughput and underused LCTs/LISLs -- especially when each satellite carries only a few LCTs. This paper investigates the joint optimization of LCT connections and traffic routing to maximize the constellation throughput, considering realistic LCT mechanics and a snapshot-level spatial traffic profile. We show that the resulting per-snapshot formulation is a mixed-integer program coupling LCT connections with flow-rate variables under link capacity constraints, and the associated fixed-snapshot abstract decision problem is NP-hard. Due to its intractability, we resort to relaxing the coupling constraints via Lagrangian duality, decomposing the problem into a weighted graph-matching problem for LCT connections, weighted shortest-path routing tasks, and a linear program for rate allocation. Here, Lagrange multipliers reflect congestion weights between satellites, jointly guiding the matching, routing, and rate allocation. Subgradient descent optimizes the multipliers, with proven convergence. Simulations using real-world constellation and terrestrial data show that our method substantially improves network throughput by up to $35\%$--$145\%$ over existing non-joint approaches.
 \end{abstract}
 
 \begin{IEEEkeywords} 
@@ -135,7 +135,7 @@ Nevertheless, how to design a Lagrangian dual method that considers practical LC
 
 \begin{table*}[t]
   \centering
-  \caption{Summary of Notations}
+  \caption{Summary of Notation}
   \label{tab:notation}
   \vspace{-0.15cm}
   \footnotesize
@@ -183,7 +183,7 @@ Nevertheless, how to design a Lagrangian dual method that considers practical LC
 
     $q^{s,s'}$ & Flow rate from $s$ to $s'$ (Gbps) & $\mathbf{q},\ \mathcal{Q}$ & Flow vector and its feasible set \\
 
-    $\mathcal{E}_{i,j}$ & Connectable LCT pairs between sats $i$ and $j$ & $\mathcal{L}$ & Neighboring satellite pairs (potential links) \\
+    $\mathcal{E}_{i,j}$ & Connectable LCT pairs between satellites $i$ and $j$ & $\mathcal{L}$ & Neighboring satellite pairs (potential links) \\
 
     $\mathcal{G}^{\text{SAT}}=(\mathcal{I},\mathcal{L})$ & Satellite connectivity graph & $x^{s,s'}_{i,j}$ & Routing indicator of flow $(s,s')$ on link $(i,j)$ \\
 
@@ -206,12 +206,12 @@ Our contributions are as follows.
   \item We provide a comprehensive formulation of the problem \eqref{eq:prob:constrainted_routing_and_matching:primal}, including the LCTs' steering ranges and vibrations, and the diverse traffic profile across the constellation. Moreover, we discuss the complexity of the joint problem through the induced fixed-snapshot abstract decision problem. Specifically, we define this abstract decision problem and prove that it is NP-hard, via a direct reduction from integral 2-commodity flow in symmetric digraphs \cite{jarry2012multiflows} (\textbf{Proposition~\ref{prop:np_hardness}}).
   \item We relax the link rate limitation constraints of satellite pairs in \eqref{eq:prob:constrainted_routing_and_matching:relaxed} and  \eqref{eq:prob:constrainted_routing_and_matching:dual}, separating the original problem into subproblems (i.e., (a), (b), and (c) in \eqref{eq:prob:constrainted_routing_and_matching:lagrangian_dual}) that are solved independently with polynomial complexity.
   \item Building on this, we design a Lagrangian dual-based subgradient-descent algorithm (\textbf{DuJo}) and prove that the set of optimal Lagrange multipliers and the subgradient are bounded, guaranteeing the convergence of the algorithm to the optimal multipliers (\textbf{Theorem} \ref{theorem:convergence:classic}).
-  \item With simulations based on real-world constellation and terrestrial information, we show that our method \textbf{DuJo} can improve the network throughput in Starlink-based constellations approximately by up to $145\%$ compared to a grid-aligned LISL scheme and up to $35\%$ compared to a scheme prioritizing high-capacity LISLs.
+  \item With simulations based on real-world constellation and terrestrial information, we show that our method \textbf{DuJo} can improve the network throughput in Starlink-based constellations by up to $145\%$ compared to a grid-aligned LISL scheme and up to $35\%$ compared to a scheme prioritizing high-capacity LISLs.
 \end{itemize}
 
 \subsection{Notation and Paper Organization}
 We denote the $i$-th element of a vector $\mathbf{x}$ by $x_i$ and the $(i,j)$-th element of a matrix $\mathbf{x}$ by $x_{i,j}$.
-Table~\ref{tab:notation} summarizes the notations used in this paper.
+Table~\ref{tab:notation} summarizes the notation used in this paper.
 We collect all the elements in $\mathbf{x}$ as $\{x_{i,j}\}_{\forall(i,j)}$.
 The rest of this paper is organized as follows. Section~\ref{sec:system_model} presents the system model of the LEO mega-constellation, the models of LCT mechanics, and traffic profiles.
 Section~\ref{sec:problem_formulation} formulates the constellation graphs and the joint optimization problem over the graphs, and Section~\ref{sec:lagrangian_dual_relaxation} presents the Lagrangian dual relaxation of the joint problem.
@@ -249,7 +249,7 @@ We write the index of the satellite that LCT $n$ belongs to as $i_n$, where $i_n
 LCT $n$ has a mounting direction $\mathbf{u}_n(t)$ in the ECI frame, which is a unit vector fixed on the satellite body.
 These mounting directions specify only the preferred pointing directions of the LCTs. They do not restrict feasible LISLs to satellites in the same orbital plane \cite{chaudhry2021laser,leyva-mayorga2021interplane}.
 Each LCT can steer its beam to point in any direction with an angle less than $\theta$ radians from its center mounting direction, e.g., by using steering mirrors. Here, this region is referred to as its field of regard (FOR).
-Due to spacecraft dynamics and satellite motion, the beam pointing direction of the LCT can deviate from the desired direction because of small unpredictable errors, referred to as pointing jitters.
+Due to spacecraft dynamics and satellite motion, the beam pointing direction of the LCT can deviate from the desired direction because of small unpredictable errors, referred to as pointing jitter.
 The pointing jitter in radians is assumed to follow a Rayleigh distribution \cite{arnon2003effects} as
 \begin{equation}\label{eq:pointing_jitter}
   \begin{aligned}
@@ -276,7 +276,7 @@ Here, the peak intensity $\Phi_0$ and the beam radius $W(z)$ are modeled as
   \end{aligned}
 \end{equation}
 where $z_\mathrm{R}$ is the Rayleigh range of the beam.
-Data over LISLs are transmitted using an intensity-modulation and direct-detection scheme, e.g., ON-OFF keying (OOK). While the closed-form expression for the channel capacity cannot be derived, lower bounds on the capacity have been studied.
+Data over LISLs are transmitted using an intensity-modulation and direct-detection scheme, e.g., on-off keying (OOK). While the closed-form expression for the channel capacity cannot be derived, lower bounds on the capacity have been studied.
 Specifically, given $y$ and $z$, the channel capacity of the LISL is lower bounded as \cite{farid2007outage,lapidoth2009capacity,chaaban2022capacity}
 \begin{equation}
   \begin{aligned}
@@ -284,7 +284,7 @@ Specifically, given $y$ and $z$, the channel capacity of the LISL is lower bound
     \left(1+\frac{\left( A \cdot \Phi(y,z)\cdot \Psi  \right)^2}{2\pi e \sigma^2_{\mathrm{N}}} \right),
   \end{aligned}
 \end{equation}
-where the unit is bits per second (bps), $\Psi$ is the responsivity of the LCT receiving optical sensor in amperes per watt (A/W), $B$ is the bandwidth of the receiver in hertz (Hz), $A$ is the aperture area of the LCTs in m$^2$, and $\sigma_{\mathrm{N}}$ is the noise amplitude in amperes (A) \cite{maxim_spf_transimpedance}.
+where the unit is bits per second (bps), $\Psi$ is the responsivity of the LCT's receiving optical sensor in amperes per watt (A/W), $B$ is the bandwidth of the receiver in hertz (Hz), $A$ is the aperture area of the LCTs in m$^2$, and $\sigma_{\mathrm{N}}$ is the noise amplitude in amperes (A) \cite{maxim_spf_transimpedance}.
 For sufficiently small pointing jitter angles, the radial distance $y$ can be approximated as $y \approx z \nu$. 
 The capacity of the LISL, as a function of the pointing jitter $\nu$ and the satellite distance $z$, can be written as $C(z \nu,z)$.
 
@@ -345,7 +345,7 @@ Here, positive traffic demand of a satellite needs to be served by other satelli
 This simplified model does not incorporate temporal demand variation or socioeconomic modifiers such as purchasing capability. Richer broadband-demand models along these dimensions are important future work \cite{zamacola2025profiling,qin2024satformer}. Gateway-aware traffic estimation is also relevant to this broader modeling direction \cite{guo2021gateway}.
 Satellites with positive serving rates or positive demand rates are referred to as serving and demanding satellites, respectively.
 
-\blue{The service-link radio payload is represented through aggregate user demand, without specifying a multibeam or beam-hopping architecture or modeling user-access scheduling. The quantity $U_i(t)$ represents users generating demand, rather than a guaranteed number of simultaneously served users, and $Q$ denotes gateway service capacity. The maximum number of users that a satellite can serve simultaneously depends on radio-access resources and scheduling, which are outside the present model.}
+\blue{The aggregate-demand interface is generic with respect to the service-link payload and can represent demand associated with either multibeam or beam-hopping operation. For example, a satellite with four beams, each covering ten active users, has $U_i(t)=40$, with total demand $40D$. The same user demand can be used for a beam-hopping payload, while the number of users served simultaneously depends on which beams are active and their available capacity.}
 
 \section{Problem Formulation}\label{sec:problem_formulation}
 We consider the constellation at a given time $t$, and we omit $t$ for simplicity in the rest of the paper. 
@@ -789,7 +789,7 @@ Each selected population remains fixed over snapshot offsets of $0$, $30$, $60$,
 
 
 Each satellite has $N'=2$ LCTs: one LCT points in the direction of the satellite's velocity, and the other points in the opposite direction. The attitude control system maintains these orientations.
-We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has an aperture area of $A=0.01$ $\text{m}^2$ and a responsivity of $\Psi=0.5$ $\text{A/W}$. The noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A in root-mean-square (RMS) value \cite{maxim_spf_transimpedance}.
+We configure the beam parameters as follows \cite{kaymak2018survey}: Each LCT has an aperture area of $A=0.01$ $\text{m}^2$ and a responsivity of $\Psi=0.5$ $\text{A/W}$. The root-mean-square (RMS) noise current is $\sigma_{\mathrm{N}}=3\times 10^{-7}$~A \cite{maxim_spf_transimpedance}.
 The power of the beam is $P_0=20$ W and its bandwidth is $B=1$ GHz. The beam's wavelength is $1.55$ $\mu$m and the beam width is $100$ micro-radians, leading to the beam waist radius $W_0=9.87\times10^{-3}$ m and the Rayleigh range $z_\mathrm{R}=1.97\times10^{3}$ m \cite{saleh2019fundamentalsa}. 
 The pointing jitter $\sigma_{\mathrm{J}}$ is set to $10$ micro-radians and the relaxed link outage probability $\epsilon$ is set to $0.001$.
 The field of regard half-angle of each LCT is set to $\theta = 60$ degrees from its mounting direction, and the maximum distance for two LCTs to establish a link is $\hat{z}=3000$ km.
@@ -815,15 +815,15 @@ We compare our duality-based joint method, denoted in the legend as ``\textbf{Du
     \item \textbf{MRate:} Maximum link rate matching sets the weights of LCT pairs to their maximum transmission rates, $r_{n,m}$, to emphasize link-capacity-oriented topology design \cite{guo2024constellation}. Note that in both MRate and +Grid, traffic flows are then routed by open shortest path first (OSPF) \cite{moy1998ospf} using link weights that are the reciprocals of the aggregate satellite-pair rates $1/\sum_{\{n,m\}\in \mathcal{E}_{i,j}} c_{n,m}r_{n,m}$, followed by LP-based flow rate allocation.
     \item \textbf{SaTE:} Following the non-joint traffic-engineering setting of SaTE \cite{wu2025sate}, this baseline first fixes the LISL matching by maximum link rate matching and then routes the flows by shortest paths under unit hop cost. Given that topology and routing, the traffic flow rates are computed optimally by LP to maximize the network throughput. Thus, only the traffic rate allocation is optimized, while the link matching and traffic routing are not jointly optimized.
     \item \textbf{DRL:} A trained policy-gradient baseline \cite{sutton2000policy} uses the constellation graph as its state, where each satellite node carries its gateway service capacity and traffic demand and each connectable satellite pair carries its candidate LISL capacity. Its action is to infer the price graph over the connectable satellite pairs, and its reward is derived from the resulting traffic-rate allocation after converting those inferred prices to matching, routing, and rate allocation.
-    \item \textbf{Rand}: Random matching first assigns random weights to the candidate links in the same feasible connectability set $\mathcal{E}$ and then matches the links from the largest weights. The traffic flows are then routed by OSPF on the resulting topology, where the rates of the paths are allocated by LP.
+    \item \textbf{Rand:} Random matching first assigns random weights to the candidate links in the same feasible connectability set $\mathcal{E}$ and then matches the links from the largest weights. The traffic flows are then routed by OSPF on the resulting topology, where the rates of the paths are allocated by LP.
 \end{itemize}
 In the structured-shell comparison, we focus the main benchmark on DuJo, DRL, SaTE, MRate, and +Grid.
 
 \subsection{Numerical Results}
 \subsubsection{Convergence of Dual Function}
-The convergence of the dual function $g(\lambda)$ is illustrated in Fig.~\ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}a for different $\beta$ values. 
+The convergence of the dual function $g(\lambda)$ is illustrated in Fig.~\ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}(a) for different $\beta$ values.
 As expected for subgradient methods, the per-iteration dual values are not necessarily monotone and may fluctuate when multiple flows compete for the same bottleneck LISLs. Nevertheless, the diminishing step size progressively damps these fluctuations, while Theorem \ref{theorem:convergence:classic} concerns the best-so-far dual value rather than every individual iterate.
-The performance of the converted LISL matching and flow routing decisions from the iterated Lagrange multipliers is shown in Fig.~\ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}b.
+The performance of the converted LISL matching and flow routing decisions from the iterated Lagrange multipliers is shown in Fig.~\ref{fig:plot_test_dual_optimization_starlink_constellation_varying_beta_d_o_and_p_o_horizontal}(b).
 The converted throughput can also fluctuate across iterations, but it approaches a stable level as the multipliers settle. The network throughput is higher for $\beta=0.5$ than for $\beta=0.7$ and $0.9$, indicating that a slower step-size decay leads to better performance because it explores the multiplier space more thoroughly.
 Also, we observe that the throughput reaches a near-maximum value around $K=500$ iterations. For the remaining simulations, we fix $\beta=0.5$ and $K=500$.
 
@@ -835,7 +835,7 @@ Also, we observe that the throughput reaches a near-maximum value around $K=500$
 \end{figure}
 
 \subsubsection{Comparison with Baselines}
-We compare our method with the baseline methods in Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand}, where the network throughput is plotted against the number of satellites $I$ in the constellation. The results show that our method improves the network throughput substantially as the constellation size grows. Among the strengthened baselines, SaTE is generally the strongest separated baseline for larger constellations, whereas DRL remains below the heuristic baselines in this varying-$I$ study. This is because the DRL policy is trained using a network-wise reward that is derived from the resulting traffic flow rates, which do not directly supervise how the Lagrange multipliers should be optimized to improve the matching and routing decisions. Thus, the DRL policy may not learn to optimize the Lagrange multipliers effectively, especially when the constellation size grows with many satellite pairs.
+We compare our method with the baseline methods in Fig.~\ref{fig:plot_test_dual_optimization_vs_grid_rand}, where the network throughput is plotted against the number of satellites $I$ in the constellation. The results show that our method improves the network throughput substantially as the constellation size grows. Among the strengthened baselines, SaTE is generally the strongest separated baseline for larger constellations, whereas DRL remains below the heuristic baselines in this varying-$I$ study. This is because the DRL policy is trained using a network-wise reward that is derived from the resulting traffic flow rates, which do not directly indicate how the Lagrange multipliers should be optimized to improve the matching and routing decisions. Thus, the DRL policy may not learn to optimize the Lagrange multipliers effectively, especially when the constellation size grows with many satellite pairs.
 Compared with +Grid, MRate, and SaTE, our method achieves a higher throughput because it iteratively updates the Lagrange multipliers to improve the LISL matching decisions together with the resulting routing and rate-allocation structure, rather than fixing the topology first.
 
 \begin{figure}[!t]
@@ -855,7 +855,7 @@ Compared with +Grid, MRate, and SaTE, our method achieves a higher throughput be
 \begin{figure}[!t]
   \centering
   \includegraphics[scale=0.85]{plot_test_tcom_shell_time_load_scaling.pdf}
-  \caption{Load-stress evaluation on the structured shell-based Starlink instance. The active-user percentage varies from $0.0005\%$ to $0.1\%$. The top and the bottom plots show the throughput and the served-demand ratio, respectively.}
+  \caption{Load-stress evaluation on the structured shell-based Starlink instance. The active-user percentage varies from $0.0005\%$ to $0.1\%$. The top and bottom plots show the throughput and the served-demand ratio, respectively.}
   \label{fig:plot_test_tcom_shell_time_load_scaling}
 \end{figure}
 

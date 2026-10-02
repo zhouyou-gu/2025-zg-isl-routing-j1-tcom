@@ -296,11 +296,11 @@ The new Fig.~\ref{fig:gateway_count} is reproduced here.
 
 \noindent{\bfseries Comment 3.5: Some details on the comm payload should be provided, i.e., is it multibeam, beam-hopping payload? How many users can be simultaneously served by a given satellite?}
 
-\textbf{Response:} The model does not specify a multibeam or beam-hopping service-link payload. It represents user traffic as aggregate demand and does not model radio-access resources or user scheduling, so it does not determine a maximum number of simultaneously served users per satellite. In particular, $U_i(t)$ denotes users generating demand, and $Q$ is gateway service capacity. We clarified this scope in the traffic profile model.
+\textbf{Response:} The model is generic and can accommodate either multibeam or beam-hopping payloads through the user count $U_i(t)$. For example, four beams covering ten active users each give $U_i(t)=40$ and total demand $40D$. With beam hopping, the same users generate demand, while the number served simultaneously depends on which beams are active and their available capacity. We added this example to clarify how different payload settings can be represented.
 
 \textbf{Manuscript changes:} In Section~\ref{subsec:traffic_profile_model}, we added the following clarification
 
-``...\blue{The service-link radio payload is represented through aggregate user demand, without specifying a multibeam or beam-hopping architecture or modeling user-access scheduling. The quantity $U_i(t)$ represents users generating demand, rather than a guaranteed number of simultaneously served users, and $Q$ denotes gateway service capacity. The maximum number of users that a satellite can serve simultaneously depends on radio-access resources and scheduling, which are outside the present model.}''
+``...\blue{The aggregate-demand interface is generic with respect to the service-link payload and can represent demand associated with either multibeam or beam-hopping operation. For example, a satellite with four beams, each covering ten active users, has $U_i(t)=40$, with total demand $40D$. The same user demand can be used for a beam-hopping payload, while the number of users served simultaneously depends on which beams are active and their available capacity.}''
 
 \noindent{\bfseries Comment 3.6: What \textquotedbl{}average\textquotedbl{} number of LCT per satellite mean in Figure 8? If the number of LCT is increased to 4, would the throughput increase linearly as shown in Fig 8?}
 

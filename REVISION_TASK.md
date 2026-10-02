@@ -202,3 +202,5 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-10-02. Two-shell geometry visualization is now included in both manuscript (Fig. 6) and Response 2.1. One-column, side-by-side panels; caption/quotation and subsequent author figure references synchronized. All comment statuses remain accepted.
 
 - 2026-10-02. Geometry figure relocated by user to System Parameters; Response 2.1 setup/evaluation excerpts synchronized and both PDFs rebuilt with current automatic figure numbering.
+
+- 2026-10-02. Comment 3.5 response and quoted manuscript paragraph now explain generic demand aggregation across beam footprints, with a hypothetical numerical example. Simultaneous radio service remains conditional on payload resources and illumination; no new payload configuration or experiment is claimed. Accepted/black status preserved.
