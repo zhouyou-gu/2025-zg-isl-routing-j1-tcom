@@ -4,6 +4,18 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- 2026-10-02. User authorized committing and pushing the reviewed appendix indexing, synchronized response quotations, SaTE first-use expansion, and notation-heading correction to main. Isolated builds and appendix visual checks passed; removed bibliography line-wrap-only churn and a trailing space before committing.
+
+- 2026-10-02. Visually inspected compiled appendix pages 13–15 after indexing update. All A–E headings use consistent IEEEtran centered two-line small-cap styling and spacing; Appendix E retains blue revision text. Tables II–III, italic paragraph labels, column margins, and appendix references render correctly; no clipping or overlap observed. No document changes needed.
+
+- 2026-10-02. Synchronized the response’s ATP and installed-LCT quotations with the manuscript’s Appendix D and E label references. Verified both replacement strings against main.tex; no other response text or comment statuses changed.
+
+- 2026-10-02. Reviewed user appendix-indexing changes without modifying document sources. Isolated two-pass builds confirm five appendix labels resolve A–E and no undefined references or overfull boxes; response retains existing h-to-ht warning. Found two unsynchronized response quotations (ATP paragraph and installed-LCT pointer, lines 144 and 311), which still say “the appendix” instead of the new labeled references. Source correction remains outstanding. Build artifacts: tmp/appendix-index-review/.
+
+- 2026-10-02. Reapplied the full-name-first SaTE introduction in main.tex after it reverted to the abbreviation; confirmed the existing response quotation matches exactly. Other wording unchanged.
+
+- 2026-10-02. Expanded the first SaTE mention using the cited paper’s title wording, “Low-latency traffic engineering for satellite networks (SaTE),” and synchronized the Comment 2.4 quotation. Verified quotation equality; later abbreviation uses and existing user edits preserved. No compile performed for this wording-only edit.
+
 - 2026-10-01. User accepted all comments. E.1, 1.1–1.2, 2.1–2.4, and 3.1–3.7 are addressed and black; no pending comments remain. Earlier dated pending-status entries are historical. Response wording and blue manuscript quotations remain unchanged.
 
 - 2026-10-01. Updated E.1 following the neighboring ToN reference letter: completed-work opening, grouped evaluation/modeling/presentation summary, and transition to detailed responses. Removed the obsolete planned-changes paragraph; preserved editor wording, pending color, all other responses, and the user’s shortened opening acknowledgment. Manuscript unchanged.
