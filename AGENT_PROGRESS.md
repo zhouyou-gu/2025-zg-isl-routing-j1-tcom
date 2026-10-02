@@ -381,3 +381,73 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 - 2026-10-01. Final full-source proofreading completed for main.tex and the RV2 letter. Applied grammar/wording corrections, SPF abbreviation typo, outage-probability description correction (rate equation unchanged), and consistent FOR half-angle terminology in Response 2.2. Kept all 14 reviewer/editor comment bodies unchanged and accepted/black; all 13 manuscript excerpts match after whitespace normalization. Preserved the user-added opening acknowledgment sentence. Both isolated direct LaTeX/BibTeX builds pass without LaTeX warnings, undefined references or overfull boxes; rendered page overviews inspected. Review PDFs refreshed in output/pdf/main_final_proofread.pdf and response_letter_TCOM_RV2_draft.pdf. No simulation/data changes, no commit.
 - Technical issues noticed during proofreading remain outside the grammar edits: (1) the displayed Theorem 1 bound yields a log(k)/sqrt(k) rate at beta=0.5, not the claimed k^(-1/2); the proof incorrectly calls both step-size sums convergent; (2) its initial distance equality omits projection, which generally gives an inequality; (3) the exact-supergradient convergence argument is not justified for the stated greedy matching approximation. Additional consistency checks warranted: the population paragraph says Poisson mean equals covered population despite the 0.01% active-user fraction; the simplex polynomial-time assertion needs qualification. These are not resolved by successful compilation or prior acceptance of reviewer-response statuses.
+
+- 2026-10-02. Added a two-sentence results summary to the end of Comment 1.1’s direct response. Verified against the saved completed ATP summary.csv: DuJo leads at zero ATP; SaTE/MRate at 10/20 s; +Grid at 30–90 s. At 90 s their respective retention ratios are 3.33%, 32.54%, and 81.66%. Manuscript, quotations, reviewer wording, and accepted statuses unchanged.
+
+- 2026-10-02. Replaced Comment 1.1’s numerical results summary with a concise qualitative conclusion: longer acquisition reduces throughput, persistent links reduce sensitivity, and link persistence should be considered alongside per-snapshot throughput. Other content and statuses unchanged.
+
+- 2026-10-02. Replaced the named DeepLaDu acceleration passage in main.tex, Comment 1.2 response, and its quotation with the user-approved generic graph-neural-network future-research sentence. Removed the citation from these passages; bibliography and separate conclusion citation unchanged. Accepted statuses preserved.
+
+- 2026-10-02. Replaced the opening sentence of Response 2.1 with the user-approved warmer clarification that the structured-shell evaluation included multiple snapshots over time. Remaining response and manuscript unchanged.
+
+- 2026-10-02. Created a standalone two-shell geometry visualization from the exact mixed-s0 population used in Fig. 5(b): 500 satellites per cluster, manifest TLE hash verified, all positions propagated at the saved epoch with Skyfield. Left panel shows all 1000 positions; right shows one actual orbit per cluster with nearly equal RAAN to expose inclination differences (NORAD 51718 and 58529). Full-orbit traces use each representative TLE mean period; both panels use a common rotation about Earth’s axis. Finite-position checks and visual inspection passed. PDF/PNG, generator and metadata saved in output/pdf/two_shell_geometry.* and plot_two_shell_geometry.py. Manuscript and response unchanged; standalone preview only.
+
+- 2026-10-02. Improved standalone two-shell visualization for inclination clarity: replaced the representative-orbit perspective panel with an explicitly labeled edge-on schematic of orbital planes, showing 53.22° and 43.00° angle arcs from the equatorial plane. Actual 1000-satellite population panel retained; legend now names inclination. PDF/PNG/generator/metadata refreshed and visually checked. No manuscript or response insertion.
+
+- 2026-10-02. Changed panel (a) of the standalone two-shell visualization to an equatorial orthographic side projection of the same actual satellite positions. Added colored approximate north/south inclination envelopes computed as median orbital radius times sin(cluster inclination); panel (b) retains explicit angle schematic. Regenerated and inspected PDF/PNG; source and metadata preserved.
+
+- 2026-10-02. Reviewed and inserted the two-shell visualization only in Response 2.1, using tracked asset two_shell_geometry_response.pdf and a response-specific label. Caption distinguishes actual projected population from the schematic orbital planes and explains approximate envelope construction and common schematic line of nodes. Main manuscript unchanged by this insertion; all comments remain accepted.
+
+- Two-shell response insertion validated: isolated LaTeX/BibTeX passes succeeded, no undefined references or overfull boxes; existing h-to-ht float warning remains. Inspected rendered response page 6 and verified main.tex byte-identical to its pre-insertion state. Updated response review PDF.
+
+- 2026-10-02. Split System Parameters into five paragraphs covering constellation selection, LCT/beam settings, user demand, gateways, and the example figure/default size. Only whitespace changed in main.tex, verified by exact equality after whitespace removal.
+
+- 2026-10-02. Restyled the two-shell geometry figure to match existing manuscript figures: STIX serif with Computer Modern math, 10-point main text and 9-point annotations, 3.5-inch width, vertically stacked panels. Native PDF size 252 x 403.2 pt. Response inclusion uses 3.5in width; figure remains response-only. Checked rendered page 6; no undefined references or overfull boxes, existing float warning only. Review PDF refreshed.
+
+- 2026-10-02. Corrected layout per user: two panels side by side in one row within a single 3.5-inch-wide figure (3.5 x 2.6 in). Retained serif/math styling, 9-point legend/panel labels and angle annotations, with 8-point interior labels. Figure remains response-only. Regenerated PDF/PNG and rebuilt response successfully; no undefined references/overfull boxes.
+
+- 2026-10-02. Tightened two-shell figure margins, legend spacing and panel-label spacing; reduced height from 2.6 to 2.2 inches while retaining 3.5-inch width, side-by-side panels and font sizes. Regenerated and visually checked figure, refreshed tracked figure asset and compiled response review PDF.
+
+- 2026-10-02. Shortened the two-shell figure legend to 53.22° and 43.00° only, per user request. Regenerated figure asset and response review PDF; layout and data unchanged.
+
+- 2026-10-02. Placed the two-shell figure legend labels in one row; regenerated figure and response review PDF.
+
+- 2026-10-02. Further reduced two-shell figure whitespace to a 3.5 x 1.95-inch canvas, with a single-row legend and tighter panel/label margins. Font sizes and plotted data unchanged. Visually checked the figure and rebuilt the response PDF.
+
+- 2026-10-02. Moved the 43.00° annotation in panel (b) to the right of the orbital-plane lines; visually verified no label overlap. Regenerated figure and response PDF.
+
+- 2026-10-02. Edge audit found panel-label text bounding boxes extending below the two-shell PDF page. Moved panel labels inward and inset the legend, retaining 3.5 x 1.95-inch dimensions. All text bounding boxes now lie inside the PDF page; visual check passed. Refreshed figure asset and compiled response PDF.
+
+- 2026-10-02. Further tightened two-shell figure to 3.5 x 1.8 inches and reduced panel/label gaps; repositioned the blue angle annotation to avoid the legend. Visual and text-boundary checks passed. Updated figure and response review PDF.
+
+- 2026-10-02. Added the approved compact two-shell geometry figure to main.tex as Fig. 6, one column wide, with blue caption and a short blue reference in the structured-shell evaluation. Response 2.1 now reproduces the manuscript figure/caption and quotes the updated paragraph. Shared tracked asset renamed two_shell_geometry.pdf. Updated hard-coded author figure references affected by renumbering; all 14 reviewer texts unchanged. Both isolated builds passed without undefined references/overfull boxes; existing response float warning remains. Inspected manuscript p.11 and response p.6. Refreshed main_two_shell_geometry_review.pdf and response review PDF.
+
+- 2026-10-02. Shortened Fig. 6 caption to identify the actual two-shell side view, approximate envelopes, and schematic inclination comparison. Response caption synchronized verbatim.
+
+- 2026-10-02. Updated System Parameters to explicitly introduce both single-shell and two-shell Starlink configurations, each with 1000 satellites. Added the sentence to Response 2.1’s manuscript quotation; preserved the user’s relocation of the geometry figure to the setup.
+
+- 2026-10-02. Added a reference to the two-shell geometry figure in the System Parameters population description and synchronized the Response 2.1 setup quotation.
+
+- 2026-10-02. Synchronized Response 2.1 quotations to latest user-edited main.tex: geometry reference stays in System Parameters and is removed from the evaluation quotation. Preserved main.tex byte-for-byte. All manuscript excerpts match; both isolated builds passed without undefined references/overfull boxes, existing response float warning only. Refreshed both review PDFs and figure numbering.
+
+- 2026-10-02. Audited current compiled figure numbering: geometry 3, convergence 4, satellite-count 5, shell-time 6(a)/(b), load 7, runtime 8, LCT/FOR 9, constellation types 10, ATP 11, gateways 12. All manuscript/response figure references resolve through labels; no hard-coded author figure numbers remain. Response reproduction captions verified against compiled PDF. Original reviewer figure numbers remain verbatim.
+
+- 2026-10-02. Shortened and smoothed Response 3.1 to connect the throughput objective with the appendix’s competitive propagation-delay results. Retained the LISL-only metric scope; did not assert an unmeasured strong correlation with full E2E latency. Manuscript, table, quotation and reviewer wording unchanged.
+
+- 2026-10-02. Clarified Response 3.1’s delay terminology as end-to-end propagation delay along a served flow’s source-to-destination satellite LISL route. Explicitly retained excluded latency components; no claim of full user-to-Internet E2E latency. Appendix/results unchanged.
+
+- 2026-10-02. Updated Response 3.1 per user terminology: “end-to-end (E2E) delays” between source/destination satellites, explicitly “considering only propagation delay” along each served LISL route. Other latency exclusions preserved.
+
+- 2026-10-02. Added Response 3.2 explanation that lower active-user percentage cannot create missing gateway-to-demand routes. Cited load-stress figure and qualified the nearly unchanged light-load ratio as evidence suggesting a connectivity bottleneck, not proof of its sole cause. Manuscript quotation and accepted status unchanged.
+
+- 2026-10-02. Revised Response 3.2 opening to directly explain why the evaluated served-demand ratio does not reach 100%: insufficient connectivity and capacity in the selected LISL topologies. Remaining response unchanged.
+
+- 2026-10-02. Reframed Response 3.2 opening around the underlying mechanism: remote gateway service requires feasible LISL routes, restricted by LCT availability/steering and link capacities. Scoped the below-100% statement to evaluated selected topologies. Other response content unchanged.
+
+- 2026-10-02. Slightly expanded the blue Load-Stress explanation to identify LCT availability, steering ranges and link rates as constraints on feasible gateway-to-demand routes, and clarify that lower demand cannot create missing routes. Synchronized Response 3.2 quotation verbatim; retained the original residual-demand definition and resource-increase sentence.
+
+- 2026-10-02. Added a concise concluding results summary to Response 3.4: DuJo throughput/served ratio improve with gateway count over the tested range and remain above the baselines. Existing numerical evidence, manuscript and quotation unchanged.
+
+- 2026-10-02. Reorganized Response 3.7 into a short high-level opening followed by the fixed-input optimum argument, observed DuJo decrease, and approximate matching/final-iterate explanation. Manuscript quotation, reviewer wording, and accepted status unchanged.
+
+- 2026-10-02. User authorized commit/push to main of the two-shell geometry figure, setup/response synchronization, generic learning-based future-work wording, E2E propagation-delay clarification, served-ratio explanation, gateway summary and high-level FOR response. Final isolated builds passed with no undefined references or overfull boxes; existing response float warning remains. All quoted excerpts match and reviewer comments remain unchanged. Removed only generated bibliography whitespace churn and trailing whitespace on edited lines. Accepted statuses unchanged.

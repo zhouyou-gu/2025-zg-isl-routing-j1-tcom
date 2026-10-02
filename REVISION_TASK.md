@@ -198,3 +198,7 @@ Previous publication checkpoint: manuscript/evidence `4ad8122` (tracking update 
 - 2026-09-28. User authorized commit and push of Comment 3.7 to main. Publishing synchronized FOR explanation/caption and response, with prior successful isolated builds and visual checks. Comment remains red/pending; committing is not acceptance. Discarded generated main.bbl line-wrap-only churn after verifying identical non-whitespace content.
 
 - 2026-09-28. Added the requested paragraph break between LCT-count and FOR discussions under Impact of Constellation Configurations. Wording unchanged; response quotations remain synchronized.
+
+- 2026-10-02. Two-shell geometry visualization is now included in both manuscript (Fig. 6) and Response 2.1. One-column, side-by-side panels; caption/quotation and subsequent author figure references synchronized. All comment statuses remain accepted.
+
+- 2026-10-02. Geometry figure relocated by user to System Parameters; Response 2.1 setup/evaluation excerpts synchronized and both PDFs rebuilt with current automatic figure numbering.
