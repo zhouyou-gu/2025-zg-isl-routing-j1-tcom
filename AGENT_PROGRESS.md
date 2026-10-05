@@ -4,6 +4,8 @@ This is the live-state record for the current paper revision. Historical RV1 det
 
 ## Current Objective
 
+- 2026-10-05. Exported requested text-uncolored manuscript to output/pdf/main_untracked.pdf directly from main.tex with compile-time blue/red/violet remapped to black; embedded figures retain source colors. Fresh isolated LaTeX/BibTeX passes have no warnings or overfull boxes; inspected rendered page 4. Manuscript source unchanged.
+
 - 2026-10-02. User authorized commit/push of manuscript proofreading, the simplified Comment 3.5 aggregate-demand example, its synchronized response quotation, and revision records to origin/main. Pre-commit whitespace check passed; prior build/visual validation is recorded below. Substantive proofreading findings remain open. Git history and remote branch state record publication status.
 
 - 2026-10-02. Simplified the Comment 3.5 example at user request: four beams covering ten active users each give U=40 and demand 40D; simultaneous service depends on active beams and available capacity. Removed footprint/scheduling jargon and detailed concurrent-user arithmetic from manuscript, response and quotation.
